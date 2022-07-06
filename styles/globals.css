@@ -12,13 +12,11 @@
     }
     .bunny-generation-outside{
         position: relative;
-        background: red;
-        clip-path: circle(220px at 50% 35%);
+        background: #ECEDF2;
+        clip-path: circle(200px at 50% 41%);
     }
     .bunny-generation-inside{
-        position: absolute;
+        clip-path: circle(190px at 50% 41%);
         background: white;
-        transform: scale(0.9);
-        clip-path: circle(220px at 50% 35%);
     }
 }
