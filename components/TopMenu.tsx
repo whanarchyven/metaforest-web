@@ -13,7 +13,7 @@ const TopMenu = ({balance}:topMenuInterface) => {
                     <Image src={'/images/burger_icon.svg'} layout={'fill'}></Image>
                 </div>
             </div>
-            <div className={'col-start-4 col-end-6'}>
+            <div className={'col-start-4 col-end-6 justify-self-end'}>
                 <div className={'h-full w-4 relative inline-block align-middle mr-2'}>
                     <Image src={'/images/carrot_icon.svg'} layout={'fill'}></Image>
                 </div>
