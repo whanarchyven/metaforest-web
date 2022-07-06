@@ -36,7 +36,16 @@ const Bunny = () => {
 
             base:{
                 rabbit:'0000s_0012_belyj',
+                eyes:'Eyes_0000s_0000s_0001_rozovaja-kraska'
             },
+            equipment:{
+                hat:{
+                    id:1,
+                    type:'hats',
+                    rarity:'common',
+                    name:'_0000s_0001s_0001_zolotaja-korona',
+                }
+            }
 
         },
     }
@@ -45,10 +54,10 @@ const Bunny = () => {
     return (
         <div className={'w-full h-[100vh] relative'}>
             <div className={'w-full h-full pt-20 pb-32'}>
-                <Container currentTab={currentTab}></Container>
+                <Container bunny={bunny} currentTab={currentTab}></Container>
             </div>
             <div className={'w-full h-20 fixed top-0'}>
-                <TopMenu></TopMenu>
+                <TopMenu balance={balance}></TopMenu>
             </div>
             <div className={'w-full h-32 fixed bottom-0'}>
                 <TabBar currentTab={currentTab} UpdateTab={UpdateTab}></TabBar>

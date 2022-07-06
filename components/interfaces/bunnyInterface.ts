@@ -27,7 +27,7 @@ export interface bunnyInterface{
             faces?:string,
         },
 
-        equipment?:{
+        equipment:{
             rightHand?:equipmentItem,
             leftHand?:equipmentItem,
             hat?:equipmentItem,

@@ -5,17 +5,19 @@ import Marketplace from "./Marketplace";
 import Activity from "./Activity";
 import Equipment from "./Equipment";
 import Work from "./Work";
+import {bunnyInterface} from "./interfaces/bunnyInterface";
 
 interface containerInterface{
-    currentTab:tabType
+    currentTab:tabType;
+    bunny:bunnyInterface;
 }
 
-const Container = ({currentTab}:containerInterface) => {
+const Container = ({currentTab,bunny}:containerInterface) => {
     switch (currentTab){
         case 'home':{
             return (
                 <div className={'w-full h-full'}>
-                    <Home></Home>
+                    <Home bunny={bunny.bunny}></Home>
                 </div>
             );
         }
