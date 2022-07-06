@@ -7,4 +7,18 @@
     .green-gradient{
         background: linear-gradient(99.47deg, #64D2CC 5.22%, #7DD9A3 94.77%);
     }
+    .grey-gradient{
+        background: linear-gradient(90deg, #FFFFFF 0%, #D0D2DE 100%);
+    }
+    .bunny-generation-outside{
+        position: relative;
+        background: red;
+        clip-path: circle(220px at 50% 35%);
+    }
+    .bunny-generation-inside{
+        position: absolute;
+        background: white;
+        transform: scale(0.9);
+        clip-path: circle(220px at 50% 35%);
+    }
 }
