@@ -88,8 +88,8 @@ const Work = () => {
                 </div>
                 <div className={'grid grid-cols-1 gap-4 overflow-y-scroll h-[73%]'}>
                     {works.map(item=>{
-                        return <div className={'h-36'}>
-                            <WorkCard workItem={item.workItem} key={item.workItem.id}></WorkCard>
+                        return <div className={'h-36'} key={item.workItem.id}>
+                            <WorkCard workItem={item.workItem}></WorkCard>
                         </div>
                     })}
 
