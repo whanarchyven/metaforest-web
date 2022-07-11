@@ -1,10 +1,10 @@
 import React from 'react';
 import {tabType} from "./types/tabType";
-import Home from "./Home";
-import Marketplace from "./Marketplace";
-import Activity from "./Activity";
-import Equipment from "./Equipment";
-import Work from "./Work";
+import Home from "./screens/Home";
+import Marketplace from "./screens/Marketplace";
+import Activity from "./screens/Activity";
+import Equipment from "./screens/Equipment";
+import Work from "./screens/Work";
 import {bunnyInterface} from "./interfaces/bunnyInterface";
 
 interface containerInterface{
