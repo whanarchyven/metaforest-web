@@ -1,8 +1,8 @@
 import React from 'react';
-import {bunnyInterface} from "./interfaces/bunnyInterface";
-import BunnyGeneration from "./BunnyGeneration";
+import {bunnyInterface} from "../interfaces/bunnyInterface";
+import BunnyGeneration from "../BunnyGeneration";
 import Image from "next/image";
-import VitalityBar from "./VitalityBar";
+import VitalityBar from "../VitalityBar";
 interface homeInterface{
     bunny:bunnyInterface
 }
