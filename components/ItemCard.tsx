@@ -55,7 +55,7 @@ const ItemCard = ({item}:ItemCardInterface) => {
                     <p className={'text-left text-xs font-bold'}>Require:</p>
                     <div className={'grid grid-cols-2 gap-1'}>
                         {requirements!=undefined? requirements.map((requirements:any)=>{
-                            return (<div className={'w-full h-5 rounded-full flex justify-center items-center relative'}>
+                            return (<div className={'w-full h-5 rounded-full flex justify-center items-center relative'} key={requirements[0]}>
                                 <div className={'w-full h-full bg-white opacity-30 rounded-full absolute top-0 left-0'}></div>
                                 <div className={'w-5 h-5 rounded-full bg-white absolute left-0 p-1'}>
                                     <div className={'w-full h-full relative'}>
