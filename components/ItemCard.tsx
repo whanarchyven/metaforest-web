@@ -13,20 +13,29 @@ const ItemCard = ({item}:ItemCardInterface) => {
     if(item.requirements){
         requirements=Object.entries(item.requirements);
     }
-    let color:any;
+    let bg_color:any;
+    let border_color:any
     switch (item.rarity){
             case'common':
-                color='#B8B8B8';
+                border_color=' border-[#B8B8B8] ';
+                bg_color=' bg-[#E1E1E3] ';
+                break;
             case'uncommon':
-                color='#9BCA15';
+                border_color=' border-[#9BCA15] ';
+                bg_color=' bg-[#CFDEAC] ';
+                break;
             case'epic':
-                color='#9600FF';
+                border_color=' border-[#9600FF] ';
+                bg_color=' bg-[#C89BEE] ';
+                break;
             case'legendary':
-                color='#FF8F00';
+                border_color=' border-[#FF8F00] ';
+                bg_color=' bg-[#F1D0A9] ';
+                break;
     }
-    let bg=' bg-['+color+']'
+
     return (
-        <div className={'w-full h-full p-2 rounded-xl border-4 relative bg-uncommon-weak'}>
+        <div className={'w-full h-78 p-2 rounded-xl border-4 relative'+bg_color+border_color}>
             <div className={'w-28 h-28 relative mx-auto'}>
                 <div className={'w-full h-full absolute'}>
                     <Image src={'/images/card_generation/item_bg.svg'} layout={'fill'}></Image>

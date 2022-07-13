@@ -5,7 +5,7 @@ const ActiveTask = () => {
     return (
         <div className={'w-full h-full grid grid-cols-9 grid-rows-3 gap-2'}>
             <div className={'col-start-1 col-end-8'}>
-                <p className={'w-full font-semibold text-2xl'}>Seed carrot</p>
+                <p className={'w-full font-semibold text-xl'}>Seed carrot</p>
             </div>
             <div className={'col-start-8 col-end-10 bg-black rounded-full flex justify-center items-center'}>
                 <p className={'text-white inline-block font-semibold'}>+75</p>
@@ -21,10 +21,10 @@ const ActiveTask = () => {
                 </div>
             </div>
             <div className={'col-start-1 col-end-8 row-start-3'}>
-                <p className={'w-full font-semibold text-l text-[#898994]'}>Progress: <strong>7,4/10 km</strong></p>
+                <p className={'w-full font-semibold text-xs text-[#898994]'}>Progress: <strong>7,4/10 km</strong></p>
             </div>
             <div className={'col-start-8 col-end-10 row-start-3'}>
-                <p className={'w-full text-center font-semibold text-l text-[#898994]'}>M-2-E</p>
+                <p className={'w-full text-center font-semibold text-xs text-[#898994]'}>M-2-E</p>
             </div>
         </div>
     );

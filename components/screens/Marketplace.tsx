@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import TabSwitcher from "../TabSwitcher";
 import ItemCard from "../ItemCard";
-
+import Image from "next/image";
 const Marketplace = () => {
     const tabs=[
         'looks','instruments','houses'
@@ -58,13 +58,14 @@ const Marketplace = () => {
                 int:2,str:4,
             }
         },
+
     ]
 
 
     return (
-        <div className={'w-full h-full pb-0 p-4'}>
-            <p className={'text-center text-black text-5xl font-bold mb-5'}>Market</p>
-            <div className={'grid grid-cols-5 grid-rows-2 gap-2 h-20 mb-2'}>
+        <div className={'w-full h-full pb-20 p-4'}>
+            <p className={'text-center text-black text-3xl font-bold mb-2'}>Market</p>
+            <div className={'grid grid-cols-5 grid-rows-2 gap-2 h-16 mb-4'}>
                 <div className={'col-start-1 col-end-6 row-start-1'}>
                     <TabSwitcher tabs={tabs} activeTab={activeTab} switchTab={setActiveTab}></TabSwitcher>
                 </div>
@@ -81,9 +82,20 @@ const Marketplace = () => {
                     </select>
                 </div>
             </div>
-            <div className={'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 overflow-y-scroll gap-4 h-[76%] border-black border-2'}>
+            <div className={'gap-y-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 overflow-y-scroll gap-4 h-full pb-24'}>
                 {items.map(item=>{
-                    return <ItemCard item={item} key={item.id}></ItemCard>
+                    return <div className={'w-full h-full'} key={item.id}>
+                        <ItemCard item={item} key={item.id}></ItemCard>
+                        <div className={'grid grid-cols-2 gap-3 h-9 mt-3'}>
+                            <button className={'rounded-full bg-black text-white'}>Buy</button>
+                            <div className={'rounded-full flex items-center justify-around bg-black'}>
+                                <p className={'text-white'}>125</p>
+                                <div className={'w-7 h-7 relative bg-white rounded-full p-1'}>
+                                    <Image src={'/images/carrot_icon.svg'} layout={'fill'}></Image>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 })}
             </div>
         </div>
