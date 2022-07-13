@@ -21,13 +21,13 @@ const TabBar = ({currentTab,UpdateTab}:tabBarInterface) => {
 
     useEffect(()=>{
         window.addEventListener('scroll',ev => {
-            if(window.pageYOffset>currentOffset){
+            if(window.scrollY>currentOffset){
                 setIsVisible('visible-false');
-                setCurrentOffset(window.pageYOffset);
+                setCurrentOffset(window.scrollY);
             }
             else{
                 setIsVisible('visible-true');
-                setCurrentOffset(window.pageYOffset);
+                setCurrentOffset(window.scrollY);
             }
         })
     })
