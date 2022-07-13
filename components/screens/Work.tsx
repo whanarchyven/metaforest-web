@@ -77,13 +77,13 @@ const Work = () => {
 
     return (
         <div className={'w-full h-full grid grid-cols-1 gap-2 grid-rows-6 sm:grid-cols-2 xl:gap-8 xl:grid-cols-4 pb-0 p-4'}>
-            <div className={'xl:col-start-4 row-start-1 row-end-2'}>
+            <div className={'xl:col-start-4 row-start-1 row-end-1'}>
                 <p className={'w-full text-center mb-0 font-bold text-2xl'}>Work in progress</p>
-                <div className={'w-full h-full bg-white p-2 rounded-xl'}>
+                <div className={'w-full h-24 bg-white p-2 rounded-xl'}>
                     <ActiveTask></ActiveTask>
                 </div>
             </div>
-            <div className={'sm:col-start-1 sm:col-end-3 sm:row-start-1 row-start-2 mt-0 sm:mt-0 row-end-7 pt-8'}>
+            <div className={'sm:col-start-1 sm:col-end-3 sm:row-start-1 row-start-2 mt-0 sm:mt-0 row-end-7 pt-0'}>
                 <p className={'w-full text-center font-bold text-2xl'}>Billboard</p>
                 <div className={'grid grid-cols-5 grid-rows-1 h-12 sm:p-6 p-3 gap-4'}>
                     <div className={'col-start-1 col-end-3 bg-white text-[#898994] rounded-full h-full'}>
