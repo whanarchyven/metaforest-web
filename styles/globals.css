@@ -57,11 +57,11 @@
     }
     .visible-false{
         transform: translateY(100%);
-        animation-duration: 1s;
+        transition: 1s ease-in-outs;
     }
     .visible-true{
         transform: translateY(0%);
-        animation-duration: 1s;
+        transition: 1s ease-in-outs;
     }
 
 /*.bg-common {background-color: #B8B8B8}*/
