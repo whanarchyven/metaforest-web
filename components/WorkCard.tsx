@@ -18,8 +18,8 @@ const WorkCard = ({workItem}:workTask) => {
                     <div className={'absolute left-0 top-0'}>
                         <div className={'w-12 h-12 green-gradient rounded-full inline-block align-top'}></div>
                         <div className={'inline-block align-top'}>
-                            <p className={'inline-block ml-4 font-bold w-3/5 text-2xl'}>{workItem.name}</p>
-                            <p className={'inline-block ml-4 font-bold w-3/5 text-lg opacity-50'}>{workItem.type=='m2e'?'M-2-E':'Social'}</p>
+                            <p className={'inline-block ml-4 font-bold w-3/5 text-xl'}>{workItem.name}</p>
+                            <p className={'inline-block ml-4 font-bold w-3/5 text-sm opacity-50'}>{workItem.type=='m2e'?'M-2-E':'Social'}</p>
                         </div>
                     </div>
                     <div className={'w-14 rounded-full h-8 absolute bottom-0 bg-[#5450DF] flex items-center justify-center p-1'}>

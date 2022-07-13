@@ -53,13 +53,13 @@ const Bunny = () => {
 
     return (
         <div className={'w-full h-[100vh] relative'}>
-            <div className={'w-full h-full pt-20 pb-32'}>
+            <div className={'w-full h-full pt-14 pb-20'}>
                 <Container bunny={bunny} currentTab={currentTab}></Container>
             </div>
-            <div className={'w-full h-20 fixed top-0'}>
+            <div className={'w-full h-14 fixed top-0'}>
                 <TopMenu balance={balance}></TopMenu>
             </div>
-            <div className={'w-full h-32 fixed bottom-0'}>
+            <div className={'w-full h-20 fixed bottom-0'}>
                 <TabBar currentTab={currentTab} UpdateTab={UpdateTab}></TabBar>
             </div>
         </div>

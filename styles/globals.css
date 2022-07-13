@@ -13,10 +13,10 @@
     .bunny-generation-outside{
         position: relative;
         background: #ECEDF2;
-        clip-path: circle(200px at 50% 41%);
+        clip-path: circle(180px at 50% 41%);
     }
     .bunny-generation-inside{
-        clip-path: circle(190px at 50% 41%);
+        clip-path: circle(170px at 50% 41%);
         background: white;
     }
     .rangebar>input[type=range]  {
