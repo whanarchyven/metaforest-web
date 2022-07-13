@@ -52,7 +52,7 @@ const Bunny = () => {
     const [bunny,setBunny]=useState(initialBunny);
 
     return (
-        <div className={'h-[105vh] relative'}>
+        <div className={'flex relative'}>
             <div className={'w-full h-full pt-14 pb-20'}>
                 <Container bunny={bunny} currentTab={currentTab}></Container>
             </div>
