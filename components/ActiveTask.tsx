@@ -5,7 +5,7 @@ const ActiveTask = () => {
     return (
         <div className={'w-full h-full grid grid-cols-9 grid-rows-3 gap-2'}>
             <div className={'col-start-1 col-end-8'}>
-                <p className={'w-full font-semibold text-xl'}>Seed carrot</p>
+                <p className={'w-full font-semibold text-lg'}>Seed carrot</p>
             </div>
             <div className={'col-start-8 col-end-10 bg-black rounded-full flex justify-center items-center'}>
                 <p className={'text-white inline-block font-semibold'}>+75</p>
@@ -13,7 +13,7 @@ const ActiveTask = () => {
                     <Image src={'/images/carrot_icon_white.svg'} layout={'fill'}></Image>
                 </div>
             </div>
-            <div className={'row-start-2 col-start-1 col-end-10 rangebar'} style={styles}>
+            <div className={'row-start-2 col-start-1 col-end-10 h-3 rangebar'} style={styles}>
                 {/*<input type={'range'} className={'w-full h-full bg-black form-range appearance-none w-full h-6 p-0 bg-transparent '} disabled={false}/>*/}
                 <div className={'w-full h-full relative'}>
                     <div className={'w-full absolute left-0 h-full rounded-full bg-[#c7c7c7]'}></div>
