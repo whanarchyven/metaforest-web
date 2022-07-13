@@ -55,15 +55,23 @@
         padding: 0px;
         margin: 0px;
     }
+    .visible-false{
+        transform: translateY(100%);
+        animation-duration: 1s;
+    }
+    .visible-true{
+        transform: translateY(0%);
+        animation-duration: 1s;
+    }
 
-.bg-common {background-color: #B8B8B8}
-.bg-uncommon {background-color: #9BCA15}
-.bg-epic {background-color: #9600FF}
-.bg-legendary {background-color: #FF8F00}
-.bg-common-weak {background-color: #E1E1E3}
-.bg-uncommon-weak {background-color: #CFDEAC}
-.bg-epic-weak {background-color: #C89BEE}
-.bg-legendary-weak {background-color: #F1D0A9}
+/*.bg-common {background-color: #B8B8B8}*/
+/*.bg-uncommon {background-color: #9BCA15}*/
+/*.bg-epic {background-color: #9600FF}*/
+/*.bg-legendary {background-color: #FF8F00}*/
+/*.bg-common-weak {background-color: #E1E1E3}*/
+/*.bg-uncommon-weak {background-color: #CFDEAC}*/
+/*.bg-epic-weak {background-color: #C89BEE}*/
+/*.bg-legendary-weak {background-color: #F1D0A9}*/
 
 
 
