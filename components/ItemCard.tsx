@@ -35,7 +35,7 @@ const ItemCard = ({item}:ItemCardInterface) => {
     }
 
     return (
-        <div className={'w-full h-78 p-2 rounded-xl border-4 relative'+bg_color+border_color}>
+        <div className={'w-full h-full p-2 rounded-xl border-4 relative'+bg_color+border_color}>
             <div className={'w-28 h-28 relative mx-auto'}>
                 <div className={'w-full h-full absolute'}>
                     <Image src={'/images/card_generation/item_bg.svg'} layout={'fill'}></Image>
@@ -81,7 +81,7 @@ const ItemCard = ({item}:ItemCardInterface) => {
             <div className={'w-5 h-5 left-1 top-1 absolute'}>
                 <Image src={'/images/card_generation/'+item.type+'.svg'} layout={'fill'}></Image>
             </div>
-            <p className={'h-5 right-2 w-20 text-right top-1 absolute text-sm'}>{item.id}</p>
+            <p className={'h-5 right-2 w-20 text-right top-1 absolute text-sm'}>#{item.id}</p>
 
         </div>
     );
