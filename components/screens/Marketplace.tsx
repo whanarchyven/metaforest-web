@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import TabSwitcher from "../TabSwitcher";
 import ItemCard from "../ItemCard";
 import Image from "next/image";
+import PopUp from "../PopUp";
 const Marketplace = () => {
     const tabs=[
         'looks','instruments','houses'
@@ -58,9 +59,13 @@ const Marketplace = () => {
                 int:2,str:4,
             }
         },
-
     ]
 
+    const [popupItem,setPopupItem]=useState(items[0]);
+    const [openPopup,setOpenPopup]=useState(false)
+    const togglePop=()=>{
+        setOpenPopup(!openPopup);
+    }
 
     return (
         <div className={'w-full h-full pb-20 p-4'}>
@@ -84,10 +89,10 @@ const Marketplace = () => {
             </div>
             <div className={'gap-y-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 overflow-y-scroll gap-4 h-full pb-24'}>
                 {items.map(item=>{
-                    return <div className={'w-full h-full'} key={item.id}>
+                    return <div className={'w-full h-72'} key={item.id}>
                         <ItemCard item={item} key={item.id}></ItemCard>
                         <div className={'grid grid-cols-2 gap-3 h-9 mt-3'}>
-                            <button className={'rounded-full bg-black text-white'}>Buy</button>
+                            <button className={'rounded-full bg-black text-white'} onClick={()=>{setPopupItem(item);togglePop()}}>Buy</button>
                             <div className={'rounded-full flex items-center justify-around bg-black'}>
                                 <p className={'text-white'}>125</p>
                                 <div className={'w-7 h-7 relative bg-white rounded-full p-1'}>
@@ -98,6 +103,7 @@ const Marketplace = () => {
                     </div>
                 })}
             </div>
+            {openPopup?<PopUp item={popupItem} togglePop={togglePop}></PopUp>:null}
         </div>
     );
 };

@@ -33,7 +33,7 @@ const TabBar = ({currentTab,UpdateTab}:tabBarInterface) => {
     })
 
     return (
-        <div className={'w-full h-full bg-white grid grid-cols-5 gap-10 grid-rows-1 p-5 '+isVisible}>
+        <div className={'w-full h-full bg-white grid grid-cols-5 visible-transition gap-10 grid-rows-1 p-5 '+isVisible}>
             {tabs.map(item=>{
                 let active='';
                 if(item!=currentTab){
