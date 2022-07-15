@@ -20,20 +20,20 @@ export interface bunnyInterface{
 
         base:{
             rabbit:string,
-            overhead?:string,
             mouth?:string,
             eyes?:string,
             bg?:string,
-            faces?:string,
         },
 
         equipment:{
-            rightHand?:equipmentItem,
-            leftHand?:equipmentItem,
-            hat?:equipmentItem,
+            overhead?:equipmentItem,
+            faces?:equipmentItem,
+            right?:equipmentItem,
+            left?:equipmentItem,
+            hats?:equipmentItem,
             clothes?:equipmentItem,
-            neck?:equipmentItem,
-            hears?:equipmentItem,
+            necklace?:equipmentItem,
+            ears?:equipmentItem,
         },
         inventory?:Array<equipmentItem>,
         activeTask?:activeTask,

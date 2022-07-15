@@ -5,7 +5,7 @@
 
 @layer utilities {
     .green-gradient{
-        background: linear-gradient(99.47deg, #64D2CC 5.22%, #7DD9A3 94.77%);
+        background: linear-gradient(90deg, #65D7CC 0%, #60FDCF 49.03%);
     }
     .grey-gradient{
         background: linear-gradient(90deg, #FFFFFF 0%, #D0D2DE 100%);
@@ -65,6 +65,33 @@
     .visible-transition{
         transition: 1s;
     }
+
+
+
+    /*Characteristics Gradients*/
+
+
+    .str-gradient{
+        background: linear-gradient(90deg, #C74A54 0%, #FF3F4E 100%);
+    }
+
+    .dex-gradient{
+        background: linear-gradient(90deg, #A34EDF 0%, #EE87FF 100%);
+    }
+    .vit-gradient{
+        background: linear-gradient(90deg, #5F61FF 0%, #49B3FF 100%);
+    }
+    .int-gradient{
+        background: linear-gradient(90deg, #5FD9FF 0%, #7CFFF7 100%);
+    }
+    .krm-gradient{
+        background: linear-gradient(90deg, #65D6CB 0%, #5FFFCF 100%);
+    }
+    .deactive-gradient{
+        background-color: #E1EAFF;
+    }
+
+
 
 /*.bg-common {background-color: #B8B8B8}*/
 /*.bg-uncommon {background-color: #9BCA15}*/

@@ -27,11 +27,11 @@ const Bunny = () => {
             energy:1,
 
             stats:{
-                str:0,
-                dex:0,
-                vit:0,
-                int:0,
-                krm:0,
+                str:2,
+                dex:3,
+                vit:6,
+                int:4,
+                krm:1,
             },
 
             base:{
@@ -39,11 +39,17 @@ const Bunny = () => {
                 eyes:'Eyes_0000s_0000s_0001_rozovaja-kraska'
             },
             equipment:{
-                hat:{
+                hats:{
                     id:1,
                     type:'hats',
                     rarity:'common',
                     name:'_0000s_0001s_0001_zolotaja-korona',
+                },
+                clothes:{
+                    id:2,
+                    type:'clothes',
+                    rarity:'common',
+                    name:'Clothes_0000s_0008_kostjum',
                 }
             }
 

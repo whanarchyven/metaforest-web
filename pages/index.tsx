@@ -6,7 +6,7 @@ import Bunny from "../components/Bunny";
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <div className={'grey-gradient'}>
       <Head>
         <title>Create Next App</title>
 
@@ -15,7 +15,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={'font-roboto overscroll-y-none grey-gradient'}>
+      <main className={'font-roboto overscroll-y-none'}>
         <Bunny></Bunny>
       </main>
     </div>

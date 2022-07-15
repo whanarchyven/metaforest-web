@@ -38,7 +38,7 @@ const Container = ({currentTab,bunny}:containerInterface) => {
         case 'equipment':{
             return (
                 <div className={'w-full h-full'}>
-                    <Equipment></Equipment>
+                    <Equipment bunny={bunny}></Equipment>
                 </div>
             );
         }
