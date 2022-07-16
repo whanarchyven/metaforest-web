@@ -6,13 +6,15 @@ import Activity from "./screens/Activity";
 import Equipment from "./screens/Equipment";
 import Work from "./screens/Work";
 import {bunnyInterface} from "./interfaces/bunnyInterface";
+import {equipmentItem} from "./interfaces/equipmentItem";
 
-interface containerInterface{
-    currentTab:tabType;
-    bunny:bunnyInterface;
+interface containerInterface {
+    currentTab: tabType;
+    bunny: bunnyInterface;
+    attachItemToBunny: (place: string | "left" | "right" | "necklace" | "face" | "clothes" | "hat" | "overhead" | "ears", item: equipmentItem) => any;
 }
 
-const Container = ({currentTab,bunny}:containerInterface) => {
+const Container = ({currentTab,bunny,attachItemToBunny}:containerInterface) => {
     switch (currentTab){
         case 'home':{
             return (
@@ -38,7 +40,7 @@ const Container = ({currentTab,bunny}:containerInterface) => {
         case 'equipment':{
             return (
                 <div className={'w-full h-full'}>
-                    <Equipment bunny={bunny}></Equipment>
+                    <Equipment bunny={bunny} attachItemToBunny={attachItemToBunny}></Equipment>
                 </div>
             );
         }

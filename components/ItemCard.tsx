@@ -73,7 +73,7 @@ const ItemCard = ({item}:ItemCardInterface) => {
                                 </div>
                                 <p className={'absolute text-xs font-bold left-6'}>{requirements[1]}</p>
                             </div>)
-                        }): null}
+                        }): <p className={'opacity-50 text-black text-xs'}>No requirements</p>}
                     </div>
                     {item.rarity=='legendary'?<p className={'text-left text-xs font-medium'}>Status <strong>Elite</strong></p>:null}
                 </div>
