@@ -8,7 +8,8 @@ import {equipmentItem} from "../interfaces/equipmentItem";
 
 interface equipmentInterface {
     bunny: bunnyInterface,
-    attachItemToBunny: (place: string | "left" | "right" | "necklace" | "face" | "clothes" | "hat" | "overhead" | "ears", item: equipmentItem) => any
+    attachItemToBunny : (place:"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears",item:equipmentItem)=>any
+    refreshStats:()=>any;
 }
 
 interface keyTab {
@@ -19,13 +20,13 @@ interface keyStat{
     id:"str"|"dex"|"vit"|"int"|"krm"
 }
 
-const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
+const Equipment = ({bunny,attachItemToBunny,refreshStats}:equipmentInterface) => {
 
     const leftTabs:keyTab[]=[{id:'hats'},{id:'faces'},{id:'necklace'},{id:'left'}];
     const rightTabs:keyTab[]=[{id:'overhead'},{id:'ears'},{id:'clothes'},{id:'right'}];
     const stats:keyStat[]=[{id:'str'},{id:'dex'},{id:'vit'},{id:'int'}, {id:'krm'}];
 
-    const [choosenType,setChoosenType]=useState('hats')
+    const [choosenType,setChoosenType]=useState<"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears">('hats')
     const [popOpen,setPopOpen]=useState(false)
     const togglePop=()=>{
         setPopOpen(!popOpen);
@@ -51,6 +52,54 @@ const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
             }
         },
         {
+            id:111,
+            type:'left',
+            rarity:'common',
+            name:'L-hand_0000s_0000_avtomat',
+            increase:{
+                str: 1,
+            }
+        },
+        {
+            id:71,
+            type:'left',
+            rarity:'uncommon',
+            name:'L-hand_0000s_0001_bita',
+            increase:{
+                str:1,
+                dex:1,
+            }
+        },
+        {
+            id:84,
+            type:'left',
+            rarity:'epic',
+            name:'L-hand_0000s_0002_shlepalka-rrrr',
+            increase:{
+                str: 2,
+                dex:2,
+                int:1,
+            },
+            requirements:{
+                dex:2,
+            }
+        },
+        {
+            id:95,
+            type:'left',
+            rarity:'legendary',
+            name:'L-hand_0000s_0003_molotok',
+            increase:{
+                str: 2,
+                dex:2,
+                int:1,
+            },
+            requirements:{
+                dex:1,
+                krm:2,
+            }
+        },
+        {
             id:11,
             type:'hats',
             rarity:'common',
@@ -70,35 +119,26 @@ const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
             }
         },
         {
-            id:8,
-            type:'hats',
-            rarity:'epic',
-            name:'_0000s_0002s_0002_shapochka-chernaja',
-            increase:{
+            id: 8,
+            type: 'hats',
+            rarity: 'epic',
+            name: '_0000s_0002s_0002_shapochka-chernaja',
+            increase: {
                 str: 2,
-                dex:2,
-                int:1,
+                dex: 2,
+                int: 1,
             },
-            requirements:{
-                dex:2,
-            }
-        },
-        {
-            id:9,
-            type:'hats',
-            rarity:'legendary',
-            name:'_0000s_0003s_0003_balaklava-belaja',
-            increase:{
-                str: 2,
-                dex:2,
-                int:1,
-            },
-            requirements:{
-                dex:1,
-                krm:2,
+            requirements: {
+                dex: 1,
+                krm: 2,
             }
         },
     ]
+
+
+
+
+
 
 
     return (
@@ -186,7 +226,7 @@ const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
 
                 </div>
             </div>
-            {popOpen?<EquipmentPopUp choosenType={choosenType} items={inventory} togglePop={togglePop} attachItemToBunny={attachItemToBunny}></EquipmentPopUp>:null}
+            {popOpen?<EquipmentPopUp refreshStats={refreshStats} bunny={bunny} choosenType={choosenType} items={inventory} togglePop={togglePop} attachItemToBunny={attachItemToBunny}></EquipmentPopUp>:null}
         </div>
     );
 };

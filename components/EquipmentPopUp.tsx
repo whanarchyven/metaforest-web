@@ -3,15 +3,18 @@ import ItemCard from "./ItemCard";
 import {equipmentItem} from "./interfaces/equipmentItem";
 import Image from "next/image";
 import {firstLetterUpperCase} from "./firstLetterUpperCase";
+import {bunnyInterface} from "./interfaces/bunnyInterface";
 interface ItemCardInterface {
-    choosenType: string,
+    choosenType: "left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears",
     items: equipmentItem[],
     togglePop: () => any,
-    attachItemToBunny: (place: string | "left" | "right" | "necklace" | "face" | "clothes" | "hat" | "overhead" | "ears", item: equipmentItem) => any
+    attachItemToBunny : (place:"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears",item:equipmentItem)=>any,
+    bunny:bunnyInterface
+    refreshStats:()=>any
 }
 
 
-const EquipmentPopUp = ({items,togglePop,choosenType,attachItemToBunny}:ItemCardInterface) => {
+const EquipmentPopUp = ({items,togglePop,choosenType,attachItemToBunny,bunny,refreshStats}:ItemCardInterface) => {
     return (
         <div className={'fixed pt-16 w-full h-full top-0 left-0 grey-gradient justify-center items-center overflow-y-scroll overscroll-y-auto'}>
             <div className={'w-full flex over flex-wrap justify-center relative p-4'}>
@@ -25,8 +28,10 @@ const EquipmentPopUp = ({items,togglePop,choosenType,attachItemToBunny}:ItemCard
                 </div>
                 <div className={'w-full gap-4 grid grid-cols-2'}>
                     {items.map(item=>{
-                        if(item.type==choosenType){
-                            return <div onClick={()=>{attachItemToBunny(choosenType,item)}}><ItemCard item={item}></ItemCard></div>
+                        if((item.type==choosenType)){
+                            if(bunny.bunny.equipment[choosenType]?.name!=item.name){
+                                return <div onClick={()=>{attachItemToBunny(choosenType,item);togglePop()}} key={item.name}><ItemCard item={item} key={item.id}></ItemCard></div>
+                            }
                         }
                         else {
                             return null

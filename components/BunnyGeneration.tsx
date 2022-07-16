@@ -22,7 +22,7 @@ const BunnyGeneration = ({bunny}: bunnyGenerationInterface) => {
             }
         })}
         {equipmentList.map((item, counter) => {
-            console.log(item);
+            // console.log(item);
             if (item[1].name!='') {
                 return <div key={random(4).toString()} className={'w-full absolute top-0 left-0 h-full'}>
                     <img src={'/images/bunny_generation/' + item[1].type + '/' + item[1].name + '.png'}
