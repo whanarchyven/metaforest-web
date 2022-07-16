@@ -11,10 +11,11 @@ import {equipmentItem} from "./interfaces/equipmentItem";
 interface containerInterface {
     currentTab: tabType;
     bunny: bunnyInterface;
-    attachItemToBunny: (place: string | "left" | "right" | "necklace" | "face" | "clothes" | "hat" | "overhead" | "ears", item: equipmentItem) => any;
+    attachItemToBunny :(place:"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears",item:equipmentItem)=> any;
+    refreshStats:()=>any;
 }
 
-const Container = ({currentTab,bunny,attachItemToBunny}:containerInterface) => {
+const Container = ({currentTab,bunny,attachItemToBunny,refreshStats}:containerInterface) => {
     switch (currentTab){
         case 'home':{
             return (
@@ -40,7 +41,7 @@ const Container = ({currentTab,bunny,attachItemToBunny}:containerInterface) => {
         case 'equipment':{
             return (
                 <div className={'w-full h-full'}>
-                    <Equipment bunny={bunny} attachItemToBunny={attachItemToBunny}></Equipment>
+                    <Equipment refreshStats={refreshStats} bunny={bunny} attachItemToBunny={attachItemToBunny}></Equipment>
                 </div>
             );
         }
