@@ -44,12 +44,18 @@ const Bunny = () => {
                     type:'hats',
                     rarity:'common',
                     name:'_0000s_0001s_0001_zolotaja-korona',
+                    increase:{
+                        str:1
+                    }
                 },
                 clothes:{
                     id:2,
                     type:'clothes',
                     rarity:'common',
                     name:'Clothes_0000s_0008_kostjum',
+                    increase:{
+                        int:1
+                    }
                 }
             }
 
@@ -59,83 +65,66 @@ const Bunny = () => {
 
     const attachItemToBunny = (place:"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears",item:equipmentItem)=>{
         const newBunny={...bunny};
-        newBunny.bunny.equipment[place]=item;
-        setBunny(newBunny);
-    }
-
-    const updateStats =(new_stats: {str:number,dex:number,vit:number,krm:number,int:number})=>{
-        const newBunny={...bunny};
-        newBunny.bunny.stats=new_stats;
-        console.log(newBunny);
-        setBunny(newBunny);
-    }
-
-    const refreshStats=()=>{
-        const total_stats:{title:"str"|"dex"|"krm"|"vit"|"int",value:number}[]=[
-            {
-                title:'str',
-                value:bunny.bunny.stats.str,
-            },
-            {
-                title:'dex',
-                value:bunny.bunny.stats.dex,
-            },
-            {
-                title:'int',
-                value:bunny.bunny.stats.int,
-            },
-            {
-                title:'krm',
-                value:bunny.bunny.stats.krm,
-            },
-            {
-                title:'vit',
-                value:bunny.bunny.stats.vit,
-            },
+        const inventoryCategories:{id:"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears"}[]=[
+            {id:"left"},{id:"right"},{id:"necklace"},{id:"faces"},{id:"clothes"},{id:"hats"},{id:"overhead"}, {id:"ears"}
         ]
 
-        const summStat=(title:string,value:number)=>{
-            total_stats.map(item=>{
-                if(item.title==title){
-                    item.value+=value;
-                }
-            })
-        }
+        inventoryCategories.map(category=>{
+            if(newBunny.bunny.equipment[category.id]!=undefined){
+                const suka=newBunny.bunny.equipment[category.id]
+                //
+                if(suka?.increase){
+                    const blyat=Object.entries(suka.increase);
+                    //
+                    const stats:{id:'str'|'dex'|'int'|'vit'|'krm'}[]=[{id:'str'},{id:'dex'},{id:'int'},{id:'vit'}, {id:'krm'}];
+                    const getStat=(stat_string:string)=>{
+                        switch (stat_string) {
+                            case 'str':return stats[0]
+                            case 'dex':return stats[1]
+                            case 'int':return stats[2]
+                            case 'vit':return stats[3]
+                            case 'krm':return stats[4]
+                            default:return stats[0]
+                        }
+                    }
 
-        const equip=Object.entries(bunny.bunny.equipment)
-        equip.map(item=>{
-            // console.log(item[1].increase)
-            if(item[1].increase){
-                const item_stats=Object.entries(item[1].increase)
-                // item_stats[1].map(stat=>{
-                //     console.log(stat)
-                // })
-                // console.log(item_stats);
-                item_stats.map(suka=>{
-                    // console.log(suka[0]+suka[1])
-                    summStat(suka[0],suka[1])
-                })
+                    blyat.map(stat=>{
+                        newBunny.bunny.stats[getStat(stat[0]).id]-=stat[1];
+                    })
+                }
             }
         })
-        console.log(total_stats)
-        let new_stat:{stats:{str:number,dex:number,vit:number,krm:number,int:number}}={stats:{str:0,dex:0,vit:0,krm:0,int:0}}
-        total_stats.map(item=>{
-            new_stat.stats[item.title]=item.value
+        newBunny.bunny.equipment[place]=item;
+        inventoryCategories.map(category=>{
+            if(newBunny.bunny.equipment[category.id]!=undefined){
+                const suka=newBunny.bunny.equipment[category.id]
+                if(suka?.increase){
+                    const blyat=Object.entries(suka.increase);
+                    const stats:{id:'str'|'dex'|'int'|'vit'|'krm'}[]=[{id:'str'},{id:'dex'},{id:'int'},{id:'vit'}, {id:'krm'}];
+                    const getStat=(stat_string:string)=>{
+                        switch (stat_string) {
+                            case 'str':return stats[0]
+                            case 'dex':return stats[1]
+                            case 'int':return stats[2]
+                            case 'vit':return stats[3]
+                            case 'krm':return stats[4]
+                            default:return stats[0]
+                        }
+                    }
+
+                    blyat.map(stat=>{
+                        newBunny.bunny.stats[getStat(stat[0]).id]+=stat[1];
+                    })
+                }
+            }
         })
-        console.log(new_stat);
-        updateStats(new_stat.stats);
-        // const newBunny={...bunny};
-        // // newBunny.bunny.stats.str+1;
-        // total_stats.map(item=>{
-        //     newBunny.bunny.stats[item.title]=item.value;
-        // })
-        // console.log(newBunny)
-        // setBunny({...newBunny});
+        setBunny(newBunny);
     }
+
     return (
         <div className={'flex relative'}>
             <div className={'w-full h-full pt-14 pb-20'}>
-                <Container refreshStats={refreshStats} attachItemToBunny={attachItemToBunny} bunny={bunny} currentTab={currentTab}></Container>
+                <Container attachItemToBunny={attachItemToBunny} bunny={bunny} currentTab={currentTab}></Container>
             </div>
             <div className={'w-full h-14 fixed top-0'}>
                 <TopMenu balance={balance}></TopMenu>

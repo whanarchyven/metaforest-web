@@ -12,10 +12,9 @@ interface containerInterface {
     currentTab: tabType;
     bunny: bunnyInterface;
     attachItemToBunny :(place:"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears",item:equipmentItem)=> any;
-    refreshStats:()=>any;
 }
 
-const Container = ({currentTab,bunny,attachItemToBunny,refreshStats}:containerInterface) => {
+const Container = ({currentTab,bunny,attachItemToBunny}:containerInterface) => {
     switch (currentTab){
         case 'home':{
             return (
@@ -41,7 +40,7 @@ const Container = ({currentTab,bunny,attachItemToBunny,refreshStats}:containerIn
         case 'equipment':{
             return (
                 <div className={'w-full h-full'}>
-                    <Equipment refreshStats={refreshStats} bunny={bunny} attachItemToBunny={attachItemToBunny}></Equipment>
+                    <Equipment bunny={bunny} attachItemToBunny={attachItemToBunny}></Equipment>
                 </div>
             );
         }
