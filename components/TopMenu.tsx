@@ -20,7 +20,6 @@ const TopMenu = ({balance}:topMenuInterface) => {
                 <p className={'inline-block align-middle text-2xl font-semibold'}>
                     {balance}
                 </p>
-
             </div>
             <div className={'col-start-6 flex justify-center items-center col-end-6'}>
                 <div className={'w-3/4 h-3/4 relative'}>

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Image from "next/image";
 import BunnyGeneration from "../BunnyGeneration";
 import {bunnyInterface} from "../interfaces/bunnyInterface";
 import {StatTab} from "../UI/StatTab";
+import EquipmentPopUp from "../EquipmentPopUp";
+import {equipmentItem} from "../interfaces/equipmentItem";
 
-interface equipmentInterface{
-    bunny:bunnyInterface
+interface equipmentInterface {
+    bunny: bunnyInterface,
+    attachItemToBunny: (place: string | "left" | "right" | "necklace" | "face" | "clothes" | "hat" | "overhead" | "ears", item: equipmentItem) => any
 }
 
 interface keyTab {
@@ -16,18 +19,94 @@ interface keyStat{
     id:"str"|"dex"|"vit"|"int"|"krm"
 }
 
-const Equipment = ({bunny}:equipmentInterface) => {
+const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
 
     const leftTabs:keyTab[]=[{id:'hats'},{id:'faces'},{id:'necklace'},{id:'left'}];
     const rightTabs:keyTab[]=[{id:'overhead'},{id:'ears'},{id:'clothes'},{id:'right'}];
     const stats:keyStat[]=[{id:'str'},{id:'dex'},{id:'vit'},{id:'int'}, {id:'krm'}];
+
+    const [choosenType,setChoosenType]=useState('hats')
+    const [popOpen,setPopOpen]=useState(false)
+    const togglePop=()=>{
+        setPopOpen(!popOpen);
+    }
+
+    const inventory: equipmentItem[]=[
+        {
+            id:6,
+            type:'hats',
+            rarity:'common',
+            name:'_0000s_0000_policejskaja-kepka',
+            increase:{
+                str: 1,
+            }
+        },
+        {
+            id:10,
+            type:'hats',
+            rarity:'common',
+            name:'_0000s_0002s_0001_shapochka-rozovaja',
+            increase:{
+                str: 1,
+            }
+        },
+        {
+            id:11,
+            type:'hats',
+            rarity:'common',
+            name:'_0000s_0002s_0004_shapochka-belaja',
+            increase:{
+                str: 1,
+            }
+        },
+        {
+            id:7,
+            type:'hats',
+            rarity:'uncommon',
+            name:'_0000s_0000s_0002_belaja-kepka-morkovka-',
+            increase:{
+                str:1,
+                dex:1,
+            }
+        },
+        {
+            id:8,
+            type:'hats',
+            rarity:'epic',
+            name:'_0000s_0002s_0002_shapochka-chernaja',
+            increase:{
+                str: 2,
+                dex:2,
+                int:1,
+            },
+            requirements:{
+                dex:2,
+            }
+        },
+        {
+            id:9,
+            type:'hats',
+            rarity:'legendary',
+            name:'_0000s_0003s_0003_balaklava-belaja',
+            increase:{
+                str: 2,
+                dex:2,
+                int:1,
+            },
+            requirements:{
+                dex:1,
+                krm:2,
+            }
+        },
+    ]
+
 
     return (
         <div className={'grid grid-cols-1 grid-rows-2 auto-rows-max w-full h-[100vh]'}>
             <div className={' grid grid-cols-7'}>
                 <div className={'grid gap-4 col-start-1 grid-rows-4 col-end-3 '}>
                     {leftTabs.map(tab=>{
-                        return <div className={'relative flex justify-start items-center '} key={tab.id}>
+                        return <div className={'relative flex justify-start items-center '} key={tab.id} onClick={()=>{setChoosenType(tab.id);togglePop()}}>
                             {bunny.bunny.equipment[tab.id]!=undefined?
                                 <div className={' green-gradient rounded-r-full w-full h-16 flex items-center justify-end'}>
                                     <div className={'w-14 h-14 mr-1 flex justify-center items-center bg-white rounded-full'}>
@@ -54,7 +133,7 @@ const Equipment = ({bunny}:equipmentInterface) => {
                 </div>
                 <div className={'grid gap-4 col-start-6 grid-rows-4 col-end-8 '}>
                     {rightTabs.map(tab=>{
-                        return <div className={'relative flex justify-end items-center '} key={tab.id}>
+                        return <div className={'relative flex justify-end items-center '} key={tab.id} onClick={()=>{setChoosenType(tab.id);togglePop()}}>
                             {bunny.bunny.equipment[tab.id]!=undefined?
                                 <div className={' green-gradient rounded-l-full w-full h-16 flex items-center justify-start'}>
                                     <div className={'w-14 h-14 ml-1 flex justify-center items-center bg-white rounded-full'}>
@@ -99,7 +178,7 @@ const Equipment = ({bunny}:equipmentInterface) => {
                                     <StatTab stat_name={stat.id} stat_value={bunny.bunny.stats[stat.id]}/>
                                 </div>
                                 <div className={'col-start-5 col-end-6 bg-black rounded-full h-full flex justify-center items-center'}>
-                                    <p className={'text-white font-bold text-[0.7em]'}>Show more</p>
+                                    <p className={'text-white font-bold text-[0.7em]'}>More</p>
                                 </div>
                             </div>
                         )
@@ -107,6 +186,7 @@ const Equipment = ({bunny}:equipmentInterface) => {
 
                 </div>
             </div>
+            {popOpen?<EquipmentPopUp choosenType={choosenType} items={inventory} togglePop={togglePop} attachItemToBunny={attachItemToBunny}></EquipmentPopUp>:null}
         </div>
     );
 };
