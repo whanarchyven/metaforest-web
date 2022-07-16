@@ -27,7 +27,7 @@ const Equipment = ({bunny}:equipmentInterface) => {
             <div className={' grid grid-cols-7'}>
                 <div className={'grid gap-4 col-start-1 grid-rows-4 col-end-3 '}>
                     {leftTabs.map(tab=>{
-                        return <div className={'relative flex justify-start items-center '}>
+                        return <div className={'relative flex justify-start items-center '} key={tab.id}>
                             {bunny.bunny.equipment[tab.id]!=undefined?
                                 <div className={' green-gradient rounded-r-full w-full h-16 flex items-center justify-end'}>
                                     <div className={'w-14 h-14 mr-1 flex justify-center items-center bg-white rounded-full'}>
@@ -54,7 +54,7 @@ const Equipment = ({bunny}:equipmentInterface) => {
                 </div>
                 <div className={'grid gap-4 col-start-6 grid-rows-4 col-end-8 '}>
                     {rightTabs.map(tab=>{
-                        return <div className={'relative flex justify-end items-center '}>
+                        return <div className={'relative flex justify-end items-center '} key={tab.id}>
                             {bunny.bunny.equipment[tab.id]!=undefined?
                                 <div className={' green-gradient rounded-l-full w-full h-16 flex items-center justify-start'}>
                                     <div className={'w-14 h-14 ml-1 flex justify-center items-center bg-white rounded-full'}>
@@ -73,7 +73,6 @@ const Equipment = ({bunny}:equipmentInterface) => {
                                 </div>}
                         </div>
                     })}
-
                 </div>
             </div>
             <div className={'flex mt-9 flex-wrap justify-center'}>
@@ -87,7 +86,7 @@ const Equipment = ({bunny}:equipmentInterface) => {
                 <div className={'grid w-full gap-4 grid-cols-1 grid-rows-6 p-2'}>
                     {stats.map(stat=>{
                         return(
-                            <div className={'grid grid-cols-5 gap-4 items-center'}>
+                            <div className={'grid grid-cols-5 gap-4 items-center'} key={stat.id}>
                                 <div className={'col-start-1 col-end-2'}>
                                     <div className={'w-5 h-5 relative inline-block align-middle'}>
                                         <Image src={'/images/stats_icons/'+ stat.id+'.svg'} layout={'fill'}></Image>
