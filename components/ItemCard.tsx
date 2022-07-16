@@ -48,7 +48,6 @@ const ItemCard = ({item}:ItemCardInterface) => {
             <div className={'grid grid-cols-2 gap-2'}>
                 <div className={'grid grid-cols-1 grid-rows-3 gap-2 h-28'}>
                     {increase.map((incr:any)=>{
-                        console.log(incr[0]+incr[1]);
                         return (<div className={'w-full h-full rounded-full flex justify-center items-center relative'} key={incr[0]}>
                             <div className={'w-full h-full bg-white opacity-30 rounded-full absolute top-0 left-0'}></div>
                             <div className={'w-8 h-8 rounded-full bg-white absolute left-0 p-2'}>

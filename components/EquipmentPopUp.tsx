@@ -10,13 +10,12 @@ interface ItemCardInterface {
     togglePop: () => any,
     attachItemToBunny : (place:"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears",item:equipmentItem)=>any,
     bunny:bunnyInterface
-    refreshStats:()=>any
 }
 
 
-const EquipmentPopUp = ({items,togglePop,choosenType,attachItemToBunny,bunny,refreshStats}:ItemCardInterface) => {
+const EquipmentPopUp = ({items,togglePop,choosenType,attachItemToBunny,bunny}:ItemCardInterface) => {
     return (
-        <div className={'fixed pt-16 w-full h-full top-0 left-0 grey-gradient justify-center items-center overflow-y-scroll overscroll-y-auto'}>
+        <div className={'fixed z-[999] pt-16 w-full h-full top-0 left-0 grey-gradient justify-center items-center overflow-y-scroll'}>
             <div className={'w-full flex over flex-wrap justify-center relative p-4'}>
                 <div className={'flex mb-8'}>
                     <div className={'w-10 h-10 inline-flex justify-center items-center rounded-full bg-white align-middle'}>

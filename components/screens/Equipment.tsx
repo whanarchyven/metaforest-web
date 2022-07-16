@@ -9,7 +9,6 @@ import {equipmentItem} from "../interfaces/equipmentItem";
 interface equipmentInterface {
     bunny: bunnyInterface,
     attachItemToBunny : (place:"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears",item:equipmentItem)=>any
-    refreshStats:()=>any;
 }
 
 interface keyTab {
@@ -20,7 +19,7 @@ interface keyStat{
     id:"str"|"dex"|"vit"|"int"|"krm"
 }
 
-const Equipment = ({bunny,attachItemToBunny,refreshStats}:equipmentInterface) => {
+const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
 
     const leftTabs:keyTab[]=[{id:'hats'},{id:'faces'},{id:'necklace'},{id:'left'}];
     const rightTabs:keyTab[]=[{id:'overhead'},{id:'ears'},{id:'clothes'},{id:'right'}];
@@ -226,7 +225,7 @@ const Equipment = ({bunny,attachItemToBunny,refreshStats}:equipmentInterface) =>
 
                 </div>
             </div>
-            {popOpen?<EquipmentPopUp refreshStats={refreshStats} bunny={bunny} choosenType={choosenType} items={inventory} togglePop={togglePop} attachItemToBunny={attachItemToBunny}></EquipmentPopUp>:null}
+            {popOpen?<EquipmentPopUp bunny={bunny} choosenType={choosenType} items={inventory} togglePop={togglePop} attachItemToBunny={attachItemToBunny}></EquipmentPopUp>:null}
         </div>
     );
 };
