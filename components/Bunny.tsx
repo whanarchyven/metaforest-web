@@ -64,6 +64,34 @@ const Bunny = () => {
     const [bunny,setBunny]=useState(initialBunny);
 
     const attachItemToBunny = (place:"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears",item:equipmentItem)=>{
+
+        const characteristics:{id:'str'|'dex'|'vit'|'int'|'krm'}[]=[
+            {id:'int'},
+            {id:'dex'},
+            {id:'vit'},
+            {id:'krm'},
+            {id:'str'},
+        ]
+
+        let canWear=true;
+
+        characteristics.map(characteristic=>{
+            if(item.requirements!=undefined){
+                if(item.requirements[characteristic.id]!=undefined){
+                    if(item.requirements[characteristic.id]>bunny.bunny.stats[characteristic.id]){
+                        alert('It seems like your stats are not enough to wear this item! Increase your '+characteristic.id+' !')
+                        canWear=false;
+                    }
+                    // console.log('Require '+[characteristic.id]+' '+item.requirements[characteristic.id]);
+                    // console.log('Bunny: '+characteristic.id+' '+bunny.bunny.stats[characteristic.id]);
+                }
+            }
+        })
+
+        if(canWear==false){
+            return 0
+        }
+
         const newBunny={...bunny};
         const inventoryCategories:{id:"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears"}[]=[
             {id:"left"},{id:"right"},{id:"necklace"},{id:"faces"},{id:"clothes"},{id:"hats"},{id:"overhead"}, {id:"ears"}
@@ -71,10 +99,10 @@ const Bunny = () => {
 
         inventoryCategories.map(category=>{
             if(newBunny.bunny.equipment[category.id]!=undefined){
-                const suka=newBunny.bunny.equipment[category.id]
+                const category_item=newBunny.bunny.equipment[category.id]
                 //
-                if(suka?.increase){
-                    const blyat=Object.entries(suka.increase);
+                if(category_item?.increase){
+                    const category_item_stat=Object.entries(category_item.increase);
                     //
                     const stats:{id:'str'|'dex'|'int'|'vit'|'krm'}[]=[{id:'str'},{id:'dex'},{id:'int'},{id:'vit'}, {id:'krm'}];
                     const getStat=(stat_string:string)=>{
@@ -88,7 +116,7 @@ const Bunny = () => {
                         }
                     }
 
-                    blyat.map(stat=>{
+                    category_item_stat.map(stat=>{
                         newBunny.bunny.stats[getStat(stat[0]).id]-=stat[1];
                     })
                 }
@@ -97,9 +125,9 @@ const Bunny = () => {
         newBunny.bunny.equipment[place]=item;
         inventoryCategories.map(category=>{
             if(newBunny.bunny.equipment[category.id]!=undefined){
-                const suka=newBunny.bunny.equipment[category.id]
-                if(suka?.increase){
-                    const blyat=Object.entries(suka.increase);
+                const category_item=newBunny.bunny.equipment[category.id]
+                if(category_item?.increase){
+                    const category_item_stat=Object.entries(category_item.increase);
                     const stats:{id:'str'|'dex'|'int'|'vit'|'krm'}[]=[{id:'str'},{id:'dex'},{id:'int'},{id:'vit'}, {id:'krm'}];
                     const getStat=(stat_string:string)=>{
                         switch (stat_string) {
@@ -112,7 +140,7 @@ const Bunny = () => {
                         }
                     }
 
-                    blyat.map(stat=>{
+                    category_item_stat.map(stat=>{
                         newBunny.bunny.stats[getStat(stat[0]).id]+=stat[1];
                     })
                 }
