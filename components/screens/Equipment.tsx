@@ -5,6 +5,7 @@ import {bunnyInterface} from "../interfaces/bunnyInterface";
 import {StatTab} from "../UI/StatTab";
 import EquipmentPopUp from "../EquipmentPopUp";
 import {equipmentItem} from "../interfaces/equipmentItem";
+import StatPop from "../StatPop";
 
 interface equipmentInterface {
     bunny: bunnyInterface,
@@ -16,7 +17,8 @@ interface keyTab {
 }
 
 interface keyStat{
-    id:"str"|"dex"|"vit"|"int"|"krm"
+    id:"str"|"dex"|"vit"|"int"|"krm",
+
 }
 
 const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
@@ -27,8 +29,14 @@ const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
 
     const [choosenType,setChoosenType]=useState<"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears">('hats')
     const [popOpen,setPopOpen]=useState(false)
+    const [statOpen,setStatOpen]=useState(false)
+    const [currentStat,setCurrentStat]=useState(stats[0].id);
     const togglePop=()=>{
         setPopOpen(!popOpen);
+    }
+
+    const toggleStat=()=>{
+        setStatOpen(!statOpen);
     }
 
     const inventory: equipmentItem[]=[
@@ -216,7 +224,7 @@ const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
                                 <div className={'col-start-2 col-end-5 rounded-full'}>
                                     <StatTab stat_name={stat.id} stat_value={bunny.bunny.stats[stat.id]}/>
                                 </div>
-                                <div className={'col-start-5 col-end-6 bg-black rounded-full h-full flex justify-center items-center'}>
+                                <div className={'col-start-5 col-end-6 bg-black rounded-full h-full flex justify-center items-center'} onClick={()=>{setCurrentStat(stat.id);toggleStat()}}>
                                     <p className={'text-white font-bold text-[0.7em]'}>More</p>
                                 </div>
                             </div>
@@ -226,6 +234,7 @@ const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
                 </div>
             </div>
             {popOpen?<EquipmentPopUp bunny={bunny} choosenType={choosenType} items={inventory} togglePop={togglePop} attachItemToBunny={attachItemToBunny}></EquipmentPopUp>:null}
+            {statOpen?<StatPop togglePop={toggleStat} stat_name={currentStat} stat_value={bunny.bunny.stats[currentStat]}></StatPop>:null}
         </div>
     );
 };
