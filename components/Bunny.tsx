@@ -76,9 +76,9 @@ const Bunny = () => {
         let canWear=true;
 
         characteristics.map(characteristic=>{
-            if(item.requirements!=undefined){
-                if(item.requirements[characteristic.id]!=undefined){
-                    if(item.requirements[characteristic.id]>bunny.bunny.stats[characteristic.id]){
+            if(item.requirements){
+                if(item.requirements?.[characteristic.id]){
+                    if(item.requirements?.[characteristic.id]??0<bunny.bunny.stats[characteristic.id]){
                         alert('It seems like your stats are not enough to wear this item! Increase your '+characteristic.id+' !')
                         canWear=false;
                     }

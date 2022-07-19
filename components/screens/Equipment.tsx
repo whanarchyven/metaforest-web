@@ -153,7 +153,7 @@ const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
             <div className={' grid grid-cols-7'}>
                 <div className={'grid gap-4 col-start-1 grid-rows-4 col-end-3 '}>
                     {leftTabs.map(tab=>{
-                        return <div className={'relative flex justify-start items-center '} key={tab.id} onClick={()=>{setChoosenType(tab.id);togglePop()}}>
+                        return <div className={'relative flex justify-start items-center cursor-pointer'} key={tab.id} onClick={()=>{setChoosenType(tab.id);togglePop()}}>
                             {bunny.bunny.equipment[tab.id]!=undefined?
                                 <div className={' green-gradient rounded-r-full w-full h-16 flex items-center justify-end'}>
                                     <div className={'w-14 h-14 mr-1 flex justify-center items-center bg-white rounded-full'}>
@@ -174,13 +174,13 @@ const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
                     })}
                 </div>
                 <div className={'col-start-3 col-end-6 flex justify-center items-center '}>
-                    <div className={'h-52 w-36 sm:w-48 scale-[1.6] sm:scale-100'}>
+                    <div className={'h-52 w-36 absolute sm:w-48 scale-[1.6] sm:scale-100 sm:w-72 sm:top-0 sm:h-96'}>
                         <BunnyGeneration bunny={bunny}></BunnyGeneration>
                     </div>
                 </div>
                 <div className={'grid gap-4 col-start-6 grid-rows-4 col-end-8 '}>
                     {rightTabs.map(tab=>{
-                        return <div className={'relative flex justify-end items-center '} key={tab.id} onClick={()=>{setChoosenType(tab.id);togglePop()}}>
+                        return <div className={'relative flex justify-end items-center cursor-pointer'} key={tab.id} onClick={()=>{setChoosenType(tab.id);togglePop()}}>
                             {bunny.bunny.equipment[tab.id]!=undefined?
                                 <div className={' green-gradient rounded-l-full w-full h-16 flex items-center justify-start'}>
                                     <div className={'w-14 h-14 ml-1 flex justify-center items-center bg-white rounded-full'}>
@@ -224,7 +224,7 @@ const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
                                 <div className={'col-start-2 col-end-5 rounded-full'}>
                                     <StatTab stat_name={stat.id} stat_value={bunny.bunny.stats[stat.id]}/>
                                 </div>
-                                <div className={'col-start-5 col-end-6 bg-black rounded-full h-full flex justify-center items-center'} onClick={()=>{setCurrentStat(stat.id);toggleStat()}}>
+                                <div className={'col-start-5 col-end-6 bg-black rounded-full h-full flex justify-center items-center cursor-pointer'} onClick={()=>{setCurrentStat(stat.id);toggleStat()}}>
                                     <p className={'text-white font-bold text-[0.7em]'}>More</p>
                                 </div>
                             </div>
