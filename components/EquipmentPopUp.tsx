@@ -25,11 +25,11 @@ const EquipmentPopUp = ({items,togglePop,choosenType,attachItemToBunny,bunny}:It
                     </div>
                     <p className={'text-center text-3xl ml-4 font-bold inline-block align-middle'}>{firstLetterUpperCase(choosenType)}</p>
                 </div>
-                <div className={'w-full gap-4 grid grid-cols-2'}>
+                <div className={'w-full gap-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'}>
                     {items.map(item=>{
                         if((item.type==choosenType)){
                             if(bunny.bunny.equipment[choosenType]?.name!=item.name){
-                                return <div onClick={()=>{attachItemToBunny(choosenType,item);togglePop()}} key={item.name}><ItemCard item={item} key={item.id}></ItemCard></div>
+                                return <div onClick={()=>{attachItemToBunny(choosenType,item);togglePop()}} key={item.name} className={'cursor-pointer'}><ItemCard item={item} key={item.id}></ItemCard></div>
                             }
                         }
                         else {
@@ -38,7 +38,7 @@ const EquipmentPopUp = ({items,togglePop,choosenType,attachItemToBunny,bunny}:It
                     })}
                 </div>
             </div>
-            <div className={'w-12 h-12 absolute left-1 top-16 bg-white flex justify-center items-center rounded-full'} onClick={()=>{togglePop()}}>
+            <div className={'w-12 h-12 absolute left-1 top-16 bg-white flex justify-center items-center rounded-full cursor-pointer'} onClick={()=>{togglePop()}}>
                 <div className={'w-5 h-5 relative'}>
                     <Image src={'/images/popup_arrow.svg'} layout={'fill'}></Image>
                 </div>
