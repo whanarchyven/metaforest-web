@@ -88,7 +88,7 @@ const Bunny = () => {
             }
         })
 
-        if(canWear==false){
+        if(!canWear){
             return 0
         }
 
