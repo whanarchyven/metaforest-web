@@ -5,7 +5,7 @@ export interface workTask{
         name:string,
         description:string,
         profit:number,
-        goal:number,
+        goal:number|string,
         color:string,
         requirements?: {
             str?:number,
