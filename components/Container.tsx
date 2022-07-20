@@ -47,7 +47,7 @@ const Container = ({currentTab,bunny,attachItemToBunny}:containerInterface) => {
         case 'work':{
             return (
                 <div className={'w-full h-full'}>
-                    <Work></Work>
+                    <Work bunny={bunny.bunny}></Work>
                 </div>
             );
         }

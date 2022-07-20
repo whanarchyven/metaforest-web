@@ -3,7 +3,8 @@ import ActiveTask from "../ActiveTask";
 import WorkCard from "../WorkCard";
 import {workTask} from "../interfaces/workTask";
 import TabSwitcher from "../TabSwitcher";
-const Work = () => {
+import {bunnyInterface} from "../interfaces/bunnyInterface";
+const Work = (bunny:bunnyInterface) => {
     const worktabs=['daily','work']
     const [workTab,setWorkTab]=useState('daily');
     const works:workTask[]=[
@@ -12,7 +13,7 @@ const Work = () => {
                 id:0,
                 type:"m2e",
                 name:'Seed carrot',
-                description:'LOrem ipsum',
+                description:'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. ',
                 profit:23,
                 goal:10,
                 color:'white',
@@ -30,12 +31,13 @@ const Work = () => {
                 id:1,
                 type:"social",
                 name:'Invite Friends',
-                description:'LOrem ipsum',
+                description:'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. ',
                 profit:13,
-                goal:13,
+                goal:'Share your bunny on Twitter',
                 color:'white',
                 requirements: {
                     str:2,
+                    int:1,
                 },
             }
         },
@@ -43,10 +45,10 @@ const Work = () => {
             workItem:{
                 id:2,
                 type:"social",
-                name:'Explore meta',
-                description:'LOrem ipsum',
+                name:'Help me to',
+                description:'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. ',
                 profit:33,
-                goal:10,
+                goal:'Share your bunny on Twitter',
                 color:'white',
             }
         },
@@ -54,22 +56,31 @@ const Work = () => {
             workItem:{
                 id:3,
                 type:"social",
-                name:'Explore meta',
-                description:'LOrem ipsum',
+                name:'Develop this',
+                description:'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. ',
                 profit:33,
-                goal:10,
+                goal:'Help me to develop all of his quickly',
                 color:'white',
+                requirements: {
+                    vit:1,
+                    dex:4,
+                },
             }
         },
         {
             workItem:{
                 id:4,
-                type:"social",
-                name:'Explore meta',
-                description:'LOrem ipsum',
+                type:"m2e",
+                name:'All quickly',
+                description:'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. ',
                 profit:33,
-                goal:10,
+                goal:6,
                 color:'white',
+                requirements: {
+                    str:2,
+                    int:1,
+                    krm:1,
+                },
             }
         },
     ]
@@ -102,7 +113,7 @@ const Work = () => {
                 <div className={'grid grid-cols-1 gap-4 overflow-y-scroll h-full pb-20 lg:grid-cols-2'}>
                     {works.map(item=>{
                         return <div className={'h-32'} key={item.workItem.id}>
-                            <WorkCard workItem={item.workItem}></WorkCard>
+                            <WorkCard workItem={item} bunny={bunny}></WorkCard>
                         </div>
                     })}
                 </div>
