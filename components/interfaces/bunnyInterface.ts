@@ -37,6 +37,7 @@ export interface bunnyInterface{
         },
         inventory?:Array<equipmentItem>,
         activeTask?:activeTask,
+        workHistory?:activeTask[],
     },
 
 

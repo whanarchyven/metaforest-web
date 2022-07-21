@@ -1,19 +1,19 @@
 import React from 'react';
 import Image from "next/image";
-import {firstLetterUpperCase} from "./firstLetterUpperCase";
 import {bunnyInterface} from "./interfaces/bunnyInterface";
 import {workTask} from "./interfaces/workTask";
 import {statKeys} from "./types/statKeys";
-import {StatTab} from "./UI/StatTab";
 import StatRequirementBar from "./UI/StatRequirementBar";
+import TaskChecker from "./UI/TaskChecker";
 interface WorkPopUpInterface {
     workItem:workTask
     togglePop: () => any,
-    bunny:bunnyInterface
+    bunny:bunnyInterface,
+    getNewActiveTask:(task:workTask)=>any
 }
 
 
-const WorkPopUp = ({bunny, workItem, togglePop}:WorkPopUpInterface) => {
+const WorkPopUp = ({bunny, workItem, togglePop,getNewActiveTask}:WorkPopUpInterface) => {
     return (
         <div className={'fixed z-[999] w-full h-full top-0 left-0 grey-gradient justify-center items-center overflow-y-scroll'}>
             <div className={'w-full h-60 relative rounded-b-2xl'}>
@@ -57,18 +57,13 @@ const WorkPopUp = ({bunny, workItem, togglePop}:WorkPopUpInterface) => {
                     </div>
                 </div>
                 <div className={'h-16 relative w-full mt-3 rounded-full'}>
-                    <div className={'w-full h-full rounded-full opacity-25 absolute green-gradient'}>
-
-                    </div>
-                    <div className={'w-full h-full rounded-full absolute border-2 border-[#64DFCC] flex justify-center items-center'}>
-                        <p>{workItem.workItem.type=='m2e'?'Go for a walk! Your goal is: '+workItem.workItem.goal+' km':workItem.workItem.goal}</p>
-                    </div>
+                    <TaskChecker workItem={workItem.workItem}/>
                 </div>
-                <button className={'w-3/4 bg-black rounded-full h-16 mt-8 text-white text-center text-2xl font-bold'}>
+                <button className={'w-3/4 bg-black rounded-full h-16 mt-8 text-white text-center text-2xl font-bold'} onClick={()=>{getNewActiveTask(workItem);togglePop();}}>
                     Take job!
                 </button>
             </div>
-            <div className={'w-12 h-12 absolute left-1 top-16 bg-white flex justify-center items-center rounded-full cursor-pointer'} onClick={()=>{togglePop();console.log('sika')}}>
+            <div className={'w-12 h-12 absolute left-1 top-16 bg-white flex justify-center items-center rounded-full cursor-pointer'} onClick={()=>{togglePop();}}>
                 <div className={'w-5 h-5 relative'}>
                     <Image src={'/images/popup_arrow.svg'} layout={'fill'}></Image>
                 </div>

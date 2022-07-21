@@ -7,14 +7,16 @@ import Equipment from "./screens/Equipment";
 import Work from "./screens/Work";
 import {bunnyInterface} from "./interfaces/bunnyInterface";
 import {equipmentItem} from "./interfaces/equipmentItem";
+import {workTask} from "./interfaces/workTask";
 
 interface containerInterface {
     currentTab: tabType;
     bunny: bunnyInterface;
     attachItemToBunny :(place:"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears",item:equipmentItem)=> any;
+    getNewActiveTask:(task:workTask)=>any;
 }
 
-const Container = ({currentTab,bunny,attachItemToBunny}:containerInterface) => {
+const Container = ({currentTab,bunny,attachItemToBunny,getNewActiveTask}:containerInterface) => {
     switch (currentTab){
         case 'home':{
             return (
@@ -47,7 +49,7 @@ const Container = ({currentTab,bunny,attachItemToBunny}:containerInterface) => {
         case 'work':{
             return (
                 <div className={'w-full h-full'}>
-                    <Work bunny={bunny.bunny}></Work>
+                    <Work bunny={bunny} getNewActiveTask={getNewActiveTask}></Work>
                 </div>
             );
         }
