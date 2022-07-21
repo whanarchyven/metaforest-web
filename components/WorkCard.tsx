@@ -11,9 +11,10 @@ import {bunnyInterface} from "./interfaces/bunnyInterface";
 interface WorkCardInterface{
     workItem:workTask,
     bunny:bunnyInterface,
+    getNewActiveTask:(task:workTask)=>any
 }
 
-const WorkCard = ({workItem,bunny}:WorkCardInterface) => {
+const WorkCard = ({workItem,bunny,getNewActiveTask}:WorkCardInterface) => {
 
     const [workPopOpen,setWorkPopOpen]=useState(false)
     const toggleWorkPop=()=>{
@@ -60,7 +61,7 @@ const WorkCard = ({workItem,bunny}:WorkCardInterface) => {
                     </div>
                 </div>
             </div>
-            {workPopOpen?<WorkPopUp workItem={workItem} togglePop={toggleWorkPop} bunny={bunny}/>:null}
+            {workPopOpen?<WorkPopUp workItem={workItem} togglePop={toggleWorkPop} bunny={bunny} getNewActiveTask={getNewActiveTask}/>:null}
         </div>
     );
 };

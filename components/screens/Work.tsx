@@ -4,7 +4,13 @@ import WorkCard from "../WorkCard";
 import {workTask} from "../interfaces/workTask";
 import TabSwitcher from "../TabSwitcher";
 import {bunnyInterface} from "../interfaces/bunnyInterface";
-const Work = (bunny:bunnyInterface) => {
+
+interface workModule{
+    bunny:bunnyInterface,
+    getNewActiveTask:(task:workTask)=>any,
+}
+
+const Work = ({bunny,getNewActiveTask}:workModule) => {
     const worktabs=['daily','work']
     const [workTab,setWorkTab]=useState('daily');
     const works:workTask[]=[
@@ -84,14 +90,19 @@ const Work = (bunny:bunnyInterface) => {
             }
         },
     ]
-
-
+    let active_type_height=''
+    if(bunny.bunny.activeTask?.workItem.type=='social'){
+        active_type_height='h-32'
+    }
+    else{
+        active_type_height='h-24'
+    }
     return (
         <div className={'w-full h-full grid grid-cols-1 gap-2 grid-rows-6 sm:grid-cols-2 xl:gap-8 xl:grid-cols-4 pb-0 p-4'}>
             <div className={'xl:col-start-4 row-start-1 row-end-1'}>
                 <p className={'w-full text-center mb-0 font-bold text-2xl'}>Work in progress</p>
-                <div className={'w-full h-24 bg-white p-2 rounded-xl'}>
-                    <ActiveTask></ActiveTask>
+                <div className={'w-full bg-white p-2 rounded-xl '+active_type_height}>
+                    <ActiveTask active_task={bunny.bunny.activeTask}></ActiveTask>
                 </div>
             </div>
             <div className={'sm:col-start-1 sm:col-end-3 sm:row-start-1 row-start-2 mt-0 sm:mt-0 row-end-7 pt-0'}>
@@ -110,11 +121,23 @@ const Work = (bunny:bunnyInterface) => {
                         </select>
                     </div>
                 </div>
-                <div className={'grid grid-cols-1 gap-4 overflow-y-scroll h-full pb-20 lg:grid-cols-2'}>
+                <div className={'grid grid-cols-1 content-start gap-4 overflow-y-scroll h-full pb-20 lg:grid-cols-2'}>
                     {works.map(item=>{
-                        return <div className={'h-32'} key={item.workItem.id}>
-                            <WorkCard workItem={item} bunny={bunny}></WorkCard>
-                        </div>
+                        if((bunny.bunny.activeTask?.workItem.id!=item.workItem.id)){
+                            // console.log('Item ID: '+item.workItem.id)
+                            // // console.log(bunny.bunny.workHistory?.map(suka=>{
+                            // //     console.log(suka.workItem.id);
+                            // // }));
+                            // console.log();
+
+                            if(bunny.bunny.workHistory?.findIndex(function (history_element){
+                                return history_element.workItem.id==item.workItem.id;
+                            })==-1){
+                                return <div className={'h-32'} key={item.workItem.id}>
+                                    <WorkCard workItem={item} bunny={bunny} getNewActiveTask={getNewActiveTask}></WorkCard>
+                                </div>
+                            }
+                        }
                     })}
                 </div>
             </div>

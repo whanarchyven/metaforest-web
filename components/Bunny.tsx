@@ -5,6 +5,11 @@ import TopMenu from "./TopMenu";
 import Container from "./Container";
 import TabBar from "./TabBar";
 import {tabType} from "./types/tabType";
+import {workTask} from "./interfaces/workTask";
+import {Simulate} from "react-dom/test-utils";
+import progress = Simulate.progress;
+import {activeTask} from "./interfaces/activeTask";
+import {statKeys} from "./types/statKeys";
 
 const Bunny = () => {
 
@@ -57,7 +62,8 @@ const Bunny = () => {
                         int:1
                     }
                 }
-            }
+            },
+            workHistory:[],
 
         },
     }
@@ -77,11 +83,10 @@ const Bunny = () => {
 
         characteristics.map(characteristic=>{
             if(item.requirements){
-                if(item.requirements?.[characteristic.id]){
-                    if(item.requirements?.[characteristic.id]??0<bunny.bunny.stats[characteristic.id]){
-                        alert('It seems like your stats are not enough to wear this item! Increase your '+characteristic.id+' !')
-                        canWear=false;
-                    }
+               const temp = item.requirements[characteristic.id];
+                if(temp!=undefined&&temp>bunny.bunny.stats[characteristic.id]){
+                    alert('It seems like your stats are not enough to wear this item! Increase your '+characteristic.id+' !')
+                    canWear=false;
                     // console.log('Require '+[characteristic.id]+' '+item.requirements[characteristic.id]);
                     // console.log('Bunny: '+characteristic.id+' '+bunny.bunny.stats[characteristic.id]);
                 }
@@ -149,10 +154,39 @@ const Bunny = () => {
         setBunny(newBunny);
     }
 
+
+    const getNewActiveTask=(task:workTask)=>{
+        let canTake=true;
+        statKeys.map(stat=>{
+            if(task.workItem.requirements){
+                const temp=task.workItem.requirements[stat.stat_name]
+                if(temp!=undefined&&bunny.bunny.stats[stat.stat_name]<temp){
+                    alert('You can not take this job, looks like you are do not have much '+stat.stat_name+'!')
+                    canTake=false;
+                    return 0
+                }
+            }
+        })
+        if(canTake){
+            const new_task:activeTask={...task,progress:0};
+            const newBunny={...bunny}
+            newBunny.bunny.activeTask=new_task;
+            // if(bunny.bunny.workHistory==undefined){
+            //     newBunny.bunny.workHistory=[];
+            // }
+            if(bunny.bunny.activeTask!=undefined&&bunny.bunny.workHistory?.findIndex(function (history){return history.workItem.id==new_task.workItem.id})==-1){
+                newBunny.bunny.workHistory?.push(bunny.bunny.activeTask);
+            }
+
+            setBunny({...newBunny});
+            alert("You successfully taked this job!");
+        }
+    }
+
     return (
         <div className={'flex relative'}>
             <div className={'w-full h-full pt-14 pb-20'}>
-                <Container attachItemToBunny={attachItemToBunny} bunny={bunny} currentTab={currentTab}></Container>
+                <Container attachItemToBunny={attachItemToBunny} bunny={bunny} currentTab={currentTab} getNewActiveTask={getNewActiveTask}></Container>
             </div>
             <div className={'w-full h-14 fixed top-0'}>
                 <TopMenu balance={balance}></TopMenu>
