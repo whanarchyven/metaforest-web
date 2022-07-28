@@ -309,7 +309,7 @@ const Bunny = () => {
     return (
         <div className={'flex relative'}>
             <div className={'w-full h-full pt-14 pb-20'}>
-                <Container attachItemToBunny={attachItemToBunny} bunny={bunny} currentTab={currentTab} getNewActiveTask={getNewActiveTask} pushItemToInventory={pushItemToInventory} balance={balance} changeBalance={changeBalance}></Container>
+                <Container attachItemToBunny={attachItemToBunny} bunny={bunny} currentTab={currentTab} getNewActiveTask={getNewActiveTask} pushItemToInventory={pushItemToInventory} balance={balance} changeBalance={changeBalance} increaseCharacteristics={increaseCharacteristics}></Container>
             </div>
             <div className={'w-full h-14 fixed top-0'}>
                 <TopMenu balance={balance}></TopMenu>
