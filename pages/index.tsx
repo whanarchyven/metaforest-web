@@ -4,10 +4,40 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Bunny from "../components/Bunny";
 import {sdk} from "../graphql/sdk";
+import {useUserGameFullState} from "../data/data-hooks";
+import {useRouter} from "next/router";
+import {useEffect, useState} from "react";
 
+const menuItems = [
+    {
+        path:"/inventory"
+    }
+]
+const classList = (...args:any[])=>args.filter(Boolean).join(' ')
+const MenuItem = ({path}:any)=>{
+    const Router = useRouter()
+    const isActive = (Router.query.path===path)
+
+    return <a className={classList("bg-white",isActive&&"underline")}>123123</a>
+}
 const Home: NextPage = () => {
+    const Router = useRouter()
+    const [name,setName]=useState("")
+    // const [isCurrent,setName]=useState("")
+    useEffect(()=>{
+        Router.query.name&&setName(Router.query.name as string)
+
+    },[Router.query.name])
+
+    const [state] = useUserGameFullState();
+    const fn = ()=>{
+        Router.push("/asd")
+    }
+
+
   return (
     <div className={'grey-gradient'}>
+
       <Head>
         <title>Create Next App</title>
 
