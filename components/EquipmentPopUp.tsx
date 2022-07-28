@@ -29,7 +29,7 @@ const EquipmentPopUp = ({items,togglePop,choosenType,attachItemToBunny,bunny}:It
                     {items.map(item=>{
                         if((item.type==choosenType)){
                             if(bunny.bunny.equipment[choosenType]?.name!=item.name){
-                                return <div onClick={()=>{attachItemToBunny(choosenType,item);togglePop()}} key={item.name} className={'cursor-pointer'}><ItemCard item={item} key={item.id}></ItemCard></div>
+                                return <div onClick={()=>{attachItemToBunny(choosenType,item);togglePop()}} key={Math.random()} className={'cursor-pointer'}><ItemCard item={item}></ItemCard></div>
                             }
                         }
                         else {

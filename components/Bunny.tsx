@@ -15,6 +15,10 @@ const Bunny = () => {
 
     const [balance,setBalance]=useState(1488);
 
+    const changeBalance=(new_balance:number)=>{
+        setBalance(new_balance);
+    }
+
     const initialTab:tabType="home"
     const [currentTab,setCurrentTab]=useState(initialTab);
 
@@ -64,6 +68,109 @@ const Bunny = () => {
                 }
             },
             workHistory:[],
+            inventory:[
+                {
+                    id:6,
+                    type:'hats',
+                    rarity:'common',
+                    name:'_0000s_0000_policejskaja-kepka',
+                    increase:{
+                        str: 1,
+                    }
+                },
+                {
+                    id:10,
+                    type:'hats',
+                    rarity:'common',
+                    name:'_0000s_0002s_0001_shapochka-rozovaja',
+                    increase:{
+                        str: 1,
+                    }
+                },
+                {
+                    id:111,
+                    type:'left',
+                    rarity:'common',
+                    name:'L-hand_0000s_0000_avtomat',
+                    increase:{
+                        str: 1,
+                    }
+                },
+                {
+                    id:71,
+                    type:'left',
+                    rarity:'uncommon',
+                    name:'L-hand_0000s_0001_bita',
+                    increase:{
+                        str:1,
+                        dex:1,
+                    }
+                },
+                {
+                    id:84,
+                    type:'left',
+                    rarity:'epic',
+                    name:'L-hand_0000s_0002_shlepalka-rrrr',
+                    increase:{
+                        str: 2,
+                        dex:2,
+                        int:1,
+                    },
+                    requirements:{
+                        dex:2,
+                    }
+                },
+                {
+                    id:95,
+                    type:'left',
+                    rarity:'legendary',
+                    name:'L-hand_0000s_0003_molotok',
+                    increase:{
+                        str: 2,
+                        dex:2,
+                        int:1,
+                    },
+                    requirements:{
+                        dex:1,
+                        krm:2,
+                    }
+                },
+                {
+                    id:11,
+                    type:'hats',
+                    rarity:'common',
+                    name:'_0000s_0002s_0004_shapochka-belaja',
+                    increase:{
+                        str: 1,
+                    }
+                },
+                {
+                    id:7,
+                    type:'hats',
+                    rarity:'uncommon',
+                    name:'_0000s_0000s_0002_belaja-kepka-morkovka-',
+                    increase:{
+                        str:1,
+                        dex:1,
+                    }
+                },
+                {
+                    id: 8,
+                    type: 'hats',
+                    rarity: 'epic',
+                    name: '_0000s_0002s_0002_shapochka-chernaja',
+                    increase: {
+                        str: 2,
+                        dex: 2,
+                        int: 1,
+                    },
+                    requirements: {
+                        dex: 1,
+                        krm: 2,
+                    }
+                },
+            ],
+            isLevelUp:true,
 
         },
     }
@@ -183,10 +290,26 @@ const Bunny = () => {
         }
     }
 
+    const pushItemToInventory=(item:equipmentItem)=>{
+        const newBunny={...bunny};
+        newBunny.bunny.inventory.push(item);
+        setBunny(newBunny);
+    }
+
+    const increaseCharacteristics=(chars:{id:'str'|'dex'|'vit'|'int'|'krm',increase:number}[])=>{
+        const newBunny={...bunny};
+        chars.map(char=>{
+            newBunny.bunny.stats[char.id]+=char.increase
+        })
+    }
+
+
+
+
     return (
         <div className={'flex relative'}>
             <div className={'w-full h-full pt-14 pb-20'}>
-                <Container attachItemToBunny={attachItemToBunny} bunny={bunny} currentTab={currentTab} getNewActiveTask={getNewActiveTask}></Container>
+                <Container attachItemToBunny={attachItemToBunny} bunny={bunny} currentTab={currentTab} getNewActiveTask={getNewActiveTask} pushItemToInventory={pushItemToInventory} balance={balance} changeBalance={changeBalance}></Container>
             </div>
             <div className={'w-full h-14 fixed top-0'}>
                 <TopMenu balance={balance}></TopMenu>

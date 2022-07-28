@@ -39,115 +39,6 @@ const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
         setStatOpen(!statOpen);
     }
 
-    const inventory: equipmentItem[]=[
-        {
-            id:6,
-            type:'hats',
-            rarity:'common',
-            name:'_0000s_0000_policejskaja-kepka',
-            increase:{
-                str: 1,
-            }
-        },
-        {
-            id:10,
-            type:'hats',
-            rarity:'common',
-            name:'_0000s_0002s_0001_shapochka-rozovaja',
-            increase:{
-                str: 1,
-            }
-        },
-        {
-            id:111,
-            type:'left',
-            rarity:'common',
-            name:'L-hand_0000s_0000_avtomat',
-            increase:{
-                str: 1,
-            }
-        },
-        {
-            id:71,
-            type:'left',
-            rarity:'uncommon',
-            name:'L-hand_0000s_0001_bita',
-            increase:{
-                str:1,
-                dex:1,
-            }
-        },
-        {
-            id:84,
-            type:'left',
-            rarity:'epic',
-            name:'L-hand_0000s_0002_shlepalka-rrrr',
-            increase:{
-                str: 2,
-                dex:2,
-                int:1,
-            },
-            requirements:{
-                dex:2,
-            }
-        },
-        {
-            id:95,
-            type:'left',
-            rarity:'legendary',
-            name:'L-hand_0000s_0003_molotok',
-            increase:{
-                str: 2,
-                dex:2,
-                int:1,
-            },
-            requirements:{
-                dex:1,
-                krm:2,
-            }
-        },
-        {
-            id:11,
-            type:'hats',
-            rarity:'common',
-            name:'_0000s_0002s_0004_shapochka-belaja',
-            increase:{
-                str: 1,
-            }
-        },
-        {
-            id:7,
-            type:'hats',
-            rarity:'uncommon',
-            name:'_0000s_0000s_0002_belaja-kepka-morkovka-',
-            increase:{
-                str:1,
-                dex:1,
-            }
-        },
-        {
-            id: 8,
-            type: 'hats',
-            rarity: 'epic',
-            name: '_0000s_0002s_0002_shapochka-chernaja',
-            increase: {
-                str: 2,
-                dex: 2,
-                int: 1,
-            },
-            requirements: {
-                dex: 1,
-                krm: 2,
-            }
-        },
-    ]
-
-
-
-
-
-
-
     return (
         <div className={'grid grid-cols-1 grid-rows-2 auto-rows-max w-full h-[100vh]'}>
             <div className={' grid grid-cols-7'}>
@@ -233,7 +124,7 @@ const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
 
                 </div>
             </div>
-            {popOpen?<EquipmentPopUp bunny={bunny} choosenType={choosenType} items={inventory} togglePop={togglePop} attachItemToBunny={attachItemToBunny}></EquipmentPopUp>:null}
+            {popOpen?<EquipmentPopUp bunny={bunny} choosenType={choosenType} items={bunny.bunny.inventory} togglePop={togglePop} attachItemToBunny={attachItemToBunny}></EquipmentPopUp>:null}
             {statOpen?<StatPop togglePop={toggleStat} stat_name={currentStat} stat_value={bunny.bunny.stats[currentStat]}></StatPop>:null}
         </div>
     );
