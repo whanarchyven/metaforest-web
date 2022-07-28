@@ -1,0 +1,21 @@
+const fs = require('fs');
+const path = require('path');
+
+module.exports.adminEditConfigSingleParam = fs.readFileSync(path.join(__dirname, 'adminEditConfigSingleParam.gql'), 'utf8');
+module.exports.adminInitConfig = fs.readFileSync(path.join(__dirname, 'adminInitConfig.gql'), 'utf8');
+module.exports.initStateForUser = fs.readFileSync(path.join(__dirname, 'initStateForUser.gql'), 'utf8');
+module.exports.mfActionFeedRabbit = fs.readFileSync(path.join(__dirname, 'mfActionFeedRabbit.gql'), 'utf8');
+module.exports.mfActionInitState = fs.readFileSync(path.join(__dirname, 'mfActionInitState.gql'), 'utf8');
+module.exports.mfActionJobProgress = fs.readFileSync(path.join(__dirname, 'mfActionJobProgress.gql'), 'utf8');
+module.exports.mfActionLvlUp = fs.readFileSync(path.join(__dirname, 'mfActionLvlUp.gql'), 'utf8');
+module.exports.mfActionOpenLootbox = fs.readFileSync(path.join(__dirname, 'mfActionOpenLootbox.gql'), 'utf8');
+module.exports.mfActionSetCurrentJob = fs.readFileSync(path.join(__dirname, 'mfActionSetCurrentJob.gql'), 'utf8');
+module.exports.mfActionTimeTick = fs.readFileSync(path.join(__dirname, 'mfActionTimeTick.gql'), 'utf8');
+module.exports.performAbiFunction = fs.readFileSync(path.join(__dirname, 'performAbiFunction.gql'), 'utf8');
+module.exports.telegramSaidUserPassedDistance = fs.readFileSync(path.join(__dirname, 'telegramSaidUserPassedDistance.gql'), 'utf8');
+module.exports.timeTick = fs.readFileSync(path.join(__dirname, 'timeTick.gql'), 'utf8');
+module.exports.userClearPush = fs.readFileSync(path.join(__dirname, 'userClearPush.gql'), 'utf8');
+module.exports.userFeedCurrentBunny = fs.readFileSync(path.join(__dirname, 'userFeedCurrentBunny.gql'), 'utf8');
+module.exports.userOpenLootBoxFree = fs.readFileSync(path.join(__dirname, 'userOpenLootBoxFree.gql'), 'utf8');
+module.exports.userOpenLootBoxPaid = fs.readFileSync(path.join(__dirname, 'userOpenLootBoxPaid.gql'), 'utf8');
+module.exports.userWearInventoryElement = fs.readFileSync(path.join(__dirname, 'userWearInventoryElement.gql'), 'utf8');

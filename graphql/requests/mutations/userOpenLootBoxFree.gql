@@ -1,0 +1,3 @@
+mutation userOpenLootBoxFree($lootBoxId: String){
+    userOpenLootBoxFree(lootBoxId: $lootBoxId)
+}
