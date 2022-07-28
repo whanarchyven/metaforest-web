@@ -14,9 +14,13 @@ interface containerInterface {
     bunny: bunnyInterface;
     attachItemToBunny :(place:"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears",item:equipmentItem)=> any;
     getNewActiveTask:(task:workTask)=>any;
+    pushItemToInventory:(item:equipmentItem)=>any;
+    balance:number;
+    changeBalance:(new_balance:number)=>any;
+    increaseCharacteristics:(chars:{id:'str'|'dex'|'vit'|'int'|'krm',increase:number}[])=>any
 }
 
-const Container = ({currentTab,bunny,attachItemToBunny,getNewActiveTask}:containerInterface) => {
+const Container = ({currentTab,bunny,attachItemToBunny,getNewActiveTask,pushItemToInventory,balance,changeBalance}:containerInterface) => {
     switch (currentTab){
         case 'home':{
             return (
@@ -28,7 +32,7 @@ const Container = ({currentTab,bunny,attachItemToBunny,getNewActiveTask}:contain
         case 'marketplace':{
             return (
                 <div className={'w-full h-full'}>
-                    <Marketplace></Marketplace>
+                    <Marketplace changeBalance={changeBalance} balance={balance} bunny={bunny} pushItemToInventory={pushItemToInventory}></Marketplace>
                 </div>
             );
         }

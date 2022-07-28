@@ -35,9 +35,10 @@ export interface bunnyInterface{
             necklace?:equipmentItem,
             ears?:equipmentItem,
         },
-        inventory?:Array<equipmentItem>,
+        inventory:Array<equipmentItem>,
         activeTask?:activeTask,
         workHistory?:activeTask[],
+        isLevelUp:boolean;
     },
 
 

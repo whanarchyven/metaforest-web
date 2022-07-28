@@ -3,7 +3,19 @@ import TabSwitcher from "../TabSwitcher";
 import ItemCard from "../ItemCard";
 import Image from "next/image";
 import PopUp from "../PopUp";
-const Marketplace = () => {
+import {equipmentItem} from "../interfaces/equipmentItem";
+import {bunnyInterface} from "../interfaces/bunnyInterface";
+
+
+interface MarketplaceProps{
+    pushItemToInventory:(item:equipmentItem)=>any;
+    bunny:bunnyInterface;
+    balance:number;
+    changeBalance:(new_balance:number)=>any
+}
+
+
+const Marketplace = ({bunny,pushItemToInventory,changeBalance,balance}:MarketplaceProps) => {
     const tabs=[
         'looks','instruments','houses'
     ]
@@ -25,6 +37,7 @@ const Marketplace = () => {
                 vit:2,
                 int:3,
             },
+            price:125,
         },
         {
             id:2,
@@ -34,6 +47,7 @@ const Marketplace = () => {
             increase:{
                 vit:2,
             },
+            price:125,
         },
         {
             id:3,
@@ -45,7 +59,8 @@ const Marketplace = () => {
             },
             requirements:{
                 int:2,
-            }
+            },
+            price:125,
         },
         {
             id:4,
@@ -57,7 +72,8 @@ const Marketplace = () => {
             },
             requirements:{
                 int:2,str:4,
-            }
+            },
+            price:125,
         },
     ]
 
@@ -103,7 +119,7 @@ const Marketplace = () => {
                     </div>
                 })}
             </div>
-            {openPopup?<PopUp item={popupItem} togglePop={togglePop}></PopUp>:null}
+            {openPopup?<PopUp pushItemToInventory={pushItemToInventory} bunny={bunny} item={popupItem} togglePop={togglePop} balance={balance} changeBalance={changeBalance}></PopUp>:null}
         </div>
     );
 };
