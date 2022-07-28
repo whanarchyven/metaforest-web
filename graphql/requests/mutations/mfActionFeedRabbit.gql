@@ -1,0 +1,18 @@
+mutation mfActionFeedRabbit{
+    mfActionFeedRabbit{
+        errorMessageRus{
+            en
+            ru
+        }
+        gameFullState{
+            payload
+            userUri
+        }
+        isError
+        isSuccessful
+        successMessageRus{
+            en
+            ru
+        }
+    }
+}

@@ -1,0 +1,10 @@
+query userGetPush($userUri: String!){
+    userGetPush(userUri: $userUri){
+        _id
+        createdAt
+        emotion
+        textEn
+        textRu
+        userUri
+    }
+}

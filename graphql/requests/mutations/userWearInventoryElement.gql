@@ -1,0 +1,3 @@
+mutation userWearInventoryElement($elementId: String){
+    userWearInventoryElement(elementId: $elementId)
+}

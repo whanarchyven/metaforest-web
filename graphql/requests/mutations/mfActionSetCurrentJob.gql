@@ -1,0 +1,18 @@
+mutation mfActionSetCurrentJob($action: MfActionTakeJobInput){
+    mfActionSetCurrentJob(action: $action){
+        errorMessageRus{
+            en
+            ru
+        }
+        gameFullState{
+            payload
+            userUri
+        }
+        isError
+        isSuccessful
+        successMessageRus{
+            en
+            ru
+        }
+    }
+}

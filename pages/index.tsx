@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Bunny from "../components/Bunny";
+import {sdk} from "../graphql/sdk";
 
 const Home: NextPage = () => {
   return (

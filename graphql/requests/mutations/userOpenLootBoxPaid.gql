@@ -1,0 +1,3 @@
+mutation userOpenLootBoxPaid($lootBoxId: String){
+    userOpenLootBoxPaid(lootBoxId: $lootBoxId)
+}

@@ -1,0 +1,3 @@
+mutation adminEditConfigSingleParam($path: String!, $valueObject: JSON!, $version: String!){
+    adminEditConfigSingleParam(path: $path, valueObject: $valueObject, version: $version)
+}

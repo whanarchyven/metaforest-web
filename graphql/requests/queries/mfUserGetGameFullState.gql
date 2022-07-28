@@ -1,0 +1,6 @@
+query mfUserGetGameFullState{
+    mfUserGetGameFullState{
+        payload
+        userUri
+    }
+}
