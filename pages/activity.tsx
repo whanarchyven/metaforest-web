@@ -21,7 +21,7 @@ const Home: NextPage = () => {
       <main className={'font-roboto overscroll-y-none'}>
         {/*<Bunny></Bunny>*/}
           <Layout>
-              Dashboard
+              Activity
           </Layout>
       </main>
     </div>

@@ -6,11 +6,11 @@ import VitalityBar from "../VitalityBar";
 import ProgressBar from "../UI/ProgressBar";
 import LevelUp from "../LevelUp";
 interface homeInterface{
-    bunny:bunnyInterface
-    increaseCharacteristics:(chars:{id:'str'|'dex'|'vit'|'int'|'krm',increase:number}[])=>any
+    // bunny:bunnyInterface
+    // increaseCharacteristics:(chars:{id:'str'|'dex'|'vit'|'int'|'krm',increase:number}[])=>any
 }
 
-const Home = (bunny:bunnyInterface) => {
+const Dashboard = (bunny:bunnyInterface) => {
 
 
     const [levelPopOpen,setLevelPopOpen]=useState(false);
@@ -73,4 +73,4 @@ const Home = (bunny:bunnyInterface) => {
     );
 };
 
-export default Home;
+export default Dashboard;

@@ -1,13 +1,15 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {tabType} from "./types/tabType";
 import Image from "next/image";
+import {router} from "next/client";
+import Link from "next/link";
 
 interface tabBarInterface{
-    currentTab:tabType,
-    UpdateTab:(newTab:tabType)=>any,
+    currentTab:string,
+    // UpdateTab:(newTab:tabType)=>any,
 }
 
-const TabBar = ({currentTab,UpdateTab}:tabBarInterface) => {
+const TabBar = ({currentTab}:tabBarInterface) => {
 
     const [isVisible,setIsVisible]=useState('visible-true');
     const [currentOffset,setCurrentOffset]=useState(0);
@@ -36,13 +38,15 @@ const TabBar = ({currentTab,UpdateTab}:tabBarInterface) => {
         <div className={'w-full h-full bg-white grid grid-cols-5 visible-transition gap-10 grid-rows-1 p-5 '+isVisible}>
             {tabs.map(item=>{
                 let active='';
-                if(item!=currentTab){
+                if('/'+item!=currentTab){
                     active='_active'
                 }
                 return(
-                    <div className={'relative'} key={item} onClick={()=>{UpdateTab(item)}}>
-                        <Image src={'/images/tabs/'+item+active+'.svg'} layout={'fill'}></Image>
-                    </div>
+                    <Link className={'relative'} href={'/'+item} key={item}>
+                        <div className={'relative'}>
+                            <Image src={'/images/tabs/'+item+active+'.svg'} layout={'fill'}></Image>
+                        </div>
+                    </Link>
                 );
             })}
         </div>
