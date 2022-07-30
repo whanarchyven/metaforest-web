@@ -323,7 +323,7 @@ const Home: NextPage = () => {
       <main className={'font-roboto overscroll-y-none'}>
         {/*<Bunny></Bunny>*/}
           <Layout>
-              <Work bunny={bunny} getNewActiveTask={getNewActiveTask}/>
+              <Work bunny={bunny}/>
           </Layout>
       </main>
     </div>

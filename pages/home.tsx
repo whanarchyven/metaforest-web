@@ -16,6 +16,7 @@ import {activeTask} from "../components/interfaces/activeTask";
 
 const Home: NextPage = () => {
 
+    sdk().useUserGetState({userUri:''})
 
     const [balance,setBalance]=useState(1488);
 
