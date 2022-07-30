@@ -15,7 +15,7 @@ interface MarketplaceProps{
 }
 
 
-const Marketplace = ({bunny,pushItemToInventory,changeBalance,balance}:MarketplaceProps) => {
+const MarketplaceScreen = ({bunny,pushItemToInventory,changeBalance,balance}:MarketplaceProps) => {
     const tabs=[
         'looks','instruments','houses'
     ]
@@ -124,4 +124,4 @@ const Marketplace = ({bunny,pushItemToInventory,changeBalance,balance}:Marketpla
     );
 };
 
-export default Marketplace;
+export default MarketplaceScreen;
