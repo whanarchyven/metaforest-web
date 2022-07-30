@@ -319,7 +319,7 @@ const Home: NextPage = () => {
       <main className={'font-roboto overscroll-y-none'}>
         {/*<Bunny></Bunny>*/}
           <Layout>
-              <Equipment bunny={bunny} attachItemToBunny={attachItemToBunny}/>
+              <Equipment bunny={bunny}/>
           </Layout>
       </main>
     </div>

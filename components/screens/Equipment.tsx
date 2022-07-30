@@ -9,7 +9,7 @@ import StatPop from "../StatPop";
 
 interface equipmentInterface {
     bunny: bunnyInterface,
-    attachItemToBunny : (place:"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears",item:equipmentItem)=>any
+    // attachItemToBunny : (place:"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears",item:equipmentItem)=>any
 }
 
 interface keyTab {
@@ -21,7 +21,7 @@ interface keyStat{
 
 }
 
-const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
+const Equipment = ({bunny}:equipmentInterface) => {
 
     const leftTabs:keyTab[]=[{id:'hats'},{id:'faces'},{id:'necklace'},{id:'left'}];
     const rightTabs:keyTab[]=[{id:'overhead'},{id:'ears'},{id:'clothes'},{id:'right'}];
@@ -124,7 +124,7 @@ const Equipment = ({bunny,attachItemToBunny}:equipmentInterface) => {
 
                 </div>
             </div>
-            {popOpen?<EquipmentPopUp bunny={bunny} choosenType={choosenType} items={bunny.bunny.inventory} togglePop={togglePop} attachItemToBunny={attachItemToBunny}></EquipmentPopUp>:null}
+            {popOpen?<EquipmentPopUp bunny={bunny} choosenType={choosenType} items={bunny.bunny.inventory} togglePop={togglePop}></EquipmentPopUp>:null}
             {statOpen?<StatPop togglePop={toggleStat} stat_name={currentStat} stat_value={bunny.bunny.stats[currentStat]}></StatPop>:null}
         </div>
     );

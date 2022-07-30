@@ -8,12 +8,11 @@ interface ItemCardInterface {
     choosenType: "left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears",
     items: equipmentItem[],
     togglePop: () => any,
-    attachItemToBunny : (place:"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears",item:equipmentItem)=>any,
     bunny:bunnyInterface
 }
 
 
-const EquipmentPopUp = ({items,togglePop,choosenType,attachItemToBunny,bunny}:ItemCardInterface) => {
+const EquipmentPopUp = ({items,togglePop,choosenType,bunny}:ItemCardInterface) => {
     return (
         <div className={'fixed z-[999] pt-16 w-full h-full top-0 left-0 grey-gradient justify-center items-center overflow-y-scroll'}>
             <div className={'w-full flex over flex-wrap justify-center relative p-4'}>
@@ -29,7 +28,7 @@ const EquipmentPopUp = ({items,togglePop,choosenType,attachItemToBunny,bunny}:It
                     {items.map(item=>{
                         if((item.type==choosenType)){
                             if(bunny.bunny.equipment[choosenType]?.name!=item.name){
-                                return <div onClick={()=>{attachItemToBunny(choosenType,item);togglePop()}} key={Math.random()} className={'cursor-pointer'}><ItemCard item={item}></ItemCard></div>
+                                return <div onClick={()=>{togglePop()}} key={Math.random()} className={'cursor-pointer'}><ItemCard item={item}></ItemCard></div>
                             }
                         }
                         else {

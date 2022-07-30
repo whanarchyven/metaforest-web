@@ -316,7 +316,7 @@ const Marketplace: NextPage = () => {
       <main className={'font-roboto overscroll-y-none'}>
         {/*<Bunny></Bunny>*/}
           <Layout>
-              <MarketplaceScreen pushItemToInventory={pushItemToInventory} bunny={bunny} balance={balance} changeBalance={changeBalance}/>
+              <MarketplaceScreen bunny={bunny} balance={balance}/>
           </Layout>
       </main>
     </div>

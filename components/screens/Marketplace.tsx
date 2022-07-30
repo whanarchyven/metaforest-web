@@ -8,14 +8,12 @@ import {bunnyInterface} from "../interfaces/bunnyInterface";
 
 
 interface MarketplaceProps{
-    pushItemToInventory:(item:equipmentItem)=>any;
     bunny:bunnyInterface;
     balance:number;
-    changeBalance:(new_balance:number)=>any
 }
 
 
-const MarketplaceScreen = ({bunny,pushItemToInventory,changeBalance,balance}:MarketplaceProps) => {
+const MarketplaceScreen = ({bunny,balance}:MarketplaceProps) => {
     const tabs=[
         'looks','instruments','houses'
     ]
@@ -119,7 +117,7 @@ const MarketplaceScreen = ({bunny,pushItemToInventory,changeBalance,balance}:Mar
                     </div>
                 })}
             </div>
-            {openPopup?<PopUp pushItemToInventory={pushItemToInventory} bunny={bunny} item={popupItem} togglePop={togglePop} balance={balance} changeBalance={changeBalance}></PopUp>:null}
+            {openPopup?<PopUp bunny={bunny} item={popupItem} togglePop={togglePop} balance={balance}></PopUp>:null}
         </div>
     );
 };
