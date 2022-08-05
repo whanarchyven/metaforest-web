@@ -7,6 +7,7 @@ deploy-production:
     name: "production-deploy"
     url: "https://web-app.meta-forest.metafora.dev"
   variables:
+
     COMPOSE_TEMP_PATH: ".tmp"
 
     DOCKER_SWARM_HOST: "${DOCKER_SWARM_HOST}"
