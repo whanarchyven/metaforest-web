@@ -37,7 +37,7 @@ services:
       meta-forest:
         aliases:
           - meta-forest-web-app-frontend
-      meta-forest-core:
+      meta-forest-web-app:
         aliases:
           - meta-forest-web-app-frontend
       meta-forest_ext:
@@ -50,9 +50,9 @@ networks:
     external: true
     name: meta-forest
 
-  meta-forest-core:
+  meta-forest-web-app:
     external: true
-    name: meta-forest-core
+    name: meta-forest-web-app
 
   meta-forest_ext:
     external: true
