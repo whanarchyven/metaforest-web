@@ -17,7 +17,7 @@ import {activeTask} from "../components/interfaces/activeTask";
 
 const Home: NextPage = () => {
 
-    const {data}=sdk().useUserGetState({userUri:'"telegram://test"'})
+    const {data}=sdk().useUserGetState({userUri:'telegram://test'})
     console.log(data);
 
     // const [balance,setBalance]=useState(1488);
