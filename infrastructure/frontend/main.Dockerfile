@@ -114,11 +114,11 @@ RUN ["yarn","run","build"]
 FROM prepare_works_deps as work
 
 COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
-    --from="build" \
-    "${APP_PATH}/.next" "${APP_PATH}/.next"
+    "public/" "${APP_PATH}/public"
 
 COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
-    "public/" "${APP_PATH}/public"
+    --from="build" \
+    "${APP_PATH}/.next" "${APP_PATH}/.next"
 
 # FROM prepare_base as prepare_deps_install
 
