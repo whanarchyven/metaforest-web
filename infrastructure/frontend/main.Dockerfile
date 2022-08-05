@@ -117,6 +117,9 @@ COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
     --from="build" \
     "${APP_PATH}/.next" "${APP_PATH}/.next"
 
+COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
+    "${APP_PATH}/public" "${APP_PATH}/public"
+
 # FROM prepare_base as prepare_deps_install
 
 # RUN mkdir -p "${APP_PATH}/.tmp/" \
