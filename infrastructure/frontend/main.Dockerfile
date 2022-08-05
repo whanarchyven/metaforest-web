@@ -51,19 +51,6 @@ COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
     "${APP_PATH}/" \
 ]
 
-
-# FROM prepare_base as prepare_deps_install
-
-# RUN mkdir -p "${APP_PATH}/.tmp/" \
-#     && cd "${APP_PATH}/"  \
-#     && find ./graphql -name '*.gql' \! -path '*\.vscode*' \! -path '*/node_modules/*' | xargs cp --parents -t "../.tmp/graphql"
-
-# FROM prepare_deps_install as prepare_build_deps
-
-# COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
-#     --from="prepare_build_source" \
-#     "${APP_PATH}/.tmp/" "${APP_PATH}/"
-
 FROM prepare_base as prepare_build_deps
 
 RUN yarn install \
@@ -95,7 +82,6 @@ COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
     "data/", \
     "${APP_PATH}/data" \
 ]
-
 
 COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
 [    \
@@ -130,6 +116,18 @@ FROM prepare_works_deps as work
 COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
     --from="build" \
     "${APP_PATH}/.next" "${APP_PATH}/.next"
+
+# FROM prepare_base as prepare_deps_install
+
+# RUN mkdir -p "${APP_PATH}/.tmp/" \
+#     && cd "${APP_PATH}/"  \
+#     && find ./graphql -name '*.gql' \! -path '*\.vscode*' \! -path '*/node_modules/*' | xargs cp --parents -t "../.tmp/graphql"
+
+# FROM prepare_deps_install as prepare_build_deps
+
+# COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
+#     --from="prepare_build_source" \
+#     "${APP_PATH}/.tmp/" "${APP_PATH}/"
 
 WORKDIR "${APP_PATH}/"
 

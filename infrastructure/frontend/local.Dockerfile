@@ -49,7 +49,25 @@ COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
     "${APP_PATH}/" \
 ]
 
-FROM prepare_base as prepare_build_source
+FROM prepare_base as prepare_build_deps
+
+RUN yarn install \
+    --non-interactive \
+    --production=false \
+    --frozen-lockfile \
+    --network-timeout 1000000 \
+    && yarn cache clean
+
+FROM prepare_deps_install as prepare_works_deps
+
+RUN yarn install \
+    --non-interactive \
+    --production=true \
+    --frozen-lockfile \
+    --network-timeout 1000000 \
+    && yarn cache clean
+
+FROM prepare_build_deps as prepare_build_source
 
 COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
 [    \
@@ -88,6 +106,16 @@ COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
     "${APP_PATH}/styles" \
 ]
 
+FROM prepare_build_source as build
+
+RUN ["yarn","run","build"]
+
+FROM prepare_works_deps as work
+
+COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
+    --from="build" \
+    "${APP_PATH}/.next" "${APP_PATH}/.next"
+
 # FROM prepare_base as prepare_deps_install
 
 # RUN mkdir -p "${APP_PATH}/.tmp/" \
@@ -100,35 +128,6 @@ COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
 # COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
 #     --from="prepare_build_source" \
 #     "${APP_PATH}/.tmp" "${APP_PATH}/"
-
-
-FROM prepare_base as prepare_build_deps
-
-RUN yarn install \
-    --non-interactive \
-    --production=false \
-    --frozen-lockfile \
-    --network-timeout 1000000 \
-    && yarn cache clean
-
-FROM prepare_deps_install as prepare_works_deps
-
-RUN yarn install \
-    --non-interactive \
-    --production=true \
-    --frozen-lockfile \
-    --network-timeout 1000000 \
-    && yarn cache clean
-
-FROM prepare_build_source as build
-
-RUN ["yarn","run","build"]
-
-FROM prepare_works_deps as work
-
-COPY --chown="${APP_USER_NAME}:${APP_GROUP_NAME}" \
-    --from="build" \
-    "${APP_PATH}/.next" "${APP_PATH}/.next"
 
 WORKDIR "${APP_PATH}/"
 
