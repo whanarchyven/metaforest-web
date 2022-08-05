@@ -29,7 +29,6 @@ services:
         - "traefik.http.services.meta-forest-web-app-frontend.loadbalancer.server.port=3000"
         - "traefik.http.routers.meta-forest-web-app-frontend.entrypoints=web"
         - "traefik.http.routers.meta-forest-web-app-frontend.service=meta-forest-web-app-frontend"
-    restart: unless-stopped
     logging:
       driver: "json-file"
       options:
