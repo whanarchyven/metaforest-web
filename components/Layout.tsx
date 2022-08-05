@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {bunnyInterface} from "./interfaces/bunnyInterface";
 import {equipmentItem} from "./interfaces/equipmentItem";
 import TopMenu from "./TopMenu";
-import Container from "./Container";
 import TabBar from "./TabBar";
 import {tabType} from "./types/tabType";
 import {workTask} from "./interfaces/workTask";
