@@ -18,7 +18,7 @@ import {useRouter} from "next/router";
 
 const Layout = (props:any) => {
     const needUrl=useRouter();
-
+    const {data}=sdk().useUserGetState({userUri:'telegram://test'})
     const [routerUrl,setRouterUrl]=useState(needUrl)
 
     // console.log(needUrl);
@@ -35,9 +35,9 @@ const Layout = (props:any) => {
                 {/*{...props}*/}
                 {props.children}
             </div>
-            {/*<div className={'w-full h-14 fixed top-0'}>*/}
-            {/*    <TopMenu balance={balance}></TopMenu>*/}
-            {/*</div>*/}
+            <div className={'w-full h-14 fixed top-0'}>
+                {data!=undefined?<TopMenu balance={data.userGetState.carrotsBalance}></TopMenu>:null}
+            </div>
             <div className={'w-full h-20 fixed bottom-0'}>
                 <TabBar currentTab={needUrl.pathname}></TabBar>
             </div>

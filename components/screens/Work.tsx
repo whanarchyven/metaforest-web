@@ -12,6 +12,7 @@ interface workModule{
 const Work = ({bunny}:workModule) => {
     const worktabs=['daily','work']
     const [workTab,setWorkTab]=useState('daily');
+
     const works:workTask[]=[
         {
             workItem:{
