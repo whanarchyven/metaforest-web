@@ -1,15 +1,15 @@
-build-core-production:
+build-frontend-production:
   image: docker:dind
   stage: build
   tags:
     - docker
   environment:
-    name: "production-build-core"
+    name: "production-build-frontend"
     url: "https://web-app.meta-forest.metafora.dev"
   services:
     - docker:dind
   variables:
-    SERVICE: "core"
+    SERVICE: "frontend"
   script:
     - "./bin/docker-registry-login.sh"
     - "./bin/docker-image-build.sh"

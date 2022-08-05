@@ -4,12 +4,12 @@ build-core-stage:
   tags:
     - docker
   environment:
-    name: "stage-build-core"
+    name: "stage-build-frontend"
     url: "https://web-app.meta-forest.metafora.dev"
   services:
     - docker:dind
   variables:
-    SERVICE: "core"
+    SERVICE: "frontend"
   script:
     - "./bin/docker-registry-login.sh"
     - "./bin/docker-image-build.sh"
