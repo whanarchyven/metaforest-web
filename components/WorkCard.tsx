@@ -5,7 +5,6 @@ import {statKeys} from "./types/statKeys";
 import {StatTab} from "./UI/StatTab";
 import StatRequirementBar from "./UI/StatRequirementBar";
 import WorkPopUp from "./WorkPopUp";
-import bunny from "./Bunny";
 import {bunnyInterface} from "./interfaces/bunnyInterface";
 
 interface WorkCardInterface{
