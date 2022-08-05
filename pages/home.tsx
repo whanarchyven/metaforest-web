@@ -14,9 +14,6 @@ import {statKeys} from "../components/types/statKeys";
 import {activeTask} from "../components/interfaces/activeTask";
 
 const Home: NextPage = () => {
-
-    sdk().useUserGetState({userUri:''})
-
     const [balance,setBalance]=useState(1488);
 
     const changeBalance=(new_balance:number)=>{
