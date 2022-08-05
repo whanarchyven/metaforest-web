@@ -1,0 +1,30 @@
+---
+version: "3.8"
+services:
+
+  frontend:
+    image: "dr.metafora.dev/meta-forest/web-app/frontend/local:latest"
+    pull_policy: build
+    build:
+      context: "../"
+      dockerfile: "./infrastructure/web-app/local.Dockerfile"
+    labels:
+      - "traefik.http.routers.meta-forest-core-web-app.tls=false"
+      - "traefik.http.routers.meta-forest-core-web-app.rule=Host(`meta-forest-core-web-app.dev.metafora.dev.docker.localhost`)"
+      - "traefik.http.routers.meta-forest-core-web-app.entrypoints=web"
+    deploy:
+      labels:
+        - "traefik.http.routers.meta-forest-core-web-app.tls=false"
+        - "traefik.http.routers.meta-forest-core-web-app.rule=Host(`meta-forest-core-web-app.dev.metafora.dev.docker.localhost`)"
+        - "traefik.http.routers.meta-forest-core-web-app.entrypoints=web"
+    networks:
+      metafora:
+        aliases:
+          - meta-forest-core-web-app
+
+networks:
+  metafora:
+    external: true
+    name: metafora
+
+...
