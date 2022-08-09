@@ -13,8 +13,9 @@ interface homeInterface {
 
 const Dashboard = (bunny: bunnyInterface) => {
 
-  const { data, mutate } = sdk().useUserGetState({ userUri: 'telegram://test' })
-  console.log(data);
+  // const { data:profileData, mutate } = sdk().useGetMe()
+    const { data, mutate } = sdk().useUserGetMyState()
+
   const [levelPopOpen, setLevelPopOpen] = useState(false);
   const toggleLevelPop = () => {
     setLevelPopOpen(!levelPopOpen);
@@ -31,7 +32,7 @@ const Dashboard = (bunny: bunnyInterface) => {
       </div>
       <div className={'w-[336px] h-full left-auto absolute top-0'}>
         <div className={'w-16 h-16 -right-0 top-28 absolute green-gradient rounded-full flex flex-wrap justify-center content-center'}>
-          {data != undefined ? <p className={'w-full text-center font-bold text-white text-2xl'}>{data.userGetState.bunnyLevel}</p> : null}
+          {data != undefined ? <p className={'w-full text-center font-bold text-white text-2xl'}>{data.userGetMyState.bunnyLevel}</p> : null}
           <p className={'text-white font-normal text-lg'}>level</p>
           {bunny.bunny.isLevelUp ? <div className={'absolute -right-0 -top-1 w-6 h-6 bg-white rounded-full flex justify-center content-center'} onClick={() => { sdk().performAbiFunction({ "userUri": "telegram://test", "fn": "lvlUpRabbit", params: {} }).then(d=>mutate()) }}>
             <p className={'text-center text-md text-green-500 font-bold'}>+</p>
@@ -46,13 +47,13 @@ const Dashboard = (bunny: bunnyInterface) => {
           </div>
         </div>
         <div className={'w-20 h-32 absolute -left-3 top-44'}>
-          {data != undefined ? <VitalityBar vitality={data.userGetState.vit}></VitalityBar> : null}
+          {data != undefined ? <VitalityBar vitality={data.userGetMyState.vit}></VitalityBar> : null}
           <div className={'w-3/4 mt-4 h-10 rounded-full green-gradient flex justify-center items-center'}>
             <p className={'text-center text-xl font-semibold text-white'}>Feed</p>
           </div>
         </div>
       </div>
-      {data != undefined ? <p className={'text-center w-full text-4xl font-semibold text-black relative -mt-10 mb-5'}>{data.userGetState.userUri}</p> : null}
+      {data != undefined ? <p className={'text-center w-full text-4xl font-semibold text-black relative -mt-10 mb-5'}>{data.userGetMyState.userUri}</p> : null}
       <div className={'w-40 h-12 green-gradient rounded-full relative flex justify-center items-center'}>
         <p className={'text-center text-xl font-semibold text-white'}>Change</p>
       </div>
@@ -66,9 +67,9 @@ const Dashboard = (bunny: bunnyInterface) => {
       <div className={'relative w-full gap-4 px-6 py-4 mt-3 grid grid-cols-10'}>
         <p className={'col-start-1 col-end-4 justify-self-center'}>Energy</p>
         <div className={'col-start-4 col-end-9'}>
-          {data != undefined ? <ProgressBar progress={data.userGetState.jobEnergy} limit={data.userGetState.maxJobEnergy}></ProgressBar> : null}
+          {data != undefined ? <ProgressBar progress={data.userGetMyState.jobEnergy} limit={data.userGetMyState.maxJobEnergy}></ProgressBar> : null}
         </div>
-        {data != undefined ? <p className={'col-start-9 col-end-11 justify-self-center'}>{data.userGetState.jobEnergy}/{data.userGetState.maxJobEnergy}</p> : null}
+        {data != undefined ? <p className={'col-start-9 col-end-11 justify-self-center'}>{data.userGetMyState.jobEnergy}/{data.userGetMyState.maxJobEnergy}</p> : null}
       </div>
       {levelPopOpen ? <LevelUp bunny={bunny} togglePop={toggleLevelPop} /> : null}
     </div>
