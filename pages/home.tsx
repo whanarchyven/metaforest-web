@@ -17,9 +17,7 @@ import {AuthConnector} from "../components/auth-connector";
 
 //query_id=AAEvBg0AAAAAAC8GDQCti9A0&user=%7B%22id%22%3A853551%2C%22first_name%22%3A%22Nick%22%2C%22last_name%22%3A%22Erlan%22%2C%22username%22%3A%22nickolaierlan%22%2C%22language_code%22%3A%22en%22%2C%22is_premium%22%3Atrue%7D&auth_date=1660076083&hash=7e75b96b1b650e545333d7053bc3b2826cb250ec5cf37d7a4c03e66538ddfa88
 const Home: NextPage = () => {
-    useEffect(()=>{
-        if (localStorage.getItem('token')) alert(localStorage.getItem('token'));
-    },[])
+
     const [balance,setBalance]=useState(1488);
 
     const changeBalance=(new_balance:number)=>{

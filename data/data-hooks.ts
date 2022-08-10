@@ -53,6 +53,7 @@ const state ={
     vit: 1,
 }
 export const useUserGameFullState = ()=>{
-    // const {data} =  sdk().useUserGetState({userUri:"telegram://test"})
-    return [state] as [typeof state]
+    const { data, mutate } = sdk().useUserGetMyState()
+
+    return [data?.userGetMyState,mutate] as [typeof state,any]
 }
