@@ -36,7 +36,7 @@ const Dashboard = (bunny: bunnyInterface) => {
         <div className={'w-16 h-16 -right-0 top-28 absolute green-gradient rounded-full flex flex-wrap justify-center content-center'}>
           {state?.bunnyLevel&& <p className={'w-full text-center font-bold text-white text-2xl'}>{state?.bunnyLevel}</p>}
           <p className={'text-white font-normal text-lg'}>level</p>
-          {bunny.bunny.isLevelUp ? <div className={'absolute -right-0 -top-1 w-6 h-6 bg-white rounded-full flex justify-center content-center'} onClick={() => { sdk().performAbiFunction({ "userUri": "telegram://test", "fn": "lvlUpRabbit", params: {} }).then(d=>mutate()) }}>
+          {bunny.bunny.isLevelUp ? <div className={'absolute -right-0 -top-1 w-6 h-6 bg-white rounded-full flex justify-center content-center'} onClick={() => { toggleLevelPop() }}>
             <p className={'text-center text-md text-green-500 font-bold'}>+</p>
           </div> : null}
         </div>

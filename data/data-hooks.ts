@@ -53,7 +53,7 @@ const state ={
     vit: 1,
 }
 export const useUserGameFullState = ()=>{
-    const { data, mutate } = sdk().useUserGetMyState()
+    const { data, mutate } = sdk().useMetaforestUserGetState({userUri:"telegram://test"})
 
-    return [data?.userGetMyState,mutate] as [typeof state,any]
+    return [data?.metaforestUserGetState,mutate] as [typeof state,any]
 }
