@@ -1,3 +1,0 @@
-mutation adminInitConfig($version: String!){
-    adminInitConfig(version: $version)
-}

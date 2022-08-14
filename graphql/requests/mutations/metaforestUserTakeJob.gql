@@ -1,0 +1,3 @@
+mutation metaforestUserTakeJob($jobId: String!){
+    metaforestUserTakeJob(jobId: $jobId)
+}

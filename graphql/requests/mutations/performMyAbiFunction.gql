@@ -1,3 +1,0 @@
-mutation performMyAbiFunction($fn: String, $params: JSON){
-    performMyAbiFunction(fn: $fn, params: $params)
-}

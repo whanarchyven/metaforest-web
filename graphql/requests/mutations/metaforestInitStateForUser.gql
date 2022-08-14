@@ -1,0 +1,3 @@
+mutation metaforestInitStateForUser($userUri: String!){
+    metaforestInitStateForUser(userUri: $userUri)
+}

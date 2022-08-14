@@ -1,0 +1,3 @@
+mutation metaforestAdminInitConfig($version: String!){
+    metaforestAdminInitConfig(version: $version)
+}

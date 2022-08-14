@@ -1,5 +1,5 @@
-query userGetPush($userUri: String!){
-    userGetPush(userUri: $userUri){
+query metaforestUserGetPush($userUri: String!){
+    metaforestUserGetPush(userUri: $userUri){
         _id
         createdAt
         emotion
