@@ -16,9 +16,6 @@ import {activeTask} from "../components/interfaces/activeTask";
 
 const Home: NextPage = () => {
 
-    const {data}=sdk().useUserGetState({userUri:'telegram://test'})
-    console.log(data);
-
     // const [balance,setBalance]=useState(1488);
     //
     // const changeBalance=(new_balance:number)=>{
@@ -31,156 +28,6 @@ const Home: NextPage = () => {
     // const UpdateTab=(newTab:tabType)=>{
     //     return setCurrentTab(newTab);
     // }
-
-    const initialBunny:bunnyInterface={
-        bunny:{
-            id:0,
-            name:'Test Bunny',
-            lvl:1,
-            vitality:6,
-            carrots_limit:0,
-            energy:1,
-
-            stats:{
-                str:2,
-                dex:3,
-                vit:6,
-                int:4,
-                krm:1,
-            },
-
-            base:{
-                rabbit:'0000s_0012_belyj',
-                eyes:'Eyes_0000s_0000s_0001_rozovaja-kraska'
-            },
-            equipment:{
-                hats:{
-                    id:1,
-                    type:'hats',
-                    rarity:'common',
-                    name:'_0000s_0001s_0001_zolotaja-korona',
-                    increase:{
-                        str:1
-                    }
-                },
-                clothes:{
-                    id:2,
-                    type:'clothes',
-                    rarity:'common',
-                    name:'Clothes_0000s_0008_kostjum',
-                    increase:{
-                        int:1
-                    }
-                }
-            },
-            workHistory:[],
-            inventory:[
-                {
-                    id:6,
-                    type:'hats',
-                    rarity:'common',
-                    name:'_0000s_0000_policejskaja-kepka',
-                    increase:{
-                        str: 1,
-                    }
-                },
-                {
-                    id:10,
-                    type:'hats',
-                    rarity:'common',
-                    name:'_0000s_0002s_0001_shapochka-rozovaja',
-                    increase:{
-                        str: 1,
-                    }
-                },
-                {
-                    id:111,
-                    type:'left',
-                    rarity:'common',
-                    name:'L-hand_0000s_0000_avtomat',
-                    increase:{
-                        str: 1,
-                    }
-                },
-                {
-                    id:71,
-                    type:'left',
-                    rarity:'uncommon',
-                    name:'L-hand_0000s_0001_bita',
-                    increase:{
-                        str:1,
-                        dex:1,
-                    }
-                },
-                {
-                    id:84,
-                    type:'left',
-                    rarity:'epic',
-                    name:'L-hand_0000s_0002_shlepalka-rrrr',
-                    increase:{
-                        str: 2,
-                        dex:2,
-                        int:1,
-                    },
-                    requirements:{
-                        dex:2,
-                    }
-                },
-                {
-                    id:95,
-                    type:'left',
-                    rarity:'legendary',
-                    name:'L-hand_0000s_0003_molotok',
-                    increase:{
-                        str: 2,
-                        dex:2,
-                        int:1,
-                    },
-                    requirements:{
-                        dex:1,
-                        krm:2,
-                    }
-                },
-                {
-                    id:11,
-                    type:'hats',
-                    rarity:'common',
-                    name:'_0000s_0002s_0004_shapochka-belaja',
-                    increase:{
-                        str: 1,
-                    }
-                },
-                {
-                    id:7,
-                    type:'hats',
-                    rarity:'uncommon',
-                    name:'_0000s_0000s_0002_belaja-kepka-morkovka-',
-                    increase:{
-                        str:1,
-                        dex:1,
-                    }
-                },
-                {
-                    id: 8,
-                    type: 'hats',
-                    rarity: 'epic',
-                    name: '_0000s_0002s_0002_shapochka-chernaja',
-                    increase: {
-                        str: 2,
-                        dex: 2,
-                        int: 1,
-                    },
-                    requirements: {
-                        dex: 1,
-                        krm: 2,
-                    }
-                },
-            ],
-            isLevelUp:true,
-
-        },
-    }
-    const [bunny,setBunny]=useState(initialBunny);
 
     // const attachItemToBunny = (place:"left"|"right"|"necklace"|"faces"|"clothes"|"hats"|"overhead"|"ears",item:equipmentItem)=>{
     //
@@ -322,7 +169,7 @@ const Home: NextPage = () => {
       <main className={'font-roboto overscroll-y-none'}>
         {/*<Bunny></Bunny>*/}
           <Layout>
-              <Work bunny={bunny}/>
+              <Work/>
           </Layout>
       </main>
     </div>

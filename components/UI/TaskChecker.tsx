@@ -1,8 +1,9 @@
 import React from 'react';
 import {workTask} from "../interfaces/workTask";
 import {activeTask} from "../interfaces/activeTask";
+import {MetaforestCurrentJob, MetaforestJob} from "../../graphql/sdk/graphql";
 
-const TaskChecker = (workItem:activeTask|workTask) => {
+const TaskChecker = (workItem:MetaforestJob|MetaforestCurrentJob) => {
 
 
 

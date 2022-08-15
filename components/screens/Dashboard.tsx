@@ -7,6 +7,7 @@ import ProgressBar from "../UI/ProgressBar";
 import LevelUp from "../LevelUp";
 import {sdk} from "../../graphql/sdk";
 import {useUserGameFullState} from "../../data/data-hooks";
+import Lootboxes from "../Lootboxes";
 
 interface homeInterface {
     // bunny:bunnyInterface
@@ -49,7 +50,7 @@ const Dashboard = (bunny: bunnyInterface) => {
                         </p>
                     )}
                     <p className={"text-white font-normal text-lg"}>level</p>
-                    {bunny.bunny.isLevelUp ? (
+                    {state?.skillPoints!=undefined&&state?.skillPoints>0 ? (
                         <div
                             className={
                                 "absolute -right-0 -top-1 w-6 h-6 bg-white rounded-full flex justify-center content-center"
@@ -142,8 +143,8 @@ const Dashboard = (bunny: bunnyInterface) => {
             {levelPopOpen&&state.activeBunny&&state.skillPoints ? (
                 <LevelUp skillpoints={state.skillPoints} bunny={state.activeBunny} togglePop={toggleLevelPop}/>
             ) : null}
-            {lootboxPopOpen!=undefined(
-                <Lootboxes></Lootboxes>
+            {lootboxPopOpen?(
+                <Lootboxes togglePop={toggleLootPop} />
             ) : null}
         </div>
     );
