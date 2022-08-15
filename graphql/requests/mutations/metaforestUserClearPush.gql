@@ -1,0 +1,3 @@
+mutation metaforestUserClearPush($userUri: String!){
+    metaforestUserClearPush(userUri: $userUri)
+}

@@ -1,0 +1,12 @@
+query crescoAdminTransactionList($status: CrescoTransactionStatus){
+    crescoAdminTransactionList(status: $status){
+        _id
+        amountCrescoTokens
+        amountUSDT
+        fromWallet
+        status
+        toWallet
+        transactionType
+        userUri
+    }
+}

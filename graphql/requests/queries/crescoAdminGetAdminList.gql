@@ -1,0 +1,15 @@
+query crescoAdminGetAdminList{
+    crescoAdminGetAdminList{
+        displayName
+        email
+        emails
+        passwordHash
+        phone
+        phones
+        roles
+        rolesJwt
+        scope
+        telegramId
+        telegramIds
+    }
+}

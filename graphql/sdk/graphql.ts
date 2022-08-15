@@ -19,59 +19,305 @@ export type Scalars = {
   JSON: any;
 };
 
-export type ActiveJob = {
-  __typename?: 'ActiveJob';
-  bunny?: Maybe<Bunny>;
+export type Answer = {
+  __typename?: 'Answer';
+  description: Scalars['String'];
+  title?: Maybe<Answer>;
 };
 
-export type Bunny = {
-  __typename?: 'Bunny';
-  id?: Maybe<Scalars['String']>;
-  imgUrl?: Maybe<Scalars['String']>;
+export enum BunnySlotsEnum {
+  Boots = 'boots',
+  Hat = 'hat',
+  LeftHand = 'leftHand',
+  Mask = 'mask',
+  RightHand = 'rightHand',
+  Suit = 'suit'
+}
+
+export type CarrotsEarnLogElement = {
+  __typename?: 'CarrotsEarnLogElement';
+  amount: Scalars['Int'];
+  timestamp: Scalars['String'];
 };
 
-export type CalculatedStats = {
-  __typename?: 'CalculatedStats';
-  bunny?: Maybe<Bunny>;
+export type CrescoAgreement = {
+  __typename?: 'CrescoAgreement';
+  fileUrl?: Maybe<FileUrl>;
+  isPrepared?: Maybe<Scalars['Boolean']>;
+  isSignedByClient?: Maybe<Scalars['Boolean']>;
+  no?: Maybe<Scalars['String']>;
+};
+
+export type CrescoAgreementInput = {
+  fileUrl: FileUrlInput;
+  isPrepared: Scalars['Boolean'];
+  isSignedByClient: Scalars['Boolean'];
+  no: Scalars['String'];
+};
+
+export type CrescoCustomer = {
+  __typename?: 'CrescoCustomer';
+  agreement?: Maybe<CrescoAgreement>;
+  crescoTokenBalance?: Maybe<Scalars['Float']>;
+  deposit?: Maybe<Array<CrescoDeposit>>;
+  firstName?: Maybe<Scalars['String']>;
+  isPassportVerified?: Maybe<Scalars['Boolean']>;
+  lastName?: Maybe<Scalars['String']>;
+  middleName?: Maybe<Scalars['String']>;
+  passportScanFiles?: Maybe<Array<FileUrl>>;
+  userUri?: Maybe<Scalars['String']>;
+  walletAddress?: Maybe<Scalars['String']>;
+};
+
+export type CrescoCustomerAdminInput = {
+  agreement?: InputMaybe<CrescoAgreementInput>;
+  deposit?: InputMaybe<Array<CrescoDepositInput>>;
+  isPassportVerified?: InputMaybe<Scalars['Boolean']>;
+  userUri?: InputMaybe<Scalars['String']>;
+};
+
+export type CrescoCustomerCustomerInput = {
+  firstName?: InputMaybe<Scalars['String']>;
+  lastName?: InputMaybe<Scalars['String']>;
+  middleName?: InputMaybe<Scalars['String']>;
+  passportScanFiles?: InputMaybe<Array<FileUrlInput>>;
+  walletAddress?: InputMaybe<Scalars['String']>;
+};
+
+export type CrescoDeposit = {
+  __typename?: 'CrescoDeposit';
+  depositNo?: Maybe<Scalars['String']>;
+  finishDate?: Maybe<Scalars['Date']>;
+  percentRate?: Maybe<Scalars['Float']>;
+  startDate?: Maybe<Scalars['Date']>;
+};
+
+export type CrescoDepositInput = {
+  depositNo: Scalars['String'];
+  finishDate: Scalars['String'];
+  percentRate: Scalars['Float'];
+  startDate: Scalars['String'];
+};
+
+export type CrescoExternalCoinRate = {
+  __typename?: 'CrescoExternalCoinRate';
+  displayName?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  rate?: Maybe<Scalars['Float']>;
+};
+
+export type CrescoNotification = {
+  __typename?: 'CrescoNotification';
+  createdAt?: Maybe<Scalars['Date']>;
+  cta?: Maybe<Scalars['String']>;
+  ctaUrl?: Maybe<Scalars['String']>;
+  emotion?: Maybe<Scalars['Float']>;
+  text: Scalars['String'];
+  title: Scalars['String'];
+  userUri: Scalars['String'];
+};
+
+export type CrescoNotificationInput = {
+  cta?: InputMaybe<Scalars['String']>;
+  ctaUrl?: InputMaybe<Scalars['String']>;
+  text: Scalars['String'];
+  title: Scalars['String'];
+  userUri: Scalars['String'];
+};
+
+export type CrescoPortfolioState = {
+  __typename?: 'CrescoPortfolioState';
+  _id?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['Date']>;
+  createdByUserUri?: Maybe<Scalars['String']>;
+  currenciesAmountsHashmap?: Maybe<Scalars['JSON']>;
+};
+
+export type CrescoReportFile = {
+  __typename?: 'CrescoReportFile';
+  fileUrl?: Maybe<Scalars['String']>;
+};
+
+export type CrescoTransaction = {
+  __typename?: 'CrescoTransaction';
+  _id?: Maybe<Scalars['ID']>;
+  amountCrescoTokens: Scalars['Float'];
+  amountUSDT: Scalars['Float'];
+  fromWallet: Scalars['String'];
+  status?: Maybe<CrescoTransactionStatus>;
+  toWallet: Scalars['String'];
+  transactionType?: Maybe<CrescoTransactionTypeEnum>;
+  userUri?: Maybe<Scalars['String']>;
+};
+
+export type CrescoTransactionInput = {
+  amountUSDT: Scalars['Float'];
+  transactionType?: InputMaybe<CrescoTransactionTypeEnum>;
+  userUri?: InputMaybe<Scalars['String']>;
+};
+
+export enum CrescoTransactionStatus {
+  Approved = 'APPROVED',
+  Failed = 'FAILED',
+  Pending = 'PENDING',
+  RobotApproved = 'ROBOT_APPROVED'
+}
+
+export enum CrescoTransactionTypeEnum {
+  ClientBuyTokens = 'CLIENT_BUY_TOKENS',
+  ClientSellTokens = 'CLIENT_SELL_TOKENS'
+}
+
+export enum CrescoUserRoles {
+  Admin = 'admin',
+  AdminCustomers = 'admin_customers',
+  All = 'all',
+  Customer = 'customer',
+  Dismissed = 'dismissed',
+  ServiceToken = 'service_token',
+  SuperAdmin = 'super_admin'
+}
+
+export type CurrentJobProgress = {
+  __typename?: 'CurrentJobProgress';
+  carrotsEarned?: Maybe<Scalars['Int']>;
+  jobStartTime?: Maybe<Scalars['String']>;
+  metersPassed?: Maybe<Scalars['Int']>;
+};
+
+export type Disclaimer = {
+  __typename?: 'Disclaimer';
+  description?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
+};
+
+export type EarnLogElement = {
+  __typename?: 'EarnLogElement';
+  amount?: Maybe<Scalars['Float']>;
+  timestamp?: Maybe<Scalars['String']>;
+};
+
+export type EduEventLead = {
+  __typename?: 'EduEventLead';
+  comment?: Maybe<Scalars['String']>;
+  eduProductEventInstance?: Maybe<EduProductEventInstance>;
+  lastName?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  phone: Scalars['String'];
+  preferredChannels?: Maybe<Array<Maybe<PreferredChannelEnum>>>;
+};
+
+export type EduEventPlacement = {
+  __typename?: 'EduEventPlacement';
+  faqInstance?: Maybe<Array<FaqElement>>;
+  isOffline?: Maybe<Scalars['Boolean']>;
+  isOnline?: Maybe<Scalars['Boolean']>;
+  managerContacts: Array<ManagerContact>;
+  offlineRoom?: Maybe<OfflineRoom>;
+  onlineRooms?: Maybe<Array<Maybe<OnlineRoom>>>;
+};
+
+export type EduProduct = {
+  __typename?: 'EduProduct';
+  eduProductType?: Maybe<EduProductTypeEnum>;
+};
+
+export type EduProductEvent = {
+  __typename?: 'EduProductEvent';
+  abstract: Scalars['String'];
+  disclaimers?: Maybe<Array<Disclaimer>>;
+  eventDescriptor: Scalars['String'];
+  eventName: Scalars['String'];
+  faq?: Maybe<Array<FaqElement>>;
+  groupLeaders: Array<GroupLeader>;
+  portraits: Array<Portrait>;
+  priceConditions?: Maybe<PriceConditions>;
+  priceConditionsText?: Maybe<Scalars['String']>;
+  productFeatures: Array<ProductFeature>;
+  reasonsToAttend: Array<ReasonToAttend>;
+  reasonsToAttendTitle: Scalars['String'];
+  uvpSubtitle?: Maybe<Scalars['String']>;
+  uvpTitle: Scalars['String'];
+};
+
+export type EduProductEventInstance = {
+  __typename?: 'EduProductEventInstance';
+  _id: Scalars['ID'];
+  city?: Maybe<Scalars['String']>;
+  dateTimeEnd: Scalars['Date'];
+  dateTimeStart: Scalars['Date'];
+  eduProductEvent: EduProductEvent;
+  faqInstance?: Maybe<Array<FaqElement>>;
+  groupLeaders?: Maybe<Array<GroupLeader>>;
+  placement?: Maybe<EduEventPlacement>;
+  priceConditionsText?: Maybe<Scalars['String']>;
+};
+
+export enum EduProductTypeEnum {
+  Content = 'CONTENT',
+  Event = 'EVENT',
+  Session = 'SESSION'
+}
+
+export type FaqElement = {
+  __typename?: 'FaqElement';
+  answer: Answer;
+  comment?: Maybe<Scalars['String']>;
+  question: Question;
 };
 
 export enum FieldTypeEnum {
   Dictionary = 'DICTIONARY',
   ExternalObject = 'EXTERNAL_OBJECT',
+  FileUrl = 'FILE_URL',
+  FileUrls = 'FILE_URLS',
   Markdown = 'MARKDOWN',
   MarkdownLine = 'MARKDOWN_LINE'
 }
 
-export type GlobalGameSettings = {
-  __typename?: 'GlobalGameSettings';
+export type FileUrl = {
+  __typename?: 'FileUrl';
+  name: Scalars['String'];
+  url: Scalars['String'];
+};
+
+export type FileUrlInput = {
+  name: Scalars['String'];
+  url: Scalars['String'];
+};
+
+export type GroupLeader = {
+  __typename?: 'GroupLeader';
+  bio?: Maybe<Scalars['String']>;
+  displayName: Scalars['String'];
+  instagramLink?: Maybe<Scalars['String']>;
+  telegramChannelLink?: Maybe<Scalars['String']>;
+};
+
+export type Idea_MetaforestGlobalGameSettings = {
+  __typename?: 'Idea_MetaforestGlobalGameSettings';
   maxSpeedKmH?: Maybe<Scalars['Int']>;
 };
 
-export type InventoryElement = {
-  __typename?: 'InventoryElement';
-  id?: Maybe<Scalars['String']>;
-  slot?: Maybe<InventorySlotEnum>;
-  stats?: Maybe<InventoryStats>;
-  wornOnBunnyId?: Maybe<Scalars['String']>;
-};
-
-export enum InventorySlotEnum {
-  HandLeft = 'HAND_LEFT',
-  HandRight = 'HAND_RIGHT',
-  Hat = 'HAT',
-  Rabbit = 'RABBIT'
-}
-
-export type InventoryStats = {
-  __typename?: 'InventoryStats';
-  stamina?: Maybe<Scalars['Float']>;
+export type Location = {
+  __typename?: 'Location';
+  horizontalAccuracy?: Maybe<Scalars['Float']>;
+  lat: Scalars['Float'];
+  lon: Scalars['Float'];
+  timestamp?: Maybe<Scalars['Date']>;
 };
 
 export type LootBox = {
   __typename?: 'LootBox';
-  canOpenAfter?: Maybe<Scalars['Date']>;
-  issuedAt?: Maybe<Scalars['Date']>;
-  localId?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  openAfterDate?: Maybe<Scalars['String']>;
+  probabilityOfLoot?: Maybe<Scalars['Int']>;
+  slugEnum?: Maybe<Scalars['String']>;
+};
+
+export type ManagerContact = {
+  __typename?: 'ManagerContact';
+  displayName: Scalars['String'];
 };
 
 export type MessageLocalized = {
@@ -80,49 +326,100 @@ export type MessageLocalized = {
   ru?: Maybe<Scalars['String']>;
 };
 
-export enum MfAbiEnum {
+export enum MetaforestAbiEnum {
   Config = 'CONFIG',
   Functions = 'FUNCTIONS',
   State = 'STATE'
 }
 
-export type MfActionJobProgressInput = {
-  metersPassed?: InputMaybe<Scalars['Float']>;
+export type MetaforestBaseParams = {
+  __typename?: 'MetaforestBaseParams';
+  dex: Scalars['Int'];
+  int: Scalars['Int'];
+  krm: Scalars['Int'];
+  level?: Maybe<Scalars['Int']>;
+  rarityInt?: Maybe<Scalars['Int']>;
+  str: Scalars['Int'];
+  vit: Scalars['Int'];
 };
 
-export type MfActionOpenLootbox = {
-  lootboxLocalId?: InputMaybe<Scalars['String']>;
+export type MetaforestBunnyGens = {
+  __typename?: 'MetaforestBunnyGens';
+  bg: Scalars['String'];
+  body: Scalars['String'];
+  ears: Scalars['String'];
+  eyes: Scalars['String'];
+  mouth: Scalars['String'];
+  rarity: Scalars['String'];
+  scar: Scalars['String'];
+  texture: Scalars['String'];
 };
 
-export type MfActionResult = {
-  __typename?: 'MfActionResult';
-  errorMessageRus?: Maybe<MessageLocalized>;
-  gameFullState: MfUserGameFullState;
-  isError: Scalars['Boolean'];
-  isSuccessful: Scalars['Boolean'];
-  successMessageRus?: Maybe<MessageLocalized>;
+export type MetaforestCurrentJob = {
+  __typename?: 'MetaforestCurrentJob';
+  carrotsEarned: Scalars['Float'];
+  isActive: Scalars['Boolean'];
+  job?: Maybe<MetaforestJob>;
+  jobStartTime?: Maybe<Scalars['String']>;
+  metersPassed: Scalars['Float'];
 };
 
-export type MfActionTakeJobInput = {
-  jobId?: InputMaybe<Scalars['String']>;
-};
-
-export type MfActionTimeTickInput = {
-  minutesElapsed?: InputMaybe<Scalars['Float']>;
-};
-
-export type MfActionWearInventoryElementAction = {
-  inventoryElementId?: InputMaybe<Scalars['String']>;
-};
-
-export type MfGameConfig = {
-  __typename?: 'MfGameConfig';
+export type MetaforestGameConfig = {
+  __typename?: 'MetaforestGameConfig';
   payload?: Maybe<Scalars['JSON']>;
   version?: Maybe<Scalars['String']>;
 };
 
-export type MfPushNotification = {
-  __typename?: 'MfPushNotification';
+export enum MetaforestInventorySlotEnum {
+  EarsAccessories = 'EARS_ACCESSORIES',
+  Face = 'FACE',
+  HandLeft = 'HAND_LEFT',
+  HandRight = 'HAND_RIGHT',
+  Hat = 'HAT',
+  Necklace = 'NECKLACE',
+  Sims = 'SIMS',
+  Suit = 'SUIT'
+}
+
+export type MetaforestJob = {
+  __typename?: 'MetaforestJob';
+  approxMeters?: Maybe<Scalars['Int']>;
+  carrotsForApproxMeters?: Maybe<Scalars['Int']>;
+  conditionsGTE?: Maybe<MetaforestBaseParams>;
+  description: Scalars['String'];
+  freeEnergyApproxMetersC0?: Maybe<Scalars['Float']>;
+  slug: Scalars['String'];
+  title: Scalars['String'];
+  type: MetaforestJobTypeEnum;
+  vitalitySpend?: Maybe<Scalars['Int']>;
+};
+
+export enum MetaforestJobTypeEnum {
+  Publication = 'PUBLICATION',
+  Referral = 'REFERRAL',
+  Steps = 'STEPS'
+}
+
+export enum MetaforestNftCollectionsEnum {
+  Bunnies = 'BUNNIES',
+  Items = 'ITEMS'
+}
+
+export type MetaforestNftInfo = {
+  __typename?: 'MetaforestNftInfo';
+  baseParams?: Maybe<MetaforestBaseParams>;
+  bunnyGens?: Maybe<MetaforestBunnyGens>;
+  gensTrait?: Maybe<Scalars['JSON']>;
+  idx: Scalars['Int'];
+  images?: Maybe<NftImages>;
+  itemWornOnBunnyIdx?: Maybe<Scalars['Int']>;
+  layers?: Maybe<Array<Scalars['String']>>;
+  nftCollection?: Maybe<MetaforestNftCollectionsEnum>;
+  uid: Scalars['String'];
+};
+
+export type MetaforestPushNotification = {
+  __typename?: 'MetaforestPushNotification';
   _id?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['Date']>;
   emotion?: Maybe<Scalars['Int']>;
@@ -131,63 +428,164 @@ export type MfPushNotification = {
   userUri: Scalars['String'];
 };
 
-export type MfUserGameFullState = {
-  __typename?: 'MfUserGameFullState';
+export type MetaforestUserGameFullState = {
+  __typename?: 'MetaforestUserGameFullState';
   payload?: Maybe<Scalars['JSON']>;
   userUri?: Maybe<Scalars['String']>;
 };
 
-export type MfUserGameFullStatePayload = {
-  __typename?: 'MfUserGameFullStatePayload';
+export type MetaforestUserGameFullStatePayload = {
+  __typename?: 'MetaforestUserGameFullStatePayload';
+  activeBunny?: Maybe<MetaforestNftInfo>;
   activeDays?: Maybe<Scalars['Int']>;
-  activeJob?: Maybe<ActiveJob>;
-  bunnyEnergy?: Maybe<Scalars['Int']>;
-  bunnyLevel?: Maybe<Scalars['Int']>;
-  bunnyVitalityPercent?: Maybe<Scalars['Int']>;
-  calculatedStats?: Maybe<CalculatedStats>;
+  bunnies?: Maybe<Array<Maybe<MetaforestNftInfo>>>;
+  calculatedBaseParams?: Maybe<MetaforestBaseParams>;
+  carrotsBalance?: Maybe<Scalars['Int']>;
+  carrotsEarnLog?: Maybe<Array<Maybe<EarnLogElement>>>;
   carrotsPerLast24Hours?: Maybe<Scalars['Float']>;
-  currentCarrotsBalance?: Maybe<Scalars['Int']>;
-  inventory?: Maybe<Array<Maybe<InventoryElement>>>;
+  currentJob?: Maybe<MetaforestCurrentJob>;
+  energy?: Maybe<Scalars['Int']>;
+  freeEnergyPercent?: Maybe<Scalars['Float']>;
+  inventory?: Maybe<Array<MetaforestNftInfo>>;
+  jobEnergy?: Maybe<Scalars['Float']>;
+  lastJobEnergyBoost?: Maybe<Scalars['String']>;
+  lastTimeTick?: Maybe<Scalars['String']>;
   maxCarrotsFor24Hours?: Maybe<Scalars['Float']>;
+  maxJobEnergy?: Maybe<Scalars['Float']>;
   referral?: Maybe<Scalars['String']>;
   referralOwn?: Maybe<Scalars['String']>;
+  skillPoints?: Maybe<Scalars['Int']>;
   unopenedLootBoxes: Array<LootBox>;
   unopenedLootBoxesCount?: Maybe<Scalars['Int']>;
-  userUri?: Maybe<Scalars['String']>;
-  wornInventory?: Maybe<WornInventory>;
+  userUri: Scalars['String'];
+  vitalityPercent?: Maybe<Scalars['Int']>;
+  wornInventory?: Maybe<Array<Maybe<MetaforestNftInfo>>>;
 };
 
-export type MfUserStepsCounter = {
-  __typename?: 'MfUserStepsCounter';
+export type MetaforestUserStepsCounter = {
+  __typename?: 'MetaforestUserStepsCounter';
+  avgSpeed?: Maybe<Scalars['Float']>;
   botChatId?: Maybe<Scalars['Float']>;
   botMessageId?: Maybe<Scalars['Float']>;
-  delta?: Maybe<Scalars['Float']>;
-  latitude?: Maybe<Scalars['Float']>;
-  latitudeAvg?: Maybe<Scalars['Float']>;
-  latitudeLast10?: Maybe<Array<Scalars['Float']>>;
-  longitude?: Maybe<Scalars['Float']>;
-  longitudeAvg?: Maybe<Scalars['Float']>;
-  longitudeLast10?: Maybe<Array<Scalars['Float']>>;
+  horizontalAccuracy?: Maybe<Scalars['Float']>;
+  lastAcceptedLat?: Maybe<Scalars['Float']>;
+  lastAcceptedLon?: Maybe<Scalars['Float']>;
+  metersPassed?: Maybe<Scalars['Float']>;
+  rawLocations: Array<Location>;
   secondsElapsed?: Maybe<Scalars['Float']>;
   timestamp?: Maybe<Scalars['Date']>;
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  adminEditConfigSingleParam: Scalars['String'];
-  adminInitConfig?: Maybe<Scalars['String']>;
-  initStateForUser: Scalars['String'];
-  mfActionFeedRabbit?: Maybe<MfActionResult>;
-  mfActionInitState?: Maybe<MfActionResult>;
-  mfActionJobProgress?: Maybe<MfActionResult>;
-  mfActionLvlUp?: Maybe<MfActionResult>;
-  mfActionOpenLootbox?: Maybe<MfActionResult>;
-  mfActionSetCurrentJob?: Maybe<MfActionResult>;
-  mfActionTimeTick?: Maybe<MfActionResult>;
-  performAbiFunction: Scalars['String'];
+  createOrFindUserViaTelegramInitData: Scalars['String'];
+  crescoAdminCreateNewPortfolioState: Scalars['String'];
+  crescoAdminSendNotification: Scalars['String'];
+  crescoAdminSetAdminRoles: Scalars['String'];
+  crescoAdminTransactionSetStatus?: Maybe<Scalars['String']>;
+  crescoAdminUpsertCustomerProfile: Scalars['String'];
+  crescoCustomerTransactionCreate?: Maybe<Scalars['String']>;
+  crescoCustomerUpsertMyProfile: Scalars['String'];
+  crescoTestInitData?: Maybe<Scalars['String']>;
+  metaforestAdminEditConfigSingleParam: Scalars['String'];
+  metaforestAdminInitConfig?: Maybe<Scalars['String']>;
+  metaforestAdminInitJobs?: Maybe<Scalars['String']>;
+  metaforestInitStateForUser: Scalars['String'];
+  metaforestPerformAbiFunction: Scalars['String'];
+  metaforestPerformMyAbiFunction: Scalars['String'];
+  metaforestUserClearPush?: Maybe<Scalars['String']>;
+  metaforestUserTakeJob: Scalars['String'];
+  upsertEduProduct?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationCreateOrFindUserViaTelegramInitDataArgs = {
+  telegramInitData: Scalars['String'];
+};
+
+
+export type MutationCrescoAdminCreateNewPortfolioStateArgs = {
+  coinBalances: Scalars['JSON'];
+};
+
+
+export type MutationCrescoAdminSendNotificationArgs = {
+  input?: InputMaybe<CrescoNotificationInput>;
+};
+
+
+export type MutationCrescoAdminSetAdminRolesArgs = {
+  roles: Array<Scalars['String']>;
+  userUri: Scalars['String'];
+};
+
+
+export type MutationCrescoAdminTransactionSetStatusArgs = {
+  status?: InputMaybe<CrescoTransactionStatus>;
+  transactionId?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationCrescoAdminUpsertCustomerProfileArgs = {
+  input?: InputMaybe<CrescoCustomerAdminInput>;
+};
+
+
+export type MutationCrescoCustomerTransactionCreateArgs = {
+  amountCrescoTokens: Scalars['Float'];
+  customerWallet: Scalars['String'];
+  transactionType: CrescoTransactionTypeEnum;
+};
+
+
+export type MutationCrescoCustomerUpsertMyProfileArgs = {
+  input?: InputMaybe<CrescoCustomerCustomerInput>;
+};
+
+
+export type MutationMetaforestAdminEditConfigSingleParamArgs = {
+  path: Scalars['String'];
+  valueObject: Scalars['JSON'];
+  version: Scalars['String'];
+};
+
+
+export type MutationMetaforestAdminInitConfigArgs = {
+  version: Scalars['String'];
+};
+
+
+export type MutationMetaforestInitStateForUserArgs = {
+  userUri: Scalars['String'];
+};
+
+
+export type MutationMetaforestPerformAbiFunctionArgs = {
+  fn?: InputMaybe<Scalars['String']>;
+  params?: InputMaybe<Scalars['JSON']>;
+  userUri: Scalars['String'];
+};
+
+
+export type MutationMetaforestPerformMyAbiFunctionArgs = {
+  fn?: InputMaybe<Scalars['String']>;
+  params?: InputMaybe<Scalars['JSON']>;
+};
+
+
+export type MutationMetaforestUserClearPushArgs = {
+  userUri: Scalars['String'];
+};
+
+
+export type MutationMetaforestUserTakeJobArgs = {
+  jobSlug: Scalars['String'];
+};
+
+export type MutationIdeas = {
+  __typename?: 'MutationIdeas';
   telegramSaidUserPassedDistance?: Maybe<Scalars['String']>;
   timeTick?: Maybe<Scalars['String']>;
-  userClearPush?: Maybe<Scalars['String']>;
   userFeedCurrentBunny?: Maybe<Scalars['String']>;
   userOpenLootBoxFree?: Maybe<Scalars['String']>;
   userOpenLootBoxPaid?: Maybe<Scalars['String']>;
@@ -195,77 +593,28 @@ export type Mutation = {
 };
 
 
-export type MutationAdminEditConfigSingleParamArgs = {
-  path: Scalars['String'];
-  valueObject: Scalars['JSON'];
-  version: Scalars['String'];
-};
-
-
-export type MutationAdminInitConfigArgs = {
-  version: Scalars['String'];
-};
-
-
-export type MutationInitStateForUserArgs = {
-  userUri: Scalars['String'];
-};
-
-
-export type MutationMfActionJobProgressArgs = {
-  action?: InputMaybe<MfActionJobProgressInput>;
-};
-
-
-export type MutationMfActionOpenLootboxArgs = {
-  action?: InputMaybe<MfActionOpenLootbox>;
-};
-
-
-export type MutationMfActionSetCurrentJobArgs = {
-  action?: InputMaybe<MfActionTakeJobInput>;
-};
-
-
-export type MutationMfActionTimeTickArgs = {
-  action?: InputMaybe<MfActionTimeTickInput>;
-};
-
-
-export type MutationPerformAbiFunctionArgs = {
-  fn?: InputMaybe<Scalars['String']>;
-  params?: InputMaybe<Scalars['JSON']>;
-  userUri: Scalars['String'];
-};
-
-
-export type MutationTelegramSaidUserPassedDistanceArgs = {
+export type MutationIdeasTelegramSaidUserPassedDistanceArgs = {
   meters?: InputMaybe<Scalars['Float']>;
   time?: InputMaybe<Scalars['Float']>;
 };
 
 
-export type MutationUserClearPushArgs = {
-  userUri: Scalars['String'];
-};
-
-
-export type MutationUserFeedCurrentBunnyArgs = {
+export type MutationIdeasUserFeedCurrentBunnyArgs = {
   carrotAmount?: InputMaybe<Scalars['Float']>;
 };
 
 
-export type MutationUserOpenLootBoxFreeArgs = {
+export type MutationIdeasUserOpenLootBoxFreeArgs = {
   lootBoxId?: InputMaybe<Scalars['String']>;
 };
 
 
-export type MutationUserOpenLootBoxPaidArgs = {
+export type MutationIdeasUserOpenLootBoxPaidArgs = {
   lootBoxId?: InputMaybe<Scalars['String']>;
 };
 
 
-export type MutationUserWearInventoryElementArgs = {
+export type MutationIdeasUserWearInventoryElementArgs = {
   elementId?: InputMaybe<Scalars['String']>;
 };
 
@@ -274,41 +623,160 @@ export enum MutationStatus {
   Ok = 'OK'
 }
 
+export type NftImages = {
+  __typename?: 'NftImages';
+  original?: Maybe<Scalars['String']>;
+  thumb?: Maybe<Scalars['String']>;
+  transparentBg?: Maybe<Scalars['String']>;
+  web?: Maybe<Scalars['String']>;
+};
+
+export type OfflineRoom = {
+  __typename?: 'OfflineRoom';
+  addressShort: Scalars['String'];
+  city: Scalars['String'];
+  howToReach: Scalars['String'];
+};
+
+export type OnlineRoom = {
+  __typename?: 'OnlineRoom';
+  attendLink: Scalars['String'];
+};
+
+export type Portrait = {
+  __typename?: 'Portrait';
+  description: Scalars['String'];
+  displayName: Scalars['String'];
+  internalName: Scalars['String'];
+};
+
+export type PortraitPov = {
+  __typename?: 'PortraitPov';
+  portrait?: Maybe<Portrait>;
+  rating?: Maybe<Scalars['Float']>;
+};
+
+export enum PreferredChannelEnum {
+  PhoneCall = 'PHONE_CALL',
+  Telegram = 'TELEGRAM',
+  Whatsapp = 'WHATSAPP'
+}
+
+export type PriceConditions = {
+  __typename?: 'PriceConditions';
+  prepayBaseRub?: Maybe<Scalars['Float']>;
+  priceBaseRub?: Maybe<Scalars['Float']>;
+};
+
+export type ProductFeature = {
+  __typename?: 'ProductFeature';
+  description: Scalars['String'];
+  portraitsPov?: Maybe<Array<PortraitPov>>;
+  rating?: Maybe<Scalars['Float']>;
+  title: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
-  abs?: Maybe<Scalars['String']>;
-  adminGetConfig: Scalars['JSON'];
-  getInternalContractAbi?: Maybe<Scalars['JSON']>;
-  mfGetMyUserGameFullState?: Maybe<MfUserGameFullState>;
-  mfUserGetGameFullState?: Maybe<MfUserGameFullState>;
-  test?: Maybe<Scalars['String']>;
-  userGetPush: Array<MfPushNotification>;
-  userGetState: Scalars['JSON'];
+  crescoAdminGetAdminList: Array<User>;
+  crescoAdminGetCustomerList: Array<CrescoCustomer>;
+  crescoAdminGetCustomerProfile: CrescoCustomer;
+  crescoAdminGetLastPortfolioState: CrescoPortfolioState;
+  crescoAdminTransactionCheckInEth?: Maybe<Scalars['String']>;
+  crescoAdminTransactionList: Array<CrescoTransaction>;
+  crescoCustomerGetCalculatedBalance: Scalars['Float'];
+  crescoCustomerGetMyProfile: CrescoCustomer;
+  crescoCustomerTransactionList: Array<CrescoTransaction>;
+  crescoGetDepositInfoByAgreementNumber?: Maybe<Scalars['JSON']>;
+  crescoGetExternalCoinsRates: Array<CrescoExternalCoinRate>;
+  getMe?: Maybe<UserJwtPayload>;
+  getUpcomingSevaPremEvents: Array<EduProductEventInstance>;
+  huobiGetData?: Maybe<Scalars['String']>;
+  metaforestAdminGetConfig: Scalars['JSON'];
+  metaforestGetInternalContractAbi?: Maybe<Scalars['JSON']>;
+  metaforestJobsList: Array<MetaforestJob>;
+  metaforestUserGetMyPush: Array<MetaforestPushNotification>;
+  metaforestUserGetMyState: Scalars['JSON'];
+  metaforestUserGetPush: Array<MetaforestPushNotification>;
+  metaforestUserGetState: Scalars['JSON'];
+  userCreate?: Maybe<Scalars['String']>;
 };
 
 
-export type QueryAdminGetConfigArgs = {
+export type QueryCrescoAdminGetCustomerListArgs = {
+  userUri?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryCrescoAdminGetCustomerProfileArgs = {
+  userUri?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryCrescoAdminTransactionCheckInEthArgs = {
+  transactionId?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryCrescoAdminTransactionListArgs = {
+  status?: InputMaybe<CrescoTransactionStatus>;
+};
+
+
+export type QueryCrescoGetDepositInfoByAgreementNumberArgs = {
+  agreementNo: Scalars['String'];
+};
+
+
+export type QueryMetaforestAdminGetConfigArgs = {
   version: Scalars['String'];
 };
 
 
-export type QueryGetInternalContractAbiArgs = {
-  name?: InputMaybe<MfAbiEnum>;
+export type QueryMetaforestGetInternalContractAbiArgs = {
+  name?: InputMaybe<MetaforestAbiEnum>;
 };
 
 
-export type QueryUserGetPushArgs = {
+export type QueryMetaforestUserGetPushArgs = {
   userUri: Scalars['String'];
 };
 
 
-export type QueryUserGetStateArgs = {
+export type QueryMetaforestUserGetStateArgs = {
   userUri: Scalars['String'];
+};
+
+
+export type QueryUserCreateArgs = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
+export type Question = {
+  __typename?: 'Question';
+  description?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
 };
 
 export enum RandomizerEnum {
   UserId = 'USER_ID'
 }
+
+export type ReasonToAttend = {
+  __typename?: 'ReasonToAttend';
+  description: Scalars['String'];
+  portraitsPov?: Maybe<Array<PortraitPov>>;
+  rating?: Maybe<Scalars['Float']>;
+  title: Scalars['String'];
+};
+
+export type ServiceFunctions = {
+  __typename?: 'ServiceFunctions';
+  crescoRobotCheckEthScanTransaction?: Maybe<Scalars['String']>;
+  crescoUpdateCustomerBalance?: Maybe<Scalars['String']>;
+  crescoUpdateRates?: Maybe<Scalars['String']>;
+};
 
 export type TelegramMessage = {
   __typename?: 'TelegramMessage';
@@ -318,421 +786,719 @@ export type TelegramMessage = {
   telegramChatId?: Maybe<Scalars['Int']>;
 };
 
-export type WornInventory = {
-  __typename?: 'WornInventory';
-  bunny?: Maybe<InventoryElement>;
+export type User = {
+  __typename?: 'User';
+  displayName?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  emails?: Maybe<Array<Scalars['String']>>;
+  passwordHash?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  phones?: Maybe<Array<Scalars['String']>>;
+  roles?: Maybe<Array<Scalars['String']>>;
+  rolesJwt?: Maybe<Array<Scalars['String']>>;
+  scope?: Maybe<Scalars['String']>;
+  telegramId?: Maybe<Scalars['String']>;
+  telegramIds?: Maybe<Scalars['String']>;
 };
 
-export type AdminEditConfigSingleParamMutationVariables = Exact<{
+export type UserJwtPayload = {
+  __typename?: 'UserJWTPayload';
+  displayName: Scalars['String'];
+  rolesJWT?: Maybe<Array<Scalars['String']>>;
+  userUri: Scalars['String'];
+};
+
+export type CreateOrFindUserViaTelegramInitDataMutationVariables = Exact<{
+  telegramInitData: Scalars['String'];
+}>;
+
+
+export type CreateOrFindUserViaTelegramInitDataMutation = { __typename?: 'Mutation', createOrFindUserViaTelegramInitData: string };
+
+export type CrescoAdminCreateNewPortfolioStateMutationVariables = Exact<{
+  coinBalances: Scalars['JSON'];
+}>;
+
+
+export type CrescoAdminCreateNewPortfolioStateMutation = { __typename?: 'Mutation', crescoAdminCreateNewPortfolioState: string };
+
+export type CrescoAdminSendNotificationMutationVariables = Exact<{
+  input?: InputMaybe<CrescoNotificationInput>;
+}>;
+
+
+export type CrescoAdminSendNotificationMutation = { __typename?: 'Mutation', crescoAdminSendNotification: string };
+
+export type CrescoAdminSetAdminRolesMutationVariables = Exact<{
+  roles: Array<Scalars['String']> | Scalars['String'];
+  userUri: Scalars['String'];
+}>;
+
+
+export type CrescoAdminSetAdminRolesMutation = { __typename?: 'Mutation', crescoAdminSetAdminRoles: string };
+
+export type CrescoAdminTransactionSetStatusMutationVariables = Exact<{
+  status?: InputMaybe<CrescoTransactionStatus>;
+  transactionId?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type CrescoAdminTransactionSetStatusMutation = { __typename?: 'Mutation', crescoAdminTransactionSetStatus?: string | null };
+
+export type CrescoAdminUpsertCustomerProfileMutationVariables = Exact<{
+  input?: InputMaybe<CrescoCustomerAdminInput>;
+}>;
+
+
+export type CrescoAdminUpsertCustomerProfileMutation = { __typename?: 'Mutation', crescoAdminUpsertCustomerProfile: string };
+
+export type CrescoCustomerTransactionCreateMutationVariables = Exact<{
+  amountCrescoTokens: Scalars['Float'];
+  customerWallet: Scalars['String'];
+  transactionType: CrescoTransactionTypeEnum;
+}>;
+
+
+export type CrescoCustomerTransactionCreateMutation = { __typename?: 'Mutation', crescoCustomerTransactionCreate?: string | null };
+
+export type CrescoCustomerUpsertMyProfileMutationVariables = Exact<{
+  input?: InputMaybe<CrescoCustomerCustomerInput>;
+}>;
+
+
+export type CrescoCustomerUpsertMyProfileMutation = { __typename?: 'Mutation', crescoCustomerUpsertMyProfile: string };
+
+export type CrescoTestInitDataMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CrescoTestInitDataMutation = { __typename?: 'Mutation', crescoTestInitData?: string | null };
+
+export type MetaforestAdminEditConfigSingleParamMutationVariables = Exact<{
   path: Scalars['String'];
   valueObject: Scalars['JSON'];
   version: Scalars['String'];
 }>;
 
 
-export type AdminEditConfigSingleParamMutation = { __typename?: 'Mutation', adminEditConfigSingleParam: string };
+export type MetaforestAdminEditConfigSingleParamMutation = { __typename?: 'Mutation', metaforestAdminEditConfigSingleParam: string };
 
-export type AdminInitConfigMutationVariables = Exact<{
+export type MetaforestAdminInitConfigMutationVariables = Exact<{
   version: Scalars['String'];
 }>;
 
 
-export type AdminInitConfigMutation = { __typename?: 'Mutation', adminInitConfig?: string | null };
+export type MetaforestAdminInitConfigMutation = { __typename?: 'Mutation', metaforestAdminInitConfig?: string | null };
 
-export type InitStateForUserMutationVariables = Exact<{
+export type MetaforestAdminInitJobsMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MetaforestAdminInitJobsMutation = { __typename?: 'Mutation', metaforestAdminInitJobs?: string | null };
+
+export type MetaforestInitStateForUserMutationVariables = Exact<{
   userUri: Scalars['String'];
 }>;
 
 
-export type InitStateForUserMutation = { __typename?: 'Mutation', initStateForUser: string };
+export type MetaforestInitStateForUserMutation = { __typename?: 'Mutation', metaforestInitStateForUser: string };
 
-export type MfActionFeedRabbitMutationVariables = Exact<{ [key: string]: never; }>;
-
-
-export type MfActionFeedRabbitMutation = { __typename?: 'Mutation', mfActionFeedRabbit?: { __typename?: 'MfActionResult', isError: boolean, isSuccessful: boolean, errorMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null, gameFullState: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null }, successMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null } | null };
-
-export type MfActionInitStateMutationVariables = Exact<{ [key: string]: never; }>;
-
-
-export type MfActionInitStateMutation = { __typename?: 'Mutation', mfActionInitState?: { __typename?: 'MfActionResult', isError: boolean, isSuccessful: boolean, errorMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null, gameFullState: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null }, successMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null } | null };
-
-export type MfActionJobProgressMutationVariables = Exact<{
-  action?: InputMaybe<MfActionJobProgressInput>;
-}>;
-
-
-export type MfActionJobProgressMutation = { __typename?: 'Mutation', mfActionJobProgress?: { __typename?: 'MfActionResult', isError: boolean, isSuccessful: boolean, errorMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null, gameFullState: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null }, successMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null } | null };
-
-export type MfActionLvlUpMutationVariables = Exact<{ [key: string]: never; }>;
-
-
-export type MfActionLvlUpMutation = { __typename?: 'Mutation', mfActionLvlUp?: { __typename?: 'MfActionResult', isError: boolean, isSuccessful: boolean, errorMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null, gameFullState: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null }, successMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null } | null };
-
-export type MfActionOpenLootboxMutationVariables = Exact<{
-  action?: InputMaybe<MfActionOpenLootbox>;
-}>;
-
-
-export type MfActionOpenLootboxMutation = { __typename?: 'Mutation', mfActionOpenLootbox?: { __typename?: 'MfActionResult', isError: boolean, isSuccessful: boolean, errorMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null, gameFullState: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null }, successMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null } | null };
-
-export type MfActionSetCurrentJobMutationVariables = Exact<{
-  action?: InputMaybe<MfActionTakeJobInput>;
-}>;
-
-
-export type MfActionSetCurrentJobMutation = { __typename?: 'Mutation', mfActionSetCurrentJob?: { __typename?: 'MfActionResult', isError: boolean, isSuccessful: boolean, errorMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null, gameFullState: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null }, successMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null } | null };
-
-export type MfActionTimeTickMutationVariables = Exact<{
-  action?: InputMaybe<MfActionTimeTickInput>;
-}>;
-
-
-export type MfActionTimeTickMutation = { __typename?: 'Mutation', mfActionTimeTick?: { __typename?: 'MfActionResult', isError: boolean, isSuccessful: boolean, errorMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null, gameFullState: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null }, successMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null } | null };
-
-export type PerformAbiFunctionMutationVariables = Exact<{
+export type MetaforestPerformAbiFunctionMutationVariables = Exact<{
   fn?: InputMaybe<Scalars['String']>;
   params?: InputMaybe<Scalars['JSON']>;
   userUri: Scalars['String'];
 }>;
 
 
-export type PerformAbiFunctionMutation = { __typename?: 'Mutation', performAbiFunction: string };
+export type MetaforestPerformAbiFunctionMutation = { __typename?: 'Mutation', metaforestPerformAbiFunction: string };
 
-export type TelegramSaidUserPassedDistanceMutationVariables = Exact<{
-  meters?: InputMaybe<Scalars['Float']>;
-  time?: InputMaybe<Scalars['Float']>;
+export type MetaforestPerformMyAbiFunctionMutationVariables = Exact<{
+  fn?: InputMaybe<Scalars['String']>;
+  params?: InputMaybe<Scalars['JSON']>;
 }>;
 
 
-export type TelegramSaidUserPassedDistanceMutation = { __typename?: 'Mutation', telegramSaidUserPassedDistance?: string | null };
+export type MetaforestPerformMyAbiFunctionMutation = { __typename?: 'Mutation', metaforestPerformMyAbiFunction: string };
 
-export type TimeTickMutationVariables = Exact<{ [key: string]: never; }>;
-
-
-export type TimeTickMutation = { __typename?: 'Mutation', timeTick?: string | null };
-
-export type UserClearPushMutationVariables = Exact<{
+export type MetaforestUserClearPushMutationVariables = Exact<{
   userUri: Scalars['String'];
 }>;
 
 
-export type UserClearPushMutation = { __typename?: 'Mutation', userClearPush?: string | null };
+export type MetaforestUserClearPushMutation = { __typename?: 'Mutation', metaforestUserClearPush?: string | null };
 
-export type UserFeedCurrentBunnyMutationVariables = Exact<{
-  carrotAmount?: InputMaybe<Scalars['Float']>;
+export type MetaforestUserTakeJobMutationVariables = Exact<{
+  jobSlug: Scalars['String'];
 }>;
 
 
-export type UserFeedCurrentBunnyMutation = { __typename?: 'Mutation', userFeedCurrentBunny?: string | null };
+export type MetaforestUserTakeJobMutation = { __typename?: 'Mutation', metaforestUserTakeJob: string };
 
-export type UserOpenLootBoxFreeMutationVariables = Exact<{
-  lootBoxId?: InputMaybe<Scalars['String']>;
+export type UpsertEduProductMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UpsertEduProductMutation = { __typename?: 'Mutation', upsertEduProduct?: string | null };
+
+export type CrescoAdminGetAdminListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CrescoAdminGetAdminListQuery = { __typename?: 'Query', crescoAdminGetAdminList: Array<{ __typename?: 'User', displayName?: string | null, email?: string | null, emails?: Array<string> | null, passwordHash?: string | null, phone?: string | null, phones?: Array<string> | null, roles?: Array<string> | null, rolesJwt?: Array<string> | null, scope?: string | null, telegramId?: string | null, telegramIds?: string | null }> };
+
+export type CrescoAdminGetCustomerListQueryVariables = Exact<{
+  userUri?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type UserOpenLootBoxFreeMutation = { __typename?: 'Mutation', userOpenLootBoxFree?: string | null };
+export type CrescoAdminGetCustomerListQuery = { __typename?: 'Query', crescoAdminGetCustomerList: Array<{ __typename?: 'CrescoCustomer', crescoTokenBalance?: number | null, firstName?: string | null, isPassportVerified?: boolean | null, lastName?: string | null, middleName?: string | null, userUri?: string | null, walletAddress?: string | null, agreement?: { __typename?: 'CrescoAgreement', isPrepared?: boolean | null, isSignedByClient?: boolean | null, no?: string | null, fileUrl?: { __typename?: 'FileUrl', name: string, url: string } | null } | null, deposit?: Array<{ __typename?: 'CrescoDeposit', depositNo?: string | null, finishDate?: any | null, percentRate?: number | null, startDate?: any | null }> | null, passportScanFiles?: Array<{ __typename?: 'FileUrl', name: string, url: string }> | null }> };
 
-export type UserOpenLootBoxPaidMutationVariables = Exact<{
-  lootBoxId?: InputMaybe<Scalars['String']>;
+export type CrescoAdminGetCustomerProfileQueryVariables = Exact<{
+  userUri?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type UserOpenLootBoxPaidMutation = { __typename?: 'Mutation', userOpenLootBoxPaid?: string | null };
+export type CrescoAdminGetCustomerProfileQuery = { __typename?: 'Query', crescoAdminGetCustomerProfile: { __typename?: 'CrescoCustomer', crescoTokenBalance?: number | null, firstName?: string | null, isPassportVerified?: boolean | null, lastName?: string | null, middleName?: string | null, userUri?: string | null, walletAddress?: string | null, agreement?: { __typename?: 'CrescoAgreement', isPrepared?: boolean | null, isSignedByClient?: boolean | null, no?: string | null, fileUrl?: { __typename?: 'FileUrl', name: string, url: string } | null } | null, deposit?: Array<{ __typename?: 'CrescoDeposit', depositNo?: string | null, finishDate?: any | null, percentRate?: number | null, startDate?: any | null }> | null, passportScanFiles?: Array<{ __typename?: 'FileUrl', name: string, url: string }> | null } };
 
-export type UserWearInventoryElementMutationVariables = Exact<{
-  elementId?: InputMaybe<Scalars['String']>;
+export type CrescoAdminGetLastPortfolioStateQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CrescoAdminGetLastPortfolioStateQuery = { __typename?: 'Query', crescoAdminGetLastPortfolioState: { __typename?: 'CrescoPortfolioState', _id?: string | null, createdAt?: any | null, createdByUserUri?: string | null, currenciesAmountsHashmap?: any | null } };
+
+export type CrescoAdminTransactionCheckInEthQueryVariables = Exact<{
+  transactionId?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type UserWearInventoryElementMutation = { __typename?: 'Mutation', userWearInventoryElement?: string | null };
+export type CrescoAdminTransactionCheckInEthQuery = { __typename?: 'Query', crescoAdminTransactionCheckInEth?: string | null };
 
-export type AbsQueryVariables = Exact<{ [key: string]: never; }>;
+export type CrescoAdminTransactionListQueryVariables = Exact<{
+  status?: InputMaybe<CrescoTransactionStatus>;
+}>;
 
 
-export type AbsQuery = { __typename?: 'Query', abs?: string | null };
+export type CrescoAdminTransactionListQuery = { __typename?: 'Query', crescoAdminTransactionList: Array<{ __typename?: 'CrescoTransaction', _id?: string | null, amountCrescoTokens: number, amountUSDT: number, fromWallet: string, status?: CrescoTransactionStatus | null, toWallet: string, transactionType?: CrescoTransactionTypeEnum | null, userUri?: string | null }> };
 
-export type AdminGetConfigQueryVariables = Exact<{
+export type CrescoCustomerGetCalculatedBalanceQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CrescoCustomerGetCalculatedBalanceQuery = { __typename?: 'Query', crescoCustomerGetCalculatedBalance: number };
+
+export type CrescoCustomerGetMyProfileQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CrescoCustomerGetMyProfileQuery = { __typename?: 'Query', crescoCustomerGetMyProfile: { __typename?: 'CrescoCustomer', crescoTokenBalance?: number | null, firstName?: string | null, isPassportVerified?: boolean | null, lastName?: string | null, middleName?: string | null, userUri?: string | null, walletAddress?: string | null, agreement?: { __typename?: 'CrescoAgreement', isPrepared?: boolean | null, isSignedByClient?: boolean | null, no?: string | null, fileUrl?: { __typename?: 'FileUrl', name: string, url: string } | null } | null, deposit?: Array<{ __typename?: 'CrescoDeposit', depositNo?: string | null, finishDate?: any | null, percentRate?: number | null, startDate?: any | null }> | null, passportScanFiles?: Array<{ __typename?: 'FileUrl', name: string, url: string }> | null } };
+
+export type CrescoCustomerTransactionListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CrescoCustomerTransactionListQuery = { __typename?: 'Query', crescoCustomerTransactionList: Array<{ __typename?: 'CrescoTransaction', _id?: string | null, amountCrescoTokens: number, amountUSDT: number, fromWallet: string, status?: CrescoTransactionStatus | null, toWallet: string, transactionType?: CrescoTransactionTypeEnum | null, userUri?: string | null }> };
+
+export type CrescoGetDepositInfoByAgreementNumberQueryVariables = Exact<{
+  agreementNo: Scalars['String'];
+}>;
+
+
+export type CrescoGetDepositInfoByAgreementNumberQuery = { __typename?: 'Query', crescoGetDepositInfoByAgreementNumber?: any | null };
+
+export type CrescoGetExternalCoinsRatesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CrescoGetExternalCoinsRatesQuery = { __typename?: 'Query', crescoGetExternalCoinsRates: Array<{ __typename?: 'CrescoExternalCoinRate', displayName?: string | null, name?: string | null, rate?: number | null }> };
+
+export type GetMeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetMeQuery = { __typename?: 'Query', getMe?: { __typename?: 'UserJWTPayload', displayName: string, rolesJWT?: Array<string> | null, userUri: string } | null };
+
+export type GetUpcomingSevaPremEventsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetUpcomingSevaPremEventsQuery = { __typename?: 'Query', getUpcomingSevaPremEvents: Array<{ __typename?: 'EduProductEventInstance', _id: string, city?: string | null, dateTimeEnd: any, dateTimeStart: any, priceConditionsText?: string | null, eduProductEvent: { __typename?: 'EduProductEvent', abstract: string, eventDescriptor: string, eventName: string, priceConditionsText?: string | null, reasonsToAttendTitle: string, uvpSubtitle?: string | null, uvpTitle: string, disclaimers?: Array<{ __typename?: 'Disclaimer', description?: string | null, title: string }> | null, faq?: Array<{ __typename?: 'FaqElement', comment?: string | null, answer: { __typename?: 'Answer', description: string, title?: { __typename?: 'Answer', description: string } | null }, question: { __typename?: 'Question', description?: string | null, title: string } }> | null, groupLeaders: Array<{ __typename?: 'GroupLeader', bio?: string | null, displayName: string, instagramLink?: string | null, telegramChannelLink?: string | null }>, portraits: Array<{ __typename?: 'Portrait', description: string, displayName: string, internalName: string }>, priceConditions?: { __typename?: 'PriceConditions', prepayBaseRub?: number | null, priceBaseRub?: number | null } | null, productFeatures: Array<{ __typename?: 'ProductFeature', description: string, rating?: number | null, title: string, portraitsPov?: Array<{ __typename?: 'PortraitPov', rating?: number | null, portrait?: { __typename?: 'Portrait', description: string, displayName: string, internalName: string } | null }> | null }>, reasonsToAttend: Array<{ __typename?: 'ReasonToAttend', description: string, rating?: number | null, title: string, portraitsPov?: Array<{ __typename?: 'PortraitPov', rating?: number | null }> | null }> }, faqInstance?: Array<{ __typename?: 'FaqElement', comment?: string | null, answer: { __typename?: 'Answer', description: string }, question: { __typename?: 'Question', description?: string | null, title: string } }> | null, groupLeaders?: Array<{ __typename?: 'GroupLeader', bio?: string | null, displayName: string, instagramLink?: string | null, telegramChannelLink?: string | null }> | null, placement?: { __typename?: 'EduEventPlacement', isOffline?: boolean | null, isOnline?: boolean | null, faqInstance?: Array<{ __typename?: 'FaqElement', comment?: string | null }> | null, managerContacts: Array<{ __typename?: 'ManagerContact', displayName: string }>, offlineRoom?: { __typename?: 'OfflineRoom', addressShort: string, city: string, howToReach: string } | null, onlineRooms?: Array<{ __typename?: 'OnlineRoom', attendLink: string } | null> | null } | null }> };
+
+export type HuobiGetDataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type HuobiGetDataQuery = { __typename?: 'Query', huobiGetData?: string | null };
+
+export type MetaforestAdminGetConfigQueryVariables = Exact<{
   version: Scalars['String'];
 }>;
 
 
-export type AdminGetConfigQuery = { __typename?: 'Query', adminGetConfig: any };
+export type MetaforestAdminGetConfigQuery = { __typename?: 'Query', metaforestAdminGetConfig: any };
 
-export type GetInternalContractAbiQueryVariables = Exact<{
-  name?: InputMaybe<MfAbiEnum>;
+export type MetaforestGetInternalContractAbiQueryVariables = Exact<{
+  name?: InputMaybe<MetaforestAbiEnum>;
 }>;
 
 
-export type GetInternalContractAbiQuery = { __typename?: 'Query', getInternalContractAbi?: any | null };
+export type MetaforestGetInternalContractAbiQuery = { __typename?: 'Query', metaforestGetInternalContractAbi?: any | null };
 
-export type MfGetMyUserGameFullStateQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type MfGetMyUserGameFullStateQuery = { __typename?: 'Query', mfGetMyUserGameFullState?: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null } | null };
-
-export type MfUserGetGameFullStateQueryVariables = Exact<{ [key: string]: never; }>;
+export type MetaforestJobsListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MfUserGetGameFullStateQuery = { __typename?: 'Query', mfUserGetGameFullState?: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null } | null };
+export type MetaforestJobsListQuery = { __typename?: 'Query', metaforestJobsList: Array<{ __typename?: 'MetaforestJob', approxMeters?: number | null, carrotsForApproxMeters?: number | null, description: string, freeEnergyApproxMetersC0?: number | null, slug: string, title: string, type: MetaforestJobTypeEnum, vitalitySpend?: number | null, conditionsGTE?: { __typename?: 'MetaforestBaseParams', dex: number, int: number, krm: number, level?: number | null, rarityInt?: number | null, str: number, vit: number } | null }> };
 
-export type TestQueryVariables = Exact<{ [key: string]: never; }>;
+export type MetaforestUserGetMyPushQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TestQuery = { __typename?: 'Query', test?: string | null };
+export type MetaforestUserGetMyPushQuery = { __typename?: 'Query', metaforestUserGetMyPush: Array<{ __typename?: 'MetaforestPushNotification', _id?: string | null, createdAt?: any | null, emotion?: number | null, textEn?: string | null, textRu?: string | null, userUri: string }> };
 
-export type UserGetPushQueryVariables = Exact<{
+export type MetaforestUserGetMyStateQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MetaforestUserGetMyStateQuery = { __typename?: 'Query', metaforestUserGetMyState: any };
+
+export type MetaforestUserGetPushQueryVariables = Exact<{
   userUri: Scalars['String'];
 }>;
 
 
-export type UserGetPushQuery = { __typename?: 'Query', userGetPush: Array<{ __typename?: 'MfPushNotification', _id?: string | null, createdAt?: any | null, emotion?: number | null, textEn?: string | null, textRu?: string | null, userUri: string }> };
+export type MetaforestUserGetPushQuery = { __typename?: 'Query', metaforestUserGetPush: Array<{ __typename?: 'MetaforestPushNotification', _id?: string | null, createdAt?: any | null, emotion?: number | null, textEn?: string | null, textRu?: string | null, userUri: string }> };
 
-export type UserGetStateQueryVariables = Exact<{
+export type MetaforestUserGetStateQueryVariables = Exact<{
   userUri: Scalars['String'];
 }>;
 
 
-export type UserGetStateQuery = { __typename?: 'Query', userGetState: any };
+export type MetaforestUserGetStateQuery = { __typename?: 'Query', metaforestUserGetState: any };
+
+export type UserCreateQueryVariables = Exact<{
+  email: Scalars['String'];
+  password: Scalars['String'];
+}>;
 
 
-export const AdminEditConfigSingleParamDocument = gql`
-    mutation adminEditConfigSingleParam($path: String!, $valueObject: JSON!, $version: String!) {
-  adminEditConfigSingleParam(
+export type UserCreateQuery = { __typename?: 'Query', userCreate?: string | null };
+
+
+export const CreateOrFindUserViaTelegramInitDataDocument = gql`
+    mutation createOrFindUserViaTelegramInitData($telegramInitData: String!) {
+  createOrFindUserViaTelegramInitData(telegramInitData: $telegramInitData)
+}
+    `;
+export const CrescoAdminCreateNewPortfolioStateDocument = gql`
+    mutation crescoAdminCreateNewPortfolioState($coinBalances: JSON!) {
+  crescoAdminCreateNewPortfolioState(coinBalances: $coinBalances)
+}
+    `;
+export const CrescoAdminSendNotificationDocument = gql`
+    mutation crescoAdminSendNotification($input: CrescoNotificationInput) {
+  crescoAdminSendNotification(input: $input)
+}
+    `;
+export const CrescoAdminSetAdminRolesDocument = gql`
+    mutation crescoAdminSetAdminRoles($roles: [String!]!, $userUri: String!) {
+  crescoAdminSetAdminRoles(roles: $roles, userUri: $userUri)
+}
+    `;
+export const CrescoAdminTransactionSetStatusDocument = gql`
+    mutation crescoAdminTransactionSetStatus($status: CrescoTransactionStatus, $transactionId: String) {
+  crescoAdminTransactionSetStatus(status: $status, transactionId: $transactionId)
+}
+    `;
+export const CrescoAdminUpsertCustomerProfileDocument = gql`
+    mutation crescoAdminUpsertCustomerProfile($input: CrescoCustomerAdminInput) {
+  crescoAdminUpsertCustomerProfile(input: $input)
+}
+    `;
+export const CrescoCustomerTransactionCreateDocument = gql`
+    mutation crescoCustomerTransactionCreate($amountCrescoTokens: Float!, $customerWallet: String!, $transactionType: CrescoTransactionTypeEnum!) {
+  crescoCustomerTransactionCreate(
+    amountCrescoTokens: $amountCrescoTokens
+    customerWallet: $customerWallet
+    transactionType: $transactionType
+  )
+}
+    `;
+export const CrescoCustomerUpsertMyProfileDocument = gql`
+    mutation crescoCustomerUpsertMyProfile($input: CrescoCustomerCustomerInput) {
+  crescoCustomerUpsertMyProfile(input: $input)
+}
+    `;
+export const CrescoTestInitDataDocument = gql`
+    mutation crescoTestInitData {
+  crescoTestInitData
+}
+    `;
+export const MetaforestAdminEditConfigSingleParamDocument = gql`
+    mutation metaforestAdminEditConfigSingleParam($path: String!, $valueObject: JSON!, $version: String!) {
+  metaforestAdminEditConfigSingleParam(
     path: $path
     valueObject: $valueObject
     version: $version
   )
 }
     `;
-export const AdminInitConfigDocument = gql`
-    mutation adminInitConfig($version: String!) {
-  adminInitConfig(version: $version)
+export const MetaforestAdminInitConfigDocument = gql`
+    mutation metaforestAdminInitConfig($version: String!) {
+  metaforestAdminInitConfig(version: $version)
 }
     `;
-export const InitStateForUserDocument = gql`
-    mutation initStateForUser($userUri: String!) {
-  initStateForUser(userUri: $userUri)
+export const MetaforestAdminInitJobsDocument = gql`
+    mutation metaforestAdminInitJobs {
+  metaforestAdminInitJobs
 }
     `;
-export const MfActionFeedRabbitDocument = gql`
-    mutation mfActionFeedRabbit {
-  mfActionFeedRabbit {
-    errorMessageRus {
-      en
-      ru
-    }
-    gameFullState {
-      payload
-      userUri
-    }
-    isError
-    isSuccessful
-    successMessageRus {
-      en
-      ru
-    }
+export const MetaforestInitStateForUserDocument = gql`
+    mutation metaforestInitStateForUser($userUri: String!) {
+  metaforestInitStateForUser(userUri: $userUri)
+}
+    `;
+export const MetaforestPerformAbiFunctionDocument = gql`
+    mutation metaforestPerformAbiFunction($fn: String, $params: JSON, $userUri: String!) {
+  metaforestPerformAbiFunction(fn: $fn, params: $params, userUri: $userUri)
+}
+    `;
+export const MetaforestPerformMyAbiFunctionDocument = gql`
+    mutation metaforestPerformMyAbiFunction($fn: String, $params: JSON) {
+  metaforestPerformMyAbiFunction(fn: $fn, params: $params)
+}
+    `;
+export const MetaforestUserClearPushDocument = gql`
+    mutation metaforestUserClearPush($userUri: String!) {
+  metaforestUserClearPush(userUri: $userUri)
+}
+    `;
+export const MetaforestUserTakeJobDocument = gql`
+    mutation metaforestUserTakeJob($jobSlug: String!) {
+  metaforestUserTakeJob(jobSlug: $jobSlug)
+}
+    `;
+export const UpsertEduProductDocument = gql`
+    mutation upsertEduProduct {
+  upsertEduProduct
+}
+    `;
+export const CrescoAdminGetAdminListDocument = gql`
+    query crescoAdminGetAdminList {
+  crescoAdminGetAdminList {
+    displayName
+    email
+    emails
+    passwordHash
+    phone
+    phones
+    roles
+    rolesJwt
+    scope
+    telegramId
+    telegramIds
   }
 }
     `;
-export const MfActionInitStateDocument = gql`
-    mutation mfActionInitState {
-  mfActionInitState {
-    errorMessageRus {
-      en
-      ru
+export const CrescoAdminGetCustomerListDocument = gql`
+    query crescoAdminGetCustomerList($userUri: String) {
+  crescoAdminGetCustomerList(userUri: $userUri) {
+    agreement {
+      fileUrl {
+        name
+        url
+      }
+      isPrepared
+      isSignedByClient
+      no
     }
-    gameFullState {
-      payload
-      userUri
+    crescoTokenBalance
+    deposit {
+      depositNo
+      finishDate
+      percentRate
+      startDate
     }
-    isError
-    isSuccessful
-    successMessageRus {
-      en
-      ru
+    firstName
+    isPassportVerified
+    lastName
+    middleName
+    passportScanFiles {
+      name
+      url
     }
+    userUri
+    walletAddress
   }
 }
     `;
-export const MfActionJobProgressDocument = gql`
-    mutation mfActionJobProgress($action: MfActionJobProgressInput) {
-  mfActionJobProgress(action: $action) {
-    errorMessageRus {
-      en
-      ru
+export const CrescoAdminGetCustomerProfileDocument = gql`
+    query crescoAdminGetCustomerProfile($userUri: String) {
+  crescoAdminGetCustomerProfile(userUri: $userUri) {
+    agreement {
+      fileUrl {
+        name
+        url
+      }
+      isPrepared
+      isSignedByClient
+      no
     }
-    gameFullState {
-      payload
-      userUri
+    crescoTokenBalance
+    deposit {
+      depositNo
+      finishDate
+      percentRate
+      startDate
     }
-    isError
-    isSuccessful
-    successMessageRus {
-      en
-      ru
+    firstName
+    isPassportVerified
+    lastName
+    middleName
+    passportScanFiles {
+      name
+      url
     }
+    userUri
+    walletAddress
   }
 }
     `;
-export const MfActionLvlUpDocument = gql`
-    mutation mfActionLvlUp {
-  mfActionLvlUp {
-    errorMessageRus {
-      en
-      ru
-    }
-    gameFullState {
-      payload
-      userUri
-    }
-    isError
-    isSuccessful
-    successMessageRus {
-      en
-      ru
-    }
+export const CrescoAdminGetLastPortfolioStateDocument = gql`
+    query crescoAdminGetLastPortfolioState {
+  crescoAdminGetLastPortfolioState {
+    _id
+    createdAt
+    createdByUserUri
+    currenciesAmountsHashmap
   }
 }
     `;
-export const MfActionOpenLootboxDocument = gql`
-    mutation mfActionOpenLootbox($action: MfActionOpenLootbox) {
-  mfActionOpenLootbox(action: $action) {
-    errorMessageRus {
-      en
-      ru
-    }
-    gameFullState {
-      payload
-      userUri
-    }
-    isError
-    isSuccessful
-    successMessageRus {
-      en
-      ru
-    }
-  }
+export const CrescoAdminTransactionCheckInEthDocument = gql`
+    query crescoAdminTransactionCheckInEth($transactionId: String) {
+  crescoAdminTransactionCheckInEth(transactionId: $transactionId)
 }
     `;
-export const MfActionSetCurrentJobDocument = gql`
-    mutation mfActionSetCurrentJob($action: MfActionTakeJobInput) {
-  mfActionSetCurrentJob(action: $action) {
-    errorMessageRus {
-      en
-      ru
-    }
-    gameFullState {
-      payload
-      userUri
-    }
-    isError
-    isSuccessful
-    successMessageRus {
-      en
-      ru
-    }
-  }
-}
-    `;
-export const MfActionTimeTickDocument = gql`
-    mutation mfActionTimeTick($action: MfActionTimeTickInput) {
-  mfActionTimeTick(action: $action) {
-    errorMessageRus {
-      en
-      ru
-    }
-    gameFullState {
-      payload
-      userUri
-    }
-    isError
-    isSuccessful
-    successMessageRus {
-      en
-      ru
-    }
-  }
-}
-    `;
-export const PerformAbiFunctionDocument = gql`
-    mutation performAbiFunction($fn: String, $params: JSON, $userUri: String!) {
-  performAbiFunction(fn: $fn, params: $params, userUri: $userUri)
-}
-    `;
-export const TelegramSaidUserPassedDistanceDocument = gql`
-    mutation telegramSaidUserPassedDistance($meters: Float, $time: Float) {
-  telegramSaidUserPassedDistance(meters: $meters, time: $time)
-}
-    `;
-export const TimeTickDocument = gql`
-    mutation timeTick {
-  timeTick
-}
-    `;
-export const UserClearPushDocument = gql`
-    mutation userClearPush($userUri: String!) {
-  userClearPush(userUri: $userUri)
-}
-    `;
-export const UserFeedCurrentBunnyDocument = gql`
-    mutation userFeedCurrentBunny($carrotAmount: Float) {
-  userFeedCurrentBunny(carrotAmount: $carrotAmount)
-}
-    `;
-export const UserOpenLootBoxFreeDocument = gql`
-    mutation userOpenLootBoxFree($lootBoxId: String) {
-  userOpenLootBoxFree(lootBoxId: $lootBoxId)
-}
-    `;
-export const UserOpenLootBoxPaidDocument = gql`
-    mutation userOpenLootBoxPaid($lootBoxId: String) {
-  userOpenLootBoxPaid(lootBoxId: $lootBoxId)
-}
-    `;
-export const UserWearInventoryElementDocument = gql`
-    mutation userWearInventoryElement($elementId: String) {
-  userWearInventoryElement(elementId: $elementId)
-}
-    `;
-export const AbsDocument = gql`
-    query abs {
-  abs
-}
-    `;
-export const AdminGetConfigDocument = gql`
-    query adminGetConfig($version: String!) {
-  adminGetConfig(version: $version)
-}
-    `;
-export const GetInternalContractAbiDocument = gql`
-    query getInternalContractAbi($name: MfAbiEnum) {
-  getInternalContractAbi(name: $name)
-}
-    `;
-export const MfGetMyUserGameFullStateDocument = gql`
-    query mfGetMyUserGameFullState {
-  mfGetMyUserGameFullState {
-    payload
+export const CrescoAdminTransactionListDocument = gql`
+    query crescoAdminTransactionList($status: CrescoTransactionStatus) {
+  crescoAdminTransactionList(status: $status) {
+    _id
+    amountCrescoTokens
+    amountUSDT
+    fromWallet
+    status
+    toWallet
+    transactionType
     userUri
   }
 }
     `;
-export const MfUserGetGameFullStateDocument = gql`
-    query mfUserGetGameFullState {
-  mfUserGetGameFullState {
-    payload
+export const CrescoCustomerGetCalculatedBalanceDocument = gql`
+    query crescoCustomerGetCalculatedBalance {
+  crescoCustomerGetCalculatedBalance
+}
+    `;
+export const CrescoCustomerGetMyProfileDocument = gql`
+    query crescoCustomerGetMyProfile {
+  crescoCustomerGetMyProfile {
+    agreement {
+      fileUrl {
+        name
+        url
+      }
+      isPrepared
+      isSignedByClient
+      no
+    }
+    crescoTokenBalance
+    deposit {
+      depositNo
+      finishDate
+      percentRate
+      startDate
+    }
+    firstName
+    isPassportVerified
+    lastName
+    middleName
+    passportScanFiles {
+      name
+      url
+    }
+    userUri
+    walletAddress
+  }
+}
+    `;
+export const CrescoCustomerTransactionListDocument = gql`
+    query crescoCustomerTransactionList {
+  crescoCustomerTransactionList {
+    _id
+    amountCrescoTokens
+    amountUSDT
+    fromWallet
+    status
+    toWallet
+    transactionType
     userUri
   }
 }
     `;
-export const TestDocument = gql`
-    query test {
-  test
+export const CrescoGetDepositInfoByAgreementNumberDocument = gql`
+    query crescoGetDepositInfoByAgreementNumber($agreementNo: String!) {
+  crescoGetDepositInfoByAgreementNumber(agreementNo: $agreementNo)
 }
     `;
-export const UserGetPushDocument = gql`
-    query userGetPush($userUri: String!) {
-  userGetPush(userUri: $userUri) {
+export const CrescoGetExternalCoinsRatesDocument = gql`
+    query crescoGetExternalCoinsRates {
+  crescoGetExternalCoinsRates {
+    displayName
+    name
+    rate
+  }
+}
+    `;
+export const GetMeDocument = gql`
+    query getMe {
+  getMe {
+    displayName
+    rolesJWT
+    userUri
+  }
+}
+    `;
+export const GetUpcomingSevaPremEventsDocument = gql`
+    query getUpcomingSevaPremEvents {
+  getUpcomingSevaPremEvents {
+    _id
+    city
+    dateTimeEnd
+    dateTimeStart
+    eduProductEvent {
+      abstract
+      disclaimers {
+        description
+        title
+      }
+      eventDescriptor
+      eventName
+      faq {
+        answer {
+          description
+          title {
+            description
+          }
+        }
+        comment
+        question {
+          description
+          title
+        }
+      }
+      groupLeaders {
+        bio
+        displayName
+        instagramLink
+        telegramChannelLink
+      }
+      portraits {
+        description
+        displayName
+        internalName
+      }
+      priceConditions {
+        prepayBaseRub
+        priceBaseRub
+      }
+      priceConditionsText
+      productFeatures {
+        description
+        portraitsPov {
+          portrait {
+            description
+            displayName
+            internalName
+          }
+          rating
+        }
+        rating
+        title
+      }
+      reasonsToAttend {
+        description
+        portraitsPov {
+          rating
+        }
+        rating
+        title
+      }
+      reasonsToAttendTitle
+      uvpSubtitle
+      uvpTitle
+    }
+    faqInstance {
+      answer {
+        description
+      }
+      comment
+      question {
+        description
+        title
+      }
+    }
+    groupLeaders {
+      bio
+      displayName
+      instagramLink
+      telegramChannelLink
+    }
+    placement {
+      faqInstance {
+        comment
+      }
+      isOffline
+      isOnline
+      managerContacts {
+        displayName
+      }
+      offlineRoom {
+        addressShort
+        city
+        howToReach
+      }
+      onlineRooms {
+        attendLink
+      }
+    }
+    priceConditionsText
+  }
+}
+    `;
+export const HuobiGetDataDocument = gql`
+    query huobiGetData {
+  huobiGetData
+}
+    `;
+export const MetaforestAdminGetConfigDocument = gql`
+    query metaforestAdminGetConfig($version: String!) {
+  metaforestAdminGetConfig(version: $version)
+}
+    `;
+export const MetaforestGetInternalContractAbiDocument = gql`
+    query metaforestGetInternalContractAbi($name: MetaforestAbiEnum) {
+  metaforestGetInternalContractAbi(name: $name)
+}
+    `;
+export const MetaforestJobsListDocument = gql`
+    query metaforestJobsList {
+  metaforestJobsList {
+    approxMeters
+    carrotsForApproxMeters
+    conditionsGTE {
+      dex
+      int
+      krm
+      level
+      rarityInt
+      str
+      vit
+    }
+    description
+    freeEnergyApproxMetersC0
+    slug
+    title
+    type
+    vitalitySpend
+  }
+}
+    `;
+export const MetaforestUserGetMyPushDocument = gql`
+    query metaforestUserGetMyPush {
+  metaforestUserGetMyPush {
     _id
     createdAt
     emotion
@@ -742,9 +1508,31 @@ export const UserGetPushDocument = gql`
   }
 }
     `;
-export const UserGetStateDocument = gql`
-    query userGetState($userUri: String!) {
-  userGetState(userUri: $userUri)
+export const MetaforestUserGetMyStateDocument = gql`
+    query metaforestUserGetMyState {
+  metaforestUserGetMyState
+}
+    `;
+export const MetaforestUserGetPushDocument = gql`
+    query metaforestUserGetPush($userUri: String!) {
+  metaforestUserGetPush(userUri: $userUri) {
+    _id
+    createdAt
+    emotion
+    textEn
+    textRu
+    userUri
+  }
+}
+    `;
+export const MetaforestUserGetStateDocument = gql`
+    query metaforestUserGetState($userUri: String!) {
+  metaforestUserGetState(userUri: $userUri)
+}
+    `;
+export const UserCreateDocument = gql`
+    query userCreate($email: String!, $password: String!) {
+  userCreate(email: $email, password: $password)
 }
     `;
 
@@ -755,83 +1543,125 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    adminEditConfigSingleParam(variables: AdminEditConfigSingleParamMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AdminEditConfigSingleParamMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AdminEditConfigSingleParamMutation>(AdminEditConfigSingleParamDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'adminEditConfigSingleParam', 'mutation');
+    createOrFindUserViaTelegramInitData(variables: CreateOrFindUserViaTelegramInitDataMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateOrFindUserViaTelegramInitDataMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CreateOrFindUserViaTelegramInitDataMutation>(CreateOrFindUserViaTelegramInitDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'createOrFindUserViaTelegramInitData', 'mutation');
     },
-    adminInitConfig(variables: AdminInitConfigMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AdminInitConfigMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AdminInitConfigMutation>(AdminInitConfigDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'adminInitConfig', 'mutation');
+    crescoAdminCreateNewPortfolioState(variables: CrescoAdminCreateNewPortfolioStateMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoAdminCreateNewPortfolioStateMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoAdminCreateNewPortfolioStateMutation>(CrescoAdminCreateNewPortfolioStateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoAdminCreateNewPortfolioState', 'mutation');
     },
-    initStateForUser(variables: InitStateForUserMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<InitStateForUserMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<InitStateForUserMutation>(InitStateForUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'initStateForUser', 'mutation');
+    crescoAdminSendNotification(variables?: CrescoAdminSendNotificationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoAdminSendNotificationMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoAdminSendNotificationMutation>(CrescoAdminSendNotificationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoAdminSendNotification', 'mutation');
     },
-    mfActionFeedRabbit(variables?: MfActionFeedRabbitMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfActionFeedRabbitMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfActionFeedRabbitMutation>(MfActionFeedRabbitDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfActionFeedRabbit', 'mutation');
+    crescoAdminSetAdminRoles(variables: CrescoAdminSetAdminRolesMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoAdminSetAdminRolesMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoAdminSetAdminRolesMutation>(CrescoAdminSetAdminRolesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoAdminSetAdminRoles', 'mutation');
     },
-    mfActionInitState(variables?: MfActionInitStateMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfActionInitStateMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfActionInitStateMutation>(MfActionInitStateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfActionInitState', 'mutation');
+    crescoAdminTransactionSetStatus(variables?: CrescoAdminTransactionSetStatusMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoAdminTransactionSetStatusMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoAdminTransactionSetStatusMutation>(CrescoAdminTransactionSetStatusDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoAdminTransactionSetStatus', 'mutation');
     },
-    mfActionJobProgress(variables?: MfActionJobProgressMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfActionJobProgressMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfActionJobProgressMutation>(MfActionJobProgressDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfActionJobProgress', 'mutation');
+    crescoAdminUpsertCustomerProfile(variables?: CrescoAdminUpsertCustomerProfileMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoAdminUpsertCustomerProfileMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoAdminUpsertCustomerProfileMutation>(CrescoAdminUpsertCustomerProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoAdminUpsertCustomerProfile', 'mutation');
     },
-    mfActionLvlUp(variables?: MfActionLvlUpMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfActionLvlUpMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfActionLvlUpMutation>(MfActionLvlUpDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfActionLvlUp', 'mutation');
+    crescoCustomerTransactionCreate(variables: CrescoCustomerTransactionCreateMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoCustomerTransactionCreateMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoCustomerTransactionCreateMutation>(CrescoCustomerTransactionCreateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoCustomerTransactionCreate', 'mutation');
     },
-    mfActionOpenLootbox(variables?: MfActionOpenLootboxMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfActionOpenLootboxMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfActionOpenLootboxMutation>(MfActionOpenLootboxDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfActionOpenLootbox', 'mutation');
+    crescoCustomerUpsertMyProfile(variables?: CrescoCustomerUpsertMyProfileMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoCustomerUpsertMyProfileMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoCustomerUpsertMyProfileMutation>(CrescoCustomerUpsertMyProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoCustomerUpsertMyProfile', 'mutation');
     },
-    mfActionSetCurrentJob(variables?: MfActionSetCurrentJobMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfActionSetCurrentJobMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfActionSetCurrentJobMutation>(MfActionSetCurrentJobDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfActionSetCurrentJob', 'mutation');
+    crescoTestInitData(variables?: CrescoTestInitDataMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoTestInitDataMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoTestInitDataMutation>(CrescoTestInitDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoTestInitData', 'mutation');
     },
-    mfActionTimeTick(variables?: MfActionTimeTickMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfActionTimeTickMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfActionTimeTickMutation>(MfActionTimeTickDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfActionTimeTick', 'mutation');
+    metaforestAdminEditConfigSingleParam(variables: MetaforestAdminEditConfigSingleParamMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestAdminEditConfigSingleParamMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestAdminEditConfigSingleParamMutation>(MetaforestAdminEditConfigSingleParamDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestAdminEditConfigSingleParam', 'mutation');
     },
-    performAbiFunction(variables: PerformAbiFunctionMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PerformAbiFunctionMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PerformAbiFunctionMutation>(PerformAbiFunctionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'performAbiFunction', 'mutation');
+    metaforestAdminInitConfig(variables: MetaforestAdminInitConfigMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestAdminInitConfigMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestAdminInitConfigMutation>(MetaforestAdminInitConfigDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestAdminInitConfig', 'mutation');
     },
-    telegramSaidUserPassedDistance(variables?: TelegramSaidUserPassedDistanceMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TelegramSaidUserPassedDistanceMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TelegramSaidUserPassedDistanceMutation>(TelegramSaidUserPassedDistanceDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'telegramSaidUserPassedDistance', 'mutation');
+    metaforestAdminInitJobs(variables?: MetaforestAdminInitJobsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestAdminInitJobsMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestAdminInitJobsMutation>(MetaforestAdminInitJobsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestAdminInitJobs', 'mutation');
     },
-    timeTick(variables?: TimeTickMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TimeTickMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TimeTickMutation>(TimeTickDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'timeTick', 'mutation');
+    metaforestInitStateForUser(variables: MetaforestInitStateForUserMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestInitStateForUserMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestInitStateForUserMutation>(MetaforestInitStateForUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestInitStateForUser', 'mutation');
     },
-    userClearPush(variables: UserClearPushMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserClearPushMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UserClearPushMutation>(UserClearPushDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'userClearPush', 'mutation');
+    metaforestPerformAbiFunction(variables: MetaforestPerformAbiFunctionMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestPerformAbiFunctionMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestPerformAbiFunctionMutation>(MetaforestPerformAbiFunctionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestPerformAbiFunction', 'mutation');
     },
-    userFeedCurrentBunny(variables?: UserFeedCurrentBunnyMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserFeedCurrentBunnyMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UserFeedCurrentBunnyMutation>(UserFeedCurrentBunnyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'userFeedCurrentBunny', 'mutation');
+    metaforestPerformMyAbiFunction(variables?: MetaforestPerformMyAbiFunctionMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestPerformMyAbiFunctionMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestPerformMyAbiFunctionMutation>(MetaforestPerformMyAbiFunctionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestPerformMyAbiFunction', 'mutation');
     },
-    userOpenLootBoxFree(variables?: UserOpenLootBoxFreeMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserOpenLootBoxFreeMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UserOpenLootBoxFreeMutation>(UserOpenLootBoxFreeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'userOpenLootBoxFree', 'mutation');
+    metaforestUserClearPush(variables: MetaforestUserClearPushMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestUserClearPushMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestUserClearPushMutation>(MetaforestUserClearPushDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestUserClearPush', 'mutation');
     },
-    userOpenLootBoxPaid(variables?: UserOpenLootBoxPaidMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserOpenLootBoxPaidMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UserOpenLootBoxPaidMutation>(UserOpenLootBoxPaidDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'userOpenLootBoxPaid', 'mutation');
+    metaforestUserTakeJob(variables: MetaforestUserTakeJobMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestUserTakeJobMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestUserTakeJobMutation>(MetaforestUserTakeJobDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestUserTakeJob', 'mutation');
     },
-    userWearInventoryElement(variables?: UserWearInventoryElementMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserWearInventoryElementMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UserWearInventoryElementMutation>(UserWearInventoryElementDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'userWearInventoryElement', 'mutation');
+    upsertEduProduct(variables?: UpsertEduProductMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UpsertEduProductMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UpsertEduProductMutation>(UpsertEduProductDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'upsertEduProduct', 'mutation');
     },
-    abs(variables?: AbsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AbsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AbsQuery>(AbsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'abs', 'query');
+    crescoAdminGetAdminList(variables?: CrescoAdminGetAdminListQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoAdminGetAdminListQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoAdminGetAdminListQuery>(CrescoAdminGetAdminListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoAdminGetAdminList', 'query');
     },
-    adminGetConfig(variables: AdminGetConfigQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AdminGetConfigQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AdminGetConfigQuery>(AdminGetConfigDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'adminGetConfig', 'query');
+    crescoAdminGetCustomerList(variables?: CrescoAdminGetCustomerListQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoAdminGetCustomerListQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoAdminGetCustomerListQuery>(CrescoAdminGetCustomerListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoAdminGetCustomerList', 'query');
     },
-    getInternalContractAbi(variables?: GetInternalContractAbiQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetInternalContractAbiQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetInternalContractAbiQuery>(GetInternalContractAbiDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getInternalContractAbi', 'query');
+    crescoAdminGetCustomerProfile(variables?: CrescoAdminGetCustomerProfileQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoAdminGetCustomerProfileQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoAdminGetCustomerProfileQuery>(CrescoAdminGetCustomerProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoAdminGetCustomerProfile', 'query');
     },
-    mfGetMyUserGameFullState(variables?: MfGetMyUserGameFullStateQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfGetMyUserGameFullStateQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfGetMyUserGameFullStateQuery>(MfGetMyUserGameFullStateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfGetMyUserGameFullState', 'query');
+    crescoAdminGetLastPortfolioState(variables?: CrescoAdminGetLastPortfolioStateQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoAdminGetLastPortfolioStateQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoAdminGetLastPortfolioStateQuery>(CrescoAdminGetLastPortfolioStateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoAdminGetLastPortfolioState', 'query');
     },
-    mfUserGetGameFullState(variables?: MfUserGetGameFullStateQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfUserGetGameFullStateQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfUserGetGameFullStateQuery>(MfUserGetGameFullStateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfUserGetGameFullState', 'query');
+    crescoAdminTransactionCheckInEth(variables?: CrescoAdminTransactionCheckInEthQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoAdminTransactionCheckInEthQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoAdminTransactionCheckInEthQuery>(CrescoAdminTransactionCheckInEthDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoAdminTransactionCheckInEth', 'query');
     },
-    test(variables?: TestQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TestQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TestQuery>(TestDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'test', 'query');
+    crescoAdminTransactionList(variables?: CrescoAdminTransactionListQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoAdminTransactionListQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoAdminTransactionListQuery>(CrescoAdminTransactionListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoAdminTransactionList', 'query');
     },
-    userGetPush(variables: UserGetPushQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserGetPushQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UserGetPushQuery>(UserGetPushDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'userGetPush', 'query');
+    crescoCustomerGetCalculatedBalance(variables?: CrescoCustomerGetCalculatedBalanceQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoCustomerGetCalculatedBalanceQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoCustomerGetCalculatedBalanceQuery>(CrescoCustomerGetCalculatedBalanceDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoCustomerGetCalculatedBalance', 'query');
     },
-    userGetState(variables: UserGetStateQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserGetStateQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UserGetStateQuery>(UserGetStateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'userGetState', 'query');
+    crescoCustomerGetMyProfile(variables?: CrescoCustomerGetMyProfileQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoCustomerGetMyProfileQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoCustomerGetMyProfileQuery>(CrescoCustomerGetMyProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoCustomerGetMyProfile', 'query');
+    },
+    crescoCustomerTransactionList(variables?: CrescoCustomerTransactionListQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoCustomerTransactionListQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoCustomerTransactionListQuery>(CrescoCustomerTransactionListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoCustomerTransactionList', 'query');
+    },
+    crescoGetDepositInfoByAgreementNumber(variables: CrescoGetDepositInfoByAgreementNumberQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoGetDepositInfoByAgreementNumberQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoGetDepositInfoByAgreementNumberQuery>(CrescoGetDepositInfoByAgreementNumberDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoGetDepositInfoByAgreementNumber', 'query');
+    },
+    crescoGetExternalCoinsRates(variables?: CrescoGetExternalCoinsRatesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CrescoGetExternalCoinsRatesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CrescoGetExternalCoinsRatesQuery>(CrescoGetExternalCoinsRatesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'crescoGetExternalCoinsRates', 'query');
+    },
+    getMe(variables?: GetMeQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetMeQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetMeQuery>(GetMeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getMe', 'query');
+    },
+    getUpcomingSevaPremEvents(variables?: GetUpcomingSevaPremEventsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetUpcomingSevaPremEventsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetUpcomingSevaPremEventsQuery>(GetUpcomingSevaPremEventsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUpcomingSevaPremEvents', 'query');
+    },
+    huobiGetData(variables?: HuobiGetDataQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<HuobiGetDataQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<HuobiGetDataQuery>(HuobiGetDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'huobiGetData', 'query');
+    },
+    metaforestAdminGetConfig(variables: MetaforestAdminGetConfigQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestAdminGetConfigQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestAdminGetConfigQuery>(MetaforestAdminGetConfigDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestAdminGetConfig', 'query');
+    },
+    metaforestGetInternalContractAbi(variables?: MetaforestGetInternalContractAbiQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestGetInternalContractAbiQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestGetInternalContractAbiQuery>(MetaforestGetInternalContractAbiDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestGetInternalContractAbi', 'query');
+    },
+    metaforestJobsList(variables?: MetaforestJobsListQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestJobsListQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestJobsListQuery>(MetaforestJobsListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestJobsList', 'query');
+    },
+    metaforestUserGetMyPush(variables?: MetaforestUserGetMyPushQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestUserGetMyPushQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestUserGetMyPushQuery>(MetaforestUserGetMyPushDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestUserGetMyPush', 'query');
+    },
+    metaforestUserGetMyState(variables?: MetaforestUserGetMyStateQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestUserGetMyStateQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestUserGetMyStateQuery>(MetaforestUserGetMyStateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestUserGetMyState', 'query');
+    },
+    metaforestUserGetPush(variables: MetaforestUserGetPushQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestUserGetPushQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestUserGetPushQuery>(MetaforestUserGetPushDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestUserGetPush', 'query');
+    },
+    metaforestUserGetState(variables: MetaforestUserGetStateQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestUserGetStateQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestUserGetStateQuery>(MetaforestUserGetStateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestUserGetState', 'query');
+    },
+    userCreate(variables: UserCreateQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserCreateQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UserCreateQuery>(UserCreateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'userCreate', 'query');
     }
   };
 }
@@ -841,29 +1671,71 @@ export function getSdkWithHooks(client: GraphQLClient, withWrapper: SdkFunctionW
   const genKey = <V extends Record<string, unknown> = Record<string, unknown>>(name: string, object: V = {} as V): SWRKeyInterface => [name, ...Object.keys(object).sort().map(key => object[key])];
   return {
     ...sdk,
-    useAbs(variables?: AbsQueryVariables, config?: SWRConfigInterface<AbsQuery, ClientError>) {
-      return useSWR<AbsQuery, ClientError>(genKey<AbsQueryVariables>('Abs', variables), () => sdk.abs(variables), config);
+    useCrescoAdminGetAdminList(variables?: CrescoAdminGetAdminListQueryVariables, config?: SWRConfigInterface<CrescoAdminGetAdminListQuery, ClientError>) {
+      return useSWR<CrescoAdminGetAdminListQuery, ClientError>(genKey<CrescoAdminGetAdminListQueryVariables>('CrescoAdminGetAdminList', variables), () => sdk.crescoAdminGetAdminList(variables), config);
     },
-    useAdminGetConfig(variables: AdminGetConfigQueryVariables, config?: SWRConfigInterface<AdminGetConfigQuery, ClientError>) {
-      return useSWR<AdminGetConfigQuery, ClientError>(genKey<AdminGetConfigQueryVariables>('AdminGetConfig', variables), () => sdk.adminGetConfig(variables), config);
+    useCrescoAdminGetCustomerList(variables?: CrescoAdminGetCustomerListQueryVariables, config?: SWRConfigInterface<CrescoAdminGetCustomerListQuery, ClientError>) {
+      return useSWR<CrescoAdminGetCustomerListQuery, ClientError>(genKey<CrescoAdminGetCustomerListQueryVariables>('CrescoAdminGetCustomerList', variables), () => sdk.crescoAdminGetCustomerList(variables), config);
     },
-    useGetInternalContractAbi(variables?: GetInternalContractAbiQueryVariables, config?: SWRConfigInterface<GetInternalContractAbiQuery, ClientError>) {
-      return useSWR<GetInternalContractAbiQuery, ClientError>(genKey<GetInternalContractAbiQueryVariables>('GetInternalContractAbi', variables), () => sdk.getInternalContractAbi(variables), config);
+    useCrescoAdminGetCustomerProfile(variables?: CrescoAdminGetCustomerProfileQueryVariables, config?: SWRConfigInterface<CrescoAdminGetCustomerProfileQuery, ClientError>) {
+      return useSWR<CrescoAdminGetCustomerProfileQuery, ClientError>(genKey<CrescoAdminGetCustomerProfileQueryVariables>('CrescoAdminGetCustomerProfile', variables), () => sdk.crescoAdminGetCustomerProfile(variables), config);
     },
-    useMfGetMyUserGameFullState(variables?: MfGetMyUserGameFullStateQueryVariables, config?: SWRConfigInterface<MfGetMyUserGameFullStateQuery, ClientError>) {
-      return useSWR<MfGetMyUserGameFullStateQuery, ClientError>(genKey<MfGetMyUserGameFullStateQueryVariables>('MfGetMyUserGameFullState', variables), () => sdk.mfGetMyUserGameFullState(variables), config);
+    useCrescoAdminGetLastPortfolioState(variables?: CrescoAdminGetLastPortfolioStateQueryVariables, config?: SWRConfigInterface<CrescoAdminGetLastPortfolioStateQuery, ClientError>) {
+      return useSWR<CrescoAdminGetLastPortfolioStateQuery, ClientError>(genKey<CrescoAdminGetLastPortfolioStateQueryVariables>('CrescoAdminGetLastPortfolioState', variables), () => sdk.crescoAdminGetLastPortfolioState(variables), config);
     },
-    useMfUserGetGameFullState(variables?: MfUserGetGameFullStateQueryVariables, config?: SWRConfigInterface<MfUserGetGameFullStateQuery, ClientError>) {
-      return useSWR<MfUserGetGameFullStateQuery, ClientError>(genKey<MfUserGetGameFullStateQueryVariables>('MfUserGetGameFullState', variables), () => sdk.mfUserGetGameFullState(variables), config);
+    useCrescoAdminTransactionCheckInEth(variables?: CrescoAdminTransactionCheckInEthQueryVariables, config?: SWRConfigInterface<CrescoAdminTransactionCheckInEthQuery, ClientError>) {
+      return useSWR<CrescoAdminTransactionCheckInEthQuery, ClientError>(genKey<CrescoAdminTransactionCheckInEthQueryVariables>('CrescoAdminTransactionCheckInEth', variables), () => sdk.crescoAdminTransactionCheckInEth(variables), config);
     },
-    useTest(variables?: TestQueryVariables, config?: SWRConfigInterface<TestQuery, ClientError>) {
-      return useSWR<TestQuery, ClientError>(genKey<TestQueryVariables>('Test', variables), () => sdk.test(variables), config);
+    useCrescoAdminTransactionList(variables?: CrescoAdminTransactionListQueryVariables, config?: SWRConfigInterface<CrescoAdminTransactionListQuery, ClientError>) {
+      return useSWR<CrescoAdminTransactionListQuery, ClientError>(genKey<CrescoAdminTransactionListQueryVariables>('CrescoAdminTransactionList', variables), () => sdk.crescoAdminTransactionList(variables), config);
     },
-    useUserGetPush(variables: UserGetPushQueryVariables, config?: SWRConfigInterface<UserGetPushQuery, ClientError>) {
-      return useSWR<UserGetPushQuery, ClientError>(genKey<UserGetPushQueryVariables>('UserGetPush', variables), () => sdk.userGetPush(variables), config);
+    useCrescoCustomerGetCalculatedBalance(variables?: CrescoCustomerGetCalculatedBalanceQueryVariables, config?: SWRConfigInterface<CrescoCustomerGetCalculatedBalanceQuery, ClientError>) {
+      return useSWR<CrescoCustomerGetCalculatedBalanceQuery, ClientError>(genKey<CrescoCustomerGetCalculatedBalanceQueryVariables>('CrescoCustomerGetCalculatedBalance', variables), () => sdk.crescoCustomerGetCalculatedBalance(variables), config);
     },
-    useUserGetState(variables: UserGetStateQueryVariables, config?: SWRConfigInterface<UserGetStateQuery, ClientError>) {
-      return useSWR<UserGetStateQuery, ClientError>(genKey<UserGetStateQueryVariables>('UserGetState', variables), () => sdk.userGetState(variables), config);
+    useCrescoCustomerGetMyProfile(variables?: CrescoCustomerGetMyProfileQueryVariables, config?: SWRConfigInterface<CrescoCustomerGetMyProfileQuery, ClientError>) {
+      return useSWR<CrescoCustomerGetMyProfileQuery, ClientError>(genKey<CrescoCustomerGetMyProfileQueryVariables>('CrescoCustomerGetMyProfile', variables), () => sdk.crescoCustomerGetMyProfile(variables), config);
+    },
+    useCrescoCustomerTransactionList(variables?: CrescoCustomerTransactionListQueryVariables, config?: SWRConfigInterface<CrescoCustomerTransactionListQuery, ClientError>) {
+      return useSWR<CrescoCustomerTransactionListQuery, ClientError>(genKey<CrescoCustomerTransactionListQueryVariables>('CrescoCustomerTransactionList', variables), () => sdk.crescoCustomerTransactionList(variables), config);
+    },
+    useCrescoGetDepositInfoByAgreementNumber(variables: CrescoGetDepositInfoByAgreementNumberQueryVariables, config?: SWRConfigInterface<CrescoGetDepositInfoByAgreementNumberQuery, ClientError>) {
+      return useSWR<CrescoGetDepositInfoByAgreementNumberQuery, ClientError>(genKey<CrescoGetDepositInfoByAgreementNumberQueryVariables>('CrescoGetDepositInfoByAgreementNumber', variables), () => sdk.crescoGetDepositInfoByAgreementNumber(variables), config);
+    },
+    useCrescoGetExternalCoinsRates(variables?: CrescoGetExternalCoinsRatesQueryVariables, config?: SWRConfigInterface<CrescoGetExternalCoinsRatesQuery, ClientError>) {
+      return useSWR<CrescoGetExternalCoinsRatesQuery, ClientError>(genKey<CrescoGetExternalCoinsRatesQueryVariables>('CrescoGetExternalCoinsRates', variables), () => sdk.crescoGetExternalCoinsRates(variables), config);
+    },
+    useGetMe(variables?: GetMeQueryVariables, config?: SWRConfigInterface<GetMeQuery, ClientError>) {
+      return useSWR<GetMeQuery, ClientError>(genKey<GetMeQueryVariables>('GetMe', variables), () => sdk.getMe(variables), config);
+    },
+    useGetUpcomingSevaPremEvents(variables?: GetUpcomingSevaPremEventsQueryVariables, config?: SWRConfigInterface<GetUpcomingSevaPremEventsQuery, ClientError>) {
+      return useSWR<GetUpcomingSevaPremEventsQuery, ClientError>(genKey<GetUpcomingSevaPremEventsQueryVariables>('GetUpcomingSevaPremEvents', variables), () => sdk.getUpcomingSevaPremEvents(variables), config);
+    },
+    useHuobiGetData(variables?: HuobiGetDataQueryVariables, config?: SWRConfigInterface<HuobiGetDataQuery, ClientError>) {
+      return useSWR<HuobiGetDataQuery, ClientError>(genKey<HuobiGetDataQueryVariables>('HuobiGetData', variables), () => sdk.huobiGetData(variables), config);
+    },
+    useMetaforestAdminGetConfig(variables: MetaforestAdminGetConfigQueryVariables, config?: SWRConfigInterface<MetaforestAdminGetConfigQuery, ClientError>) {
+      return useSWR<MetaforestAdminGetConfigQuery, ClientError>(genKey<MetaforestAdminGetConfigQueryVariables>('MetaforestAdminGetConfig', variables), () => sdk.metaforestAdminGetConfig(variables), config);
+    },
+    useMetaforestGetInternalContractAbi(variables?: MetaforestGetInternalContractAbiQueryVariables, config?: SWRConfigInterface<MetaforestGetInternalContractAbiQuery, ClientError>) {
+      return useSWR<MetaforestGetInternalContractAbiQuery, ClientError>(genKey<MetaforestGetInternalContractAbiQueryVariables>('MetaforestGetInternalContractAbi', variables), () => sdk.metaforestGetInternalContractAbi(variables), config);
+    },
+    useMetaforestJobsList(variables?: MetaforestJobsListQueryVariables, config?: SWRConfigInterface<MetaforestJobsListQuery, ClientError>) {
+      return useSWR<MetaforestJobsListQuery, ClientError>(genKey<MetaforestJobsListQueryVariables>('MetaforestJobsList', variables), () => sdk.metaforestJobsList(variables), config);
+    },
+    useMetaforestUserGetMyPush(variables?: MetaforestUserGetMyPushQueryVariables, config?: SWRConfigInterface<MetaforestUserGetMyPushQuery, ClientError>) {
+      return useSWR<MetaforestUserGetMyPushQuery, ClientError>(genKey<MetaforestUserGetMyPushQueryVariables>('MetaforestUserGetMyPush', variables), () => sdk.metaforestUserGetMyPush(variables), config);
+    },
+    useMetaforestUserGetMyState(variables?: MetaforestUserGetMyStateQueryVariables, config?: SWRConfigInterface<MetaforestUserGetMyStateQuery, ClientError>) {
+      return useSWR<MetaforestUserGetMyStateQuery, ClientError>(genKey<MetaforestUserGetMyStateQueryVariables>('MetaforestUserGetMyState', variables), () => sdk.metaforestUserGetMyState(variables), config);
+    },
+    useMetaforestUserGetPush(variables: MetaforestUserGetPushQueryVariables, config?: SWRConfigInterface<MetaforestUserGetPushQuery, ClientError>) {
+      return useSWR<MetaforestUserGetPushQuery, ClientError>(genKey<MetaforestUserGetPushQueryVariables>('MetaforestUserGetPush', variables), () => sdk.metaforestUserGetPush(variables), config);
+    },
+    useMetaforestUserGetState(variables: MetaforestUserGetStateQueryVariables, config?: SWRConfigInterface<MetaforestUserGetStateQuery, ClientError>) {
+      return useSWR<MetaforestUserGetStateQuery, ClientError>(genKey<MetaforestUserGetStateQueryVariables>('MetaforestUserGetState', variables), () => sdk.metaforestUserGetState(variables), config);
+    },
+    useUserCreate(variables: UserCreateQueryVariables, config?: SWRConfigInterface<UserCreateQuery, ClientError>) {
+      return useSWR<UserCreateQuery, ClientError>(genKey<UserCreateQueryVariables>('UserCreate', variables), () => sdk.userCreate(variables), config);
     }
   };
 }

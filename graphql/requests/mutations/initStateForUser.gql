@@ -1,3 +1,0 @@
-mutation initStateForUser($userUri: String!){
-    initStateForUser(userUri: $userUri)
-}

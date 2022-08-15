@@ -1,3 +1,0 @@
-mutation userClearPush($userUri: String!){
-    userClearPush(userUri: $userUri)
-}

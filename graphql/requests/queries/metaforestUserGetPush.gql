@@ -1,0 +1,10 @@
+query metaforestUserGetPush($userUri: String!){
+    metaforestUserGetPush(userUri: $userUri){
+        _id
+        createdAt
+        emotion
+        textEn
+        textRu
+        userUri
+    }
+}

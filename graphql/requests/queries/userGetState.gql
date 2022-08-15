@@ -1,3 +1,0 @@
-query userGetState($userUri: String!){
-    userGetState(userUri: $userUri)
-}

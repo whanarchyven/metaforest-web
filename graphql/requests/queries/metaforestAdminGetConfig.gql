@@ -1,0 +1,3 @@
+query metaforestAdminGetConfig($version: String!){
+    metaforestAdminGetConfig(version: $version)
+}
