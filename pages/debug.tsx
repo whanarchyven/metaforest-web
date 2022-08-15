@@ -43,7 +43,7 @@ const PageDebug = () => {
       ))}
       <p>
         {pushes.map((p) => (
-          <div>{p.textRu}</div>
+          <div key={p._id}>{p.textRu}</div>
         ))}
       </p>
     </div>

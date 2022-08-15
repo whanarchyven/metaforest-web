@@ -34,7 +34,7 @@ const Layout = (props: any) => {
       </div>
       <div className={"w-full h-14 fixed top-0"}>
         {state != undefined ? (
-          <TopMenu balance={state.carrotsBalance}></TopMenu>
+          <TopMenu balance={state?.carrotsBalance ?? 0}></TopMenu>
         ) : null}
       </div>
       <div className={"w-full h-20 fixed bottom-0"}>
