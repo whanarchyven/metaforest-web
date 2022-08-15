@@ -36,9 +36,9 @@ const Dashboard = (bunny: bunnyInterface) => {
             "w-16 h-16 -right-0 top-28 absolute green-gradient rounded-full flex flex-wrap justify-center content-center"
           }
         >
-          {state?.bunnyLevel && (
+          {state?.activeBunny?.baseParams?.level && (
             <p className={"w-full text-center font-bold text-white text-2xl"}>
-              {state?.bunnyLevel}
+              {state?.activeBunny?.baseParams?.level}
             </p>
           )}
           <p className={"text-white font-normal text-lg"}>level</p>
@@ -49,7 +49,7 @@ const Dashboard = (bunny: bunnyInterface) => {
               }
               onClick={() => {
                 sdk()
-                  .performAbiFunction({
+                  .metaforestPerformAbiFunction({
                     userUri: "telegram://test",
                     fn: "lvlUpRabbit",
                     params: {},
@@ -80,7 +80,11 @@ const Dashboard = (bunny: bunnyInterface) => {
           </div>
         </div>
         <div className={"w-20 h-32 absolute -left-3 top-44"}>
-          {state?.vit && <VitalityBar vitality={state.vit}></VitalityBar>}
+          {state?.calculatedBaseParams?.vit && (
+            <VitalityBar
+              vitality={state?.calculatedBaseParams?.vit}
+            ></VitalityBar>
+          )}
           <div
             className={
               "w-3/4 mt-4 h-10 rounded-full green-gradient flex justify-center items-center"
@@ -127,7 +131,7 @@ const Dashboard = (bunny: bunnyInterface) => {
         <div className={"col-start-4 col-end-9"}>
           {state?.maxJobEnergy && (
             <ProgressBar
-              progress={state.jobEnergy}
+              progress={state.jobEnergy ?? 0}
               limit={state.maxJobEnergy}
             ></ProgressBar>
           )}
