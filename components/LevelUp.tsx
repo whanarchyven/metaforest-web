@@ -7,17 +7,18 @@ import StatRequirementBar from "./UI/StatRequirementBar";
 import TaskChecker from "./UI/TaskChecker";
 import BunnyGeneration from "./BunnyGeneration";
 import ProgressBar from "./UI/ProgressBar";
+import {MetaforestNftInfo} from "../graphql/sdk/graphql";
 
 interface LevelUpInterface {
-    bunny: bunnyInterface,
+    bunny: MetaforestNftInfo,
     togglePop: () => any,
-
+    skillpoints:number,
 }
 
 
-const LevelUp = ({bunny, togglePop}: LevelUpInterface) => {
+const LevelUp = ({bunny, togglePop,skillpoints}: LevelUpInterface) => {
 
-    const [skillPoints, setSkillPoints] = useState(3);
+    const [skillPoints, setSkillPoints] = useState(skillpoints);
     const stats: { stat_name: 'str' | 'dex' | 'vit' | 'int' | 'krm', stat_value: number }[] = [{
         stat_name: 'str',
         stat_value: 0
@@ -112,26 +113,26 @@ const LevelUp = ({bunny, togglePop}: LevelUpInterface) => {
             </div>
             <div className={'grid grid-cols-2 pt-14 px-4'}>
                 <div className={'col-start-1 flex justify-center items-center'}>
-                    <div className={'w-[308px] scale-125 pt-0 h-[300px] mx-auto'}>
-                        <BunnyGeneration bunny={bunny}></BunnyGeneration>
-                    </div>
+                    {/*<div className={'w-[308px] scale-125 pt-0 h-[300px] mx-auto'}>*/}
+                    {/*    <BunnyGeneration bunny={bunny}></BunnyGeneration>*/}
+                    {/*</div>*/}
                 </div>
                 <div className={'col-start-2'}>
                     <p className={'font-bold text-4xl'}>Level up!</p>
-                    <p className={'font-bold text-2xl'}>{bunny.bunny.name}</p>
-                    <div className={'w-full flex justify-around items-center mt-5'}>
+                    <p className={'font-bold text-2xl'}>{bunny.uid}</p>
+                    {bunny.baseParams?.level?<div className={'w-full flex justify-around items-center mt-5'}>
                         <div className={'w-16 h-16 flex justify-center items-center rounded-full green-gradient'}>
-                            <p className={'text-3xl font-bold text-center leading-[50%] text-white'}>{bunny.bunny.lvl}<br/><span
+                            <p className={'text-3xl font-bold text-center leading-[50%] text-white'}>{bunny.baseParams?.level}<br/><span
                                 className={'text-lg text-center'}>level</span></p>
                         </div>
                         <div className={'relative w-10 h-10'}>
                             <Image src={'/images/level_up_arrow.svg'} layout={'fill'}></Image>
                         </div>
                         <div className={'w-16 h-16 flex justify-center items-center rounded-full green-gradient'}>
-                            <p className={'text-3xl font-bold text-center leading-[50%] text-white'}>{bunny.bunny.lvl + 1}<br/><span
+                            <p className={'text-3xl font-bold text-center leading-[50%] text-white'}>{bunny.baseParams?.level+1}<br/><span
                                 className={'text-lg text-center'}>level</span></p>
                         </div>
-                    </div>
+                    </div>:null}
                     <p className={'font-bold text-xl mt-5'}>You have:</p>
                     <div className={'w-full h-14 rounded-full green-gradient p-1 flex items-center'}>
                         <div
@@ -160,8 +161,8 @@ const LevelUp = ({bunny, togglePop}: LevelUpInterface) => {
                             <p className={'ml-3 w-12'}>{item.stat_name.toUpperCase()}</p>
                         </div>
                         <div className={'w-52 h-full'}>
-                            <ProgressBar progress={bunny.bunny.stats[item.stat_name] + item.stat_value}
-                                         limit={10}></ProgressBar>
+                            {bunny.baseParams?<ProgressBar progress={bunny.baseParams[item.stat_name] + item.stat_value}
+                                                           limit={10}></ProgressBar>:null}
                         </div>
                         <div
                             className={'w-7 h-7 rounded-full bg-black text-white flex justify-center items-center font-bold'}
