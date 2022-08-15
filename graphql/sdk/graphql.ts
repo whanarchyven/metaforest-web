@@ -408,8 +408,9 @@ export enum MetaforestNftCollectionsEnum {
 export type MetaforestNftInfo = {
   __typename?: 'MetaforestNftInfo';
   baseParams?: Maybe<MetaforestBaseParams>;
+  bodyLayers?: Maybe<Array<Scalars['String']>>;
   bunnyGens?: Maybe<MetaforestBunnyGens>;
-  gensTrait?: Maybe<Scalars['JSON']>;
+  deployedNftWithTrait?: Maybe<NftWithTrait>;
   idx: Scalars['Int'];
   images?: Maybe<NftImages>;
   itemWornOnBunnyIdx?: Maybe<Scalars['Int']>;
@@ -631,6 +632,20 @@ export type NftImages = {
   web?: Maybe<Scalars['String']>;
 };
 
+export type NftTraitAttribute = {
+  __typename?: 'NftTraitAttribute';
+  trait_type: Scalars['String'];
+  value: Scalars['String'];
+};
+
+export type NftWithTrait = {
+  __typename?: 'NftWithTrait';
+  attributes: Array<NftTraitAttribute>;
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  name: Scalars['String'];
+};
+
 export type OfflineRoom = {
   __typename?: 'OfflineRoom';
   addressShort: Scalars['String'];
@@ -693,7 +708,7 @@ export type Query = {
   getUpcomingSevaPremEvents: Array<EduProductEventInstance>;
   huobiGetData?: Maybe<Scalars['String']>;
   metaforestAdminGetConfig: Scalars['JSON'];
-  metaforestGetInternalContractAbi?: Maybe<Scalars['JSON']>;
+  metaforestGetInternalContractAbi?: Maybe<Array<Scalars['JSON']>>;
   metaforestJobsList: Array<MetaforestJob>;
   metaforestUserGetMyPush: Array<MetaforestPushNotification>;
   metaforestUserGetMyState: Scalars['JSON'];
@@ -804,6 +819,7 @@ export type User = {
 export type UserJwtPayload = {
   __typename?: 'UserJWTPayload';
   displayName: Scalars['String'];
+  email?: Maybe<Scalars['String']>;
   rolesJWT?: Maybe<Array<Scalars['String']>>;
   userUri: Scalars['String'];
 };
@@ -1005,7 +1021,7 @@ export type CrescoGetExternalCoinsRatesQuery = { __typename?: 'Query', crescoGet
 export type GetMeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetMeQuery = { __typename?: 'Query', getMe?: { __typename?: 'UserJWTPayload', displayName: string, rolesJWT?: Array<string> | null, userUri: string } | null };
+export type GetMeQuery = { __typename?: 'Query', getMe?: { __typename?: 'UserJWTPayload', displayName: string, email?: string | null, rolesJWT?: Array<string> | null, userUri: string } | null };
 
 export type GetUpcomingSevaPremEventsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1029,7 +1045,7 @@ export type MetaforestGetInternalContractAbiQueryVariables = Exact<{
 }>;
 
 
-export type MetaforestGetInternalContractAbiQuery = { __typename?: 'Query', metaforestGetInternalContractAbi?: any | null };
+export type MetaforestGetInternalContractAbiQuery = { __typename?: 'Query', metaforestGetInternalContractAbi?: Array<any> | null };
 
 export type MetaforestJobsListQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1346,6 +1362,7 @@ export const GetMeDocument = gql`
     query getMe {
   getMe {
     displayName
+    email
     rolesJWT
     userUri
   }
