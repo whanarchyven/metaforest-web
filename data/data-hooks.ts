@@ -58,7 +58,10 @@ const state = {
   vit: 1,
 };
 export const useUserGameFullState = () => {
-  const { data, mutate } = sdk().useMetaforestUserGetMyState();
+  const { data, mutate } = sdk().useMetaforestUserGetMyState(
+    {},
+    { dedupingInterval: 5000 }
+  );
 
   return [data?.metaforestUserGetMyState, mutate] as [
     MetaforestUserGameFullStatePayload,
