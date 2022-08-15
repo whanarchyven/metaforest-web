@@ -1,0 +1,3 @@
+query metaforestGetInternalContractAbi($name: MetaforestAbiEnum){
+    metaforestGetInternalContractAbi(name: $name)
+}

@@ -1,3 +1,0 @@
-query adminGetConfig($version: String!){
-    adminGetConfig(version: $version)
-}

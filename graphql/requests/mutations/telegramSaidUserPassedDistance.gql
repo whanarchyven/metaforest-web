@@ -1,3 +1,0 @@
-mutation telegramSaidUserPassedDistance($meters: Float, $time: Float){
-    telegramSaidUserPassedDistance(meters: $meters, time: $time)
-}
