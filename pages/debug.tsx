@@ -1,19 +1,16 @@
-import { useJobsList, usePush, useUserGameFullState } from "../data/data-hooks";
+import {
+  canApplyToJob,
+  takeJob,
+  useJobsList,
+  usePush,
+  useUserGameFullState,
+} from "../data/data-hooks";
 import { sdk } from "../graphql/sdk";
 
 const PageDebug = () => {
   const [state, mutate] = useUserGameFullState();
   const [jobs] = useJobsList();
   const [pushes] = usePush();
-  const takeJob = (jobSlug: string) => {
-    return sdk().metaforestUserTakeJob({ jobSlug });
-  };
-  const canApplyToJob = (jobSlug: string) => {
-    return sdk().metaforestPerformMyAbiFunction({
-      params: { jobSlug },
-      fn: "getCanApplyToJobSlug",
-    });
-  };
 
   return (
     <div className={"p-10"}>
