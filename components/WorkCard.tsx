@@ -36,7 +36,7 @@ const WorkCard = ({workItem}:WorkCardInterface) => {
                         <div className={'absolute left-0 top-0'}>
                             <div className={'w-12 h-12 green-gradient rounded-full inline-block align-top'}></div>
                             <div className={'inline-block align-top'}>
-                                <p className={'inline-block ml-4 font-bold w-full text-xl'}>{workItem.title.split(' ')[0]+' '+workItem.title.split(' ')[1]}</p>
+                                <p className={'inline-block ml-4 font-bold w-[70%] text-xl'}>{workItem.title.split(' ')[0]+' '+workItem.title.split(' ')[1]}</p>
                                 <p className={'inline-block ml-4 font-bold w-3/5 text-sm opacity-50'}>{workItem.type=='STEPS'?'M-2-E':'Social'}</p>
                             </div>
                         </div>
@@ -53,15 +53,16 @@ const WorkCard = ({workItem}:WorkCardInterface) => {
                                 <Image src={'/images/carrot_icon_white.svg'} layout={'fill'}></Image>
                             </div>
                         </div>
-                        {/*<div className={'w-16 h-8 rounded-full top-0 right-0 absolute bg-black rounded-full flex justify-center items-center'}>*/}
-                        {/*    <p className={'text-white inline-block text-xl font-medium'}>{workItem.workItem.type}</p>*/}
-                        {/*</div>*/}
+                        <div className={'w-24 h-8 rounded-full top-0 right-0 absolute bg-black rounded-full flex justify-center items-center'}>
+                            <p className={'text-white inline-block text-xl font-medium'}>{workItem.type}</p>
+                        </div>
                     </div>
                 </div>
             </div>
             {workPopOpen?<WorkPopUp workItem={workItem} togglePop={toggleWorkPop} />:null}
         </div>
     );
+
 };
 
 export default WorkCard;

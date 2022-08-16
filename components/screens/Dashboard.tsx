@@ -67,6 +67,7 @@ const Dashboard = (bunny: bunnyInterface) => {
                     className={
                         "w-16 h-16 -right-0 top-72 absolute green-gradient rounded-full flex flex-wrap justify-center content-center p-4"
                     }
+                    onClick={()=>{toggleLootPop()}}
                 >
                     <div className={"w-full h-full relative"}>
                         <Image src={"/images/lootbox_icon.svg"} layout={"fill"}></Image>
@@ -76,7 +77,7 @@ const Dashboard = (bunny: bunnyInterface) => {
                             "absolute -right-0 -top-2 w-6 h-6 bg-white rounded-full flex justify-center content-center"
                         }
                     >
-                        <p className={"text-center text-xl text-green-500"}>3</p>
+                        <p className={"text-center text-xl text-green-500"}>{state?.unopenedLootBoxes?.length}</p>
                     </div>
                 </div>
                 <div className={"w-20 h-32 absolute -left-3 top-44"}>
@@ -144,7 +145,7 @@ const Dashboard = (bunny: bunnyInterface) => {
                 <LevelUp skillpoints={state.skillPoints} bunny={state.activeBunny} togglePop={toggleLevelPop}/>
             ) : null}
             {lootboxPopOpen?(
-                <Lootboxes togglePop={toggleLootPop} />
+                <Lootboxes lootboxes={state.unopenedLootBoxes} togglePop={toggleLootPop} />
             ) : null}
         </div>
     );

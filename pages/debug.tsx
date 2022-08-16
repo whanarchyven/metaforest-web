@@ -24,7 +24,7 @@ const PageDebug = () => {
       </p>
       <p>Задания</p>
       {jobs.map((job) => (
-        <div key={job.slug} className={"my-1"}>
+        <div key={job.slug  } className={"my-1"}>
           <p>{job.title}</p>
           <p className={"text-xs"}>{job.description}</p>
           <button
@@ -43,7 +43,7 @@ const PageDebug = () => {
       ))}
       <p>
         {pushes.map((p) => (
-          <div>{p.textRu}</div>
+          <div key={p._id}>{p.textRu}</div>
         ))}
       </p>
     </div>

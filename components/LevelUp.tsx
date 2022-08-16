@@ -145,7 +145,7 @@ const LevelUp = ({bunny, togglePop,skillpoints}: LevelUpInterface) => {
             </div>
             <div className={'w-full'}>
                 {upStats.map(item => {
-                    return <div className={'w-full h-6 flex justify-around items-center mt-5'}>
+                    return <div className={'w-full h-6 flex justify-around items-center mt-5'} key={item.stat_name}>
                         <div
                             className={'w-7 h-7 rounded-full bg-black text-white flex justify-center items-center font-bold'}
                             onClick={() => {decreaseStat(item.stat_name)

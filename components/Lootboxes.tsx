@@ -2,22 +2,40 @@ import React, {useEffect, useState} from 'react';
 import ItemCard from "./ItemCard";
 import Image from "next/image";
 import {useTime} from "react-timer-hook";
+import {useUserGameFullState} from "../data/data-hooks";
+import {LootBox, Maybe, Scalars} from "../graphql/sdk/graphql";
+import LootboxPop from "./LootboxPop";
 
 interface lootboxesInterface {
     togglePop: () => any
+    lootboxes:LootBox[];
 }
 
 const Lootboxes = ({togglePop}: lootboxesInterface) => {
 
-    const lootboxes = [
-        {id: 2134,rarity:'common'},
-        {id: 2135,rarity:'common'},
-        {id: 2136,rarity:'common'},
-        {id: 2137,rarity:'common'},
-        {id: 2138,rarity:'common'}]
+    const lootboxes:LootBox[]=[
+        {
+            id:'32',
+            openAfterDate: '19:08:2022',
+            probabilityOfLoot: 1,
+            slugEnum:'12',
+        },
+        {
+            id:'22',
+            openAfterDate: '19:08:2022',
+            probabilityOfLoot: 1,
+            slugEnum:'12',
+        },
 
+    ]
 
+    const [choosenLootBox,setChoosenLootBox]=useState(lootboxes[0]);
 
+    const [lootBoxPopOpen,setLootBoxPopOpen]=useState(false)
+
+    const toogleLootBoxPop=()=>{
+        setLootBoxPopOpen(!lootBoxPopOpen)
+    }
 
     return (
         <div
@@ -36,7 +54,7 @@ const Lootboxes = ({togglePop}: lootboxesInterface) => {
                 className={'gap-y-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 overflow-y-scroll gap-2 h-full pb-24'}>
                 {lootboxes.map(item => {
                     return <div className={'w-full h-72 mt-5'} key={item.id}>
-                        <p className={'font-bold w-full text-2xl opacity-50 text-center'}>№ {item.id.toString().padStart(6, '0')}</p>
+                        {item.id?<p className={'font-bold w-full text-2xl opacity-50 text-center'}>№ {item.id.toString().padStart(6, '0')}</p>:null}
                         <div className={'w-48 h-48 relative'}>
                             <div className={'absolute top-0 w-full h-full'}>
                                 <Image src={'/images/bg_sprite.svg'} layout={'fill'}></Image>
@@ -50,12 +68,13 @@ const Lootboxes = ({togglePop}: lootboxesInterface) => {
                             in 00:59:59
                         </button>
                         <div className={'grid grid-cols-2 gap-3 h-9 mt-3'}>
-                            <button className={'rounded-full bg-black text-white'}>Open</button>
+                            <button className={'rounded-full bg-black text-white'} onClick={()=>{setChoosenLootBox(item);toogleLootBoxPop()}}>Open</button>
                             <button className={'rounded-full bg-black text-white'}>Sell</button>
                         </div>
                     </div>
                 })}
             </div>
+            {lootBoxPopOpen?<LootboxPop lootbox={choosenLootBox} togglePop={toogleLootBoxPop}></LootboxPop>:null}
         </div>
     );
 };

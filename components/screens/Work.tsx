@@ -54,7 +54,7 @@ const Work = () => {
                             // // }));
                             // console.log();
 
-                            return <div className={'h-32'} key={item.title}>
+                            return <div className={'h-36'} key={item.title}>
                                 <WorkCard workItem={item}></WorkCard>
                             </div>
                         }

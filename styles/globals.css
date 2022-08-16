@@ -90,6 +90,9 @@
     .deactive-gradient{
         background-color: #E1EAFF;
     }
+    .walk-gradient{
+        background: linear-gradient(143.04deg, #FFFFFF 10.84%, rgba(255, 255, 255, 0) 92.93%);
+    }
 
 
 

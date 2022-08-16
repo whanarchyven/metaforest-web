@@ -56,7 +56,7 @@ const WorkPopUp = ({workItem, togglePop}:WorkPopUpInterface) => {
                     </div>
                 </div>
                 <div className={'h-16 relative w-full mt-3 rounded-full'}>
-                    {/*<TaskChecker workItem={workItem}/>*/}
+                    <TaskChecker workItem={workItem}/>
                 </div>
                 <button className={'w-3/4 bg-black rounded-full h-16 mt-8 text-white text-center text-2xl font-bold'} onClick={()=>{togglePop();}}>
                     Take job!
