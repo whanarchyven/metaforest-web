@@ -44,7 +44,11 @@ const TabBar = ({ currentTab }: tabBarInterface) => {
         return (
           <Link className={'relative'} href={'/' + item} key={item}>
             <div className={'relative'}>
-              <Image src={'/images/tabs/' + item + active + '.svg'} layout={'fill'}></Image>
+              <Image
+                alt=""
+                src={'/images/tabs/' + item + active + '.svg'}
+                layout={'fill'}
+              ></Image>
             </div>
           </Link>
         );
