@@ -4,13 +4,13 @@ import { equipmentItem } from "./interfaces/equipmentItem";
 import Image from "next/image";
 import { firstLetterUpperCase } from "./firstLetterUpperCase";
 import { bunnyInterface } from "./interfaces/bunnyInterface";
+
 interface ItemCardInterface {
   choosenType: "left" | "right" | "necklace" | "faces" | "clothes" | "hats" | "overhead" | "ears",
   items: equipmentItem[],
   togglePop: () => any,
   bunny: bunnyInterface
 }
-
 
 const EquipmentPopUp = ({ items, togglePop, choosenType, bunny }: ItemCardInterface) => {
   return (
