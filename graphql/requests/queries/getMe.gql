@@ -1,6 +1,7 @@
 query getMe{
     getMe{
         displayName
+        email
         rolesJWT
         userUri
     }

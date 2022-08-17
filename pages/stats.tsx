@@ -44,14 +44,14 @@ const StatsPage = () => {
           <div className={"col-start-1 col-end-3"}>
             {data.currentJob && data.currentJob.job?.approxMeters ? (
               <ProgressBar
-                progress={data.currentJob?.metersPassed}
+                progress={Math.round(data.currentJob?.metersPassed)}
                 limit={data.currentJob?.job?.approxMeters}
               ></ProgressBar>
             ) : null}
           </div>
           {data.currentJob ? (
             <p className={"font-bold text-white"}>
-              {data.currentJob?.metersPassed}/
+              {Math.round(data.currentJob?.metersPassed)}/
               {data.currentJob?.job?.approxMeters} m
             </p>
           ) : null}
