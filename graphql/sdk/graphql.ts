@@ -301,6 +301,7 @@ export type Idea_MetaforestGlobalGameSettings = {
 
 export type Location = {
   __typename?: 'Location';
+  horizontalAccuracy?: Maybe<Scalars['Float']>;
   lat: Scalars['Float'];
   lon: Scalars['Float'];
   timestamp?: Maybe<Scalars['Date']>;
@@ -466,13 +467,10 @@ export type MetaforestUserStepsCounter = {
   avgSpeed?: Maybe<Scalars['Float']>;
   botChatId?: Maybe<Scalars['Float']>;
   botMessageId?: Maybe<Scalars['Float']>;
-  delta?: Maybe<Scalars['Float']>;
-  latitudeAvg?: Maybe<Scalars['Float']>;
-  latitudeLast10?: Maybe<Array<Maybe<Scalars['Float']>>>;
-  locationsAveraged10: Array<Location>;
-  locationsLast10: Array<Location>;
-  longitudeAvg?: Maybe<Scalars['Float']>;
-  longitudeLast10?: Maybe<Array<Maybe<Scalars['Float']>>>;
+  horizontalAccuracy?: Maybe<Scalars['Float']>;
+  lastAcceptedLat?: Maybe<Scalars['Float']>;
+  lastAcceptedLon?: Maybe<Scalars['Float']>;
+  metersPassed?: Maybe<Scalars['Float']>;
   rawLocations: Array<Location>;
   secondsElapsed?: Maybe<Scalars['Float']>;
   timestamp?: Maybe<Scalars['Date']>;

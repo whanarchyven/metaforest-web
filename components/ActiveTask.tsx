@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 import Image from "next/image";
-import styles from '../styles/Home.module.css';
-import {activeTask} from "./interfaces/activeTask";
+import styles from "../styles/Home.module.css";
+import { activeTask } from "./interfaces/activeTask";
 import ProgressBar from "./UI/ProgressBar";
 import TaskChecker from "./UI/TaskChecker";
 import {sdk} from "../graphql/sdk";
