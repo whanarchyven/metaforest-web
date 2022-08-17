@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from "next/image";
+
 interface statRequirementBar {
   stat_value: any,
   stat_name: string,
@@ -27,7 +28,11 @@ export const StatRequirementBar = ({ stat_value, stat_name }: statRequirementBar
 
       </div>
       <div className={'absolute w-3/5 h-3/5'}>
-        <Image src={'/images/stats_icons/' + stat_name + '_white.svg'} layout={'fill'}></Image>
+        <Image
+          alt=""
+          src={'/images/stats_icons/' + stat_name + '_white.svg'}
+          layout={'fill'}
+        ></Image>
       </div>
     </div>
     <p className={'justify-self-end ml-0.5 text-white font-bold'}>{stat_value}</p>
