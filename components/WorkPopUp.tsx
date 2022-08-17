@@ -23,6 +23,7 @@ const WorkPopUp = ({ workItem, togglePop }: WorkPopUpInterface) => {
       <div className={"w-full h-60 relative rounded-b-2xl"}>
         <div className={"w-full h-full absolute top-0"}>
           <Image
+            alt=""
             src={"/images/work_module/backgrounds/" + workItem.type + ".png"}
             layout={"fill"}
             className={"rounded-b-3xl"}
