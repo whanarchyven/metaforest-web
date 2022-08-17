@@ -27,10 +27,14 @@ const StatsPage = () => {
         <p className={"text-3xl mt-5 font-bold w-full text-center"}>Walking</p>
         <div className={"w-40 h-40 flex justify-center items-center relative"}>
           <div className={"w-full h-full absolute top-0 left-0"}>
-            <Image src={"/images/bg_sprite.svg"} layout={"fill"}></Image>
+            <Image
+              alt=""
+              src={"/images/bg_sprite.svg"} layout={"fill"}
+            ></Image>
           </div>
           <div className={"w-3/5 h-3/5 absolute"}>
             <Image
+              alt="steps"
               src={"/images/work_module/icons/STEPS_black.svg"}
               layout={"fill"}
             ></Image>
@@ -60,6 +64,7 @@ const StatsPage = () => {
             <p className={"font-bold text-white inline-block"}>2.1/3</p>
             <div className={"w-5 h-5 relative ml-2 inline-block"}>
               <Image
+                alt=""
                 src={"/images/stats_icons/vit_white.svg"}
                 layout={"fill"}
               ></Image>
@@ -96,6 +101,7 @@ const StatsPage = () => {
             ) : null}
             <div className={"w-5 h-5 relative ml-2 inline-block"}>
               <Image
+                alt="carrot"
                 src={"/images/carrot_icon_white.svg"}
                 layout={"fill"}
               ></Image>
