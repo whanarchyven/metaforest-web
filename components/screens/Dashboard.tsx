@@ -40,7 +40,7 @@ const Dashboard = (bunny: bunnyInterface) => {
             <div className={"w-full h-fit absolute top-0 bunny-generation-outside"}>
                 <div className={"w-full h-full bunny-generation-inside"}>
                     <div className={"w-[308px] h-[445px] mx-auto"}>
-                        <BunnyGeneration bunny={bunny}></BunnyGeneration>
+                        {state.activeBunny?.images?.transparentBg?<BunnyGeneration base_image={state.activeBunny?.images?.transparentBg}></BunnyGeneration>:null}
                     </div>
                 </div>
             </div>
@@ -131,32 +131,19 @@ const Dashboard = (bunny: bunnyInterface) => {
                 </div>
                 <p className={"col-start-9 col-end-11 justify-self-center"}>3/12</p>
             </div>
-            <div className={"relative w-full gap-4 px-6 py-4 mt-3 grid grid-cols-10"}>
-                <p className={"col-start-1 col-end-4 justify-self-center"}>Max/day</p>
-                <div className={"col-start-4 col-end-9"}>
-                    <ProgressBar progress={3} limit={12}></ProgressBar>
-                </div>
-                <p className={"col-start-9 col-end-11 justify-self-center"}>3/12</p>
-            </div>
-            <div className={"relative w-full gap-4 px-6 py-4 mt-3 grid grid-cols-10"}>
-                <p className={"col-start-1 col-end-4 justify-self-center"}>Max/day</p>
-                <div className={"col-start-4 col-end-9"}>
-                    <ProgressBar progress={3} limit={12}></ProgressBar>
-                </div>
-                <p className={"col-start-9 col-end-11 justify-self-center"}>3/12</p>
-            </div>
+
             {state?.jobEnergy && state.maxJobEnergy != undefined ? (
                 <div className={"relative w-full gap-4 px-6 py-4 mt-3 grid grid-cols-10"}>
                     <p className={"col-start-1 col-end-4 justify-self-center"}>Energy</p>
                     <div className={"col-start-4 col-end-9"}>
                         <ProgressBar
-                            progress={state.jobEnergy}
-                            limit={state.maxJobEnergy}
+                            progress={Math.round(state.jobEnergy)}
+                            limit={Math.round(state.maxJobEnergy)}
                         ></ProgressBar>
                     </div>
                     {state?.maxJobEnergy && (
                         <p className={"col-start-9 col-end-11 justify-self-center"}>
-                            {state.jobEnergy}/{state.maxJobEnergy}
+                            {Math.round(state.jobEnergy)}/{Math.round(state.maxJobEnergy)}
                         </p>
                     )}
                 </div>

@@ -6,6 +6,7 @@ import {StatTab} from "../UI/StatTab";
 import EquipmentPopUp from "../EquipmentPopUp";
 import {equipmentItem} from "../interfaces/equipmentItem";
 import StatPop from "../StatPop";
+import {useUserGameFullState} from "../../data/data-hooks";
 
 interface equipmentInterface {
     bunny: bunnyInterface,
@@ -39,6 +40,10 @@ const Equipment = ({bunny}:equipmentInterface) => {
         setStatOpen(!statOpen);
     }
 
+
+    const [state,mutate]=useUserGameFullState()
+
+
     return (
         <div className={'grid grid-cols-1 grid-rows-2 auto-rows-max w-full h-[100vh]'}>
             <div className={' grid grid-cols-7'}>
@@ -66,7 +71,7 @@ const Equipment = ({bunny}:equipmentInterface) => {
                 </div>
                 <div className={'col-start-3 col-end-6 flex justify-center items-center '}>
                     <div className={'h-52 w-36 absolute sm:w-48 scale-[1.6] sm:scale-100 sm:w-72 sm:top-0 sm:h-96'}>
-                        <BunnyGeneration bunny={bunny}></BunnyGeneration>
+                        {state.activeBunny?.images?.transparentBg?<BunnyGeneration base_image={state.activeBunny?.images?.transparentBg}></BunnyGeneration>:null}
                     </div>
                 </div>
                 <div className={'grid gap-4 col-start-6 grid-rows-4 col-end-8 '}>
@@ -94,7 +99,7 @@ const Equipment = ({bunny}:equipmentInterface) => {
             </div>
             <div className={'flex mt-9 flex-wrap justify-center'}>
                 <div className={''}>
-                    <p className={'text-4xl font-bold inline-block align-middle mt-0 mb-2'}>{bunny.bunny.name}</p>
+                    <p className={'text-4xl font-bold inline-block align-middle mt-0 mb-2'}>Test Bunny</p>
                     <div className={'w-12 ml-3 h-12 green-gradient rounded-full inline-flex flex-wrap justify-center items-center align-middle'}>
                         <p className={'text-black leading-[60%] w-full text-xl text-center font-bold'}>{bunny.bunny.lvl}<br/><span className={'text-sm'}>level</span></p>
                         {/*<p className={'text-white text-sm leading-[1%] font-bold'}>level</p>*/}
@@ -113,7 +118,7 @@ const Equipment = ({bunny}:equipmentInterface) => {
                                     </p>
                                 </div>
                                 <div className={'col-start-2 col-end-5 rounded-full'}>
-                                    <StatTab stat_name={stat.id} stat_value={bunny.bunny.stats[stat.id]}/>
+                                    {state.activeBunny?.baseParams&&state.activeBunny?.baseParams[stat.id]?<StatTab stat_name={stat.id} stat_value={state.activeBunny?.baseParams[stat.id]}/>:null}
                                 </div>
                                 <div className={'col-start-5 col-end-6 bg-black rounded-full h-full flex justify-center items-center cursor-pointer'} onClick={()=>{setCurrentStat(stat.id);toggleStat()}}>
                                     <p className={'text-white font-bold text-[0.7em]'}>More</p>

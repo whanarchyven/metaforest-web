@@ -20,12 +20,21 @@ const TabSwitcher = ({tabs,rows,activeTab,switchTab}:tabSwitcherInterface) => {
 
         return item[0].toUpperCase() + item.slice(1);
     }
+
+    const repeater=(quantity:number)=>{
+        let string=''
+        for(let i=0;i<quantity;i++){
+            string+='1fr '
+        }
+        return string;
+    }
+
     gridCalculate();
     useEffect(()=>{
         gridCalculate();
     })
     return (
-        <div className={'w-full h-full bg-white rounded-full grid gap-2 '+gridClass}>
+        <div style={{gridTemplateColumns:repeater(tabs.length)}} className={'w-full h-full bg-white rounded-full grid gap-2 '+gridClass}>
             {tabs.map(item=>{
                 if(item==activeTab){
                     return <div className={'green-gradient rounded-full flex justify-center items-center'} key={item}><p>{ucFirst(item)}</p></div>
