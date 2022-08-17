@@ -62,7 +62,7 @@ const StatsPage = () => {
         <div className={"w-full h-6 gap-4 grid grid-cols-3"}>
           <div className={"col-start-1 col-end-3"}>
             <ProgressBar
-              progress={data.jobEnergy ?? 0}
+              progress={parseFloat(data?.jobEnergy?.toFixed(1) ?? "0") ?? 0}
               limit={data.maxJobEnergy ?? 1}
             />
           </div>
