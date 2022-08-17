@@ -41,6 +41,7 @@ const WorkPopUp = ({ workItem, togglePop }: WorkPopUpInterface) => {
           >
             <div className={"w-3/5 h-3/5 relative"}>
               <Image
+                alt=""
                 src={"/images/work_module/icons/" + workItem.type + ".svg"}
                 layout={"fill"}
               ></Image>
@@ -57,6 +58,7 @@ const WorkPopUp = ({ workItem, togglePop }: WorkPopUpInterface) => {
           >
             <div className={"w-3/5 h-3/5 relative"}>
               <Image
+                alt=""
                 src={
                   "/images/work_module/icons/" + workItem.type + "_black.svg"
                 }
@@ -100,7 +102,11 @@ const WorkPopUp = ({ workItem, togglePop }: WorkPopUpInterface) => {
               {workItem.carrotsForApproxMeters}
             </p>
             <div className={"w-6 h-6 relative opacity-50 ml-2"}>
-              <Image src={"/images/carrot_icon.svg"} layout={"fill"}></Image>
+              <Image
+                alt=""
+                src={"/images/carrot_icon.svg"}
+                layout={"fill"}
+              ></Image>
             </div>
           </div>
         </div>
@@ -128,7 +134,11 @@ const WorkPopUp = ({ workItem, togglePop }: WorkPopUpInterface) => {
         }}
       >
         <div className={"w-5 h-5 relative"}>
-          <Image src={"/images/popup_arrow.svg"} layout={"fill"}></Image>
+          <Image
+            alt=""
+            src={"/images/popup_arrow.svg"}
+            layout={"fill"}
+          ></Image>
         </div>
       </div>
     </div>
