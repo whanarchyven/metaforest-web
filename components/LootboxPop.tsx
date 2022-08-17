@@ -5,11 +5,11 @@ import Image from "next/image";
 import { bunnyInterface } from "./interfaces/bunnyInterface";
 import { marketplaceItem } from "./interfaces/marketplaceItem";
 import { LootBox } from "../graphql/sdk/graphql";
+
 interface ItemCardInterface {
   lootbox: LootBox,
   togglePop: () => any,
 }
-
 
 const LootboxPop = ({ lootbox, togglePop }: ItemCardInterface) => {
   return (
@@ -18,17 +18,29 @@ const LootboxPop = ({ lootbox, togglePop }: ItemCardInterface) => {
       <div className={'flex justify-center flex-wrap'}>
         <div className={'w-12 h-12 absolute left-1 top-16 bg-white flex justify-center items-center rounded-full'} onClick={() => { togglePop() }}>
           <div className={'w-5 h-5 relative'}>
-            <Image src={'/images/popup_arrow.svg'} layout={'fill'}></Image>
+            <Image
+              alt=""
+              src={'/images/popup_arrow.svg'}
+              layout={'fill'}
+            ></Image>
           </div>
         </div>
         <div className={'w-8/12 flex justify-center flex-wrap relative'}>
           <div className={'w-full h-72 mt-5 flex flex-wrap justify-center'} key={lootbox.id}>
             <div className={'w-72 h-72 relative'}>
               <div className={'absolute top-0 w-full h-full'}>
-                <Image src={'/images/bg_sprite.svg'} layout={'fill'}></Image>
+                <Image
+                  alt=""
+                  src={'/images/bg_sprite.svg'}
+                  layout={'fill'}
+                ></Image>
               </div>
               <div className={'absolute top-0 w-full h-full'}>
-                <Image src={'/images/lootbox.png'} layout={'fill'}></Image>
+                <Image
+                  alt=""
+                  src={'/images/lootbox.png'}
+                  layout={'fill'}
+                ></Image>
               </div>
             </div>
             <div className={'flex justify-around items-center w-full'}>
@@ -46,7 +58,11 @@ const LootboxPop = ({ lootbox, togglePop }: ItemCardInterface) => {
               <div className={'w-20 h-12 rounded-full bg-white flex justify-center items-center'}>
                 <p className={'font-bold text-lg'}>127</p>
                 <div className={'w-6 h-6 relative'}>
-                  <Image src={'/images/carrot_icon.svg'} layout={'fill'}></Image>
+                  <Image
+                    alt=""
+                    src={'/images/carrot_icon.svg'}
+                    layout={'fill'}
+                  ></Image>
                 </div>
               </div>
             </div>
