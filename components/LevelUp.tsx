@@ -91,7 +91,11 @@ const LevelUp = ({ bunny, togglePop }: LevelUpInterface) => {
         }}
       >
         <div className={"w-5 h-5 relative"}>
-          <Image src={"/images/popup_arrow.svg"} layout={"fill"}></Image>
+          <Image
+            alt=""
+            src={"/images/popup_arrow.svg"}
+            layout={"fill"}
+          ></Image>
         </div>
       </div>
       <div className={"grid grid-cols-2 pt-14 px-4"}>
@@ -149,6 +153,7 @@ const LevelUp = ({ bunny, togglePop }: LevelUpInterface) => {
                     </div>
                     <div className={"relative w-10 h-10"}>
                       <Image
+                        alt=""
                         src={"/images/level_up_arrow.svg"}
                         layout={"fill"}
                       ></Image>
@@ -220,6 +225,7 @@ const LevelUp = ({ bunny, togglePop }: LevelUpInterface) => {
                       >
                         <div className={"w-5 h-5 relative"}>
                           <Image
+                            alt=""
                             src={
                               "/images/stats_icons/" + item.stat_name + ".svg"
                             }
@@ -282,6 +288,7 @@ const LevelUp = ({ bunny, togglePop }: LevelUpInterface) => {
                 <div className={"w-7 h-7 flex justify-center items-center"}>
                   <div className={"w-5 h-5 relative"}>
                     <Image
+                      alt=""
                       src={"/images/stats_icons/" + item.stat_name + ".svg"}
                       layout={"fill"}
                     ></Image>
