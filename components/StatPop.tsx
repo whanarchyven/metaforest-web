@@ -9,7 +9,6 @@ interface ItemCardInterface {
   togglePop: () => any
 }
 
-
 const getStatDescription = (stat: string) => {
   switch (stat) {
     case 'str': return 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. \n' +
@@ -29,7 +28,6 @@ const getStatDescription = (stat: string) => {
       'Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. '
   }
 }
-
 
 const getStatFullName = (stat: string) => {
   switch (stat) {
@@ -51,22 +49,33 @@ const getStatColor = (stat: string) => {
   }
 }
 
-
-
 const StatPop = ({ stat_name, stat_value, togglePop }: ItemCardInterface) => {
   return (
     <div className={'flex fixed z-[999] pt-16 w-full h-full top-0 left-0 grey-gradient justify-center items-center overflow-y-scroll p-6 flex-wrap fixed w-full h-full top-0 left-0 grey-gradient justify-center items-center'}>
       <div className={'w-12 h-12 absolute left-1 top-16 bg-white flex justify-center items-center rounded-full'} onClick={() => { togglePop() }}>
         <div className={'w-5 h-5 relative'}>
-          <Image src={'/images/popup_arrow.svg'} layout={'fill'}></Image>
+          <Image
+            alt=""
+            src={'/images/popup_arrow.svg'}
+            layout={'fill'}
+          ></Image>
         </div>
       </div>
       <div className={'w-72 h-72 flex justify-center items-center relative'}>
-        <div className={'w-full h-full absolute'}>
-          <Image src={'/images/card_generation/item_bg.svg'} layout={'fill'}></Image>
+        <div
+          className={'w-full h-full absolute'}>
+          <Image
+            alt=""
+            src={'/images/card_generation/item_bg.svg'}
+            layout={'fill'}
+          ></Image>
         </div>
         <div className={'w-[80%] h-[80%] absolute'}>
-          <Image src={'/images/stats_icons/' + stat_name + '.svg'} layout={'fill'}></Image>
+          <Image
+            alt=""
+            src={'/images/stats_icons/' + stat_name + '.svg'}
+            layout={'fill'}
+          ></Image>
         </div>
       </div>
       <div className={'flex justify-center items-center'}>
