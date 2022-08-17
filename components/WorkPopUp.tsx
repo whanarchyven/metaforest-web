@@ -7,6 +7,7 @@ import StatRequirementBar from "./UI/StatRequirementBar";
 import TaskChecker from "./UI/TaskChecker";
 import { MetaforestJob } from "../graphql/sdk/graphql";
 import { takeJob } from "../data/data-hooks";
+
 interface WorkPopUpInterface {
   workItem: MetaforestJob;
   togglePop: () => any;
