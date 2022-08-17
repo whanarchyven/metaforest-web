@@ -6,13 +6,13 @@ import {StatTab} from "./UI/StatTab";
 import StatRequirementBar from "./UI/StatRequirementBar";
 import WorkPopUp from "./WorkPopUp";
 import {bunnyInterface} from "./interfaces/bunnyInterface";
+import {MetaforestJob} from "../graphql/sdk/graphql";
 
 interface WorkCardInterface{
-    workItem:workTask,
-    bunny:bunnyInterface,
+    workItem:MetaforestJob,
 }
 
-const WorkCard = ({workItem,bunny}:WorkCardInterface) => {
+const WorkCard = ({workItem}:WorkCardInterface) => {
 
     const [workPopOpen,setWorkPopOpen]=useState(false)
     const toggleWorkPop=()=>{
@@ -23,7 +23,7 @@ const WorkCard = ({workItem,bunny}:WorkCardInterface) => {
         <div className={'w-full h-full relative'}>
             <div className={'w-full h-full relative'} onClick={()=>{toggleWorkPop()}}>
                 <div className={'w-full h-full absolute -top-1 -left-2 rounded-full'}>
-                    <Image src={'/images/work_module/backgrounds/'+workItem.workItem.type+'.png'} layout={'fill'} className={'rounded-3xl'}></Image>
+                    <Image src={'/images/work_module/backgrounds/'+workItem.type+'.png'} layout={'fill'} className={'rounded-3xl'}></Image>
                 </div>
                 <div className={'w-full h-[110%] rounded-full absolute -top-2 -left-4'}>
                     <Image src={'/images/card_overlay.png'} layout={'fill'} className={'rounded-2xl'}></Image>
@@ -36,32 +36,33 @@ const WorkCard = ({workItem,bunny}:WorkCardInterface) => {
                         <div className={'absolute left-0 top-0'}>
                             <div className={'w-12 h-12 green-gradient rounded-full inline-block align-top'}></div>
                             <div className={'inline-block align-top'}>
-                                <p className={'inline-block ml-4 font-bold w-full text-xl'}>{workItem.workItem.name}</p>
-                                <p className={'inline-block ml-4 font-bold w-3/5 text-sm opacity-50'}>{workItem.workItem.type=='m2e'?'M-2-E':'Social'}</p>
+                                <p className={'inline-block ml-4 font-bold w-[70%] text-xl'}>{workItem.title.split(' ')[0]+' '+workItem.title.split(' ')[1]}</p>
+                                <p className={'inline-block ml-4 font-bold w-3/5 text-sm opacity-50'}>{workItem.type=='STEPS'?'M-2-E':'Social'}</p>
                             </div>
                         </div>
                         <div className={'grid grid-cols-5 gap-2 grid-rows-1 absolute bottom-0 '}>
                             {statKeys.map(stat=>{
-                                if(workItem.workItem.requirements?.[stat.stat_name]!=undefined){
-                                    return <div className={'w-10'} key={stat.stat_name}><StatRequirementBar stat_value={workItem.workItem.requirements[stat.stat_name]} stat_name={stat.stat_name}></StatRequirementBar></div>
+                                if(workItem.conditionsGTE?.[stat.stat_name]!=undefined&&workItem.conditionsGTE?.[stat.stat_name]!=0){
+                                    return <div className={'w-14'} key={stat.stat_name}><StatRequirementBar stat_value={workItem.conditionsGTE[stat.stat_name]} stat_name={stat.stat_name}></StatRequirementBar></div>
                                 }
                             })}
                         </div>
                         <div className={'w-16 h-8 rounded-full bottom-0 right-0 absolute bg-black rounded-full flex justify-center items-center'}>
-                            <p className={'text-white inline-block text-xl font-medium'}>+{workItem.workItem.profit}</p>
+                            <p className={'text-white inline-block text-xl font-medium'}>+{workItem.carrotsForApproxMeters}</p>
                             <div className={'inline-block ml-2 relative w-3 h-6'}>
                                 <Image src={'/images/carrot_icon_white.svg'} layout={'fill'}></Image>
                             </div>
                         </div>
-                        {/*<div className={'w-16 h-8 rounded-full top-0 right-0 absolute bg-black rounded-full flex justify-center items-center'}>*/}
-                        {/*    <p className={'text-white inline-block text-xl font-medium'}>{workItem.workItem.type}</p>*/}
-                        {/*</div>*/}
+                        <div className={'w-24 h-8 rounded-full top-0 right-0 absolute bg-black rounded-full flex justify-center items-center'}>
+                            <p className={'text-white inline-block text-xl font-medium'}>{workItem.type}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            {workPopOpen?<WorkPopUp workItem={workItem} togglePop={toggleWorkPop} bunny={bunny} />:null}
+            {workPopOpen?<WorkPopUp workItem={workItem} togglePop={toggleWorkPop} />:null}
         </div>
     );
+
 };
 
 export default WorkCard;

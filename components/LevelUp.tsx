@@ -7,10 +7,12 @@ import StatRequirementBar from "./UI/StatRequirementBar";
 import TaskChecker from "./UI/TaskChecker";
 import BunnyGeneration from "./BunnyGeneration";
 import ProgressBar from "./UI/ProgressBar";
+import {MetaforestNftInfo} from "../graphql/sdk/graphql";
 
 interface LevelUpInterface {
-  bunny: bunnyInterface;
-  togglePop: () => any;
+    bunny: MetaforestNftInfo,
+    togglePop: () => any,
+    skillpoints:number,
 }
 
 const LevelUp = ({ bunny, togglePop }: LevelUpInterface) => {
@@ -33,29 +35,44 @@ const LevelUp = ({ bunny, togglePop }: LevelUpInterface) => {
   ];
   const [upStats, setUpStats] = useState(stats);
 
-  const increaseStat = (stat: "str" | "dex" | "vit" | "int" | "krm") => {
-    let tempstat = [...upStats];
-    switch (stat) {
-      case "str":
-        tempstat[0].stat_value += 1;
-        setUpStats(tempstat);
-        break;
-      case "dex":
-        tempstat[1].stat_value += 1;
-        setUpStats(tempstat);
-        break;
-      case "vit":
-        tempstat[2].stat_value += 1;
-        setUpStats(tempstat);
-        break;
-      case "int":
-        tempstat[3].stat_value += 1;
-        setUpStats(tempstat);
-        break;
-      case "krm":
-        tempstat[4].stat_value += 1;
-        setUpStats(tempstat);
-        break;
+const LevelUp = ({bunny, togglePop,skillpoints}: LevelUpInterface) => {
+
+    const [skillPoints, setSkillPoints] = useState(skillpoints);
+    const stats: { stat_name: 'str' | 'dex' | 'vit' | 'int' | 'krm', stat_value: number }[] = [{
+        stat_name: 'str',
+        stat_value: 0
+    }, {stat_name: 'dex', stat_value: 0}, {stat_name: 'vit', stat_value: 0}, {
+        stat_name: 'int',
+        stat_value: 0
+    }, {stat_name: 'krm', stat_value: 0}]
+    const [upStats, setUpStats] = useState(stats)
+
+
+    const increaseStat = (stat: 'str' | 'dex' | 'vit' | 'int' | 'krm') => {
+        let tempstat = [...upStats]
+        switch (stat) {
+            case "str":
+                tempstat[0].stat_value += 1
+                setUpStats(tempstat);
+                break;
+            case "dex":
+                tempstat[1].stat_value += 1
+                setUpStats(tempstat);
+                break;
+            case "vit":
+                tempstat[2].stat_value += 1
+                setUpStats(tempstat);
+                break;
+            case "int":
+                tempstat[3].stat_value += 1
+                setUpStats(tempstat);
+                break;
+            case "krm":
+                tempstat[4].stat_value += 1
+                setUpStats(tempstat);
+                break;
+        }
+        setSkillPoints(skillPoints - 1)
     }
     setSkillPoints(skillPoints - 1);
   };
@@ -144,37 +161,69 @@ const LevelUp = ({ bunny, togglePop }: LevelUpInterface) => {
                 <span className={"text-lg text-center"}>level</span>
               </p>
             </div>
-            <div className={"relative w-10 h-10"}>
-              <Image src={"/images/level_up_arrow.svg"} layout={"fill"}></Image>
+            <div className={'grid grid-cols-2 pt-14 px-4'}>
+                <div className={'col-start-1 flex justify-center items-center'}>
+                    {/*<div className={'w-[308px] scale-125 pt-0 h-[300px] mx-auto'}>*/}
+                    {/*    <BunnyGeneration bunny={bunny}></BunnyGeneration>*/}
+                    {/*</div>*/}
+                </div>
+                <div className={'col-start-2'}>
+                    <p className={'font-bold text-4xl'}>Level up!</p>
+                    <p className={'font-bold text-2xl'}>{bunny.uid}</p>
+                    {bunny.baseParams?.level?<div className={'w-full flex justify-around items-center mt-5'}>
+                        <div className={'w-16 h-16 flex justify-center items-center rounded-full green-gradient'}>
+                            <p className={'text-3xl font-bold text-center leading-[50%] text-white'}>{bunny.baseParams?.level}<br/><span
+                                className={'text-lg text-center'}>level</span></p>
+                        </div>
+                        <div className={'relative w-10 h-10'}>
+                            <Image src={'/images/level_up_arrow.svg'} layout={'fill'}></Image>
+                        </div>
+                        <div className={'w-16 h-16 flex justify-center items-center rounded-full green-gradient'}>
+                            <p className={'text-3xl font-bold text-center leading-[50%] text-white'}>{bunny.baseParams?.level+1}<br/><span
+                                className={'text-lg text-center'}>level</span></p>
+                        </div>
+                    </div>:null}
+                    <p className={'font-bold text-xl mt-5'}>You have:</p>
+                    <div className={'w-full h-14 rounded-full green-gradient p-1 flex items-center'}>
+                        <div
+                            className={'w-12 h-12 rounded-full bg-white flex justify-center items-center font-bold text-4xl'}>
+                            {skillPoints}
+                        </div>
+                        <p className={'font-bold text-black leading-[100%] text-xl ml-4'}>skill<br/>points</p>
+                    </div>
+                </div>
             </div>
-            <div
-              className={
-                "w-16 h-16 flex justify-center items-center rounded-full green-gradient"
-              }
-            >
-              <p
-                className={
-                  "text-3xl font-bold text-center leading-[50%] text-white"
-                }
-              >
-                {bunny.bunny.lvl + 1}
-                <br />
-                <span className={"text-lg text-center"}>level</span>
-              </p>
-            </div>
-          </div>
-          <p className={"font-bold text-xl mt-5"}>You have:</p>
-          <div
-            className={
-              "w-full h-14 rounded-full green-gradient p-1 flex items-center"
-            }
-          >
-            <div
-              className={
-                "w-12 h-12 rounded-full bg-white flex justify-center items-center font-bold text-4xl"
-              }
-            >
-              {skillPoints}
+            <div className={'w-full'}>
+                {upStats.map(item => {
+                    return <div className={'w-full h-6 flex justify-around items-center mt-5'} key={item.stat_name}>
+                        <div
+                            className={'w-7 h-7 rounded-full bg-black text-white flex justify-center items-center font-bold'}
+                            onClick={() => {decreaseStat(item.stat_name)
+                            }}>-
+                        </div>
+                        <div className={'flex items-center'}>
+                            <div className={'w-7 h-7 flex justify-center items-center'}>
+                                <div className={'w-5 h-5 relative'}>
+                                    <Image src={'/images/stats_icons/' + item.stat_name + '.svg'}
+                                           layout={'fill'}></Image>
+                                </div>
+                            </div>
+                            <p className={'ml-3 w-12'}>{item.stat_name.toUpperCase()}</p>
+                        </div>
+                        <div className={'w-52 h-full'}>
+                            {bunny.baseParams?<ProgressBar progress={bunny.baseParams[item.stat_name] + item.stat_value}
+                                                           limit={10}></ProgressBar>:null}
+                        </div>
+                        <div
+                            className={'w-7 h-7 rounded-full bg-black text-white flex justify-center items-center font-bold'}
+                            onClick={() => {
+                                if (skillPoints > 0) {
+                                    increaseStat(item.stat_name)
+                                }
+                            }}>+
+                        </div>
+                    </div>
+                })}
             </div>
             <p className={"font-bold text-black leading-[100%] text-xl ml-4"}>
               skill
