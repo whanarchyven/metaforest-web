@@ -9,7 +9,6 @@ interface TaskCheckerInterface {
 
 const TaskChecker = ({ workItem }: TaskCheckerInterface) => {
 
-
   return (
     <div className={'h-full relative w-full rounded-full'}>
       <div className={'w-full h-full rounded-full opacity-25 absolute green-gradient'}>
