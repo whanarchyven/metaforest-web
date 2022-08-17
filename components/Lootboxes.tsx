@@ -47,7 +47,11 @@ const Lootboxes = ({ togglePop }: lootboxesInterface) => {
           togglePop()
         }}>
         <div className={'w-5 h-5 relative'}>
-          <Image src={'/images/popup_arrow.svg'} layout={'fill'}></Image>
+          <Image
+            alt=""
+            src={'/images/popup_arrow.svg'}
+            layout={'fill'}
+          ></Image>
         </div>
       </div>
       <div
@@ -57,10 +61,18 @@ const Lootboxes = ({ togglePop }: lootboxesInterface) => {
             {item.id ? <p className={'font-bold w-full text-2xl opacity-50 text-center'}>№ {item.id.toString().padStart(6, '0')}</p> : null}
             <div className={'w-48 h-48 relative'}>
               <div className={'absolute top-0 w-full h-full'}>
-                <Image src={'/images/bg_sprite.svg'} layout={'fill'}></Image>
+                <Image
+                  alt=""
+                  src={'/images/bg_sprite.svg'}
+                  layout={'fill'}
+                ></Image>
               </div>
               <div className={'absolute top-0 w-full h-full'}>
-                <Image src={'/images/lootbox.png'} layout={'fill'}></Image>
+                <Image
+                  alt=""
+                  src={'/images/lootbox.png'}
+                  layout={'fill'}
+                ></Image>
               </div>
             </div>
             <button
