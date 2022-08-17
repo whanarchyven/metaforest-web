@@ -41,10 +41,18 @@ const ItemCard = ({ item }: ItemCardInterface) => {
     <div className={'w-full h-full p-2 rounded-xl border-4 relative' + bg_color + border_color}>
       <div className={'w-28 h-28 relative mx-auto'}>
         <div className={'w-full h-full absolute'}>
-          <Image src={'/images/card_generation/item_bg.svg'} layout={'fill'}></Image>
+          <Image
+            alt=""
+            src={'/images/card_generation/item_bg.svg'}
+            layout={'fill'}
+          ></Image>
         </div>
         <div className={'w-full h-full absolute'}>
-          <Image src={'/images/miniatures/' + item.type + '/' + item.name + '.png'} layout={'fill'}></Image>
+          <Image
+            alt=""
+            src={'/images/miniatures/' + item.type + '/' + item.name + '.png'}
+            layout={'fill'}
+          ></Image>
         </div>
       </div>
       <p className={'text-center text-xl font-bold mb-4'}>{item.type}</p>
@@ -55,7 +63,11 @@ const ItemCard = ({ item }: ItemCardInterface) => {
               <div className={'w-full h-full bg-white opacity-30 rounded-full absolute top-0 left-0'}></div>
               <div className={'w-8 h-8 rounded-full bg-white absolute left-0 p-2'}>
                 <div className={'w-full h-full relative'}>
-                  <Image src={'/images/card_generation/' + item.rarity + '/' + incr[0] + '.svg'} layout={'fill'}></Image>
+                  <Image
+                    alt=""
+                    src={'/images/card_generation/' + item.rarity + '/' + incr[0] + '.svg'}
+                    layout={'fill'}
+                  ></Image>
                 </div>
               </div>
               <p className={'absolute text-lg font-bold left-10'}>+{incr[1]}</p>
@@ -70,7 +82,11 @@ const ItemCard = ({ item }: ItemCardInterface) => {
                 <div className={'w-full h-full bg-white opacity-30 rounded-full absolute top-0 left-0'}></div>
                 <div className={'w-5 h-5 rounded-full bg-white absolute left-0 p-1'}>
                   <div className={'w-full h-full relative'}>
-                    <Image src={'/images/card_generation/' + item.rarity + '/' + requirements[0] + '.svg'} layout={'fill'}></Image>
+                    <Image
+                      alt=""
+                      src={'/images/card_generation/' + item.rarity + '/' + requirements[0] + '.svg'}
+                      layout={'fill'}
+                    ></Image>
                   </div>
                 </div>
                 <p className={'absolute text-xs font-bold left-6'}>{requirements[1]}</p>
@@ -81,7 +97,11 @@ const ItemCard = ({ item }: ItemCardInterface) => {
         </div>
       </div>
       <div className={'w-5 h-5 left-1 top-1 absolute'}>
-        <Image src={'/images/card_generation/' + item.type + '.svg'} layout={'fill'}></Image>
+        <Image
+          alt=""
+          src={'/images/card_generation/' + item.type + '.svg'}
+          layout={'fill'}
+        ></Image>
       </div>
       <p className={'h-5 right-2 w-20 text-right top-1 absolute text-sm'}>#{item.id}</p>
 
