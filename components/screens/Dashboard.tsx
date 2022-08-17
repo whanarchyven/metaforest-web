@@ -26,20 +26,24 @@ const Dashboard = (bunny: bunnyInterface) => {
 
   const [lootboxPopOpen, setLootBoxOpen] = useState(false);
   const toggleLootPop = () => {
-    setLootBoxOpen(!lootboxPopOpen)
-  }
+    setLootBoxOpen(!lootboxPopOpen);
+  };
 
   const [feedPopOpen, setFeedPopOpen] = useState(false);
   const toggleFeedPop = () => {
     setFeedPopOpen(!feedPopOpen);
-  }
+  };
 
   return (
     <div className={"w-full h-full flex justify-center flex-wrap"}>
       <div className={"w-full h-fit absolute top-0 bunny-generation-outside"}>
         <div className={"w-full h-full bunny-generation-inside"}>
           <div className={"w-[308px] h-[445px] mx-auto"}>
-            <BunnyGeneration bunny={bunny}></BunnyGeneration>
+            {state?.activeBunny?.images?.transparentBg ? (
+              <BunnyGeneration
+                base_image={state.activeBunny?.images?.transparentBg}
+              ></BunnyGeneration>
+            ) : null}
           </div>
         </div>
       </div>
@@ -60,7 +64,9 @@ const Dashboard = (bunny: bunnyInterface) => {
               className={
                 "absolute -right-0 -top-1 w-6 h-6 bg-white rounded-full flex justify-center content-center"
               }
-              onClick={() => { toggleLevelPop() }}
+              onClick={() => {
+                toggleLevelPop();
+              }}
             >
               <p className={"text-center text-md text-green-500 font-bold"}>
                 +
@@ -72,31 +78,34 @@ const Dashboard = (bunny: bunnyInterface) => {
           className={
             "w-16 h-16 -right-0 top-72 absolute green-gradient rounded-full flex flex-wrap justify-center content-center p-4"
           }
-          onClick={() => { toggleLootPop() }}
+          onClick={() => {
+            toggleLootPop();
+          }}
         >
           <div className={"w-full h-full relative"}>
-            <Image
-              alt=""
-              src={"/images/lootbox_icon.svg"}
-              layout={"fill"}
-            ></Image>
+            <Image src={"/images/lootbox_icon.svg"} layout={"fill"}></Image>
           </div>
           <div
             className={
               "absolute -right-0 -top-2 w-6 h-6 bg-white rounded-full flex justify-center content-center"
             }
           >
-            <p className={"text-center text-xl text-green-500"}>{state?.unopenedLootBoxes?.length}</p>
+            <p className={"text-center text-xl text-green-500"}>
+              {state?.unopenedLootBoxes?.length}
+            </p>
           </div>
         </div>
         <div className={"w-20 h-32 absolute -left-3 top-44"}>
-          {state?.activeBunny?.baseParams?.vit &&
-            <VitalityBar vitality={4}></VitalityBar>}
+          {state?.activeBunny?.baseParams?.vit && (
+            <VitalityBar vitality={4}></VitalityBar>
+          )}
           <div
             className={
               "w-3/4 mt-4 h-10 rounded-full green-gradient flex justify-center items-center"
             }
-            onClick={() => { toggleFeedPop() }}
+            onClick={() => {
+              toggleFeedPop();
+            }}
           >
             <p className={"text-center text-xl font-semibold text-white"}>
               Feed
@@ -134,47 +143,46 @@ const Dashboard = (bunny: bunnyInterface) => {
         </div>
         <p className={"col-start-9 col-end-11 justify-self-center"}>3/12</p>
       </div>
-      <div className={"relative w-full gap-4 px-6 py-4 mt-3 grid grid-cols-10"}>
-        <p className={"col-start-1 col-end-4 justify-self-center"}>Max/day</p>
-        <div className={"col-start-4 col-end-9"}>
-          <ProgressBar progress={3} limit={12}></ProgressBar>
-        </div>
-        <p className={"col-start-9 col-end-11 justify-self-center"}>3/12</p>
-      </div>
-      <div className={"relative w-full gap-4 px-6 py-4 mt-3 grid grid-cols-10"}>
-        <p className={"col-start-1 col-end-4 justify-self-center"}>Max/day</p>
-        <div className={"col-start-4 col-end-9"}>
-          <ProgressBar progress={3} limit={12}></ProgressBar>
-        </div>
-        <p className={"col-start-9 col-end-11 justify-self-center"}>3/12</p>
-      </div>
+
       {state?.jobEnergy && state.maxJobEnergy != undefined ? (
-        <div className={"relative w-full gap-4 px-6 py-4 mt-3 grid grid-cols-10"}>
+        <div
+          className={"relative w-full gap-4 px-6 py-4 mt-3 grid grid-cols-10"}
+        >
           <p className={"col-start-1 col-end-4 justify-self-center"}>Energy</p>
           <div className={"col-start-4 col-end-9"}>
             <ProgressBar
-              progress={state.jobEnergy}
-              limit={state.maxJobEnergy}
+              progress={Math.round(state.jobEnergy)}
+              limit={Math.round(state.maxJobEnergy)}
             ></ProgressBar>
           </div>
           {state?.maxJobEnergy && (
             <p className={"col-start-9 col-end-11 justify-self-center"}>
-              {state.jobEnergy}/{state.maxJobEnergy}
+              {Math.round(state.jobEnergy)}/{Math.round(state.maxJobEnergy)}
             </p>
           )}
         </div>
       ) : null}
 
-
-
-
       {levelPopOpen && state.activeBunny && state.skillPoints ? (
-        <LevelUp skillpoints={state.skillPoints} bunny={state.activeBunny} togglePop={toggleLevelPop} />
+        <LevelUp
+          skillpoints={state.skillPoints}
+          bunny={state.activeBunny}
+          togglePop={toggleLevelPop}
+        />
       ) : null}
       {lootboxPopOpen ? (
-        <Lootboxes lootboxes={state.unopenedLootBoxes} togglePop={toggleLootPop} />
+        <Lootboxes
+          lootboxes={state.unopenedLootBoxes}
+          togglePop={toggleLootPop}
+        />
       ) : null}
-      {feedPopOpen && state.carrotsBalance ? (<FeedPopUp togglePop={toggleFeedPop} carrotBalance={state.carrotsBalance} vitality={4}></FeedPopUp>) : null}
+      {feedPopOpen && state.carrotsBalance ? (
+        <FeedPopUp
+          togglePop={toggleFeedPop}
+          carrotBalance={state.carrotsBalance}
+          vitality={4}
+        ></FeedPopUp>
+      ) : null}
     </div>
   );
 };
