@@ -17,7 +17,11 @@ const PopUp = ({ item, togglePop, bunny, balance }: ItemCardInterface) => {
     <div className={'flex flex-wrap fixed w-full h-full top-0 left-0 grey-gradient justify-center items-center'}>
       <div className={'w-12 h-12 absolute left-1 top-16 bg-white flex justify-center items-center rounded-full'} onClick={() => { togglePop() }}>
         <div className={'w-5 h-5 relative'}>
-          <Image src={'/images/popup_arrow.svg'} layout={'fill'}></Image>
+          <Image
+            alt=""
+            src={'/images/popup_arrow.svg'}
+            layout={'fill'}
+          ></Image>
         </div>
       </div>
       <div className={'w-8/12 flex justify-center flex-wrap relative'}>
@@ -30,7 +34,11 @@ const PopUp = ({ item, togglePop, bunny, balance }: ItemCardInterface) => {
           <div className={'rounded-full flex items-center justify-around bg-black'}>
             <p className={'text-white'}>{item.price}</p>
             <div className={'w-7 h-7 relative bg-white rounded-full p-1'}>
-              <Image src={'/images/carrot_icon.svg'} layout={'fill'}></Image>
+              <Image
+                alt=""
+                src={'/images/carrot_icon.svg'}
+                layout={'fill'}
+              ></Image>
             </div>
           </div>
         </div>
