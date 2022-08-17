@@ -49,7 +49,11 @@ const Equipment = ({ bunny }: equipmentInterface) => {
                 <div className={' green-gradient rounded-r-full w-full h-16 flex items-center justify-end'}>
                   <div className={'w-14 h-14 mr-1 flex justify-center items-center bg-white rounded-full'}>
                     <div className={'w-3/5 h-3/5 relative'}>
-                      <Image src={'/images/miniatures/' + tab.id + '/' + bunny.bunny.equipment[tab.id]?.name + '.png'} layout={'fill'}></Image>
+                      <Image
+                        alt=""
+                        src={'/images/miniatures/' + tab.id + '/' + bunny.bunny.equipment[tab.id]?.name + '.png'}
+                        layout={'fill'}
+                      ></Image>
                     </div>
                   </div>
                 </div>
@@ -57,7 +61,11 @@ const Equipment = ({ bunny }: equipmentInterface) => {
                 <div className={'opacity-40 green-gradient rounded-r-full w-2/3 h-16 flex items-center justify-end'}>
                   <div className={'w-14 h-14 mr-1 flex justify-center items-center bg-white rounded-full'}>
                     <div className={'w-3/5 h-3/5 relative'}>
-                      <Image src={'/images/tab_icons/' + tab.id + '.svg'} layout={'fill'}></Image>
+                      <Image
+                        alt=""
+                        src={'/images/tab_icons/' + tab.id + '.svg'}
+                        layout={'fill'}
+                      ></Image>
                     </div>
                   </div>
                 </div>}
@@ -76,7 +84,11 @@ const Equipment = ({ bunny }: equipmentInterface) => {
                 <div className={' green-gradient rounded-l-full w-full h-16 flex items-center justify-start'}>
                   <div className={'w-14 h-14 ml-1 flex justify-center items-center bg-white rounded-full'}>
                     <div className={'w-3/5 h-3/5 relative'}>
-                      <Image src={'/images/miniatures/' + tab.id + '/' + bunny.bunny.equipment[tab.id]?.name + '.png'} layout={'fill'}></Image>
+                      <Image
+                        alt=""
+                        src={'/images/miniatures/' + tab.id + '/' + bunny.bunny.equipment[tab.id]?.name + '.png'}
+                        layout={'fill'}
+                      ></Image>
                     </div>
                   </div>
                 </div>
@@ -84,7 +96,11 @@ const Equipment = ({ bunny }: equipmentInterface) => {
                 <div className={'opacity-40 green-gradient rounded-l-full w-2/3 h-16 flex items-center justify-start'}>
                   <div className={'w-14 h-14 ml-1 flex justify-center items-center bg-white rounded-full'}>
                     <div className={'w-3/5 h-3/5 relative'}>
-                      <Image src={'/images/tab_icons/' + tab.id + '.svg'} layout={'fill'}></Image>
+                      <Image
+                        alt=""
+                        src={'/images/tab_icons/' + tab.id + '.svg'}
+                        layout={'fill'}
+                      ></Image>
                     </div>
                   </div>
                 </div>}
@@ -106,7 +122,11 @@ const Equipment = ({ bunny }: equipmentInterface) => {
               <div className={'grid grid-cols-5 gap-4 items-center'} key={stat.id}>
                 <div className={'col-start-1 col-end-2'}>
                   <div className={'w-5 h-5 relative inline-block align-middle'}>
-                    <Image src={'/images/stats_icons/' + stat.id + '.svg'} layout={'fill'}></Image>
+                    <Image
+                      alt=""
+                      src={'/images/stats_icons/' + stat.id + '.svg'}
+                      layout={'fill'}
+                    ></Image>
                   </div>
                   <p className={'ml-2 inline-block text-black text-sm align-middle'}>
                     {stat.id.toUpperCase()}

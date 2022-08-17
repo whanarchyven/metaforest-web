@@ -34,7 +34,6 @@ const Dashboard = (bunny: bunnyInterface) => {
     setFeedPopOpen(!feedPopOpen);
   }
 
-
   return (
     <div className={"w-full h-full flex justify-center flex-wrap"}>
       <div className={"w-full h-fit absolute top-0 bunny-generation-outside"}>
@@ -76,7 +75,11 @@ const Dashboard = (bunny: bunnyInterface) => {
           onClick={() => { toggleLootPop() }}
         >
           <div className={"w-full h-full relative"}>
-            <Image src={"/images/lootbox_icon.svg"} layout={"fill"}></Image>
+            <Image
+              alt=""
+              src={"/images/lootbox_icon.svg"}
+              layout={"fill"}
+            ></Image>
           </div>
           <div
             className={

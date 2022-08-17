@@ -11,7 +11,6 @@ interface MarketplaceProps {
   balance: number;
 }
 
-
 const MarketplaceScreen = ({ bunny, balance }: MarketplaceProps) => {
   const tabs = [
     'looks', 'instruments', 'houses'
@@ -22,7 +21,6 @@ const MarketplaceScreen = ({ bunny, balance }: MarketplaceProps) => {
     'buy', 'rent',
   ]
   const [activePayment, setActivePayment] = useState('buy')
-
 
   const items = [
     {
@@ -109,7 +107,11 @@ const MarketplaceScreen = ({ bunny, balance }: MarketplaceProps) => {
               <div className={'rounded-full flex items-center justify-around bg-black'}>
                 <p className={'text-white'}>125</p>
                 <div className={'w-7 h-7 relative bg-white rounded-full p-1'}>
-                  <Image src={'/images/carrot_icon.svg'} layout={'fill'}></Image>
+                  <Image
+                    alt=""
+                    src={'/images/carrot_icon.svg'}
+                    layout={'fill'}
+                  ></Image>
                 </div>
               </div>
             </div>
