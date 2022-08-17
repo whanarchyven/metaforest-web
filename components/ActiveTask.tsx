@@ -29,7 +29,11 @@ const ActiveTask = ({ active_task }: activeTaskModule) => {
         <div className={'col-start-8 col-end-10 bg-black rounded-full flex justify-center items-center'}>
           <p className={'text-white inline-block font-semibold'}>+{active_task.job.carrotsForApproxMeters}</p>
           <div className={'inline-block ml-2 relative w-2 h-6'}>
-            <Image src={'/images/carrot_icon_white.svg'} layout={'fill'}></Image>
+            <Image
+              alt="carrot"
+              src={'/images/carrot_icon_white.svg'}
+              layout={'fill'}
+            ></Image>
           </div>
         </div>
         <div className={'row-start-2 col-start-1 col-end-10 ' + h_bar} style={styles}>
