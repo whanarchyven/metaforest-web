@@ -33,10 +33,7 @@ const StatsPage = () => {
         <p className={"text-3xl mt-5 font-bold w-full text-center"}>Walking</p>
         <div className={"w-40 h-40 flex justify-center items-center relative"}>
           <div className={"w-full h-full absolute top-0 left-0"}>
-            <Image
-              alt=""
-              src={"/images/bg_sprite.svg"} layout={"fill"}
-            ></Image>
+            <Image alt="" src={"/images/bg_sprite.svg"} layout={"fill"}></Image>
           </div>
           <div className={"w-3/5 h-3/5 absolute"}>
             <Image
@@ -82,7 +79,7 @@ const StatsPage = () => {
         </div>
         <div className={"w-full h-6 gap-4 grid grid-cols-3"}>
           <p className={"col-start-1 col-end-3 text-white font-bold text-xl "}>
-            Average speed
+            Average speed:
           </p>
           <div>
             <p className={"font-bold text-white inline-block text-xl"}>
