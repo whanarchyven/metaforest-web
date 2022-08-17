@@ -19,7 +19,11 @@ const EquipmentPopUp = ({ items, togglePop, choosenType, bunny }: ItemCardInterf
         <div className={'flex mb-8'}>
           <div className={'w-10 h-10 inline-flex justify-center items-center rounded-full bg-white align-middle'}>
             <div className={'w-3/5 h-3/5 relative'}>
-              <Image src={'/images/tab_icons/' + choosenType + '.svg'} layout={'fill'}></Image>
+              <Image
+                alt=""
+                src={'/images/tab_icons/' + choosenType + '.svg'}
+                layout={'fill'}
+              ></Image>
             </div>
           </div>
           <p className={'text-center text-3xl ml-4 font-bold inline-block align-middle'}>{firstLetterUpperCase(choosenType)}</p>
@@ -39,7 +43,11 @@ const EquipmentPopUp = ({ items, togglePop, choosenType, bunny }: ItemCardInterf
       </div>
       <div className={'w-12 h-12 absolute left-1 top-16 bg-white flex justify-center items-center rounded-full cursor-pointer'} onClick={() => { togglePop() }}>
         <div className={'w-5 h-5 relative'}>
-          <Image src={'/images/popup_arrow.svg'} layout={'fill'}></Image>
+          <Image
+            alt=""
+            src={'/images/popup_arrow.svg'}
+            layout={'fill'}
+          ></Image>
         </div>
       </div>
     </div>
