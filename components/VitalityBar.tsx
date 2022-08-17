@@ -8,7 +8,11 @@ interface vitalityBarInterface {
 const VitalityBar = ({ vitality }: vitalityBarInterface) => {
   return (
     <div className={'w-full h-full relative'}>
-      <Image src={'/images/vitality_levels/' + vitality + '.svg'} layout={'fill'}></Image>
+      <Image
+        alt=""
+        src={'/images/vitality_levels/' + vitality + '.svg'}
+        layout={'fill'}
+      ></Image>
     </div>
   );
 };
