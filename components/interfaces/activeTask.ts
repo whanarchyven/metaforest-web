@@ -1,5 +1,5 @@
-import {workTask} from "./workTask";
+import { workTask } from "./workTask";
 
-export interface activeTask extends  workTask{
-    progress:number;
+export interface activeTask extends workTask {
+  progress: number;
 }

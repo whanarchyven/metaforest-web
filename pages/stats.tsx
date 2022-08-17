@@ -2,6 +2,7 @@ import { useUserGameFullState } from "../data/data-hooks";
 import { AuthConnector } from "../components/auth-connector";
 import Image from "next/image";
 import ProgressBar from "../components/UI/ProgressBar";
+import moment from "moment";
 const StatsPage = () => {
   const [data] = useUserGameFullState();
 
@@ -11,6 +12,11 @@ const StatsPage = () => {
         <AuthConnector />
       </div>
     );
+  const hoursElapsed = moment().diff(data.currentJob?.jobStartTime, "hours");
+  const avgSpeed =
+    hoursElapsed > 0
+      ? ((data?.currentJob?.metersPassed ?? 0) / hoursElapsed).toFixed(1)
+      : 0;
 
   return (
     <div
@@ -27,10 +33,11 @@ const StatsPage = () => {
         <p className={"text-3xl mt-5 font-bold w-full text-center"}>Walking</p>
         <div className={"w-40 h-40 flex justify-center items-center relative"}>
           <div className={"w-full h-full absolute top-0 left-0"}>
-            <Image src={"/images/bg_sprite.svg"} layout={"fill"}></Image>
+            <Image alt="" src={"/images/bg_sprite.svg"} layout={"fill"}></Image>
           </div>
           <div className={"w-3/5 h-3/5 absolute"}>
             <Image
+              alt="steps"
               src={"/images/work_module/icons/STEPS_black.svg"}
               layout={"fill"}
             ></Image>
@@ -42,7 +49,7 @@ const StatsPage = () => {
               <ProgressBar
                 progress={Math.round(data.currentJob?.metersPassed)}
                 limit={data.currentJob?.job?.approxMeters}
-              ></ProgressBar>
+              />
             ) : null}
           </div>
           {data.currentJob ? (
@@ -54,12 +61,16 @@ const StatsPage = () => {
         </div>
         <div className={"w-full h-6 gap-4 grid grid-cols-3"}>
           <div className={"col-start-1 col-end-3"}>
-            <ProgressBar progress={2.1} limit={3}></ProgressBar>
+            <ProgressBar
+              progress={data.jobEnergy ?? 0}
+              limit={data.maxJobEnergy ?? 1}
+            />
           </div>
           <div>
             <p className={"font-bold text-white inline-block"}>2.1/3</p>
             <div className={"w-5 h-5 relative ml-2 inline-block"}>
               <Image
+                alt=""
                 src={"/images/stats_icons/vit_white.svg"}
                 layout={"fill"}
               ></Image>
@@ -68,11 +79,11 @@ const StatsPage = () => {
         </div>
         <div className={"w-full h-6 gap-4 grid grid-cols-3"}>
           <p className={"col-start-1 col-end-3 text-white font-bold text-xl "}>
-            Average speed
+            Average speed:
           </p>
           <div>
             <p className={"font-bold text-white inline-block text-xl"}>
-              5 km/h
+              {avgSpeed} km/h
             </p>
           </div>
         </div>
@@ -91,11 +102,12 @@ const StatsPage = () => {
                   "font-bold text-white inline-block text-xl align-bottom"
                 }
               >
-                {data.currentJob?.carrotsEarned}
+                {data.currentJob?.carrotsEarned.toFixed(2)}
               </p>
             ) : null}
             <div className={"w-5 h-5 relative ml-2 inline-block"}>
               <Image
+                alt="carrot"
                 src={"/images/carrot_icon_white.svg"}
                 layout={"fill"}
               ></Image>
