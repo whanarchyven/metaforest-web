@@ -22,7 +22,7 @@ const LootboxPop = ({lootbox,togglePop}:ItemCardInterface) => {
                     </div>
                 </div>
                 <div className={'w-8/12 flex justify-center flex-wrap relative'}>
-                    <div className={'w-full h-72 mt-5'} key={lootbox.id}>
+                    <div className={'w-full h-72 mt-5 flex flex-wrap justify-center'} key={lootbox.id}>
                         <div className={'w-72 h-72 relative'}>
                             <div className={'absolute top-0 w-full h-full'}>
                                 <Image src={'/images/bg_sprite.svg'} layout={'fill'}></Image>
@@ -31,13 +31,24 @@ const LootboxPop = ({lootbox,togglePop}:ItemCardInterface) => {
                                 <Image src={'/images/lootbox.png'} layout={'fill'}></Image>
                             </div>
                         </div>
+                        <div className={'flex justify-around items-center w-full'}>
+                            <p className={'font-bold opacity-50 text-xl'}>№ {lootbox.id?.padStart(6, '0')}</p>
+                            <div className={'w-24 h-9 bg-[#DCDCE0] border-2 border-[#B8B8B8] flex justify-center items-center rounded-full'}>
+                                <p className={'font-bold'}>common</p>
+                            </div>
+                        </div>
                         <p
                             className={'w-full text-3xl mt-3 text-[#A731FF] text-center font-bold'}>opens
                             in <br/><span className={'text-5xl'}>00:59:59</span>
                         </p>
-                        <div className={'grid grid-cols-2 gap-3 h-9 mt-3'}>
-                            <button className={'rounded-full bg-black text-white'}>Open</button>
-                            <button className={'rounded-full bg-black text-white'}>Sell</button>
+                        <div className={'bg-black w-60 h-14 mt-10 flex justify-between items-center rounded-full pr-2 pl-4 '}>
+                            <p className={'text-white font-bold text-xl'}>Open now</p>
+                            <div className={'w-20 h-12 rounded-full bg-white flex justify-center items-center'}>
+                                <p className={'font-bold text-lg'}>127</p>
+                                <div className={'w-6 h-6 relative'}>
+                                    <Image src={'/images/carrot_icon.svg'} layout={'fill'}></Image>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

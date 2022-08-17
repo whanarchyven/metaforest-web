@@ -8,6 +8,7 @@ import LevelUp from "../LevelUp";
 import {sdk} from "../../graphql/sdk";
 import {useUserGameFullState} from "../../data/data-hooks";
 import Lootboxes from "../Lootboxes";
+import FeedPopUp from "../FeedPopUp";
 
 interface homeInterface {
     // bunny:bunnyInterface
@@ -26,6 +27,11 @@ const Dashboard = (bunny: bunnyInterface) => {
     const [lootboxPopOpen,setLootBoxOpen]=useState(false);
     const toggleLootPop=()=>{
         setLootBoxOpen(!lootboxPopOpen)
+    }
+
+    const [feedPopOpen,setFeedPopOpen]=useState(false);
+    const toggleFeedPop=()=>{
+        setFeedPopOpen(!feedPopOpen);
     }
 
 
@@ -82,11 +88,12 @@ const Dashboard = (bunny: bunnyInterface) => {
                 </div>
                 <div className={"w-20 h-32 absolute -left-3 top-44"}>
                     {state?.activeBunny?.baseParams?.vit &&
-                        <VitalityBar vitality={state.activeBunny.baseParams.vit}></VitalityBar>}
+                        <VitalityBar vitality={4}></VitalityBar>}
                     <div
                         className={
                             "w-3/4 mt-4 h-10 rounded-full green-gradient flex justify-center items-center"
                         }
+                        onClick={()=>{toggleFeedPop()}}
                     >
                         <p className={"text-center text-xl font-semibold text-white"}>
                             Feed
@@ -124,6 +131,20 @@ const Dashboard = (bunny: bunnyInterface) => {
                 </div>
                 <p className={"col-start-9 col-end-11 justify-self-center"}>3/12</p>
             </div>
+            <div className={"relative w-full gap-4 px-6 py-4 mt-3 grid grid-cols-10"}>
+                <p className={"col-start-1 col-end-4 justify-self-center"}>Max/day</p>
+                <div className={"col-start-4 col-end-9"}>
+                    <ProgressBar progress={3} limit={12}></ProgressBar>
+                </div>
+                <p className={"col-start-9 col-end-11 justify-self-center"}>3/12</p>
+            </div>
+            <div className={"relative w-full gap-4 px-6 py-4 mt-3 grid grid-cols-10"}>
+                <p className={"col-start-1 col-end-4 justify-self-center"}>Max/day</p>
+                <div className={"col-start-4 col-end-9"}>
+                    <ProgressBar progress={3} limit={12}></ProgressBar>
+                </div>
+                <p className={"col-start-9 col-end-11 justify-self-center"}>3/12</p>
+            </div>
             {state?.jobEnergy && state.maxJobEnergy != undefined ? (
                 <div className={"relative w-full gap-4 px-6 py-4 mt-3 grid grid-cols-10"}>
                     <p className={"col-start-1 col-end-4 justify-self-center"}>Energy</p>
@@ -141,12 +162,16 @@ const Dashboard = (bunny: bunnyInterface) => {
                 </div>
             ) : null}
 
+
+
+
             {levelPopOpen&&state.activeBunny&&state.skillPoints ? (
                 <LevelUp skillpoints={state.skillPoints} bunny={state.activeBunny} togglePop={toggleLevelPop}/>
             ) : null}
             {lootboxPopOpen?(
                 <Lootboxes lootboxes={state.unopenedLootBoxes} togglePop={toggleLootPop} />
             ) : null}
+            {feedPopOpen&&state.carrotsBalance?(<FeedPopUp togglePop={toggleFeedPop} carrotBalance={state.carrotsBalance} vitality={4}></FeedPopUp>):null}
         </div>
     );
 };
