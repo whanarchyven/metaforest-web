@@ -295,14 +295,14 @@ const Equipment = ({ bunny }: equipmentInterface) => {
           choosenType={choosenType}
           items={bunny?.bunny?.inventory}
           togglePop={togglePop}
-        ></EquipmentPopUp>
+        />
       ) : null}
       {statOpen ? (
         <StatPop
           togglePop={toggleStat}
           stat_name={currentStat}
           stat_value={bunny?.bunny?.stats?.[currentStat]}
-        ></StatPop>
+        />
       ) : null}
     </div>
   );
