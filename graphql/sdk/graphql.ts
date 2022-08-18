@@ -26,12 +26,15 @@ export type Answer = {
 };
 
 export enum BunnySlotsEnum {
-  Boots = 'boots',
-  Hat = 'hat',
-  LeftHand = 'leftHand',
-  Mask = 'mask',
-  RightHand = 'rightHand',
-  Suit = 'suit'
+  Costume = 'Costume',
+  EarsAccessories = 'EarsAccessories',
+  EarsNHorns = 'Ears_n_Horns',
+  Face = 'Face',
+  HandLeft = 'HandLeft',
+  HandRight = 'HandRight',
+  Hat = 'Hat',
+  Necklace = 'Necklace',
+  Overhead = 'Overhead'
 }
 
 export type CarrotsEarnLogElement = {
@@ -371,14 +374,15 @@ export type MetaforestGameConfig = {
 };
 
 export enum MetaforestInventorySlotEnum {
-  EarsAccessories = 'EARS_ACCESSORIES',
-  Face = 'FACE',
-  HandLeft = 'HAND_LEFT',
-  HandRight = 'HAND_RIGHT',
-  Hat = 'HAT',
-  Necklace = 'NECKLACE',
-  Sims = 'SIMS',
-  Suit = 'SUIT'
+  Costume = 'Costume',
+  EarsAccessories = 'EarsAccessories',
+  EarsNHorns = 'Ears_n_Horns',
+  Face = 'Face',
+  HandLeft = 'HandLeft',
+  HandRight = 'HandRight',
+  Hat = 'Hat',
+  Necklace = 'Necklace',
+  Overhead = 'Overhead'
 }
 
 export type MetaforestJob = {
@@ -413,6 +417,7 @@ export type MetaforestNftInfo = {
   deployedNftWithTrait?: Maybe<NftWithTrait>;
   idx: Scalars['Int'];
   images?: Maybe<NftImages>;
+  itemSlot?: Maybe<BunnySlotsEnum>;
   itemWornOnBunnyIdx?: Maybe<Scalars['Int']>;
   layers?: Maybe<Array<Scalars['String']>>;
   nftCollection?: Maybe<MetaforestNftCollectionsEnum>;
