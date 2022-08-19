@@ -101,7 +101,7 @@ const MarketplaceScreen = ({ bunny, balance }: MarketplaceProps) => {
       <div className={'gap-y-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 overflow-y-scroll gap-4 h-full pb-24'}>
         {items.map(item => {
           return <div className={'w-full h-72'} key={item.id}>
-            <ItemCard item={item} key={item.id}></ItemCard>
+            {/*<ItemCard item={item} key={item.id}></ItemCard>*/}
             <div className={'grid grid-cols-2 gap-3 h-9 mt-3'}>
               <button className={'rounded-full bg-black text-white'} onClick={() => { setPopupItem(item); togglePop() }}>Buy</button>
               <div className={'rounded-full flex items-center justify-around bg-black'}>
@@ -118,7 +118,7 @@ const MarketplaceScreen = ({ bunny, balance }: MarketplaceProps) => {
           </div>
         })}
       </div>
-      {openPopup ? <PopUp bunny={bunny} item={popupItem} togglePop={togglePop} balance={balance}></PopUp> : null}
+      {/*{openPopup ? <PopUp bunny={bunny} item={popupItem} togglePop={togglePop} balance={balance}></PopUp> : null}*/}
     </div>
   );
 };

@@ -41,7 +41,6 @@ const Dashboard = (bunny: bunnyInterface) => {
           <div className={"w-[308px] h-[445px] mx-auto"}>
             {state?.activeBunny?.images?.transparentBg ? (
               <BunnyGeneration
-                base_image={state.activeBunny?.images?.transparentBg}
               ></BunnyGeneration>
             ) : null}
           </div>
@@ -96,9 +95,8 @@ const Dashboard = (bunny: bunnyInterface) => {
           </div>
         </div>
         <div className={"w-20 h-32 absolute -left-3 top-44"}>
-          {state?.activeBunny?.baseParams?.vit && (
-            <VitalityBar vitality={4}></VitalityBar>
-          )}
+          {state?.vitalityPercent?
+            <VitalityBar vitality={state.vitalityPercent}></VitalityBar>:<VitalityBar vitality={1}></VitalityBar>}
           <div
             className={
               "w-3/4 mt-4 h-10 rounded-full green-gradient flex justify-center items-center"

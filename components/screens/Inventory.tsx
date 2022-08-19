@@ -82,11 +82,11 @@ const InventoryScreen = () => {
             <div className={'gap-y-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 overflow-y-scroll gap-4 h-full pb-24'}>
                 {items.map(item=>{
                     return <div className={'w-full h-72'} key={item.id} onClick={()=>{setPopupItem(item);togglePop()}}>
-                        <ItemCard item={item} key={item.id}></ItemCard>
+                        {/*<ItemCard item={item} key={item.id}></ItemCard>*/}
                     </div>
                 })}
             </div>
-            {openPopup?<InventoryPopUp togglePop={togglePop} item={popupItem}/>:null}
+            {/*{openPopup?<InventoryPopUp togglePop={togglePop} item={popupItem}/>:null}*/}
         </div>
     );
 };

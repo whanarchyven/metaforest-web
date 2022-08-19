@@ -21,7 +21,7 @@ export const AuthConnector = () => {
         const token = d?.createOrFindUserViaTelegramInitData;
         if (token) localStorage.setItem("token", token);
         if (token && extToken !== token) {
-          document.location.reload();
+          // document.location.reload();
         }
       })
       .catch((e) => alert(JSON.stringify(e?.response)));

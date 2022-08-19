@@ -1,16 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ItemCard from "./ItemCard";
 import {equipmentItem} from "./interfaces/equipmentItem";
 import Image from "next/image";
 import {bunnyInterface} from "./interfaces/bunnyInterface";
 import {marketplaceItem} from "./interfaces/marketplaceItem";
+import SellingPop from "./SellingPop";
+import {MetaforestNftInfo} from "../graphql/sdk/graphql";
 interface ItemCardInterface{
-    item:marketplaceItem,
+    item:MetaforestNftInfo,
     togglePop:()=>any,
 }
 
-
 const InventoryPopUp = ({item,togglePop}:ItemCardInterface) => {
+    const [openSellingPop,setOpenSellingPop]=useState(false);
+    const toggleSellingPop=()=>{
+        setOpenSellingPop(!openSellingPop)
+    }
     return (
         <div className={'flex flex-wrap fixed w-full h-full top-0 left-0 grey-gradient justify-center items-center'}>
             <div className={'w-12 h-12 absolute left-1 top-16 bg-white flex justify-center items-center rounded-full'} onClick={()=>{togglePop()}}>
@@ -19,14 +24,17 @@ const InventoryPopUp = ({item,togglePop}:ItemCardInterface) => {
                 </div>
             </div>
             <div className={'w-8/12 flex justify-center flex-wrap relative'}>
-                <div className={'w-full h-96'}>
+                <div className={'w-4/5 h-80 mb-8'}>
                     <ItemCard item={item}></ItemCard>
                 </div>
-                <div className={'relative w-4/5 mt-5 grid h-12 grid-cols-2 gap-2'}>
-                    <button className={'rounded-full bg-black text-white'}>Buy</button>
-
+                <div className={'relative w-full mt-5 grid grid-cols-2 grid-rows-2 gap-4'}>
+                    <button className={'rounded-full h-9 bg-black font-bold text-white'}>Equip</button>
+                    <button className={'rounded-full h-9 bg-black font-bold text-white'}>Mint</button>
+                    <button className={'rounded-full h-9 bg-black font-bold text-white'} onClick={()=>{toggleSellingPop()}}>Sell</button>
+                    <button className={'rounded-full h-9 bg-black font-bold text-white'}>Give</button>
                 </div>
             </div>
+            {openSellingPop?<SellingPop togglePop={toggleSellingPop}/>:null}
         </div>
     );
 };

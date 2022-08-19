@@ -7,6 +7,10 @@ import EquipmentPopUp from "../EquipmentPopUp";
 import {equipmentItem} from "../interfaces/equipmentItem";
 import StatPop from "../StatPop";
 import {useUserGameFullState} from "../../data/data-hooks";
+import {Swiper, SwiperSlide} from "swiper/react";
+import 'swiper/css';
+import {Navigation} from "swiper";
+import {MetaforestNftInfo} from "../../graphql/sdk/graphql";
 
 interface equipmentInterface {
     bunny: bunnyInterface;
@@ -23,14 +27,14 @@ interface keyTab {
         | 'HandRight'
         | 'Hat'
         | 'Necklace'
-    |'Overhead'; // <-- "id" | "filter1" | "filter2"
+        | 'Overhead'; // <-- "id" | "filter1" | "filter2"
 }
 
 interface keyStat {
     id: "str" | "dex" | "vit" | "int" | "krm";
 }
 
-const Equipment = ({bunny}: equipmentInterface) => {
+const BunnyChange = () => {
     const leftTabs: keyTab[] = [
         {id: "Hat"},
         {id: "Face"},
@@ -52,33 +56,49 @@ const Equipment = ({bunny}: equipmentInterface) => {
         {id: "krm"},
     ];
 
-    const [choosenType, setChoosenType] = useState<| "Costume"
-        | "EarsAccessories"
-        | "Ears_n_Horns"
-        | "Face"
-        | "HandLeft"
-        | "HandRight"
-        | "Hat"
-        | "Necklace"|'Overhead'>("Costume");
-    const [popOpen, setPopOpen] = useState(false);
-    const [statOpen, setStatOpen] = useState(false);
-    const [currentStat, setCurrentStat] = useState(stats[0].id);
-    const togglePop = () => {
-        setPopOpen(!popOpen);
-    };
-
-    const toggleStat = () => {
-        setStatOpen(!statOpen);
-    };
-
     const [state, mutate] = useUserGameFullState();
+    const [currentBunny,setCurrentBunny]=useState(state.activeBunny)
+
 
     return (
         <div
-            className={"grid grid-cols-1 grid-rows-2 auto-rows-max w-full h-[100vh]"}
+            className={"w-full"}
         >
+            <div
+                className={"w-full flex justify-center items-center h-[300px]"}
+            >
+                <Swiper
+                    slidesPerView={3}
+                    spaceBetween={3}
+                    centeredSlides={true}
+                    className="w-full h-[300px]"
+                    onSlideChange={(swiper) =>{if(state?.bunnies){if(state?.bunnies[swiper.activeIndex]!=undefined){setCurrentBunny(state?.bunnies[swiper.activeIndex])}}}}
+                >
+                    {state?.bunnies?.map(item => {
+                        return (
+                            <SwiperSlide key={item?.uid} className={'w-full h-full'}>
+                                {({isActive}) => (
+                                    <div className={'w-full h-full relative rounded-full'} key={item?.idx}>
+                                        {isActive ?
+                                            <div className={'w-full rounded-full h-full scale-150 scale-y-150 pt-10 rounded-full'}>
+                                                <img
+                                                    src={item?.images?.transparentBg ? '' + item?.images?.transparentBg : ''}/>
+                                            </div>
+                                            :
+                                            <div
+                                                className={'w-full rounded-full h-full scale-150 scale-y-150 pt-10 rounded-full opacity-50 scale-75'}>
+                                                <img
+                                                    src={item?.images?.transparentBg ? '' + item?.images?.transparentBg : ''}/>
+                                            </div>}
+                                    </div>
+                                )}
+                            </SwiperSlide>
+                        )
+                    })}
+                </Swiper>
+            </div>
             <div className={" grid grid-cols-7"}>
-                <div className={"grid gap-4 col-start-1 grid-rows-4 col-end-3 "}>
+                <div className={"grid gap-4 col-start-1 grid-rows-4 col-end-2 "}>
                     {leftTabs.map((tab) => {
                         return (
                             <div
@@ -86,10 +106,6 @@ const Equipment = ({bunny}: equipmentInterface) => {
                                     "relative flex justify-start items-center cursor-pointer"
                                 }
                                 key={tab.id}
-                                onClick={() => {
-                                    setChoosenType(tab.id);
-                                    togglePop();
-                                }}
                             >
                                 {state?.wornInventory?.findIndex(item => item?.itemSlot == tab.id) != -1 ? (
                                     <div
@@ -105,15 +121,15 @@ const Equipment = ({bunny}: equipmentInterface) => {
                                             <div className={"w-3/5 h-3/5 relative"}>
                                                 {state?.wornInventory?.find(item => item?.itemSlot == tab.id)?.images?.web != undefined ?
                                                     <img
-                                                        src={state.wornInventory?.find(item => item?.itemSlot == tab.id)?.images?.web?''+state.wornInventory?.find(item => item?.itemSlot == tab.id)?.images?.web:''}
-                                                    ></img> : null}
+                                                        src={state.inventory?.find(item => (item?.itemSlot == tab.id)&&(item.itemWornOnBunnyIdx==currentBunny?.idx))?.images?.web?''+state.inventory?.find(item => (item?.itemSlot == tab.id)&&(item.itemWornOnBunnyIdx==currentBunny?.idx))?.images?.web:'/images/tab_icons/' + tab.id + '.svg'}
+                                                    ></img>:null}
                                             </div>
                                         </div>
                                     </div>
                                 ) : (
                                     <div
                                         className={
-                                            "opacity-40 green-gradient rounded-r-full w-2/3 h-16 flex items-center justify-end"
+                                            " green-gradient rounded-r-full w-full h-16 flex items-center justify-end "
                                         }
                                     >
                                         <div
@@ -134,21 +150,62 @@ const Equipment = ({bunny}: equipmentInterface) => {
                         );
                     })}
                 </div>
-                <div
-                    className={"col-start-3 col-end-6 flex justify-center items-center "}
-                >
-                    <div
-                        className={
-                            "h-52 w-36 absolute sm:w-48 scale-[1.6] sm:scale-100 sm:w-72 sm:top-0 sm:h-96"
-                        }
-                    >
-                        {state?.activeBunny?.images?.transparentBg ? (
-                            <BunnyGeneration
-                            ></BunnyGeneration>
-                        ) : null}
+                <div className={"col-start-2 col-end-7 flex flex-wrap "}>
+                    <div className={"w-full flex justify-center"}>
+                        <p
+                            className={"text-4xl font-bold inline-block align-middle mt-0 mb-2"}
+                        >
+                            Test Bunny
+                        </p>
+                        <div
+                            className={
+                                "w-12 ml-3 h-12 green-gradient rounded-full inline-flex flex-wrap justify-center items-center align-middle"
+                            }
+                        >
+                            <p
+                                className={
+                                    "text-black leading-[60%] w-full text-xl text-center font-bold"
+                                }
+                            >
+                                {currentBunny?.baseParams?.level}
+                                <br/>
+                                <span className={"text-sm"}>level</span>
+                            </p>
+                            {/*<p className={'text-white text-sm leading-[1%] font-bold'}>level</p>*/}
+                        </div>
+                    </div>
+                    <div className={"grid w-full gap-4 grid-cols-1 grid-rows-6 p-2"}>
+                        {stats.map((stat) => {
+                            return (
+                                <div
+                                    className={"w-full"}
+                                    key={stat.id}
+                                >
+                                    <div className={"col-start-2 col-end-5 rounded-full"}>
+                                        <div className={'w-[10%] h-6 relative inline-block align-middle mr-[5%]'}>
+                                            <Image
+                                                src={"/images/stats_icons/" + stat.id + ".svg"}
+                                                layout={"fill"}
+                                            ></Image>
+                                        </div>
+                                        {currentBunny?.baseParams &&
+                                        currentBunny?.baseParams[stat.id] ? (
+                                            <div className={'inline-block w-[80%] align-middle'}>
+                                                <StatTab
+                                                    stat_name={stat.id}
+                                                    stat_value={currentBunny?.baseParams[stat.id]}
+                                                />
+                                            </div>
+                                        ) : null}
+                                    </div>
+
+                                </div>
+                            );
+                        })}
+                        <button className={'w-full h-9 rounded-full bg-black font-bold text-xl text-white'}>Select</button>
                     </div>
                 </div>
-                <div className={"grid gap-4 col-start-6 grid-rows-4 col-end-8 "}>
+                <div className={"grid gap-4 col-start-7 grid-rows-4 col-end-8 "}>
                     {rightTabs.map((tab) => {
                         return (
                             <div
@@ -156,10 +213,6 @@ const Equipment = ({bunny}: equipmentInterface) => {
                                     "relative flex justify-end items-center cursor-pointer"
                                 }
                                 key={tab.id}
-                                onClick={() => {
-                                    setChoosenType(tab.id);
-                                    togglePop();
-                                }}
                             >
                                 {state?.wornInventory?.findIndex(item => item?.itemSlot == tab.id) != -1 ? (
                                     <div
@@ -175,8 +228,8 @@ const Equipment = ({bunny}: equipmentInterface) => {
                                             <div className={"w-3/5 h-3/5 relative"}>
                                                 {state?.wornInventory?.find(item => item?.itemSlot == tab.id)?.images?.web != undefined ?
                                                     <img
-                                                        src={state.wornInventory?.find(item => item?.itemSlot == tab.id)?.images?.web?''+state.wornInventory?.find(item => item?.itemSlot == tab.id)?.images?.web:''}
-                                                    ></img> : null}
+                                                        src={state.inventory?.find(item => (item?.itemSlot == tab.id)&&(item.itemWornOnBunnyIdx==currentBunny?.idx))?.images?.web?''+state.inventory?.find(item => (item?.itemSlot == tab.id)&&(item.itemWornOnBunnyIdx==currentBunny?.idx))?.images?.web:'/images/tab_icons/' + tab.id + '.svg'}
+                                                    ></img>:null}
 
                                             </div>
                                         </div>
@@ -184,7 +237,7 @@ const Equipment = ({bunny}: equipmentInterface) => {
                                 ) : (
                                     <div
                                         className={
-                                            "opacity-40 green-gradient rounded-l-full w-2/3 h-16 flex items-center justify-start"
+                                            " green-gradient rounded-l-full w-full h-16 flex items-center justify-start"
                                         }
                                     >
                                         <div
@@ -206,92 +259,8 @@ const Equipment = ({bunny}: equipmentInterface) => {
                     })}
                 </div>
             </div>
-            <div className={"flex mt-9 flex-wrap justify-center"}>
-                <div className={""}>
-                    <p
-                        className={"text-4xl font-bold inline-block align-middle mt-0 mb-2"}
-                    >
-                        Test Bunny
-                    </p>
-                    <div
-                        className={
-                            "w-12 ml-3 h-12 green-gradient rounded-full inline-flex flex-wrap justify-center items-center align-middle"
-                        }
-                    >
-                        <p
-                            className={
-                                "text-black leading-[60%] w-full text-xl text-center font-bold"
-                            }
-                        >
-                            {state?.activeBunny?.baseParams?.level}
-                            <br/>
-                            <span className={"text-sm"}>level</span>
-                        </p>
-                        {/*<p className={'text-white text-sm leading-[1%] font-bold'}>level</p>*/}
-                    </div>
-                </div>
-                <div className={"grid w-full gap-4 grid-cols-1 grid-rows-6 p-2"}>
-                    {stats.map((stat) => {
-                        return (
-                            <div
-                                className={"grid grid-cols-5 gap-4 items-center"}
-                                key={stat.id}
-                            >
-                                <div className={"col-start-1 col-end-2"}>
-                                    <div className={"w-5 h-5 relative inline-block align-middle"}>
-                                        <Image
-                                            src={"/images/stats_icons/" + stat.id + ".svg"}
-                                            layout={"fill"}
-                                        ></Image>
-                                    </div>
-                                    <p
-                                        className={
-                                            "ml-2 inline-block text-black text-sm align-middle"
-                                        }
-                                    >
-                                        {stat.id.toUpperCase()}
-                                    </p>
-                                </div>
-                                <div className={"col-start-2 col-end-5 rounded-full"}>
-                                    {state?.activeBunny?.baseParams &&
-                                    state.activeBunny?.baseParams[stat.id] ? (
-                                        <StatTab
-                                            stat_name={stat.id}
-                                            stat_value={state.activeBunny?.baseParams[stat.id]}
-                                        />
-                                    ) : null}
-                                </div>
-                                <div
-                                    className={
-                                        "col-start-5 col-end-6 bg-black rounded-full h-full flex justify-center items-center cursor-pointer"
-                                    }
-                                    onClick={() => {
-                                        setCurrentStat(stat.id);
-                                        toggleStat();
-                                    }}
-                                >
-                                    <p className={"text-white font-bold text-[0.7em]"}>More</p>
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
-            </div>
-            {popOpen==true&&state?.wornInventory!=undefined ? (
-                <EquipmentPopUp
-                    choosenType={choosenType}
-                    togglePop={togglePop}
-                />
-            ) : null}
-            {statOpen && state.activeBunny?.baseParams ? (
-                <StatPop
-                    togglePop={toggleStat}
-                    stat_name={currentStat}
-                    stat_value={state.activeBunny?.baseParams[currentStat]}
-                />
-            ) : null}
         </div>
     );
 };
 
-export default Equipment;
+export default BunnyChange;
