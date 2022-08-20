@@ -1,3 +1,0 @@
-query userCreate($email: String!, $password: String!){
-    userCreate(email: $email, password: $password)
-}

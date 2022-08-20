@@ -5,6 +5,7 @@ import { useTime } from "react-timer-hook";
 import { useUserGameFullState } from "../data/data-hooks";
 import { LootBox, Maybe, Scalars } from "../graphql/sdk/graphql";
 import LootboxPop from "./LootboxPop";
+import MyTimer from "./UI/Timer";
 
 interface lootboxesInterface {
   togglePop: () => any
@@ -57,8 +58,13 @@ const Lootboxes = ({ togglePop,lootboxes }: lootboxesInterface) => {
       <div
         className={'gap-y-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 overflow-y-scroll gap-2 h-full pb-24'}>
         {lootboxes.map((item,index) => {
+            const time = new Date();
+            if(item.openAfterDate){
+                const secondsFull = Math.floor((new Date("2022-08-21T00:15:40.862Z").valueOf()-new Date().valueOf())/1000)
+                time.setSeconds(secondsFull)
+            }
           return <div className={'w-full h-72 mt-5'} key={item.id}>
-            {item.id ? <p className={'font-bold w-full text-2xl opacity-50 text-center'}>№ {index.toString().padStart(6, '0')}</p> : null}
+            {item.id ? <p className={'font-bold w-full text-2xl opacity-50 text-center'}>№ {item?.slugEnum}</p> : null}
             <div className={'w-48 h-48 relative'}>
               <div className={'absolute top-0 w-full h-full'}>
                 <Image
@@ -77,7 +83,7 @@ const Lootboxes = ({ togglePop,lootboxes }: lootboxesInterface) => {
             </div>
             <button
               className={'w-full h-9 mt-3 text-[#A731FF] text-center font-bold rounded-full bg-white'}>opens
-              in 00:59:59
+                in <MyTimer expiryTimestamp={time} timer={300}></MyTimer>
             </button>
             <div className={'grid grid-cols-2 gap-3 h-9 mt-3'}>
               <button className={'rounded-full bg-black text-white'} onClick={() => { setChoosenLootBox(item); toogleLootBoxPop() }}>Open</button>
