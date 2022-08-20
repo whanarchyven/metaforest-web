@@ -1,20 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-module.exports.crescoAdminGetAdminList = fs.readFileSync(path.join(__dirname, 'crescoAdminGetAdminList.gql'), 'utf8');
-module.exports.crescoAdminGetCustomerList = fs.readFileSync(path.join(__dirname, 'crescoAdminGetCustomerList.gql'), 'utf8');
-module.exports.crescoAdminGetCustomerProfile = fs.readFileSync(path.join(__dirname, 'crescoAdminGetCustomerProfile.gql'), 'utf8');
-module.exports.crescoAdminGetLastPortfolioState = fs.readFileSync(path.join(__dirname, 'crescoAdminGetLastPortfolioState.gql'), 'utf8');
-module.exports.crescoAdminTransactionCheckInEth = fs.readFileSync(path.join(__dirname, 'crescoAdminTransactionCheckInEth.gql'), 'utf8');
-module.exports.crescoAdminTransactionList = fs.readFileSync(path.join(__dirname, 'crescoAdminTransactionList.gql'), 'utf8');
-module.exports.crescoCustomerGetCalculatedBalance = fs.readFileSync(path.join(__dirname, 'crescoCustomerGetCalculatedBalance.gql'), 'utf8');
-module.exports.crescoCustomerGetMyProfile = fs.readFileSync(path.join(__dirname, 'crescoCustomerGetMyProfile.gql'), 'utf8');
-module.exports.crescoCustomerTransactionList = fs.readFileSync(path.join(__dirname, 'crescoCustomerTransactionList.gql'), 'utf8');
-module.exports.crescoGetDepositInfoByAgreementNumber = fs.readFileSync(path.join(__dirname, 'crescoGetDepositInfoByAgreementNumber.gql'), 'utf8');
-module.exports.crescoGetExternalCoinsRates = fs.readFileSync(path.join(__dirname, 'crescoGetExternalCoinsRates.gql'), 'utf8');
 module.exports.getMe = fs.readFileSync(path.join(__dirname, 'getMe.gql'), 'utf8');
-module.exports.getUpcomingSevaPremEvents = fs.readFileSync(path.join(__dirname, 'getUpcomingSevaPremEvents.gql'), 'utf8');
-module.exports.huobiGetData = fs.readFileSync(path.join(__dirname, 'huobiGetData.gql'), 'utf8');
 module.exports.metaforestAdminGetConfig = fs.readFileSync(path.join(__dirname, 'metaforestAdminGetConfig.gql'), 'utf8');
 module.exports.metaforestGetInternalContractAbi = fs.readFileSync(path.join(__dirname, 'metaforestGetInternalContractAbi.gql'), 'utf8');
 module.exports.metaforestJobsList = fs.readFileSync(path.join(__dirname, 'metaforestJobsList.gql'), 'utf8');
@@ -22,4 +9,3 @@ module.exports.metaforestUserGetMyPush = fs.readFileSync(path.join(__dirname, 'm
 module.exports.metaforestUserGetMyState = fs.readFileSync(path.join(__dirname, 'metaforestUserGetMyState.gql'), 'utf8');
 module.exports.metaforestUserGetPush = fs.readFileSync(path.join(__dirname, 'metaforestUserGetPush.gql'), 'utf8');
 module.exports.metaforestUserGetState = fs.readFileSync(path.join(__dirname, 'metaforestUserGetState.gql'), 'utf8');
-module.exports.userCreate = fs.readFileSync(path.join(__dirname, 'userCreate.gql'), 'utf8');

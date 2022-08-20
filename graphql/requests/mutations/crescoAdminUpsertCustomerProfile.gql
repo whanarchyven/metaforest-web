@@ -1,3 +1,0 @@
-mutation crescoAdminUpsertCustomerProfile($input: CrescoCustomerAdminInput){
-    crescoAdminUpsertCustomerProfile(input: $input)
-}

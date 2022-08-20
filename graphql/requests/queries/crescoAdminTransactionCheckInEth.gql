@@ -1,3 +1,0 @@
-query crescoAdminTransactionCheckInEth($transactionId: String){
-    crescoAdminTransactionCheckInEth(transactionId: $transactionId)
-}
