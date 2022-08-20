@@ -24,18 +24,17 @@ const StatsPage = () => {
         <Layout>
             <div
                 className={
-                    "bg-slate-600 flex font-roboto justify-center items-center w-[100vw] h-[100vh]"
+                    "grey-gradient  font-roboto  w-[100vw] h-[100vh]"
                 }
             >
                 <AuthConnector/>
+                <p className={'w-full pt-20 text-center font-bold text-3xl'}>Доступ ограничен на время бета-теста!</p>
                 <div
                     className={
-                        "w-96 h-[300px] rounded-2xl walk-gradient flex flex-wrap justify-center p-6"
+                        "w-full mt-40 h-[300px] rounded-2xl flex flex-wrap relative justify-center p-6"
                     }
                 >
-                    <p className={"text-3xl mt-5 font-bold w-full text-center"}>Введите ссылку на публикацию:</p>
-                    <input type={'text'} className={'w-full text-center p-2 h-9 rounded-full'}/>
-                    <button className={'w-4/5 h-9 bg-black text-white rounded-full font-bold text-xl'}>Отправить</button>
+                    <Image src={'/images/sad_bunny.svg'} layout={'fill'}></Image>
                 </div>
             </div>
         </Layout>

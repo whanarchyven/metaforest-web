@@ -35,7 +35,7 @@ const InventoryPopUp = ({item,togglePop}:ItemCardInterface) => {
                     {state?.wornInventory?.find(equiped=>equiped?.idx==item.idx)?<button className={'rounded-full border-2 border-black h-9 bg-transparent font-bold text-black'}>Equiped</button>:<button className={'rounded-full h-9 bg-black font-bold text-white'} onClick={()=>{sdk().metaforestPerformMyAbiFunction({
                         fn:'wearInventoryElementOnCurrentBunny',
                         params:{itemIdx:item.idx}
-                    });console.log('eqiped');console.log(item?.idx);console.log(state);console.log(state?.wornInventory?.find(equiped=>{equiped?.idx==4})?.uid)}}>Equip</button>}
+                    });}}>Equip</button>}
                     {/*<button className={'rounded-full h-9 bg-black font-bold text-white'}>Mint</button>*/}
                     <button className={'rounded-full h-9 bg-black font-bold text-white'} onClick={()=>{toggleSellingPop()}}>Sell</button>
                     {/*<button className={'rounded-full h-9 bg-black font-bold text-white'}>Give</button>*/}

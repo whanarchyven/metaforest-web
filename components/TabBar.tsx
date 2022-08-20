@@ -13,14 +13,18 @@ const TabBar = ({ currentTab }: tabBarInterface) => {
 
   const [isVisible, setIsVisible] = useState('visible-true');
   const [currentOffset, setCurrentOffset] = useState(0);
+  // const tabs = [
+  //   'activity',
+  //   'equipment',
+  //   'home',
+  //   'marketplace',
+  //   'work',
+  // ]
   const tabs = [
-    'activity',
     'equipment',
     'home',
-    'marketplace',
     'work',
   ]
-
   useEffect(() => {
     window.addEventListener('scroll', ev => {
       if (window.scrollY > currentOffset + 100) {
@@ -35,7 +39,7 @@ const TabBar = ({ currentTab }: tabBarInterface) => {
   })
 
   return (
-    <div className={'w-full h-full bg-white grid grid-cols-5 visible-transition gap-10 grid-rows-1 p-5 ' + isVisible}>
+    <div className={'w-full h-full bg-white grid grid-cols-3 visible-transition gap-10 grid-rows-1 p-5 ' + isVisible}>
       {tabs.map(item => {
         let active = '';
         if ('/' + item != currentTab) {

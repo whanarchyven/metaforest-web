@@ -253,11 +253,11 @@ const Equipment = ({bunny}: equipmentInterface) => {
                                     </p>
                                 </div>
                                 <div className={"col-start-2 col-end-5 rounded-full"}>
-                                    {state?.activeBunny?.baseParams &&
-                                    state.activeBunny?.baseParams[stat.id] ? (
+                                    {state?.calculatedBaseParams &&
+                                    state.calculatedBaseParams[stat.id] ? (
                                         <StatTab
                                             stat_name={stat.id}
-                                            stat_value={state.activeBunny?.baseParams[stat.id]}
+                                            stat_value={state.calculatedBaseParams[stat.id]}
                                         />
                                     ) : null}
                                 </div>

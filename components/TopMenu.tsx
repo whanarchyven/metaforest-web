@@ -18,7 +18,7 @@ const TopMenu = ({balance}: topMenuInterface) => {
     return (
         <div className={'w-full h-full grid grid-cols-6 grid-rows-1 gap-2'}>
             <div className={'absolute z-[999] w-14 p-2 bg-white rounded-full left-2 top-0 border-black'+bord}>
-                <div className={'relative w-full h-14'} onClick={()=>{setMenuIsShown(!menuIsShown)}}>
+                <div className={'relative w-full h-10'} onClick={()=>{setMenuIsShown(!menuIsShown)}}>
                     <Image src={'/images/burger_icon.svg'} layout={'fill'}></Image>
                 </div>
                 {menuIsShown ?

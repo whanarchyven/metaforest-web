@@ -105,6 +105,9 @@ const Dashboard = (bunny: bunnyInterface) => {
             }
             onClick={() => {
               // toggleFeedPop();
+              sdk().metaforestPerformMyAbiFunction({
+                fn:'feedRabbitWithCarrots'
+              });console.log('feeded')
             }}
           >
             <p className={"text-center text-xl font-semibold text-white"}>
