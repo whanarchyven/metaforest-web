@@ -7,7 +7,7 @@ import Layout from "../components/Layout";
 
 const StatsPage = () => {
   return (
-    <Layout>
+    <Layout hideUi={true}>
       <div className={"grey-gradient  font-roboto  w-[100vw] h-[100vh]"}>
         <p className={"w-full pt-20 text-center font-bold text-3xl"}>
           Доступ ограничен на время бета-теста!
