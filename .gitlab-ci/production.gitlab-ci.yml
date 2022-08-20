@@ -1,6 +1,6 @@
 stages:
   - build
-  # - deploy
+  - deploy
   - .post
 
 variables:
@@ -14,4 +14,4 @@ variables:
 
 include:
   - local: '/.gitlab-ci/build-frontend-production.gitlab-ci.yml'
-  # - local: '/.gitlab-ci/deploy-production.gitlab-ci.yml'
+  - local: '/.gitlab-ci/deploy-production.gitlab-ci.yml'

@@ -2,9 +2,8 @@
 version: "3.8"
 
 services:
-
   frontend:
-    image: "dr.metafora.dev/meta-forest/web-app/frontend/stage:latest"
+    image: "${DOCKER_REGISTRY_HOSTNAME}/meta-forest/web-app/frontend/stage:latest"
     labels:
       - "traefik.http.routers.meta-forest-web-app-frontend.rule=Host(`web-app.meta-forest.stage.dev.metafora.dev`)"
       - "traefik.http.routers.meta-forest-web-app-frontend.entrypoints=web,websecure"

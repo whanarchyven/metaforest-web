@@ -1,4 +1,4 @@
-build-core-stage:
+build-frontend-stage:
   image: docker:dind
   stage: build
   tags:
