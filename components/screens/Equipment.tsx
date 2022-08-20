@@ -211,7 +211,7 @@ const Equipment = ({bunny}: equipmentInterface) => {
                     <p
                         className={"text-4xl font-bold inline-block align-middle mt-0 mb-2"}
                     >
-                        Test Bunny
+                        {state?.activeBunny?.deployedNftWithTrait?.name}
                     </p>
                     <div
                         className={

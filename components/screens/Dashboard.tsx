@@ -102,7 +102,7 @@ const Dashboard = (bunny: bunnyInterface) => {
               "w-3/4 mt-4 h-10 rounded-full green-gradient flex justify-center items-center"
             }
             onClick={() => {
-              toggleFeedPop();
+              // toggleFeedPop();
             }}
           >
             <p className={"text-center text-xl font-semibold text-white"}>
@@ -117,13 +117,14 @@ const Dashboard = (bunny: bunnyInterface) => {
             "text-center w-full text-4xl font-semibold text-black relative -mt-10 mb-5"
           }
         >
-          {state?.userUri}
+          {state?.activeBunny?.deployedNftWithTrait?.name}
         </p>
       )}
-      <div
+      <a
         className={
           "w-40 h-12 green-gradient rounded-full relative flex justify-center items-center"
         }
+        href={'/bunnychange'}
       >
         <p
           className={"text-center text-xl font-semibold text-white"}
@@ -133,7 +134,7 @@ const Dashboard = (bunny: bunnyInterface) => {
         >
           Change
         </p>
-      </div>
+      </a>
       <div className={"relative w-full gap-4 px-6 py-4 mt-3 grid grid-cols-10"}>
         <p className={"col-start-1 col-end-4 justify-self-center"}>Max/day</p>
         <div className={"col-start-4 col-end-9"}>

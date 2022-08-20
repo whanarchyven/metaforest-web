@@ -11,6 +11,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import 'swiper/css';
 import {Navigation} from "swiper";
 import {MetaforestNftInfo} from "../../graphql/sdk/graphql";
+import {sdk} from "../../graphql/sdk";
 
 interface equipmentInterface {
     bunny: bunnyInterface;
@@ -57,7 +58,7 @@ const BunnyChange = () => {
     ];
 
     const [state, mutate] = useUserGameFullState();
-    const [currentBunny,setCurrentBunny]=useState(state.activeBunny)
+    const [currentBunny,setCurrentBunny]=useState(state?.activeBunny)
 
 
     return (
@@ -80,13 +81,13 @@ const BunnyChange = () => {
                                 {({isActive}) => (
                                     <div className={'w-full h-full relative rounded-full'} key={item?.idx}>
                                         {isActive ?
-                                            <div className={'w-full rounded-full h-full scale-150 scale-y-150 pt-10 rounded-full'}>
+                                            <div className={'w-full rounded-full h-full scale-150 pt-10 rounded-full'}>
                                                 <img
                                                     src={item?.images?.transparentBg ? '' + item?.images?.transparentBg : ''}/>
                                             </div>
                                             :
                                             <div
-                                                className={'w-full rounded-full h-full scale-150 scale-y-150 pt-10 rounded-full opacity-50 scale-75'}>
+                                                className={'w-full rounded-full h-full scale-150 pt-10 rounded-full opacity-50 scale-75'}>
                                                 <img
                                                     src={item?.images?.transparentBg ? '' + item?.images?.transparentBg : ''}/>
                                             </div>}
@@ -152,11 +153,15 @@ const BunnyChange = () => {
                 </div>
                 <div className={"col-start-2 col-end-7 flex flex-wrap "}>
                     <div className={"w-full flex justify-center"}>
-                        <p
+                        {currentBunny?.idx==state?.activeBunny?.idx?<p
+                            className={"text-4xl font-bold  text-green-500 inline-block align-middle mt-0 mb-2"}
+                        >
+                            {currentBunny?.deployedNftWithTrait?.name}
+                        </p>:<p
                             className={"text-4xl font-bold inline-block align-middle mt-0 mb-2"}
                         >
-                            Test Bunny
-                        </p>
+                            {currentBunny?.deployedNftWithTrait?.name}
+                        </p>}
                         <div
                             className={
                                 "w-12 ml-3 h-12 green-gradient rounded-full inline-flex flex-wrap justify-center items-center align-middle"
@@ -202,7 +207,10 @@ const BunnyChange = () => {
                                 </div>
                             );
                         })}
-                        <button className={'w-full h-9 rounded-full bg-black font-bold text-xl text-white'}>Select</button>
+                        <button className={'w-full h-9 rounded-full bg-black font-bold text-xl text-white'} onClick={()=>{sdk().metaforestPerformMyAbiFunction({
+                            fn:'switchActiveBunny',
+                            params:{bunnyIdx:currentBunny?.idx}
+                        });console.log('changed')}}>Select</button>
                     </div>
                 </div>
                 <div className={"grid gap-4 col-start-7 grid-rows-4 col-end-8 "}>
