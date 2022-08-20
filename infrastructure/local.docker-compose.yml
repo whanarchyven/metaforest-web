@@ -3,7 +3,7 @@ version: "3.8"
 services:
 
   frontend:
-    image: "dr.metafora.dev/meta-forest/web-app/frontend/local:latest"
+    image: "${DOCKER_REGISTRY_HOSTNAME}/meta-forest/web-app/frontend/local:latest"
     pull_policy: build
     build:
       context: "../"
