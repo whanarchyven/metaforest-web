@@ -1,0 +1,21 @@
+query metaforestJobsList{
+    metaforestJobsList{
+        approxMeters
+        carrotsForApproxMeters
+        conditionsGTE{
+            dex
+            int
+            krm
+            level
+            rarityInt
+            str
+            vit
+        }
+        description
+        freeEnergyApproxMetersC0
+        slug
+        title
+        type
+        vitalitySpend
+    }
+}

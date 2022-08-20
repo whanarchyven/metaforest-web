@@ -1,3 +1,0 @@
-mutation userFeedCurrentBunny($carrotAmount: Float){
-    userFeedCurrentBunny(carrotAmount: $carrotAmount)
-}

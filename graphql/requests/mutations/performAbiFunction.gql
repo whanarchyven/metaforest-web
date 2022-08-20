@@ -1,3 +1,0 @@
-mutation performAbiFunction($fn: String, $params: JSON, $userUri: String!){
-    performAbiFunction(fn: $fn, params: $params, userUri: $userUri)
-}

@@ -28,17 +28,19 @@
     }
 
     .rangebar>input[type=range]::-webkit-slider-runnable-track {
-        background-color: #C7C7CC;
+        background: linear-gradient(90deg, #64D2CC 0.17%, #29FF9E 99.99%);
+        border-radius: 200px;
     }
 
     .rangebar>input[type=range]::-webkit-slider-thumb {
-        background: transparent;
+        background: white;
         cursor: pointer;
-        width:15px;
-        height: 15px;
+        width:25px;
+        height: 25px;
+        border-radius: 200px;
         -webkit-appearance: none;
         margin-top: -4px;
-        box-shadow: -200px  0 0 200px  #43e5f7;
+        /*box-shadow: -200px  0 0 200px  #64D2CC;*/
 
     }
 
@@ -51,7 +53,7 @@
         background: #ecf0f1;
         cursor: pointer;
         border-radius:0px;
-        box-shadow: -200px  0px 0px 200px   #43e5f7;
+        box-shadow: -200px  0 0 200px  #64D2CC;
         padding: 0px;
         margin: 0px;
     }
@@ -89,6 +91,9 @@
     }
     .deactive-gradient{
         background-color: #E1EAFF;
+    }
+    .walk-gradient{
+        background: linear-gradient(143.04deg, #FFFFFF 10.84%, rgba(255, 255, 255, 0) 92.93%);
     }
 
 

@@ -1,0 +1,24 @@
+---
+version: "3.8"
+
+services:
+  frontend:
+    image: "dr.infra.metafora.dev/meta-forest/web-app/frontend/production:latest"
+    labels:
+      - "traefik.http.routers.meta-forest-web-app-frontend.rule=Host(`web-app.meta-forest.metafora.dev`)||Host(`www.web-app.meta-forest.metafora.dev`)"
+      - "traefik.http.routers.meta-forest-web-app-frontend.entrypoints=web,websecure"
+
+      - "traefik.http.routers.meta-forest-web-app-frontend.tls.certresolver=http-cert"
+      - "traefik.http.routers.meta-forest-web-app-frontend.tls.domains[0].main=protos.metafora.dev"
+      - "traefik.http.routers.meta-forest-web-app-frontend.tls.domains[0].sans=www.web-app.meta-forest.metafora.dev"
+      - "traefik.http.routers.meta-forest-web-app-frontend.tls=true"
+    deploy:
+      labels:
+        - "traefik.http.routers.meta-forest-web-app-frontend.rule=Host(`web-app.meta-forest.metafora.dev`)||Host(`www.web-app.meta-forest.metafora.dev`)"
+        - "traefik.http.routers.meta-forest-web-app-frontend.entrypoints=web,websecure"
+
+        - "traefik.http.routers.meta-forest-web-app-frontend.tls=true"
+        - "traefik.http.routers.meta-forest-web-app-frontend.tls.certresolver=http-cert"
+        - "traefik.http.routers.meta-forest-web-app-frontend.tls.domains[0].main=web-app.meta-forest.metafora.dev"
+        - "traefik.http.routers.meta-forest-web-app-frontend.tls.domains[0].sans=www.web-app.meta-forest.metafora.dev"
+...

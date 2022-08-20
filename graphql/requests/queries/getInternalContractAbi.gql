@@ -1,3 +1,0 @@
-query getInternalContractAbi($name: MfAbiEnum){
-    getInternalContractAbi(name: $name)
-}

@@ -1,0 +1,10 @@
+query metaforestUserGetMyPush{
+    metaforestUserGetMyPush{
+        _id
+        createdAt
+        emotion
+        textEn
+        textRu
+        userUri
+    }
+}

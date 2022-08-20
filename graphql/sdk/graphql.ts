@@ -19,59 +19,65 @@ export type Scalars = {
   JSON: any;
 };
 
-export type ActiveJob = {
-  __typename?: 'ActiveJob';
-  bunny?: Maybe<Bunny>;
+export enum BunnySlotsEnum {
+  Costume = 'Costume',
+  EarsAccessories = 'EarsAccessories',
+  EarsNHorns = 'Ears_n_Horns',
+  Face = 'Face',
+  HandLeft = 'HandLeft',
+  HandRight = 'HandRight',
+  Hat = 'Hat',
+  Necklace = 'Necklace',
+  Overhead = 'Overhead'
+}
+
+export type CarrotsEarnLogElement = {
+  __typename?: 'CarrotsEarnLogElement';
+  amount: Scalars['Int'];
+  timestamp: Scalars['String'];
 };
 
-export type Bunny = {
-  __typename?: 'Bunny';
-  id?: Maybe<Scalars['String']>;
-  imgUrl?: Maybe<Scalars['String']>;
+export type CurrentJobProgress = {
+  __typename?: 'CurrentJobProgress';
+  carrotsEarned?: Maybe<Scalars['Int']>;
+  jobStartTime?: Maybe<Scalars['String']>;
+  metersPassed?: Maybe<Scalars['Int']>;
 };
 
-export type CalculatedStats = {
-  __typename?: 'CalculatedStats';
-  bunny?: Maybe<Bunny>;
+export type EarnLogElement = {
+  __typename?: 'EarnLogElement';
+  amount?: Maybe<Scalars['Float']>;
+  timestamp?: Maybe<Scalars['String']>;
 };
 
 export enum FieldTypeEnum {
   Dictionary = 'DICTIONARY',
   ExternalObject = 'EXTERNAL_OBJECT',
+  FileUrl = 'FILE_URL',
+  FileUrls = 'FILE_URLS',
   Markdown = 'MARKDOWN',
   MarkdownLine = 'MARKDOWN_LINE'
 }
 
-export type GlobalGameSettings = {
-  __typename?: 'GlobalGameSettings';
+export type Idea_MetaforestGlobalGameSettings = {
+  __typename?: 'Idea_MetaforestGlobalGameSettings';
   maxSpeedKmH?: Maybe<Scalars['Int']>;
 };
 
-export type InventoryElement = {
-  __typename?: 'InventoryElement';
-  id?: Maybe<Scalars['String']>;
-  slot?: Maybe<InventorySlotEnum>;
-  stats?: Maybe<InventoryStats>;
-  wornOnBunnyId?: Maybe<Scalars['String']>;
-};
-
-export enum InventorySlotEnum {
-  HandLeft = 'HAND_LEFT',
-  HandRight = 'HAND_RIGHT',
-  Hat = 'HAT',
-  Rabbit = 'RABBIT'
-}
-
-export type InventoryStats = {
-  __typename?: 'InventoryStats';
-  stamina?: Maybe<Scalars['Float']>;
+export type Location = {
+  __typename?: 'Location';
+  horizontalAccuracy?: Maybe<Scalars['Float']>;
+  lat: Scalars['Float'];
+  lon: Scalars['Float'];
+  timestamp?: Maybe<Scalars['Date']>;
 };
 
 export type LootBox = {
   __typename?: 'LootBox';
-  canOpenAfter?: Maybe<Scalars['Date']>;
-  issuedAt?: Maybe<Scalars['Date']>;
-  localId?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  openAfterDate?: Maybe<Scalars['String']>;
+  probabilityOfLoot?: Maybe<Scalars['Int']>;
+  slugEnum?: Maybe<Scalars['String']>;
 };
 
 export type MessageLocalized = {
@@ -80,49 +86,117 @@ export type MessageLocalized = {
   ru?: Maybe<Scalars['String']>;
 };
 
-export enum MfAbiEnum {
+export enum MetaforestAbiEnum {
   Config = 'CONFIG',
   Functions = 'FUNCTIONS',
   State = 'STATE'
 }
 
-export type MfActionJobProgressInput = {
-  metersPassed?: InputMaybe<Scalars['Float']>;
+export type MetaforestBaseParams = {
+  __typename?: 'MetaforestBaseParams';
+  dex: Scalars['Int'];
+  int: Scalars['Int'];
+  krm: Scalars['Int'];
+  level?: Maybe<Scalars['Int']>;
+  rarityInt?: Maybe<Scalars['Int']>;
+  str: Scalars['Int'];
+  vit: Scalars['Int'];
 };
 
-export type MfActionOpenLootbox = {
-  lootboxLocalId?: InputMaybe<Scalars['String']>;
+export type MetaforestBunnyGens = {
+  __typename?: 'MetaforestBunnyGens';
+  bg: Scalars['String'];
+  body: Scalars['String'];
+  ears: Scalars['String'];
+  eyes: Scalars['String'];
+  mouth: Scalars['String'];
+  rarity: Scalars['String'];
+  scar: Scalars['String'];
+  texture: Scalars['String'];
 };
 
-export type MfActionResult = {
-  __typename?: 'MfActionResult';
-  errorMessageRus?: Maybe<MessageLocalized>;
-  gameFullState: MfUserGameFullState;
-  isError: Scalars['Boolean'];
-  isSuccessful: Scalars['Boolean'];
-  successMessageRus?: Maybe<MessageLocalized>;
+export type MetaforestCurrentJob = {
+  __typename?: 'MetaforestCurrentJob';
+  carrotsEarned: Scalars['Float'];
+  isActive: Scalars['Boolean'];
+  job?: Maybe<MetaforestJob>;
+  jobStartTime?: Maybe<Scalars['String']>;
+  metersPassed: Scalars['Float'];
 };
 
-export type MfActionTakeJobInput = {
-  jobId?: InputMaybe<Scalars['String']>;
-};
-
-export type MfActionTimeTickInput = {
-  minutesElapsed?: InputMaybe<Scalars['Float']>;
-};
-
-export type MfActionWearInventoryElementAction = {
-  inventoryElementId?: InputMaybe<Scalars['String']>;
-};
-
-export type MfGameConfig = {
-  __typename?: 'MfGameConfig';
+export type MetaforestGameConfig = {
+  __typename?: 'MetaforestGameConfig';
   payload?: Maybe<Scalars['JSON']>;
   version?: Maybe<Scalars['String']>;
 };
 
-export type MfPushNotification = {
-  __typename?: 'MfPushNotification';
+export enum MetaforestInventorySlotEnum {
+  Costume = 'Costume',
+  EarsAccessories = 'EarsAccessories',
+  EarsNHorns = 'Ears_n_Horns',
+  Face = 'Face',
+  HandLeft = 'HandLeft',
+  HandRight = 'HandRight',
+  Hat = 'Hat',
+  Necklace = 'Necklace',
+  Overhead = 'Overhead'
+}
+
+export type MetaforestJob = {
+  __typename?: 'MetaforestJob';
+  approxMeters?: Maybe<Scalars['Int']>;
+  carrotsForApproxMeters?: Maybe<Scalars['Int']>;
+  conditionsGTE?: Maybe<MetaforestBaseParams>;
+  description: Scalars['String'];
+  freeEnergyApproxMetersC0?: Maybe<Scalars['Float']>;
+  slug: Scalars['String'];
+  title: Scalars['String'];
+  type: MetaforestJobTypeEnum;
+  vitalitySpend?: Maybe<Scalars['Int']>;
+};
+
+export enum MetaforestJobTypeEnum {
+  Publication = 'PUBLICATION',
+  Referral = 'REFERRAL',
+  Steps = 'STEPS'
+}
+
+export enum MetaforestNftCollectionsEnum {
+  Bunnies = 'BUNNIES',
+  Items = 'ITEMS'
+}
+
+export type MetaforestNftGrantJob = {
+  __typename?: 'MetaforestNftGrantJob';
+  isGranted?: Maybe<Scalars['Boolean']>;
+  nftCollectionName: MetaforestNftCollectionsEnum;
+  nftIdx: Scalars['String'];
+  queueIdx?: Maybe<Scalars['Int']>;
+  queueName: Scalars['String'];
+  userTelegramId: Scalars['String'];
+  userTelegramUsername?: Maybe<Scalars['String']>;
+  userTonWalletAddress: Scalars['String'];
+};
+
+export type MetaforestNftInfo = {
+  __typename?: 'MetaforestNftInfo';
+  baseParams?: Maybe<MetaforestBaseParams>;
+  bodyLayers?: Maybe<Array<Scalars['String']>>;
+  bunnyGens?: Maybe<MetaforestBunnyGens>;
+  deployedNftWithTrait?: Maybe<NftWithTrait>;
+  idx: Scalars['Int'];
+  images?: Maybe<NftImages>;
+  itemSlot?: Maybe<BunnySlotsEnum>;
+  itemWornOnBunnyIdx?: Maybe<Scalars['Int']>;
+  layers?: Maybe<Array<Scalars['String']>>;
+  nftCollection?: Maybe<MetaforestNftCollectionsEnum>;
+  ownerTonWalletAddress?: Maybe<Scalars['String']>;
+  ownerUserUri?: Maybe<Scalars['String']>;
+  uid: Scalars['String'];
+};
+
+export type MetaforestPushNotification = {
+  __typename?: 'MetaforestPushNotification';
   _id?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['Date']>;
   emotion?: Maybe<Scalars['Int']>;
@@ -131,63 +205,117 @@ export type MfPushNotification = {
   userUri: Scalars['String'];
 };
 
-export type MfUserGameFullState = {
-  __typename?: 'MfUserGameFullState';
+export type MetaforestUserGameFullState = {
+  __typename?: 'MetaforestUserGameFullState';
   payload?: Maybe<Scalars['JSON']>;
   userUri?: Maybe<Scalars['String']>;
 };
 
-export type MfUserGameFullStatePayload = {
-  __typename?: 'MfUserGameFullStatePayload';
+export type MetaforestUserGameFullStatePayload = {
+  __typename?: 'MetaforestUserGameFullStatePayload';
+  activeBunny?: Maybe<MetaforestNftInfo>;
   activeDays?: Maybe<Scalars['Int']>;
-  activeJob?: Maybe<ActiveJob>;
-  bunnyEnergy?: Maybe<Scalars['Int']>;
-  bunnyLevel?: Maybe<Scalars['Int']>;
-  bunnyVitalityPercent?: Maybe<Scalars['Int']>;
-  calculatedStats?: Maybe<CalculatedStats>;
+  bunnies?: Maybe<Array<Maybe<MetaforestNftInfo>>>;
+  calculatedBaseParams?: Maybe<MetaforestBaseParams>;
+  carrotsBalance?: Maybe<Scalars['Int']>;
+  carrotsEarnLog?: Maybe<Array<Maybe<EarnLogElement>>>;
   carrotsPerLast24Hours?: Maybe<Scalars['Float']>;
-  currentCarrotsBalance?: Maybe<Scalars['Int']>;
-  inventory?: Maybe<Array<Maybe<InventoryElement>>>;
+  currentJob?: Maybe<MetaforestCurrentJob>;
+  energy?: Maybe<Scalars['Int']>;
+  freeEnergyPercent?: Maybe<Scalars['Float']>;
+  inventory?: Maybe<Array<MetaforestNftInfo>>;
+  jobEnergy?: Maybe<Scalars['Float']>;
+  lastJobEnergyBoost?: Maybe<Scalars['String']>;
+  lastTimeTick?: Maybe<Scalars['String']>;
   maxCarrotsFor24Hours?: Maybe<Scalars['Float']>;
+  maxJobEnergy?: Maybe<Scalars['Float']>;
   referral?: Maybe<Scalars['String']>;
   referralOwn?: Maybe<Scalars['String']>;
+  skillPoints?: Maybe<Scalars['Int']>;
   unopenedLootBoxes: Array<LootBox>;
   unopenedLootBoxesCount?: Maybe<Scalars['Int']>;
-  userUri?: Maybe<Scalars['String']>;
-  wornInventory?: Maybe<WornInventory>;
+  userUri: Scalars['String'];
+  vitalityPercent?: Maybe<Scalars['Int']>;
+  wornInventory?: Maybe<Array<Maybe<MetaforestNftInfo>>>;
 };
 
-export type MfUserStepsCounter = {
-  __typename?: 'MfUserStepsCounter';
+export type MetaforestUserStepsCounter = {
+  __typename?: 'MetaforestUserStepsCounter';
+  avgSpeed?: Maybe<Scalars['Float']>;
   botChatId?: Maybe<Scalars['Float']>;
   botMessageId?: Maybe<Scalars['Float']>;
-  delta?: Maybe<Scalars['Float']>;
-  latitude?: Maybe<Scalars['Float']>;
-  latitudeAvg?: Maybe<Scalars['Float']>;
-  latitudeLast10?: Maybe<Array<Scalars['Float']>>;
-  longitude?: Maybe<Scalars['Float']>;
-  longitudeAvg?: Maybe<Scalars['Float']>;
-  longitudeLast10?: Maybe<Array<Scalars['Float']>>;
+  horizontalAccuracy?: Maybe<Scalars['Float']>;
+  lastAcceptedLat?: Maybe<Scalars['Float']>;
+  lastAcceptedLon?: Maybe<Scalars['Float']>;
+  metersPassed?: Maybe<Scalars['Float']>;
+  rawLocations: Array<Location>;
   secondsElapsed?: Maybe<Scalars['Float']>;
   timestamp?: Maybe<Scalars['Date']>;
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  adminEditConfigSingleParam: Scalars['String'];
-  adminInitConfig?: Maybe<Scalars['String']>;
-  initStateForUser: Scalars['String'];
-  mfActionFeedRabbit?: Maybe<MfActionResult>;
-  mfActionInitState?: Maybe<MfActionResult>;
-  mfActionJobProgress?: Maybe<MfActionResult>;
-  mfActionLvlUp?: Maybe<MfActionResult>;
-  mfActionOpenLootbox?: Maybe<MfActionResult>;
-  mfActionSetCurrentJob?: Maybe<MfActionResult>;
-  mfActionTimeTick?: Maybe<MfActionResult>;
-  performAbiFunction: Scalars['String'];
+  createOrFindUserViaTelegramInitData: Scalars['String'];
+  metaforestAdminEditConfigSingleParam: Scalars['String'];
+  metaforestAdminGrantNfts?: Maybe<Scalars['String']>;
+  metaforestAdminInitConfig?: Maybe<Scalars['String']>;
+  metaforestAdminInitJobs?: Maybe<Scalars['String']>;
+  metaforestInitStateForUser: Scalars['String'];
+  metaforestPerformAbiFunction: Scalars['String'];
+  metaforestPerformMyAbiFunction: Scalars['String'];
+  metaforestUserClearPush?: Maybe<Scalars['String']>;
+  metaforestUserTakeJob: Scalars['String'];
+};
+
+
+export type MutationCreateOrFindUserViaTelegramInitDataArgs = {
+  telegramInitData: Scalars['String'];
+};
+
+
+export type MutationMetaforestAdminEditConfigSingleParamArgs = {
+  path: Scalars['String'];
+  valueObject: Scalars['JSON'];
+  version: Scalars['String'];
+};
+
+
+export type MutationMetaforestAdminInitConfigArgs = {
+  version: Scalars['String'];
+};
+
+
+export type MutationMetaforestInitStateForUserArgs = {
+  userUri: Scalars['String'];
+};
+
+
+export type MutationMetaforestPerformAbiFunctionArgs = {
+  fn?: InputMaybe<Scalars['String']>;
+  params?: InputMaybe<Scalars['JSON']>;
+  userUri: Scalars['String'];
+};
+
+
+export type MutationMetaforestPerformMyAbiFunctionArgs = {
+  fn?: InputMaybe<Scalars['String']>;
+  params?: InputMaybe<Scalars['JSON']>;
+};
+
+
+export type MutationMetaforestUserClearPushArgs = {
+  userUri: Scalars['String'];
+};
+
+
+export type MutationMetaforestUserTakeJobArgs = {
+  jobSlug: Scalars['String'];
+};
+
+export type MutationIdeas = {
+  __typename?: 'MutationIdeas';
   telegramSaidUserPassedDistance?: Maybe<Scalars['String']>;
   timeTick?: Maybe<Scalars['String']>;
-  userClearPush?: Maybe<Scalars['String']>;
   userFeedCurrentBunny?: Maybe<Scalars['String']>;
   userOpenLootBoxFree?: Maybe<Scalars['String']>;
   userOpenLootBoxPaid?: Maybe<Scalars['String']>;
@@ -195,77 +323,28 @@ export type Mutation = {
 };
 
 
-export type MutationAdminEditConfigSingleParamArgs = {
-  path: Scalars['String'];
-  valueObject: Scalars['JSON'];
-  version: Scalars['String'];
-};
-
-
-export type MutationAdminInitConfigArgs = {
-  version: Scalars['String'];
-};
-
-
-export type MutationInitStateForUserArgs = {
-  userUri: Scalars['String'];
-};
-
-
-export type MutationMfActionJobProgressArgs = {
-  action?: InputMaybe<MfActionJobProgressInput>;
-};
-
-
-export type MutationMfActionOpenLootboxArgs = {
-  action?: InputMaybe<MfActionOpenLootbox>;
-};
-
-
-export type MutationMfActionSetCurrentJobArgs = {
-  action?: InputMaybe<MfActionTakeJobInput>;
-};
-
-
-export type MutationMfActionTimeTickArgs = {
-  action?: InputMaybe<MfActionTimeTickInput>;
-};
-
-
-export type MutationPerformAbiFunctionArgs = {
-  fn?: InputMaybe<Scalars['String']>;
-  params?: InputMaybe<Scalars['JSON']>;
-  userUri: Scalars['String'];
-};
-
-
-export type MutationTelegramSaidUserPassedDistanceArgs = {
+export type MutationIdeasTelegramSaidUserPassedDistanceArgs = {
   meters?: InputMaybe<Scalars['Float']>;
   time?: InputMaybe<Scalars['Float']>;
 };
 
 
-export type MutationUserClearPushArgs = {
-  userUri: Scalars['String'];
-};
-
-
-export type MutationUserFeedCurrentBunnyArgs = {
+export type MutationIdeasUserFeedCurrentBunnyArgs = {
   carrotAmount?: InputMaybe<Scalars['Float']>;
 };
 
 
-export type MutationUserOpenLootBoxFreeArgs = {
+export type MutationIdeasUserOpenLootBoxFreeArgs = {
   lootBoxId?: InputMaybe<Scalars['String']>;
 };
 
 
-export type MutationUserOpenLootBoxPaidArgs = {
+export type MutationIdeasUserOpenLootBoxPaidArgs = {
   lootBoxId?: InputMaybe<Scalars['String']>;
 };
 
 
-export type MutationUserWearInventoryElementArgs = {
+export type MutationIdeasUserWearInventoryElementArgs = {
   elementId?: InputMaybe<Scalars['String']>;
 };
 
@@ -274,35 +353,57 @@ export enum MutationStatus {
   Ok = 'OK'
 }
 
+export type NftImages = {
+  __typename?: 'NftImages';
+  original?: Maybe<Scalars['String']>;
+  thumb?: Maybe<Scalars['String']>;
+  transparentBg?: Maybe<Scalars['String']>;
+  web?: Maybe<Scalars['String']>;
+};
+
+export type NftTraitAttribute = {
+  __typename?: 'NftTraitAttribute';
+  trait_type: Scalars['String'];
+  value: Scalars['String'];
+};
+
+export type NftWithTrait = {
+  __typename?: 'NftWithTrait';
+  attributes: Array<NftTraitAttribute>;
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  name: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
-  abs?: Maybe<Scalars['String']>;
-  adminGetConfig: Scalars['JSON'];
-  getInternalContractAbi?: Maybe<Scalars['JSON']>;
-  mfGetMyUserGameFullState?: Maybe<MfUserGameFullState>;
-  mfUserGetGameFullState?: Maybe<MfUserGameFullState>;
-  test?: Maybe<Scalars['String']>;
-  userGetPush: Array<MfPushNotification>;
-  userGetState: Scalars['JSON'];
+  getMe?: Maybe<UserJwtPayload>;
+  metaforestAdminGetConfig: Scalars['JSON'];
+  metaforestGetInternalContractAbi?: Maybe<Array<Scalars['JSON']>>;
+  metaforestJobsList: Array<MetaforestJob>;
+  metaforestUserGetMyPush: Array<MetaforestPushNotification>;
+  metaforestUserGetMyState: Scalars['JSON'];
+  metaforestUserGetPush: Array<MetaforestPushNotification>;
+  metaforestUserGetState: Scalars['JSON'];
 };
 
 
-export type QueryAdminGetConfigArgs = {
+export type QueryMetaforestAdminGetConfigArgs = {
   version: Scalars['String'];
 };
 
 
-export type QueryGetInternalContractAbiArgs = {
-  name?: InputMaybe<MfAbiEnum>;
+export type QueryMetaforestGetInternalContractAbiArgs = {
+  name?: InputMaybe<MetaforestAbiEnum>;
 };
 
 
-export type QueryUserGetPushArgs = {
+export type QueryMetaforestUserGetPushArgs = {
   userUri: Scalars['String'];
 };
 
 
-export type QueryUserGetStateArgs = {
+export type QueryMetaforestUserGetStateArgs = {
   userUri: Scalars['String'];
 };
 
@@ -318,421 +419,250 @@ export type TelegramMessage = {
   telegramChatId?: Maybe<Scalars['Int']>;
 };
 
-export type WornInventory = {
-  __typename?: 'WornInventory';
-  bunny?: Maybe<InventoryElement>;
+export type User = {
+  __typename?: 'User';
+  displayName?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  emails?: Maybe<Array<Scalars['String']>>;
+  etc?: Maybe<Array<Scalars['String']>>;
+  passwordHash?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  phones?: Maybe<Array<Scalars['String']>>;
+  roles?: Maybe<Array<Scalars['String']>>;
+  rolesJwt?: Maybe<Array<Scalars['String']>>;
+  scope?: Maybe<Scalars['String']>;
+  telegramId?: Maybe<Scalars['String']>;
+  telegramIds?: Maybe<Scalars['String']>;
 };
 
-export type AdminEditConfigSingleParamMutationVariables = Exact<{
+export type UserJwtPayload = {
+  __typename?: 'UserJWTPayload';
+  displayName: Scalars['String'];
+  email?: Maybe<Scalars['String']>;
+  rolesJWT?: Maybe<Array<Scalars['String']>>;
+  userUri: Scalars['String'];
+};
+
+export type CreateOrFindUserViaTelegramInitDataMutationVariables = Exact<{
+  telegramInitData: Scalars['String'];
+}>;
+
+
+export type CreateOrFindUserViaTelegramInitDataMutation = { __typename?: 'Mutation', createOrFindUserViaTelegramInitData: string };
+
+export type MetaforestAdminEditConfigSingleParamMutationVariables = Exact<{
   path: Scalars['String'];
   valueObject: Scalars['JSON'];
   version: Scalars['String'];
 }>;
 
 
-export type AdminEditConfigSingleParamMutation = { __typename?: 'Mutation', adminEditConfigSingleParam: string };
+export type MetaforestAdminEditConfigSingleParamMutation = { __typename?: 'Mutation', metaforestAdminEditConfigSingleParam: string };
 
-export type AdminInitConfigMutationVariables = Exact<{
+export type MetaforestAdminGrantNftsMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MetaforestAdminGrantNftsMutation = { __typename?: 'Mutation', metaforestAdminGrantNfts?: string | null };
+
+export type MetaforestAdminInitConfigMutationVariables = Exact<{
   version: Scalars['String'];
 }>;
 
 
-export type AdminInitConfigMutation = { __typename?: 'Mutation', adminInitConfig?: string | null };
+export type MetaforestAdminInitConfigMutation = { __typename?: 'Mutation', metaforestAdminInitConfig?: string | null };
 
-export type InitStateForUserMutationVariables = Exact<{
+export type MetaforestAdminInitJobsMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MetaforestAdminInitJobsMutation = { __typename?: 'Mutation', metaforestAdminInitJobs?: string | null };
+
+export type MetaforestInitStateForUserMutationVariables = Exact<{
   userUri: Scalars['String'];
 }>;
 
 
-export type InitStateForUserMutation = { __typename?: 'Mutation', initStateForUser: string };
+export type MetaforestInitStateForUserMutation = { __typename?: 'Mutation', metaforestInitStateForUser: string };
 
-export type MfActionFeedRabbitMutationVariables = Exact<{ [key: string]: never; }>;
-
-
-export type MfActionFeedRabbitMutation = { __typename?: 'Mutation', mfActionFeedRabbit?: { __typename?: 'MfActionResult', isError: boolean, isSuccessful: boolean, errorMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null, gameFullState: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null }, successMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null } | null };
-
-export type MfActionInitStateMutationVariables = Exact<{ [key: string]: never; }>;
-
-
-export type MfActionInitStateMutation = { __typename?: 'Mutation', mfActionInitState?: { __typename?: 'MfActionResult', isError: boolean, isSuccessful: boolean, errorMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null, gameFullState: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null }, successMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null } | null };
-
-export type MfActionJobProgressMutationVariables = Exact<{
-  action?: InputMaybe<MfActionJobProgressInput>;
-}>;
-
-
-export type MfActionJobProgressMutation = { __typename?: 'Mutation', mfActionJobProgress?: { __typename?: 'MfActionResult', isError: boolean, isSuccessful: boolean, errorMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null, gameFullState: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null }, successMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null } | null };
-
-export type MfActionLvlUpMutationVariables = Exact<{ [key: string]: never; }>;
-
-
-export type MfActionLvlUpMutation = { __typename?: 'Mutation', mfActionLvlUp?: { __typename?: 'MfActionResult', isError: boolean, isSuccessful: boolean, errorMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null, gameFullState: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null }, successMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null } | null };
-
-export type MfActionOpenLootboxMutationVariables = Exact<{
-  action?: InputMaybe<MfActionOpenLootbox>;
-}>;
-
-
-export type MfActionOpenLootboxMutation = { __typename?: 'Mutation', mfActionOpenLootbox?: { __typename?: 'MfActionResult', isError: boolean, isSuccessful: boolean, errorMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null, gameFullState: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null }, successMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null } | null };
-
-export type MfActionSetCurrentJobMutationVariables = Exact<{
-  action?: InputMaybe<MfActionTakeJobInput>;
-}>;
-
-
-export type MfActionSetCurrentJobMutation = { __typename?: 'Mutation', mfActionSetCurrentJob?: { __typename?: 'MfActionResult', isError: boolean, isSuccessful: boolean, errorMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null, gameFullState: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null }, successMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null } | null };
-
-export type MfActionTimeTickMutationVariables = Exact<{
-  action?: InputMaybe<MfActionTimeTickInput>;
-}>;
-
-
-export type MfActionTimeTickMutation = { __typename?: 'Mutation', mfActionTimeTick?: { __typename?: 'MfActionResult', isError: boolean, isSuccessful: boolean, errorMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null, gameFullState: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null }, successMessageRus?: { __typename?: 'MessageLocalized', en?: string | null, ru?: string | null } | null } | null };
-
-export type PerformAbiFunctionMutationVariables = Exact<{
+export type MetaforestPerformAbiFunctionMutationVariables = Exact<{
   fn?: InputMaybe<Scalars['String']>;
   params?: InputMaybe<Scalars['JSON']>;
   userUri: Scalars['String'];
 }>;
 
 
-export type PerformAbiFunctionMutation = { __typename?: 'Mutation', performAbiFunction: string };
+export type MetaforestPerformAbiFunctionMutation = { __typename?: 'Mutation', metaforestPerformAbiFunction: string };
 
-export type TelegramSaidUserPassedDistanceMutationVariables = Exact<{
-  meters?: InputMaybe<Scalars['Float']>;
-  time?: InputMaybe<Scalars['Float']>;
+export type MetaforestPerformMyAbiFunctionMutationVariables = Exact<{
+  fn?: InputMaybe<Scalars['String']>;
+  params?: InputMaybe<Scalars['JSON']>;
 }>;
 
 
-export type TelegramSaidUserPassedDistanceMutation = { __typename?: 'Mutation', telegramSaidUserPassedDistance?: string | null };
+export type MetaforestPerformMyAbiFunctionMutation = { __typename?: 'Mutation', metaforestPerformMyAbiFunction: string };
 
-export type TimeTickMutationVariables = Exact<{ [key: string]: never; }>;
-
-
-export type TimeTickMutation = { __typename?: 'Mutation', timeTick?: string | null };
-
-export type UserClearPushMutationVariables = Exact<{
+export type MetaforestUserClearPushMutationVariables = Exact<{
   userUri: Scalars['String'];
 }>;
 
 
-export type UserClearPushMutation = { __typename?: 'Mutation', userClearPush?: string | null };
+export type MetaforestUserClearPushMutation = { __typename?: 'Mutation', metaforestUserClearPush?: string | null };
 
-export type UserFeedCurrentBunnyMutationVariables = Exact<{
-  carrotAmount?: InputMaybe<Scalars['Float']>;
+export type MetaforestUserTakeJobMutationVariables = Exact<{
+  jobSlug: Scalars['String'];
 }>;
 
 
-export type UserFeedCurrentBunnyMutation = { __typename?: 'Mutation', userFeedCurrentBunny?: string | null };
+export type MetaforestUserTakeJobMutation = { __typename?: 'Mutation', metaforestUserTakeJob: string };
 
-export type UserOpenLootBoxFreeMutationVariables = Exact<{
-  lootBoxId?: InputMaybe<Scalars['String']>;
-}>;
+export type GetMeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UserOpenLootBoxFreeMutation = { __typename?: 'Mutation', userOpenLootBoxFree?: string | null };
+export type GetMeQuery = { __typename?: 'Query', getMe?: { __typename?: 'UserJWTPayload', displayName: string, email?: string | null, rolesJWT?: Array<string> | null, userUri: string } | null };
 
-export type UserOpenLootBoxPaidMutationVariables = Exact<{
-  lootBoxId?: InputMaybe<Scalars['String']>;
-}>;
-
-
-export type UserOpenLootBoxPaidMutation = { __typename?: 'Mutation', userOpenLootBoxPaid?: string | null };
-
-export type UserWearInventoryElementMutationVariables = Exact<{
-  elementId?: InputMaybe<Scalars['String']>;
-}>;
-
-
-export type UserWearInventoryElementMutation = { __typename?: 'Mutation', userWearInventoryElement?: string | null };
-
-export type AbsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type AbsQuery = { __typename?: 'Query', abs?: string | null };
-
-export type AdminGetConfigQueryVariables = Exact<{
+export type MetaforestAdminGetConfigQueryVariables = Exact<{
   version: Scalars['String'];
 }>;
 
 
-export type AdminGetConfigQuery = { __typename?: 'Query', adminGetConfig: any };
+export type MetaforestAdminGetConfigQuery = { __typename?: 'Query', metaforestAdminGetConfig: any };
 
-export type GetInternalContractAbiQueryVariables = Exact<{
-  name?: InputMaybe<MfAbiEnum>;
+export type MetaforestGetInternalContractAbiQueryVariables = Exact<{
+  name?: InputMaybe<MetaforestAbiEnum>;
 }>;
 
 
-export type GetInternalContractAbiQuery = { __typename?: 'Query', getInternalContractAbi?: any | null };
+export type MetaforestGetInternalContractAbiQuery = { __typename?: 'Query', metaforestGetInternalContractAbi?: Array<any> | null };
 
-export type MfGetMyUserGameFullStateQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type MfGetMyUserGameFullStateQuery = { __typename?: 'Query', mfGetMyUserGameFullState?: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null } | null };
-
-export type MfUserGetGameFullStateQueryVariables = Exact<{ [key: string]: never; }>;
+export type MetaforestJobsListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MfUserGetGameFullStateQuery = { __typename?: 'Query', mfUserGetGameFullState?: { __typename?: 'MfUserGameFullState', payload?: any | null, userUri?: string | null } | null };
+export type MetaforestJobsListQuery = { __typename?: 'Query', metaforestJobsList: Array<{ __typename?: 'MetaforestJob', approxMeters?: number | null, carrotsForApproxMeters?: number | null, description: string, freeEnergyApproxMetersC0?: number | null, slug: string, title: string, type: MetaforestJobTypeEnum, vitalitySpend?: number | null, conditionsGTE?: { __typename?: 'MetaforestBaseParams', dex: number, int: number, krm: number, level?: number | null, rarityInt?: number | null, str: number, vit: number } | null }> };
 
-export type TestQueryVariables = Exact<{ [key: string]: never; }>;
+export type MetaforestUserGetMyPushQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TestQuery = { __typename?: 'Query', test?: string | null };
+export type MetaforestUserGetMyPushQuery = { __typename?: 'Query', metaforestUserGetMyPush: Array<{ __typename?: 'MetaforestPushNotification', _id?: string | null, createdAt?: any | null, emotion?: number | null, textEn?: string | null, textRu?: string | null, userUri: string }> };
 
-export type UserGetPushQueryVariables = Exact<{
+export type MetaforestUserGetMyStateQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MetaforestUserGetMyStateQuery = { __typename?: 'Query', metaforestUserGetMyState: any };
+
+export type MetaforestUserGetPushQueryVariables = Exact<{
   userUri: Scalars['String'];
 }>;
 
 
-export type UserGetPushQuery = { __typename?: 'Query', userGetPush: Array<{ __typename?: 'MfPushNotification', _id?: string | null, createdAt?: any | null, emotion?: number | null, textEn?: string | null, textRu?: string | null, userUri: string }> };
+export type MetaforestUserGetPushQuery = { __typename?: 'Query', metaforestUserGetPush: Array<{ __typename?: 'MetaforestPushNotification', _id?: string | null, createdAt?: any | null, emotion?: number | null, textEn?: string | null, textRu?: string | null, userUri: string }> };
 
-export type UserGetStateQueryVariables = Exact<{
+export type MetaforestUserGetStateQueryVariables = Exact<{
   userUri: Scalars['String'];
 }>;
 
 
-export type UserGetStateQuery = { __typename?: 'Query', userGetState: any };
+export type MetaforestUserGetStateQuery = { __typename?: 'Query', metaforestUserGetState: any };
 
 
-export const AdminEditConfigSingleParamDocument = gql`
-    mutation adminEditConfigSingleParam($path: String!, $valueObject: JSON!, $version: String!) {
-  adminEditConfigSingleParam(
+export const CreateOrFindUserViaTelegramInitDataDocument = gql`
+    mutation createOrFindUserViaTelegramInitData($telegramInitData: String!) {
+  createOrFindUserViaTelegramInitData(telegramInitData: $telegramInitData)
+}
+    `;
+export const MetaforestAdminEditConfigSingleParamDocument = gql`
+    mutation metaforestAdminEditConfigSingleParam($path: String!, $valueObject: JSON!, $version: String!) {
+  metaforestAdminEditConfigSingleParam(
     path: $path
     valueObject: $valueObject
     version: $version
   )
 }
     `;
-export const AdminInitConfigDocument = gql`
-    mutation adminInitConfig($version: String!) {
-  adminInitConfig(version: $version)
+export const MetaforestAdminGrantNftsDocument = gql`
+    mutation metaforestAdminGrantNfts {
+  metaforestAdminGrantNfts
 }
     `;
-export const InitStateForUserDocument = gql`
-    mutation initStateForUser($userUri: String!) {
-  initStateForUser(userUri: $userUri)
+export const MetaforestAdminInitConfigDocument = gql`
+    mutation metaforestAdminInitConfig($version: String!) {
+  metaforestAdminInitConfig(version: $version)
 }
     `;
-export const MfActionFeedRabbitDocument = gql`
-    mutation mfActionFeedRabbit {
-  mfActionFeedRabbit {
-    errorMessageRus {
-      en
-      ru
-    }
-    gameFullState {
-      payload
-      userUri
-    }
-    isError
-    isSuccessful
-    successMessageRus {
-      en
-      ru
-    }
-  }
+export const MetaforestAdminInitJobsDocument = gql`
+    mutation metaforestAdminInitJobs {
+  metaforestAdminInitJobs
 }
     `;
-export const MfActionInitStateDocument = gql`
-    mutation mfActionInitState {
-  mfActionInitState {
-    errorMessageRus {
-      en
-      ru
-    }
-    gameFullState {
-      payload
-      userUri
-    }
-    isError
-    isSuccessful
-    successMessageRus {
-      en
-      ru
-    }
-  }
+export const MetaforestInitStateForUserDocument = gql`
+    mutation metaforestInitStateForUser($userUri: String!) {
+  metaforestInitStateForUser(userUri: $userUri)
 }
     `;
-export const MfActionJobProgressDocument = gql`
-    mutation mfActionJobProgress($action: MfActionJobProgressInput) {
-  mfActionJobProgress(action: $action) {
-    errorMessageRus {
-      en
-      ru
-    }
-    gameFullState {
-      payload
-      userUri
-    }
-    isError
-    isSuccessful
-    successMessageRus {
-      en
-      ru
-    }
-  }
+export const MetaforestPerformAbiFunctionDocument = gql`
+    mutation metaforestPerformAbiFunction($fn: String, $params: JSON, $userUri: String!) {
+  metaforestPerformAbiFunction(fn: $fn, params: $params, userUri: $userUri)
 }
     `;
-export const MfActionLvlUpDocument = gql`
-    mutation mfActionLvlUp {
-  mfActionLvlUp {
-    errorMessageRus {
-      en
-      ru
-    }
-    gameFullState {
-      payload
-      userUri
-    }
-    isError
-    isSuccessful
-    successMessageRus {
-      en
-      ru
-    }
-  }
+export const MetaforestPerformMyAbiFunctionDocument = gql`
+    mutation metaforestPerformMyAbiFunction($fn: String, $params: JSON) {
+  metaforestPerformMyAbiFunction(fn: $fn, params: $params)
 }
     `;
-export const MfActionOpenLootboxDocument = gql`
-    mutation mfActionOpenLootbox($action: MfActionOpenLootbox) {
-  mfActionOpenLootbox(action: $action) {
-    errorMessageRus {
-      en
-      ru
-    }
-    gameFullState {
-      payload
-      userUri
-    }
-    isError
-    isSuccessful
-    successMessageRus {
-      en
-      ru
-    }
-  }
+export const MetaforestUserClearPushDocument = gql`
+    mutation metaforestUserClearPush($userUri: String!) {
+  metaforestUserClearPush(userUri: $userUri)
 }
     `;
-export const MfActionSetCurrentJobDocument = gql`
-    mutation mfActionSetCurrentJob($action: MfActionTakeJobInput) {
-  mfActionSetCurrentJob(action: $action) {
-    errorMessageRus {
-      en
-      ru
-    }
-    gameFullState {
-      payload
-      userUri
-    }
-    isError
-    isSuccessful
-    successMessageRus {
-      en
-      ru
-    }
-  }
+export const MetaforestUserTakeJobDocument = gql`
+    mutation metaforestUserTakeJob($jobSlug: String!) {
+  metaforestUserTakeJob(jobSlug: $jobSlug)
 }
     `;
-export const MfActionTimeTickDocument = gql`
-    mutation mfActionTimeTick($action: MfActionTimeTickInput) {
-  mfActionTimeTick(action: $action) {
-    errorMessageRus {
-      en
-      ru
-    }
-    gameFullState {
-      payload
-      userUri
-    }
-    isError
-    isSuccessful
-    successMessageRus {
-      en
-      ru
-    }
-  }
-}
-    `;
-export const PerformAbiFunctionDocument = gql`
-    mutation performAbiFunction($fn: String, $params: JSON, $userUri: String!) {
-  performAbiFunction(fn: $fn, params: $params, userUri: $userUri)
-}
-    `;
-export const TelegramSaidUserPassedDistanceDocument = gql`
-    mutation telegramSaidUserPassedDistance($meters: Float, $time: Float) {
-  telegramSaidUserPassedDistance(meters: $meters, time: $time)
-}
-    `;
-export const TimeTickDocument = gql`
-    mutation timeTick {
-  timeTick
-}
-    `;
-export const UserClearPushDocument = gql`
-    mutation userClearPush($userUri: String!) {
-  userClearPush(userUri: $userUri)
-}
-    `;
-export const UserFeedCurrentBunnyDocument = gql`
-    mutation userFeedCurrentBunny($carrotAmount: Float) {
-  userFeedCurrentBunny(carrotAmount: $carrotAmount)
-}
-    `;
-export const UserOpenLootBoxFreeDocument = gql`
-    mutation userOpenLootBoxFree($lootBoxId: String) {
-  userOpenLootBoxFree(lootBoxId: $lootBoxId)
-}
-    `;
-export const UserOpenLootBoxPaidDocument = gql`
-    mutation userOpenLootBoxPaid($lootBoxId: String) {
-  userOpenLootBoxPaid(lootBoxId: $lootBoxId)
-}
-    `;
-export const UserWearInventoryElementDocument = gql`
-    mutation userWearInventoryElement($elementId: String) {
-  userWearInventoryElement(elementId: $elementId)
-}
-    `;
-export const AbsDocument = gql`
-    query abs {
-  abs
-}
-    `;
-export const AdminGetConfigDocument = gql`
-    query adminGetConfig($version: String!) {
-  adminGetConfig(version: $version)
-}
-    `;
-export const GetInternalContractAbiDocument = gql`
-    query getInternalContractAbi($name: MfAbiEnum) {
-  getInternalContractAbi(name: $name)
-}
-    `;
-export const MfGetMyUserGameFullStateDocument = gql`
-    query mfGetMyUserGameFullState {
-  mfGetMyUserGameFullState {
-    payload
+export const GetMeDocument = gql`
+    query getMe {
+  getMe {
+    displayName
+    email
+    rolesJWT
     userUri
   }
 }
     `;
-export const MfUserGetGameFullStateDocument = gql`
-    query mfUserGetGameFullState {
-  mfUserGetGameFullState {
-    payload
-    userUri
+export const MetaforestAdminGetConfigDocument = gql`
+    query metaforestAdminGetConfig($version: String!) {
+  metaforestAdminGetConfig(version: $version)
+}
+    `;
+export const MetaforestGetInternalContractAbiDocument = gql`
+    query metaforestGetInternalContractAbi($name: MetaforestAbiEnum) {
+  metaforestGetInternalContractAbi(name: $name)
+}
+    `;
+export const MetaforestJobsListDocument = gql`
+    query metaforestJobsList {
+  metaforestJobsList {
+    approxMeters
+    carrotsForApproxMeters
+    conditionsGTE {
+      dex
+      int
+      krm
+      level
+      rarityInt
+      str
+      vit
+    }
+    description
+    freeEnergyApproxMetersC0
+    slug
+    title
+    type
+    vitalitySpend
   }
 }
     `;
-export const TestDocument = gql`
-    query test {
-  test
-}
-    `;
-export const UserGetPushDocument = gql`
-    query userGetPush($userUri: String!) {
-  userGetPush(userUri: $userUri) {
+export const MetaforestUserGetMyPushDocument = gql`
+    query metaforestUserGetMyPush {
+  metaforestUserGetMyPush {
     _id
     createdAt
     emotion
@@ -742,9 +672,26 @@ export const UserGetPushDocument = gql`
   }
 }
     `;
-export const UserGetStateDocument = gql`
-    query userGetState($userUri: String!) {
-  userGetState(userUri: $userUri)
+export const MetaforestUserGetMyStateDocument = gql`
+    query metaforestUserGetMyState {
+  metaforestUserGetMyState
+}
+    `;
+export const MetaforestUserGetPushDocument = gql`
+    query metaforestUserGetPush($userUri: String!) {
+  metaforestUserGetPush(userUri: $userUri) {
+    _id
+    createdAt
+    emotion
+    textEn
+    textRu
+    userUri
+  }
+}
+    `;
+export const MetaforestUserGetStateDocument = gql`
+    query metaforestUserGetState($userUri: String!) {
+  metaforestUserGetState(userUri: $userUri)
 }
     `;
 
@@ -755,83 +702,59 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    adminEditConfigSingleParam(variables: AdminEditConfigSingleParamMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AdminEditConfigSingleParamMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AdminEditConfigSingleParamMutation>(AdminEditConfigSingleParamDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'adminEditConfigSingleParam', 'mutation');
+    createOrFindUserViaTelegramInitData(variables: CreateOrFindUserViaTelegramInitDataMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateOrFindUserViaTelegramInitDataMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CreateOrFindUserViaTelegramInitDataMutation>(CreateOrFindUserViaTelegramInitDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'createOrFindUserViaTelegramInitData', 'mutation');
     },
-    adminInitConfig(variables: AdminInitConfigMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AdminInitConfigMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AdminInitConfigMutation>(AdminInitConfigDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'adminInitConfig', 'mutation');
+    metaforestAdminEditConfigSingleParam(variables: MetaforestAdminEditConfigSingleParamMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestAdminEditConfigSingleParamMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestAdminEditConfigSingleParamMutation>(MetaforestAdminEditConfigSingleParamDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestAdminEditConfigSingleParam', 'mutation');
     },
-    initStateForUser(variables: InitStateForUserMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<InitStateForUserMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<InitStateForUserMutation>(InitStateForUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'initStateForUser', 'mutation');
+    metaforestAdminGrantNfts(variables?: MetaforestAdminGrantNftsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestAdminGrantNftsMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestAdminGrantNftsMutation>(MetaforestAdminGrantNftsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestAdminGrantNfts', 'mutation');
     },
-    mfActionFeedRabbit(variables?: MfActionFeedRabbitMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfActionFeedRabbitMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfActionFeedRabbitMutation>(MfActionFeedRabbitDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfActionFeedRabbit', 'mutation');
+    metaforestAdminInitConfig(variables: MetaforestAdminInitConfigMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestAdminInitConfigMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestAdminInitConfigMutation>(MetaforestAdminInitConfigDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestAdminInitConfig', 'mutation');
     },
-    mfActionInitState(variables?: MfActionInitStateMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfActionInitStateMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfActionInitStateMutation>(MfActionInitStateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfActionInitState', 'mutation');
+    metaforestAdminInitJobs(variables?: MetaforestAdminInitJobsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestAdminInitJobsMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestAdminInitJobsMutation>(MetaforestAdminInitJobsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestAdminInitJobs', 'mutation');
     },
-    mfActionJobProgress(variables?: MfActionJobProgressMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfActionJobProgressMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfActionJobProgressMutation>(MfActionJobProgressDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfActionJobProgress', 'mutation');
+    metaforestInitStateForUser(variables: MetaforestInitStateForUserMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestInitStateForUserMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestInitStateForUserMutation>(MetaforestInitStateForUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestInitStateForUser', 'mutation');
     },
-    mfActionLvlUp(variables?: MfActionLvlUpMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfActionLvlUpMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfActionLvlUpMutation>(MfActionLvlUpDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfActionLvlUp', 'mutation');
+    metaforestPerformAbiFunction(variables: MetaforestPerformAbiFunctionMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestPerformAbiFunctionMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestPerformAbiFunctionMutation>(MetaforestPerformAbiFunctionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestPerformAbiFunction', 'mutation');
     },
-    mfActionOpenLootbox(variables?: MfActionOpenLootboxMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfActionOpenLootboxMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfActionOpenLootboxMutation>(MfActionOpenLootboxDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfActionOpenLootbox', 'mutation');
+    metaforestPerformMyAbiFunction(variables?: MetaforestPerformMyAbiFunctionMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestPerformMyAbiFunctionMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestPerformMyAbiFunctionMutation>(MetaforestPerformMyAbiFunctionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestPerformMyAbiFunction', 'mutation');
     },
-    mfActionSetCurrentJob(variables?: MfActionSetCurrentJobMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfActionSetCurrentJobMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfActionSetCurrentJobMutation>(MfActionSetCurrentJobDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfActionSetCurrentJob', 'mutation');
+    metaforestUserClearPush(variables: MetaforestUserClearPushMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestUserClearPushMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestUserClearPushMutation>(MetaforestUserClearPushDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestUserClearPush', 'mutation');
     },
-    mfActionTimeTick(variables?: MfActionTimeTickMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfActionTimeTickMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfActionTimeTickMutation>(MfActionTimeTickDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfActionTimeTick', 'mutation');
+    metaforestUserTakeJob(variables: MetaforestUserTakeJobMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestUserTakeJobMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestUserTakeJobMutation>(MetaforestUserTakeJobDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestUserTakeJob', 'mutation');
     },
-    performAbiFunction(variables: PerformAbiFunctionMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PerformAbiFunctionMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PerformAbiFunctionMutation>(PerformAbiFunctionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'performAbiFunction', 'mutation');
+    getMe(variables?: GetMeQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetMeQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetMeQuery>(GetMeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getMe', 'query');
     },
-    telegramSaidUserPassedDistance(variables?: TelegramSaidUserPassedDistanceMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TelegramSaidUserPassedDistanceMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TelegramSaidUserPassedDistanceMutation>(TelegramSaidUserPassedDistanceDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'telegramSaidUserPassedDistance', 'mutation');
+    metaforestAdminGetConfig(variables: MetaforestAdminGetConfigQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestAdminGetConfigQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestAdminGetConfigQuery>(MetaforestAdminGetConfigDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestAdminGetConfig', 'query');
     },
-    timeTick(variables?: TimeTickMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TimeTickMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TimeTickMutation>(TimeTickDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'timeTick', 'mutation');
+    metaforestGetInternalContractAbi(variables?: MetaforestGetInternalContractAbiQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestGetInternalContractAbiQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestGetInternalContractAbiQuery>(MetaforestGetInternalContractAbiDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestGetInternalContractAbi', 'query');
     },
-    userClearPush(variables: UserClearPushMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserClearPushMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UserClearPushMutation>(UserClearPushDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'userClearPush', 'mutation');
+    metaforestJobsList(variables?: MetaforestJobsListQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestJobsListQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestJobsListQuery>(MetaforestJobsListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestJobsList', 'query');
     },
-    userFeedCurrentBunny(variables?: UserFeedCurrentBunnyMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserFeedCurrentBunnyMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UserFeedCurrentBunnyMutation>(UserFeedCurrentBunnyDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'userFeedCurrentBunny', 'mutation');
+    metaforestUserGetMyPush(variables?: MetaforestUserGetMyPushQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestUserGetMyPushQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestUserGetMyPushQuery>(MetaforestUserGetMyPushDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestUserGetMyPush', 'query');
     },
-    userOpenLootBoxFree(variables?: UserOpenLootBoxFreeMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserOpenLootBoxFreeMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UserOpenLootBoxFreeMutation>(UserOpenLootBoxFreeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'userOpenLootBoxFree', 'mutation');
+    metaforestUserGetMyState(variables?: MetaforestUserGetMyStateQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestUserGetMyStateQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestUserGetMyStateQuery>(MetaforestUserGetMyStateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestUserGetMyState', 'query');
     },
-    userOpenLootBoxPaid(variables?: UserOpenLootBoxPaidMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserOpenLootBoxPaidMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UserOpenLootBoxPaidMutation>(UserOpenLootBoxPaidDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'userOpenLootBoxPaid', 'mutation');
+    metaforestUserGetPush(variables: MetaforestUserGetPushQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestUserGetPushQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestUserGetPushQuery>(MetaforestUserGetPushDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestUserGetPush', 'query');
     },
-    userWearInventoryElement(variables?: UserWearInventoryElementMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserWearInventoryElementMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UserWearInventoryElementMutation>(UserWearInventoryElementDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'userWearInventoryElement', 'mutation');
-    },
-    abs(variables?: AbsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AbsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AbsQuery>(AbsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'abs', 'query');
-    },
-    adminGetConfig(variables: AdminGetConfigQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AdminGetConfigQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AdminGetConfigQuery>(AdminGetConfigDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'adminGetConfig', 'query');
-    },
-    getInternalContractAbi(variables?: GetInternalContractAbiQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetInternalContractAbiQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetInternalContractAbiQuery>(GetInternalContractAbiDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getInternalContractAbi', 'query');
-    },
-    mfGetMyUserGameFullState(variables?: MfGetMyUserGameFullStateQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfGetMyUserGameFullStateQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfGetMyUserGameFullStateQuery>(MfGetMyUserGameFullStateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfGetMyUserGameFullState', 'query');
-    },
-    mfUserGetGameFullState(variables?: MfUserGetGameFullStateQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MfUserGetGameFullStateQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MfUserGetGameFullStateQuery>(MfUserGetGameFullStateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mfUserGetGameFullState', 'query');
-    },
-    test(variables?: TestQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TestQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TestQuery>(TestDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'test', 'query');
-    },
-    userGetPush(variables: UserGetPushQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserGetPushQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UserGetPushQuery>(UserGetPushDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'userGetPush', 'query');
-    },
-    userGetState(variables: UserGetStateQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UserGetStateQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UserGetStateQuery>(UserGetStateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'userGetState', 'query');
+    metaforestUserGetState(variables: MetaforestUserGetStateQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestUserGetStateQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestUserGetStateQuery>(MetaforestUserGetStateDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestUserGetState', 'query');
     }
   };
 }
@@ -841,29 +764,29 @@ export function getSdkWithHooks(client: GraphQLClient, withWrapper: SdkFunctionW
   const genKey = <V extends Record<string, unknown> = Record<string, unknown>>(name: string, object: V = {} as V): SWRKeyInterface => [name, ...Object.keys(object).sort().map(key => object[key])];
   return {
     ...sdk,
-    useAbs(variables?: AbsQueryVariables, config?: SWRConfigInterface<AbsQuery, ClientError>) {
-      return useSWR<AbsQuery, ClientError>(genKey<AbsQueryVariables>('Abs', variables), () => sdk.abs(variables), config);
+    useGetMe(variables?: GetMeQueryVariables, config?: SWRConfigInterface<GetMeQuery, ClientError>) {
+      return useSWR<GetMeQuery, ClientError>(genKey<GetMeQueryVariables>('GetMe', variables), () => sdk.getMe(variables), config);
     },
-    useAdminGetConfig(variables: AdminGetConfigQueryVariables, config?: SWRConfigInterface<AdminGetConfigQuery, ClientError>) {
-      return useSWR<AdminGetConfigQuery, ClientError>(genKey<AdminGetConfigQueryVariables>('AdminGetConfig', variables), () => sdk.adminGetConfig(variables), config);
+    useMetaforestAdminGetConfig(variables: MetaforestAdminGetConfigQueryVariables, config?: SWRConfigInterface<MetaforestAdminGetConfigQuery, ClientError>) {
+      return useSWR<MetaforestAdminGetConfigQuery, ClientError>(genKey<MetaforestAdminGetConfigQueryVariables>('MetaforestAdminGetConfig', variables), () => sdk.metaforestAdminGetConfig(variables), config);
     },
-    useGetInternalContractAbi(variables?: GetInternalContractAbiQueryVariables, config?: SWRConfigInterface<GetInternalContractAbiQuery, ClientError>) {
-      return useSWR<GetInternalContractAbiQuery, ClientError>(genKey<GetInternalContractAbiQueryVariables>('GetInternalContractAbi', variables), () => sdk.getInternalContractAbi(variables), config);
+    useMetaforestGetInternalContractAbi(variables?: MetaforestGetInternalContractAbiQueryVariables, config?: SWRConfigInterface<MetaforestGetInternalContractAbiQuery, ClientError>) {
+      return useSWR<MetaforestGetInternalContractAbiQuery, ClientError>(genKey<MetaforestGetInternalContractAbiQueryVariables>('MetaforestGetInternalContractAbi', variables), () => sdk.metaforestGetInternalContractAbi(variables), config);
     },
-    useMfGetMyUserGameFullState(variables?: MfGetMyUserGameFullStateQueryVariables, config?: SWRConfigInterface<MfGetMyUserGameFullStateQuery, ClientError>) {
-      return useSWR<MfGetMyUserGameFullStateQuery, ClientError>(genKey<MfGetMyUserGameFullStateQueryVariables>('MfGetMyUserGameFullState', variables), () => sdk.mfGetMyUserGameFullState(variables), config);
+    useMetaforestJobsList(variables?: MetaforestJobsListQueryVariables, config?: SWRConfigInterface<MetaforestJobsListQuery, ClientError>) {
+      return useSWR<MetaforestJobsListQuery, ClientError>(genKey<MetaforestJobsListQueryVariables>('MetaforestJobsList', variables), () => sdk.metaforestJobsList(variables), config);
     },
-    useMfUserGetGameFullState(variables?: MfUserGetGameFullStateQueryVariables, config?: SWRConfigInterface<MfUserGetGameFullStateQuery, ClientError>) {
-      return useSWR<MfUserGetGameFullStateQuery, ClientError>(genKey<MfUserGetGameFullStateQueryVariables>('MfUserGetGameFullState', variables), () => sdk.mfUserGetGameFullState(variables), config);
+    useMetaforestUserGetMyPush(variables?: MetaforestUserGetMyPushQueryVariables, config?: SWRConfigInterface<MetaforestUserGetMyPushQuery, ClientError>) {
+      return useSWR<MetaforestUserGetMyPushQuery, ClientError>(genKey<MetaforestUserGetMyPushQueryVariables>('MetaforestUserGetMyPush', variables), () => sdk.metaforestUserGetMyPush(variables), config);
     },
-    useTest(variables?: TestQueryVariables, config?: SWRConfigInterface<TestQuery, ClientError>) {
-      return useSWR<TestQuery, ClientError>(genKey<TestQueryVariables>('Test', variables), () => sdk.test(variables), config);
+    useMetaforestUserGetMyState(variables?: MetaforestUserGetMyStateQueryVariables, config?: SWRConfigInterface<MetaforestUserGetMyStateQuery, ClientError>) {
+      return useSWR<MetaforestUserGetMyStateQuery, ClientError>(genKey<MetaforestUserGetMyStateQueryVariables>('MetaforestUserGetMyState', variables), () => sdk.metaforestUserGetMyState(variables), config);
     },
-    useUserGetPush(variables: UserGetPushQueryVariables, config?: SWRConfigInterface<UserGetPushQuery, ClientError>) {
-      return useSWR<UserGetPushQuery, ClientError>(genKey<UserGetPushQueryVariables>('UserGetPush', variables), () => sdk.userGetPush(variables), config);
+    useMetaforestUserGetPush(variables: MetaforestUserGetPushQueryVariables, config?: SWRConfigInterface<MetaforestUserGetPushQuery, ClientError>) {
+      return useSWR<MetaforestUserGetPushQuery, ClientError>(genKey<MetaforestUserGetPushQueryVariables>('MetaforestUserGetPush', variables), () => sdk.metaforestUserGetPush(variables), config);
     },
-    useUserGetState(variables: UserGetStateQueryVariables, config?: SWRConfigInterface<UserGetStateQuery, ClientError>) {
-      return useSWR<UserGetStateQuery, ClientError>(genKey<UserGetStateQueryVariables>('UserGetState', variables), () => sdk.userGetState(variables), config);
+    useMetaforestUserGetState(variables: MetaforestUserGetStateQueryVariables, config?: SWRConfigInterface<MetaforestUserGetStateQuery, ClientError>) {
+      return useSWR<MetaforestUserGetStateQuery, ClientError>(genKey<MetaforestUserGetStateQueryVariables>('MetaforestUserGetState', variables), () => sdk.metaforestUserGetState(variables), config);
     }
   };
 }

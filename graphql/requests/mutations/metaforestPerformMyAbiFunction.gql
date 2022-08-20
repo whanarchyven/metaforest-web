@@ -1,0 +1,3 @@
+mutation metaforestPerformMyAbiFunction($fn: String, $params: JSON){
+    metaforestPerformMyAbiFunction(fn: $fn, params: $params)
+}

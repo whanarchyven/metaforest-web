@@ -1,0 +1,3 @@
+mutation metaforestAdminEditConfigSingleParam($path: String!, $valueObject: JSON!, $version: String!){
+    metaforestAdminEditConfigSingleParam(path: $path, valueObject: $valueObject, version: $version)
+}
