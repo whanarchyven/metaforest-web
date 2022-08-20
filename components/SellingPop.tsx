@@ -60,7 +60,7 @@ const SellingPop = ({ togglePop }: feedPopInterface) => {
               </div>
           </div>
           <div className={'relative w-full mt-5 grid grid-cols-2 grid-rows-2 gap-4'}>
-              <button className={'rounded-full h-9 str-gradient font-bold text-white'}>Decline</button>
+              <button className={'rounded-full h-9 str-gradient font-bold text-white'} onClick={()=>{togglePop()}}>Decline</button>
               <button className={'rounded-full h-9 bg-black font-bold text-white'}>Sell</button>
           </div>
       </div>
