@@ -128,14 +128,7 @@ const Dashboard = (bunny: bunnyInterface) => {
         }
         href={"/bunnychange"}
       >
-        <p
-          className={"text-center text-xl font-semibold text-white"}
-          onClick={() => {
-            (window as any)?.Telegram?.WebApp?.close();
-          }}
-        >
-          Change
-        </p>
+        <p className={"text-center text-xl font-semibold text-white"}>Change</p>
       </a>
       <div className={"relative w-full gap-4 px-6 py-4 mt-3 grid grid-cols-10"}>
         <p className={"col-start-1 col-end-4 justify-self-center"}>Max/day</p>
