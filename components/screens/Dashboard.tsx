@@ -40,8 +40,7 @@ const Dashboard = (bunny: bunnyInterface) => {
         <div className={"w-full h-full bunny-generation-inside"}>
           <div className={"w-[308px] h-[445px] mx-auto"}>
             {state?.activeBunny?.images?.transparentBg ? (
-              <BunnyGeneration
-              ></BunnyGeneration>
+              <BunnyGeneration></BunnyGeneration>
             ) : null}
           </div>
         </div>
@@ -95,8 +94,11 @@ const Dashboard = (bunny: bunnyInterface) => {
           </div>
         </div>
         <div className={"w-20 h-32 absolute -left-3 top-44"}>
-          {state?.vitalityPercent?
-            <VitalityBar vitality={state.vitalityPercent}></VitalityBar>:<VitalityBar vitality={1}></VitalityBar>}
+          {state?.vitalityPercent ? (
+            <VitalityBar vitality={state.vitalityPercent}></VitalityBar>
+          ) : (
+            <VitalityBar vitality={1}></VitalityBar>
+          )}
           <div
             className={
               "w-3/4 mt-4 h-10 rounded-full green-gradient flex justify-center items-center"
@@ -124,12 +126,12 @@ const Dashboard = (bunny: bunnyInterface) => {
         className={
           "w-40 h-12 green-gradient rounded-full relative flex justify-center items-center"
         }
-        href={'/bunnychange'}
+        href={"/bunnychange"}
       >
         <p
           className={"text-center text-xl font-semibold text-white"}
           onClick={() => {
-            (window as any).Telegram.WebApp.close();
+            (window as any)?.Telegram?.WebApp?.close();
           }}
         >
           Change

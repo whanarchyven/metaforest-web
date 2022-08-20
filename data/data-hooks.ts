@@ -87,7 +87,7 @@ export const usePush = () => {
 export const takeJob = (jobSlug: string) => {
   return sdk()
     .metaforestUserTakeJob({ jobSlug })
-    .then((d) => (window as any).Telegram.WebApp.close());
+    .then((d) => (window as any)?.Telegram?.WebApp?.close());
 };
 export const canApplyToJob = (jobSlug: string) => {
   return sdk().metaforestPerformMyAbiFunction({
