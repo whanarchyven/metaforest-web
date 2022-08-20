@@ -16,6 +16,7 @@ export const AuthConnector = () => {
 
     if (!telegramInitData) {
       telegramInitData = localStorage.getItem("telegramInitData");
+      console.log("test", Router.query.test);
       if (!telegramInitData && Router.query.test)
         telegramInitData = testTgInitData;
       // alert('error: no init data')
@@ -30,7 +31,9 @@ export const AuthConnector = () => {
         if (token) localStorage.setItem("token", token);
         if (token && !extToken) document.location.reload();
       })
-      .catch((e) => (document.location.href = "/access-denied"));
+      .catch((e) => {
+        // document.location.href = "/access-denied";
+      });
   }, []);
   return (
     <div>
