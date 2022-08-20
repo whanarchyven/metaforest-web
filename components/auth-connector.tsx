@@ -32,7 +32,7 @@ export const AuthConnector = () => {
         if (token && !extToken) document.location.reload();
       })
       .catch((e) => {
-        // document.location.href = "/access-denied";
+        document.location.href = "/access-denied";
       });
   }, []);
   return (
