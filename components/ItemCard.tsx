@@ -12,7 +12,6 @@ interface ItemCardInterface {
 
 const ItemCard = ({ item }: ItemCardInterface) => {
 
-    console.log(item)
   let increase: any[]=[];
   if (item?.baseParams) {
     increase = Object.entries(item?.baseParams);

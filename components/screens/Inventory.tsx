@@ -80,9 +80,9 @@ const InventoryScreen = () => {
         <div className={'w-full h-full pb-20 p-4'}>
             <p className={'text-center text-black text-3xl font-bold mb-2'}>Inventory</p>
             <div className={'grid grid-cols-5 grid-rows-2 gap-2 h-16 my-4'}>
-                <div className={'col-start-1 col-end-6 row-start-1'}>
-                    <TabSwitcher tabs={tabs} activeTab={activeTab} switchTab={setActiveTab}></TabSwitcher>
-                </div>
+                {/*<div className={'col-start-1 col-end-6 row-start-1'}>*/}
+                {/*    <TabSwitcher tabs={tabs} activeTab={activeTab} switchTab={setActiveTab}></TabSwitcher>*/}
+                {/*</div>*/}
             </div>
             <div className={'gap-y-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 overflow-y-scroll gap-4 h-full pb-24'}>
                 {state?.inventory?.map(item=>{
