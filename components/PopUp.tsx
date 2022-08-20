@@ -4,9 +4,10 @@ import { equipmentItem } from "./interfaces/equipmentItem";
 import Image from "next/image";
 import { bunnyInterface } from "./interfaces/bunnyInterface";
 import { marketplaceItem } from "./interfaces/marketplaceItem";
+import {MetaforestNftInfo} from "../graphql/sdk/graphql";
 
 interface ItemCardInterface {
-  item: marketplaceItem,
+  item: MetaforestNftInfo,
   togglePop: () => any,
   bunny: bunnyInterface;
   balance: number;
@@ -30,9 +31,9 @@ const PopUp = ({ item, togglePop, bunny, balance }: ItemCardInterface) => {
           <ItemCard item={item}></ItemCard>
         </div>
         <div className={'relative w-4/5 mt-5 grid h-12 grid-cols-2 gap-2'}>
-          <button className={'rounded-full bg-black text-white'} onClick={() => { if (balance > item.price) { togglePop(); } else { alert("Seems like you do not have enough carrots to buy this item!") } }}>Buy</button>
+          {/*<button className={'rounded-full bg-black text-white'} onClick={() => { if (balance > item.price) { togglePop(); } else { alert("Seems like you do not have enough carrots to buy this item!") } }}>Buy</button>*/}
           <div className={'rounded-full flex items-center justify-around bg-black'}>
-            <p className={'text-white'}>{item.price}</p>
+            {/*<p className={'text-white'}>{item.price}</p>*/}
             <div className={'w-7 h-7 relative bg-white rounded-full p-1'}>
               <Image
                 alt=""

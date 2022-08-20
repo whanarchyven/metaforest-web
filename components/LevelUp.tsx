@@ -8,6 +8,9 @@ import TaskChecker from "./UI/TaskChecker";
 import BunnyGeneration from "./BunnyGeneration";
 import ProgressBar from "./UI/ProgressBar";
 import {MetaforestNftInfo} from "../graphql/sdk/graphql";
+import {useUserGameFullState} from "../data/data-hooks";
+import {object} from "prop-types";
+import {sdk} from "../graphql/sdk";
 
 interface LevelUpInterface {
     bunny: MetaforestNftInfo;
@@ -15,8 +18,9 @@ interface LevelUpInterface {
     skillpoints: number;
 }
 
-const LevelUp = ({bunny, togglePop}: LevelUpInterface) => {
-    const [skillPoints, setSkillPoints] = useState(2);
+const LevelUp = ({bunny, togglePop,skillpoints}: LevelUpInterface) => {
+
+    const [skillPoints, setSkillPoints] = useState(skillpoints);
     const stats: {
         stat_name: "str" | "dex" | "vit" | "int" | "krm";
         stat_value: number;
@@ -34,6 +38,20 @@ const LevelUp = ({bunny, togglePop}: LevelUpInterface) => {
         {stat_name: "krm", stat_value: 0},
     ];
     const [upStats, setUpStats] = useState(stats);
+
+    const confirmLvlUp=()=>{
+        upStats.map(skill=>{
+            let skillIncrease=Object.entries(skill)
+            console.log(skillIncrease)
+            for(let i=0;i<skillIncrease[1][1];i++){
+                sdk().metaforestPerformMyAbiFunction({
+                    fn:'spendSkillPoint',
+                    params:{target:skillIncrease[0][1]}
+                })
+            }
+        })
+    }
+
 
     const decreaseStat = (stat: "str" | "dex" | "vit" | "int" | "krm") => {
         let tempstat = [...upStats];
@@ -81,36 +99,35 @@ const LevelUp = ({bunny, togglePop}: LevelUpInterface) => {
         let tempstat = [...upStats];
         switch (stat) {
             case "str":
-                console.log('suka');
-                if (tempstat[0].stat_value <10) {
+                if (tempstat[0].stat_value < 10) {
                     tempstat[0].stat_value += 1;
                     setUpStats(tempstat);
                     setSkillPoints(skillPoints - 1);
                 }
                 break;
             case "dex":
-                if (tempstat[1].stat_value <10) {
+                if (tempstat[1].stat_value < 10) {
                     tempstat[1].stat_value += 1;
                     setUpStats(tempstat);
                     setSkillPoints(skillPoints - 1);
                 }
                 break;
             case "vit":
-                if (tempstat[2].stat_value <10) {
+                if (tempstat[2].stat_value < 10) {
                     tempstat[2].stat_value += 1;
                     setUpStats(tempstat);
                     setSkillPoints(skillPoints - 1);
                 }
                 break;
             case "int":
-                if (tempstat[3].stat_value <10) {
+                if (tempstat[3].stat_value < 10) {
                     tempstat[3].stat_value += 1;
                     setUpStats(tempstat);
                     setSkillPoints(skillPoints - 1);
                 }
                 break;
             case "krm":
-                if (tempstat[4].stat_value <10) {
+                if (tempstat[4].stat_value < 10) {
                     tempstat[4].stat_value += 1;
                     setUpStats(tempstat);
                     setSkillPoints(skillPoints - 1);
@@ -140,8 +157,8 @@ const LevelUp = ({bunny, togglePop}: LevelUpInterface) => {
             </div>
             <div className={"grid grid-cols-2 pt-14 px-4"}>
                 <div className={"col-start-1 flex justify-center items-center"}>
-                    <div className={"w-[308px] scale-125 pt-0 h-[300px] mx-auto"}>
-                        {bunny.images?.transparentBg?<BunnyGeneration base_image={bunny.images?.transparentBg}></BunnyGeneration>:null}
+                    <div className={"w-[191px] pt-0 h-[276px] mx-auto"}>
+                        {bunny.images?.transparentBg ? <BunnyGeneration></BunnyGeneration> : null}
                     </div>
                 </div>
                 <div className={"col-start-2"}>
@@ -246,12 +263,13 @@ const LevelUp = ({bunny, togglePop}: LevelUpInterface) => {
                                 <p className={"ml-3 w-12"}>{item.stat_name.toUpperCase()}</p>
                             </div>
                             <div className={"w-52 h-full"}>
-                                {bunny.baseParams!=undefined&&bunny.baseParams[item.stat_name]!=undefined?<ProgressBar
-                                    progress={
-                                        bunny?.baseParams?.[item.stat_name] + item.stat_value
-                                    }
-                                    limit={10}
-                                ></ProgressBar>:null}
+                                {bunny.baseParams != undefined && bunny.baseParams[item.stat_name] != undefined ?
+                                    <ProgressBar
+                                        progress={
+                                            bunny?.baseParams?.[item.stat_name] + item.stat_value
+                                        }
+                                        limit={10}
+                                    ></ProgressBar> : null}
                             </div>
                             <div
                                 className={
@@ -260,7 +278,6 @@ const LevelUp = ({bunny, togglePop}: LevelUpInterface) => {
                                 onClick={() => {
                                     if (skillPoints > 0) {
                                         increaseStat(item.stat_name);
-                                        console.log(item.stat_name)
                                     }
                                 }}
                             >
@@ -274,6 +291,7 @@ const LevelUp = ({bunny, togglePop}: LevelUpInterface) => {
                 className={
                     "w-72 rounded-full text-black font-bold text-3xl h-20 green-gradient"
                 }
+                onClick={()=>{confirmLvlUp()}}
             >
                 Confirm
             </button>

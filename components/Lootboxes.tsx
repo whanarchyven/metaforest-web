@@ -11,23 +11,23 @@ interface lootboxesInterface {
   lootboxes: LootBox[];
 }
 
-const Lootboxes = ({ togglePop }: lootboxesInterface) => {
+const Lootboxes = ({ togglePop,lootboxes }: lootboxesInterface) => {
 
-  const lootboxes: LootBox[] = [
-    {
-      id: '32',
-      openAfterDate: '19:08:2022',
-      probabilityOfLoot: 1,
-      slugEnum: '12',
-    },
-    {
-      id: '22',
-      openAfterDate: '19:08:2022',
-      probabilityOfLoot: 1,
-      slugEnum: '12',
-    },
-
-  ]
+  // const lootboxes: LootBox[] = [
+  //   {
+  //     id: '32',
+  //     openAfterDate: '19:08:2022',
+  //     probabilityOfLoot: 1,
+  //     slugEnum: '12',
+  //   },
+  //   {
+  //     id: '22',
+  //     openAfterDate: '19:08:2022',
+  //     probabilityOfLoot: 1,
+  //     slugEnum: '12',
+  //   },
+  //
+  // ]
 
   const [choosenLootBox, setChoosenLootBox] = useState(lootboxes[0]);
 
@@ -56,9 +56,9 @@ const Lootboxes = ({ togglePop }: lootboxesInterface) => {
       </div>
       <div
         className={'gap-y-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 overflow-y-scroll gap-2 h-full pb-24'}>
-        {lootboxes.map(item => {
+        {lootboxes.map((item,index) => {
           return <div className={'w-full h-72 mt-5'} key={item.id}>
-            {item.id ? <p className={'font-bold w-full text-2xl opacity-50 text-center'}>№ {item.id.toString().padStart(6, '0')}</p> : null}
+            {item.id ? <p className={'font-bold w-full text-2xl opacity-50 text-center'}>№ {index.toString().padStart(6, '0')}</p> : null}
             <div className={'w-48 h-48 relative'}>
               <div className={'absolute top-0 w-full h-full'}>
                 <Image

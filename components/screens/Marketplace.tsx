@@ -81,27 +81,27 @@ const MarketplaceScreen = ({ bunny, balance }: MarketplaceProps) => {
   return (
     <div className={'w-full h-full pb-20 p-4'}>
       <p className={'text-center text-black text-3xl font-bold mb-2'}>Market</p>
-      <div className={'grid grid-cols-5 grid-rows-2 gap-2 h-16 mb-4'}>
-        <div className={'col-start-1 col-end-6 row-start-1'}>
-          <TabSwitcher tabs={tabs} activeTab={activeTab} switchTab={setActiveTab}></TabSwitcher>
-        </div>
-        <div className={'col-start-1 col-end-3 row-start-2'}>
-          <TabSwitcher tabs={payment} activeTab={activePayment} switchTab={setActivePayment}></TabSwitcher>
-        </div>
-        <div className={'col-start-4 col-end-6'}>
-          <select className={'w-full h-full rounded-full font-bold text-center text-[#898994]'}>
-            <option className={'rounded-full text-[#898994]'}>Available now</option>
-            <option className={'rounded-full text-[#898994]'}>Option 1</option>
-            <option className={'rounded-full text-[#898994]'}>Option 2</option>
-            <option className={'rounded-full text-[#898994]'}>Option 3</option>
-            <option className={'rounded-full text-[#898994]'}>Option 4</option>
-          </select>
-        </div>
-      </div>
+      {/*<div className={'grid grid-cols-5 grid-rows-2 gap-2 h-16 mb-4'}>*/}
+      {/*  <div className={'col-start-1 col-end-6 row-start-1'}>*/}
+      {/*    <TabSwitcher tabs={tabs} activeTab={activeTab} switchTab={setActiveTab}></TabSwitcher>*/}
+      {/*  </div>*/}
+      {/*  <div className={'col-start-1 col-end-3 row-start-2'}>*/}
+      {/*    <TabSwitcher tabs={payment} activeTab={activePayment} switchTab={setActivePayment}></TabSwitcher>*/}
+      {/*  </div>*/}
+      {/*  <div className={'col-start-4 col-end-6'}>*/}
+      {/*    <select className={'w-full h-full rounded-full font-bold text-center text-[#898994]'}>*/}
+      {/*      <option className={'rounded-full text-[#898994]'}>Available now</option>*/}
+      {/*      <option className={'rounded-full text-[#898994]'}>Option 1</option>*/}
+      {/*      <option className={'rounded-full text-[#898994]'}>Option 2</option>*/}
+      {/*      <option className={'rounded-full text-[#898994]'}>Option 3</option>*/}
+      {/*      <option className={'rounded-full text-[#898994]'}>Option 4</option>*/}
+      {/*    </select>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
       <div className={'gap-y-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 overflow-y-scroll gap-4 h-full pb-24'}>
         {items.map(item => {
           return <div className={'w-full h-72'} key={item.id}>
-            <ItemCard item={item} key={item.id}></ItemCard>
+            {/*<ItemCard item={item} key={item.id}></ItemCard>*/}
             <div className={'grid grid-cols-2 gap-3 h-9 mt-3'}>
               <button className={'rounded-full bg-black text-white'} onClick={() => { setPopupItem(item); togglePop() }}>Buy</button>
               <div className={'rounded-full flex items-center justify-around bg-black'}>
@@ -118,7 +118,7 @@ const MarketplaceScreen = ({ bunny, balance }: MarketplaceProps) => {
           </div>
         })}
       </div>
-      {openPopup ? <PopUp bunny={bunny} item={popupItem} togglePop={togglePop} balance={balance}></PopUp> : null}
+      {/*{openPopup ? <PopUp bunny={bunny} item={popupItem} togglePop={togglePop} balance={balance}></PopUp> : null}*/}
     </div>
   );
 };
