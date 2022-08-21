@@ -25,18 +25,18 @@ const TabBar = ({ currentTab }: tabBarInterface) => {
     'home',
     'work',
   ]
-  useEffect(() => {
-    window.addEventListener('scroll', ev => {
-      if (window.scrollY > currentOffset + 100) {
-        setIsVisible('visible-false');
-        setCurrentOffset(window.scrollY);
-      }
-      else if (window.scrollY < currentOffset - 100) {
-        setIsVisible('visible-true');
-        setCurrentOffset(window.scrollY);
-      }
-    })
-  })
+  // useEffect(() => {
+  //   window.addEventListener('scroll', ev => {
+  //     if (window.scrollY > currentOffset + 100) {
+  //       setIsVisible('visible-false');
+  //       setCurrentOffset(window.scrollY);
+  //     }
+  //     else if (window.scrollY < currentOffset - 100) {
+  //       setIsVisible('visible-true');
+  //       setCurrentOffset(window.scrollY);
+  //     }
+  //   })
+  // })
 
   return (
     <div className={'w-full h-full bg-white grid grid-cols-3 visible-transition gap-10 grid-rows-1 p-5 ' + isVisible}>

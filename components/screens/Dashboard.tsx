@@ -10,12 +10,9 @@ import { useUserGameFullState } from "../../data/data-hooks";
 import Lootboxes from "../Lootboxes";
 import FeedPopUp from "../FeedPopUp";
 
-interface homeInterface {
-  // bunny:bunnyInterface
-  // increaseCharacteristics:(chars:{id:'str'|'dex'|'vit'|'int'|'krm',increase:number}[])=>any
-}
 
-const Dashboard = (bunny: bunnyInterface) => {
+
+const Dashboard = () => {
   // const { data:profileData, mutate } = sdk().useGetMe()
   const [state, mutate] = useUserGameFullState();
   console.log(state);
@@ -94,10 +91,10 @@ const Dashboard = (bunny: bunnyInterface) => {
           </div>
         </div>
         <div className={"w-20 h-32 absolute -left-3 top-44"}>
-          {state?.vitalityPercent ? (
-            <VitalityBar vitality={state.vitalityPercent}></VitalityBar>
+          {state?.freeEnergyPercent ? (
+            <VitalityBar vitality={Math.round(state?.freeEnergyPercent/10)}></VitalityBar>
           ) : (
-            <VitalityBar vitality={1}></VitalityBar>
+            <VitalityBar vitality={9}></VitalityBar>
           )}
           <div
             className={
@@ -134,11 +131,17 @@ const Dashboard = (bunny: bunnyInterface) => {
         <p className={"text-center text-xl font-semibold text-white"}>Change</p>
       </a>
       <div className={"relative w-full gap-4 px-6 py-4 mt-3 grid grid-cols-10"}>
-        <p className={"col-start-1 col-end-4 justify-self-center"}>Max/day</p>
-        <div className={"col-start-4 col-end-9"}>
-          <ProgressBar progress={3} limit={12}></ProgressBar>
+        <div className={"col-start-1 col-end-4 justify-self-center"}>
+          <p className={'inline-block align-middle'}>Max</p>
+          <div className={'w-5 h-5 relative inline-block align-middle'}>
+            <Image src={'/images/carrot_icon.svg'} layout={'fill'}></Image>
+          </div>
+          <p className={'inline-block align-middle'}>/day</p>
         </div>
-        <p className={"col-start-9 col-end-11 justify-self-center"}>3/12</p>
+        <div className={"col-start-4 col-end-9"}>
+          {state?.carrotsPerLast24Hours!=undefined?<ProgressBar progress={state?.carrotsPerLast24Hours} limit={12}></ProgressBar>:null}
+        </div>
+        <p className={"col-start-9 col-end-11 justify-self-center"}>{state?.carrotsPerLast24Hours}/12</p>
       </div>
 
       {state?.jobEnergy && state.maxJobEnergy != undefined ? (
