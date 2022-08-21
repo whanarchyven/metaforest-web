@@ -22,19 +22,20 @@ export const AuthConnector = () => {
       // alert('error: no init data')
     }
     // if (!localStorage.getItem('token'))
-    sdk()
-      .createOrFindUserViaTelegramInitData({ telegramInitData })
-      .then((d) => {
-        // alert((JSON.stringify(d)))
-        const extToken = localStorage.getItem("token");
-        const token = d?.createOrFindUserViaTelegramInitData;
-        if (token) localStorage.setItem("token", token);
-        if (token && !extToken) document.location.reload();
-      })
-      .catch((e) => {
-        document.location.href = "/access-denied";
-      });
-  }, []);
+    if (telegramInitData)
+      sdk()
+        .createOrFindUserViaTelegramInitData({ telegramInitData })
+        .then((d) => {
+          // alert((JSON.stringify(d)))
+          const extToken = localStorage.getItem("token");
+          const token = d?.createOrFindUserViaTelegramInitData;
+          if (token) localStorage.setItem("token", token);
+          if (token && !extToken) document.location.reload();
+        })
+        .catch((e) => {
+          document.location.href = "/access-denied";
+        });
+  });
   return (
     <div>
       <Script src="https://telegram.org/js/telegram-web-app.js" />

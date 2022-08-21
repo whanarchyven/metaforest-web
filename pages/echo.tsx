@@ -10,7 +10,7 @@ const PageEcho = () => {
   return (
     <div>
       Init Data:
-      <pre>{initData}</pre>
+      <pre className={"whitespace-pre-wrap"}>{initData}</pre>
       <Script src="https://telegram.org/js/telegram-web-app.js" />
     </div>
   );
