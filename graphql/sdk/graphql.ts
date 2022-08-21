@@ -190,7 +190,6 @@ export type MetaforestNftInfo = {
   itemWornOnBunnyIdx?: Maybe<Scalars['Int']>;
   layers?: Maybe<Array<Scalars['String']>>;
   nftCollection?: Maybe<MetaforestNftCollectionsEnum>;
-  ownerTonWalletAddress?: Maybe<Scalars['String']>;
   ownerUserUri?: Maybe<Scalars['String']>;
   uid: Scalars['String'];
 };
@@ -239,6 +238,13 @@ export type MetaforestUserGameFullStatePayload = {
   wornInventory?: Maybe<Array<Maybe<MetaforestNftInfo>>>;
 };
 
+export type MetaforestUserSharedLink = {
+  __typename?: 'MetaforestUserSharedLink';
+  fileUrl?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
+  userUri: Scalars['String'];
+};
+
 export type MetaforestUserStepsCounter = {
   __typename?: 'MetaforestUserStepsCounter';
   avgSpeed?: Maybe<Scalars['Float']>;
@@ -264,6 +270,7 @@ export type Mutation = {
   metaforestPerformAbiFunction: Scalars['String'];
   metaforestPerformMyAbiFunction: Scalars['String'];
   metaforestUserClearPush?: Maybe<Scalars['String']>;
+  metaforestUserSendLink?: Maybe<Scalars['String']>;
   metaforestUserTakeJob: Scalars['String'];
 };
 
@@ -305,6 +312,11 @@ export type MutationMetaforestPerformMyAbiFunctionArgs = {
 
 export type MutationMetaforestUserClearPushArgs = {
   userUri: Scalars['String'];
+};
+
+
+export type MutationMetaforestUserSendLinkArgs = {
+  text?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -424,7 +436,6 @@ export type User = {
   displayName?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   emails?: Maybe<Array<Scalars['String']>>;
-  etc?: Maybe<Array<Scalars['String']>>;
   passwordHash?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
   phones?: Maybe<Array<Scalars['String']>>;
@@ -506,6 +517,13 @@ export type MetaforestUserClearPushMutationVariables = Exact<{
 
 
 export type MetaforestUserClearPushMutation = { __typename?: 'Mutation', metaforestUserClearPush?: string | null };
+
+export type MetaforestUserSendLinkMutationVariables = Exact<{
+  text?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type MetaforestUserSendLinkMutation = { __typename?: 'Mutation', metaforestUserSendLink?: string | null };
 
 export type MetaforestUserTakeJobMutationVariables = Exact<{
   jobSlug: Scalars['String'];
@@ -610,6 +628,11 @@ export const MetaforestPerformMyAbiFunctionDocument = gql`
 export const MetaforestUserClearPushDocument = gql`
     mutation metaforestUserClearPush($userUri: String!) {
   metaforestUserClearPush(userUri: $userUri)
+}
+    `;
+export const MetaforestUserSendLinkDocument = gql`
+    mutation metaforestUserSendLink($text: String) {
+  metaforestUserSendLink(text: $text)
 }
     `;
 export const MetaforestUserTakeJobDocument = gql`
@@ -728,6 +751,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     metaforestUserClearPush(variables: MetaforestUserClearPushMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestUserClearPushMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<MetaforestUserClearPushMutation>(MetaforestUserClearPushDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestUserClearPush', 'mutation');
+    },
+    metaforestUserSendLink(variables?: MetaforestUserSendLinkMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestUserSendLinkMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestUserSendLinkMutation>(MetaforestUserSendLinkDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestUserSendLink', 'mutation');
     },
     metaforestUserTakeJob(variables: MetaforestUserTakeJobMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestUserTakeJobMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<MetaforestUserTakeJobMutation>(MetaforestUserTakeJobDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestUserTakeJob', 'mutation');
