@@ -41,42 +41,42 @@ const Work = () => {
         }
       >
         <p className={"w-full text-center font-bold text-2xl"}>Billboard</p>
-        <div className={"grid grid-cols-5 grid-rows-1 h-12 sm:p-6 p-3 gap-4"}>
-          <div
-            className={
-              "col-start-1 col-end-3 bg-white text-[#898994] rounded-full h-full"
-            }
-          >
-            <TabSwitcher
-              tabs={worktabs}
-              activeTab={workTab}
-              switchTab={setWorkTab}
-            />
-          </div>
-          <div className={"col-start-4 col-end-6"}>
-            <select
-              className={
-                "w-full h-full rounded-full font-bold text-center text-[#898994]"
-              }
-            >
-              <option className={"rounded-full text-[#898994]"}>
-                Available now
-              </option>
-              <option className={"rounded-full text-[#898994]"}>
-                Option 1
-              </option>
-              <option className={"rounded-full text-[#898994]"}>
-                Option 2
-              </option>
-              <option className={"rounded-full text-[#898994]"}>
-                Option 3
-              </option>
-              <option className={"rounded-full text-[#898994]"}>
-                Option 4
-              </option>
-            </select>
-          </div>
-        </div>
+        {/*<div className={"grid grid-cols-5 grid-rows-1 h-12 sm:p-6 p-3 gap-4"}>*/}
+        {/*  <div*/}
+        {/*    className={*/}
+        {/*      "col-start-1 col-end-3 bg-white text-[#898994] rounded-full h-full"*/}
+        {/*    }*/}
+        {/*  >*/}
+        {/*    <TabSwitcher*/}
+        {/*      tabs={worktabs}*/}
+        {/*      activeTab={workTab}*/}
+        {/*      switchTab={setWorkTab}*/}
+        {/*    />*/}
+        {/*  </div>*/}
+        {/*  <div className={"col-start-4 col-end-6"}>*/}
+        {/*    <select*/}
+        {/*      className={*/}
+        {/*        "w-full h-full rounded-full font-bold text-center text-[#898994]"*/}
+        {/*      }*/}
+        {/*    >*/}
+        {/*      <option className={"rounded-full text-[#898994]"}>*/}
+        {/*        Available now*/}
+        {/*      </option>*/}
+        {/*      <option className={"rounded-full text-[#898994]"}>*/}
+        {/*        Option 1*/}
+        {/*      </option>*/}
+        {/*      <option className={"rounded-full text-[#898994]"}>*/}
+        {/*        Option 2*/}
+        {/*      </option>*/}
+        {/*      <option className={"rounded-full text-[#898994]"}>*/}
+        {/*        Option 3*/}
+        {/*      </option>*/}
+        {/*      <option className={"rounded-full text-[#898994]"}>*/}
+        {/*        Option 4*/}
+        {/*      </option>*/}
+        {/*    </select>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
         <div
           className={
             "grid grid-cols-1 content-start gap-4 overflow-y-scroll h-full pb-20 lg:grid-cols-2"
