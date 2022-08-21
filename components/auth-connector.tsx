@@ -33,6 +33,7 @@ export const AuthConnector = () => {
           if (token && !extToken) document.location.reload();
         })
         .catch((e) => {
+          localStorage.removeItem("token");
           document.location.href = "/access-denied";
         });
   });
