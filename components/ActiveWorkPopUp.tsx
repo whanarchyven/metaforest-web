@@ -9,6 +9,8 @@ import {MetaforestCurrentJob, MetaforestJob} from "../graphql/sdk/graphql";
 import { takeJob } from "../data/data-hooks";
 import activeTask from "./ActiveTask";
 import ProgressBar from "./UI/ProgressBar";
+import {router} from "next/client";
+import {useRouter} from "next/router";
 
 interface ActiveWorkPopUpInterface {
   workItem: MetaforestCurrentJob;
@@ -16,6 +18,7 @@ interface ActiveWorkPopUpInterface {
 }
 
 const ActiveWorkPopUp = ({ workItem, togglePop }: ActiveWorkPopUpInterface) => {
+  const router=useRouter()
   return (
     <div
       className={
@@ -119,7 +122,7 @@ const ActiveWorkPopUp = ({ workItem, togglePop }: ActiveWorkPopUpInterface) => {
             "w-3/4 bg-black rounded-full h-16 mt-8 text-white text-center text-2xl font-bold"
           }
           onClick={() => {
-            togglePop();
+            router.push('/stats')
             // takeJob(workItem?.job?.slug);
           }}
         >
