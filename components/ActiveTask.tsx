@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { activeTask } from "./interfaces/activeTask";
@@ -6,11 +6,16 @@ import ProgressBar from "./UI/ProgressBar";
 import TaskChecker from "./UI/TaskChecker";
 import { sdk } from "../graphql/sdk";
 import { MetaforestCurrentJob } from "../graphql/sdk/graphql";
+import ActiveWorkPopUp from "./ActiveWorkPopUp";
 interface activeTaskModule {
   active_task?: MetaforestCurrentJob
 }
 const ActiveTask = ({ active_task }: activeTaskModule) => {
 
+    const [activePopOpen,setActivePopOpen]=useState(false)
+    const toggleActivePop=()=>{
+        setActivePopOpen(!activePopOpen)
+    }
 
   if (active_task?.job) {
     let h_bar = 'h-3';
@@ -22,7 +27,7 @@ const ActiveTask = ({ active_task }: activeTaskModule) => {
     //     h_bar='h-10'
     // }
     return (
-      <div className={'w-full h-full grid grid-cols-9 grid-rows-3 gap-2'}>
+      <div className={'w-full h-full grid grid-cols-9 grid-rows-3 gap-2'} onClick={()=>{toggleActivePop()}}>
         <div className={'col-start-1 col-end-8'}>
           {active_task != undefined ? <p className={'w-full font-semibold text-lg'}>{active_task.job?.title}</p> : null}
         </div>
@@ -52,6 +57,7 @@ const ActiveTask = ({ active_task }: activeTaskModule) => {
           {/*<p className={'w-full text-center font-semibold text-xs text-[#898994]'}>{active_task.workItem.type.toUpperCase()}</p>*/}
           <p className={'w-full text-center font-semibold text-xs text-[#898994]'}>{active_task.job.type}</p>
         </div>
+          {activePopOpen?<ActiveWorkPopUp togglePop={toggleActivePop} workItem={active_task}/>:null}
       </div>
     );
   }
