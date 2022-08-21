@@ -67,7 +67,10 @@ const StatsPage = () => {
             />
           </div>
           <div>
-            <p className={"font-bold text-white inline-block"}>2.1/3</p>
+            <p className={"font-bold text-white inline-block"}>
+              {(data?.jobEnergy ?? 0).toFixed(1)}/
+              {(data?.maxJobEnergy ?? 0).toFixed(1)}
+            </p>
             <div className={"w-5 h-5 relative ml-2 inline-block"}>
               <Image
                 alt=""
@@ -77,16 +80,16 @@ const StatsPage = () => {
             </div>
           </div>
         </div>
-        <div className={"w-full h-6 gap-4 grid grid-cols-3"}>
-          <p className={"col-start-1 col-end-3 text-white font-bold text-xl "}>
-            Average speed:
-          </p>
-          <div>
-            <p className={"font-bold text-white inline-block text-xl"}>
-              {avgSpeed} km/h
-            </p>
-          </div>
-        </div>
+        {/*<div className={"w-full h-6 gap-4 grid grid-cols-3"}>*/}
+        {/*  <p className={"col-start-1 col-end-3 text-white font-bold text-xl "}>*/}
+        {/*    Average speed:*/}
+        {/*  </p>*/}
+        {/*  <div>*/}
+        {/*    <p className={"font-bold text-white inline-block text-xl"}>*/}
+        {/*      {avgSpeed} km/h*/}
+        {/*    </p>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
         <div className={"w-full h-6 gap-4 grid grid-cols-3"}>
           <p
             className={
