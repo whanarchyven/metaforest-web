@@ -34,6 +34,7 @@ export const AuthConnector = () => {
         })
         .catch((e) => {
           localStorage.removeItem("token");
+          localStorage.removeItem("telegramInitData");
           document.location.href = "/access-denied";
         });
   });
