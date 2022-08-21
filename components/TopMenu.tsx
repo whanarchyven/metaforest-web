@@ -46,7 +46,7 @@ const TopMenu = ({balance}: topMenuInterface) => {
                     <Image src={'/images/carrot_icon.svg'} layout={'fill'}></Image>
                 </div>
                 <p className={'inline-block align-middle text-2xl font-semibold'}>
-                    {balance}
+                    {balance.toFixed(2)}
                 </p>
             </div>
             <div className={'col-start-6 flex justify-center items-center col-end-6'}>
