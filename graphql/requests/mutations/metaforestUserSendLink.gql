@@ -1,0 +1,3 @@
+mutation metaforestUserSendLink($text: String){
+    metaforestUserSendLink(text: $text)
+}

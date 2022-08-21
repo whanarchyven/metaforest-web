@@ -4,6 +4,8 @@ import Image from "next/image";
 import ProgressBar from "../components/UI/ProgressBar";
 import moment from "moment";
 import Layout from "../components/Layout";
+import { useState } from "react";
+import { sdk } from "../graphql/sdk";
 
 const StatsPage = () => {
   const [data] = useUserGameFullState();
@@ -14,12 +16,18 @@ const StatsPage = () => {
         <AuthConnector />
       </div>
     );
-  const hoursElapsed = moment().diff(data.currentJob?.jobStartTime, "hours");
-  const avgSpeed =
-    hoursElapsed > 0
-      ? ((data?.currentJob?.metersPassed ?? 0) / hoursElapsed).toFixed(1)
-      : 0;
 
+  const [text, setText] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const send = () => {
+    sdk()
+      .metaforestUserSendLink({ text })
+      .then((d) => {
+        setSuccess(true);
+        setText("");
+      });
+  };
   return (
     <Layout>
       <div
@@ -38,15 +46,29 @@ const StatsPage = () => {
           </p>
           <input
             type={"text"}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
             className={"w-full text-center p-2 h-9 rounded-full"}
           />
-          <button
-            className={
-              "w-4/5 h-9 bg-black text-white rounded-full font-bold text-xl"
-            }
-          >
-            Send
-          </button>
+          {text.length > 0 && (
+            <button
+              onClick={send}
+              className={
+                "w-4/5 h-9 bg-black text-white rounded-full font-bold text-xl"
+              }
+            >
+              Send
+            </button>
+          )}
+          {success && (
+            <p
+              className={
+                "w-4/5 h-9 bg-black text-white rounded-full font-bold text-xl"
+              }
+            >
+              Success
+            </p>
+          )}
         </div>
       </div>
     </Layout>

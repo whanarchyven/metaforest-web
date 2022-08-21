@@ -10,4 +10,5 @@ module.exports.metaforestInitStateForUser = fs.readFileSync(path.join(__dirname,
 module.exports.metaforestPerformAbiFunction = fs.readFileSync(path.join(__dirname, 'metaforestPerformAbiFunction.gql'), 'utf8');
 module.exports.metaforestPerformMyAbiFunction = fs.readFileSync(path.join(__dirname, 'metaforestPerformMyAbiFunction.gql'), 'utf8');
 module.exports.metaforestUserClearPush = fs.readFileSync(path.join(__dirname, 'metaforestUserClearPush.gql'), 'utf8');
+module.exports.metaforestUserSendLink = fs.readFileSync(path.join(__dirname, 'metaforestUserSendLink.gql'), 'utf8');
 module.exports.metaforestUserTakeJob = fs.readFileSync(path.join(__dirname, 'metaforestUserTakeJob.gql'), 'utf8');
