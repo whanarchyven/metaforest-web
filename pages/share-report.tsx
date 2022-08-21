@@ -7,8 +7,10 @@ import Layout from "../components/Layout";
 import { useState } from "react";
 import { sdk } from "../graphql/sdk";
 
-const StatsPage = () => {
+const ShareReportPage = () => {
   const [data] = useUserGameFullState();
+  const [text, setText] = useState("");
+  const [success, setSuccess] = useState(false);
 
   if (!data)
     return (
@@ -16,9 +18,6 @@ const StatsPage = () => {
         <AuthConnector />
       </div>
     );
-
-  const [text, setText] = useState("");
-  const [success, setSuccess] = useState(false);
 
   const send = () => {
     sdk()
@@ -75,4 +74,4 @@ const StatsPage = () => {
   );
 };
 
-export default StatsPage;
+export default ShareReportPage;
