@@ -7,6 +7,8 @@ import StatRequirementBar from "./UI/StatRequirementBar";
 import TaskChecker from "./UI/TaskChecker";
 import {MetaforestCurrentJob, MetaforestJob} from "../graphql/sdk/graphql";
 import { takeJob } from "../data/data-hooks";
+import activeTask from "./ActiveTask";
+import ProgressBar from "./UI/ProgressBar";
 
 interface ActiveWorkPopUpInterface {
   workItem: MetaforestCurrentJob;
@@ -111,9 +113,7 @@ const ActiveWorkPopUp = ({ workItem, togglePop }: ActiveWorkPopUpInterface) => {
             </div>
           </div>
         </div>
-        <div className={"h-16 relative w-full mt-3 rounded-full"}>
-
-        </div>
+        {workItem.job?.type=='STEPS'&&workItem.job.approxMeters?<div className={'w-full mt-5 relative block h-6 '}><ProgressBar progress={workItem?.metersPassed} limit={workItem?.job?.approxMeters}/></div>:null}
         <button
           className={
             "w-3/4 bg-black rounded-full h-16 mt-8 text-white text-center text-2xl font-bold"
