@@ -103,8 +103,9 @@ const Dashboard = () => {
             onClick={() => {
               // toggleFeedPop();
               sdk().metaforestPerformMyAbiFunction({
-                fn:'feedRabbitWithCarrots'
-              });console.log('feeded')
+                fn: "feedRabbitWithCarrots",
+              });
+              console.log("feeded");
             }}
           >
             <p className={"text-center text-xl font-semibold text-white"}>
@@ -141,7 +142,11 @@ const Dashboard = () => {
         <div className={"col-start-4 col-end-9"}>
           {state?.carrotsPerLast24Hours!=undefined?<ProgressBar progress={state?.carrotsPerLast24Hours} limit={12}></ProgressBar>:null}
         </div>
-        <p className={"col-start-9 col-end-11 justify-self-center"}>{state?.carrotsPerLast24Hours}/{state?.maxCarrotsFor24Hours}</p>
+
+        <p className={"col-start-9 col-end-11 justify-self-center"}>
+          {state?.carrotsPerLast24Hours?.toFixed(0)}/
+          {state?.maxCarrotsFor24Hours?.toFixed(0)}
+        </p>
       </div>
 
       {state?.jobEnergy && state.maxJobEnergy != undefined ? (

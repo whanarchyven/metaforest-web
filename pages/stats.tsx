@@ -13,10 +13,7 @@ const StatsPage = () => {
       </div>
     );
   const hoursElapsed = moment().diff(data.currentJob?.jobStartTime, "hours");
-  const avgSpeed =
-    hoursElapsed > 0
-      ? ((data?.currentJob?.metersPassed ?? 0) / hoursElapsed / 1000).toFixed(1)
-      : 0;
+  const avgSpeed = data?.currentJob?.avgSpeed ?? 0;
 
   return (
     <div
@@ -90,16 +87,16 @@ const StatsPage = () => {
             </p>
           </div>
         </div>
-        {/*<div className={"w-full h-6 gap-4 grid grid-cols-3"}>*/}
-        {/*  <p className={"col-start-1 col-end-3 text-white font-bold text-xl "}>*/}
-        {/*    Average speed:*/}
-        {/*  </p>*/}
-        {/*  <div>*/}
-        {/*    <p className={"font-bold text-white inline-block text-xl"}>*/}
-        {/*      {avgSpeed} km/h*/}
-        {/*    </p>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
+        <div className={"w-full h-6 gap-4 grid grid-cols-3"}>
+          <p className={"col-start-1 col-end-3 text-white font-bold text-xl "}>
+            Average speed:
+          </p>
+          <div>
+            <p className={"font-bold text-white inline-block text-xl"}>
+              {avgSpeed} km/h
+            </p>
+          </div>
+        </div>
         <div className={"w-full h-6 gap-4 grid grid-cols-3"}>
           <p
             className={
