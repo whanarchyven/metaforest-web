@@ -116,7 +116,10 @@ const ActiveWorkPopUp = ({ workItem, togglePop }: ActiveWorkPopUpInterface) => {
             </div>
           </div>
         </div>
-        {workItem.job?.type=='STEPS'&&workItem.job.approxMeters?<div className={'w-full mt-5 relative block h-6 '}><ProgressBar progress={workItem?.metersPassed} limit={workItem?.job?.approxMeters}/></div>:null}
+        <div className={'p-4 mt-5 rounded-2xl bg-white w-full'}>
+          <p className={'text-black font-bold text-3xl mb-5'}>Progress: {workItem?.metersPassed}/{workItem.job?.approxMeters} m</p>
+          {workItem.job?.type=='STEPS'&&workItem.job.approxMeters?<div className={'w-full mt-5 relative block h-6 '}><ProgressBar progress={workItem?.metersPassed} limit={workItem?.job?.approxMeters}/></div>:null}
+        </div>
         <button
           className={
             "w-3/4 bg-black rounded-full h-16 mt-8 text-white text-center text-2xl font-bold"

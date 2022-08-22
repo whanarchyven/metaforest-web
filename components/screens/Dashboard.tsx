@@ -141,7 +141,7 @@ const Dashboard = () => {
         <div className={"col-start-4 col-end-9"}>
           {state?.carrotsPerLast24Hours!=undefined?<ProgressBar progress={state?.carrotsPerLast24Hours} limit={12}></ProgressBar>:null}
         </div>
-        <p className={"col-start-9 col-end-11 justify-self-center"}>{state?.carrotsPerLast24Hours}/12</p>
+        <p className={"col-start-9 col-end-11 justify-self-center"}>{state?.carrotsPerLast24Hours}/{state?.maxCarrotsFor24Hours}</p>
       </div>
 
       {state?.jobEnergy && state.maxJobEnergy != undefined ? (
@@ -155,7 +155,7 @@ const Dashboard = () => {
               limit={Math.round(state.maxJobEnergy)}
             ></ProgressBar>
           </div>
-          {state?.maxJobEnergy && (
+          {state?.maxJobEnergy!=undefined && (
             <p className={"col-start-9 col-end-11 justify-self-center"}>
               {Math.round(state.jobEnergy)}/{Math.round(state.maxJobEnergy)}
             </p>

@@ -6,6 +6,10 @@ interface vitalityBarInterface {
 }
 
 const VitalityBar = ({ vitality }: vitalityBarInterface) => {
+    console.log(vitality);
+    if(vitality>=10){
+        vitality=10;
+    }
   return (
     <div className={'w-full h-full relative'}>
       <Image
