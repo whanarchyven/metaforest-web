@@ -140,7 +140,7 @@ const Dashboard = () => {
           <p className={'inline-block align-middle'}>/day</p>
         </div>
         <div className={"col-start-4 col-end-9"}>
-          {state?.carrotsPerLast24Hours!=undefined?<ProgressBar progress={state?.carrotsPerLast24Hours} limit={12}></ProgressBar>:null}
+          {state?.carrotsPerLast24Hours!=undefined&&state?.maxCarrotsFor24Hours!=undefined?<ProgressBar progress={Math.round(state?.carrotsPerLast24Hours)} limit={Math.round(state.maxCarrotsFor24Hours)}></ProgressBar>:null}
         </div>
 
         <p className={"col-start-9 col-end-11 justify-self-center"}>
