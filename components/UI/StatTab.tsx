@@ -19,8 +19,8 @@ const whichStat: any = (stat: any) => {
 }
 
 export const StatTab = ({ stat_value, stat_name }: statTabInterface) => (
-  <div className={'w-full h-5 deactive-gradient rounded-full'}>
-    <div style={{ width: `${stat_value * 10}%`, background: `${whichStat(stat_name)}` }} className={'h-full rounded-full flex justify-end items-center'}>
+  <div className={'w-full h-5 deactive-gradient rounded-full transition-all'}>
+    <div style={{ width: `${stat_value * 10}%`, background: `${whichStat(stat_name)}` }} className={'h-full rounded-full flex justify-end items-center transition-all duration-500 ease-in-out'}>
       <div className={'w-4 h-4 rounded-full bg-white mr-0.5 flex justify-center items-center'}>
         <p className={'font-bold text-xs'}>{stat_value}</p>
       </div>

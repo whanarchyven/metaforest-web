@@ -5,7 +5,7 @@ build-frontend-production:
     - docker
   environment:
     name: "production-build-frontend"
-    url: "https://web-app.meta-forest.metafora.dev"
+    url: "https://mfgame.org"
   services:
     - docker:dind
   variables:

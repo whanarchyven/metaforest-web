@@ -39,7 +39,6 @@ const Equipment = ({bunny}: equipmentInterface) => {
     ];
     const rightTabs: keyTab[] = [
         {id: "EarsAccessories"},
-        {id: "Ears_n_Horns"},
         {id: "Costume"},
         {id: "HandRight"},
         {id: "Overhead"},
@@ -75,7 +74,7 @@ const Equipment = ({bunny}: equipmentInterface) => {
 
     return (
         <div
-            className={"grid grid-cols-1 grid-rows-2 auto-rows-max w-full h-[100vh]"}
+            className={"grid grid-cols-1 grid-rows-2 auto-rows-max w-full"}
         >
             <div className={" grid grid-cols-7"}>
                 <div className={"grid gap-4 col-start-1 grid-rows-4 col-end-3 "}>
@@ -230,7 +229,7 @@ const Equipment = ({bunny}: equipmentInterface) => {
                         {/*<p className={'text-white text-sm leading-[1%] font-bold'}>level</p>*/}
                     </div>
                 </div>
-                <div className={"grid w-full gap-4 grid-cols-1 grid-rows-6 p-2"}>
+                <div className={"grid w-full gap-4 grid-cols-1 mt-10 grid-rows-6 p-2"}>
                     {stats.map((stat) => {
                         return (
                             <div

@@ -12,6 +12,8 @@ import 'swiper/css';
 import {Navigation} from "swiper";
 import {MetaforestNftInfo} from "../../graphql/sdk/graphql";
 import {sdk} from "../../graphql/sdk";
+import {router} from "next/client";
+import {useRouter} from "next/router";
 
 interface equipmentInterface {
     bunny: bunnyInterface;
@@ -59,7 +61,7 @@ const BunnyChange = () => {
 
     const [state, mutate] = useUserGameFullState();
     const [currentBunny,setCurrentBunny]=useState(state?.activeBunny)
-
+    const router=useRouter();
 
     return (
         <div
@@ -81,13 +83,13 @@ const BunnyChange = () => {
                                 {({isActive}) => (
                                     <div className={'w-full h-full relative rounded-full'} key={item?.idx}>
                                         {isActive ?
-                                            <div className={'w-full rounded-full h-full scale-150 pt-10 rounded-full'}>
+                                            <div className={'w-full rounded-full h-full scale-150 pt-10 rounded-full transition-all duration-500 ease-in-out'}>
                                                 <img
                                                     src={item?.images?.transparentBg ? '' + item?.images?.transparentBg : ''}/>
                                             </div>
                                             :
                                             <div
-                                                className={'w-full rounded-full h-full scale-150 pt-10 rounded-full opacity-50 scale-75'}>
+                                                className={'w-full rounded-full h-full scale-100 pt-10 rounded-full opacity-50 transition-all duration-500 ease-in-out'}>
                                                 <img
                                                     src={item?.images?.transparentBg ? '' + item?.images?.transparentBg : ''}/>
                                             </div>}
@@ -210,7 +212,7 @@ const BunnyChange = () => {
                         <button className={'w-full h-9 rounded-full bg-black font-bold text-xl text-white'} onClick={()=>{sdk().metaforestPerformMyAbiFunction({
                             fn:'switchActiveBunny',
                             params:{bunnyIdx:currentBunny?.idx}
-                        });console.log('changed')}}>Select</button>
+                        });console.log('changed');router.push('/home')}}>Select</button>
                     </div>
                 </div>
                 <div className={"grid gap-4 col-start-7 grid-rows-4 col-end-8 "}>

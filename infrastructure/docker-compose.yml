@@ -4,7 +4,7 @@ version: "3.8"
 services:
 
   frontend:
-    image: "dr.metafora.dev/meta-forest/web-app/frontend/none:latest"
+    image: "${DOCKER_REGISTRY_HOSTNAME}/meta-forest/web-app/frontend/none:latest"
     pull_policy: always
     labels:
       - "traefik.enable=true"

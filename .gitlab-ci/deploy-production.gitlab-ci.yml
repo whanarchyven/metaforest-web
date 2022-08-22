@@ -5,7 +5,7 @@ deploy-production:
     - docker
   environment:
     name: "production-deploy"
-    url: "https://web-app.meta-forest.metafora.dev"
+    url: "https://mfgame.org"
   variables:
 
     COMPOSE_TEMP_PATH: ".tmp"
