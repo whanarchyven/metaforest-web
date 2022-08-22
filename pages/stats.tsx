@@ -13,7 +13,7 @@ const StatsPage = () => {
       </div>
     );
   const hoursElapsed = moment().diff(data.currentJob?.jobStartTime, "hours");
-  const avgSpeed = data?.currentJob?.avgSpeed ?? 0;
+  const avgSpeed = (data?.currentJob?.avgSpeed ?? 0).toFixed(1);
 
   return (
     <div
