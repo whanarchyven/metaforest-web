@@ -149,7 +149,7 @@ const Dashboard = () => {
         </p>
       </div>
 
-      {state?.jobEnergy && state.maxJobEnergy != undefined ? (
+      {state?.jobEnergy!=undefined && state.maxJobEnergy != undefined ? (
         <div
           className={"relative w-full gap-4 px-6 py-4 mt-3 grid grid-cols-10"}
         >
