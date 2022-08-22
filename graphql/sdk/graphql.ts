@@ -117,6 +117,7 @@ export type MetaforestBunnyGens = {
 
 export type MetaforestCurrentJob = {
   __typename?: 'MetaforestCurrentJob';
+  avgSpeed?: Maybe<Scalars['Float']>;
   carrotsEarned: Scalars['Float'];
   isActive: Scalars['Boolean'];
   job?: Maybe<MetaforestJob>;
@@ -253,9 +254,9 @@ export type MetaforestUserStepsCounter = {
   horizontalAccuracy?: Maybe<Scalars['Float']>;
   lastAcceptedLat?: Maybe<Scalars['Float']>;
   lastAcceptedLon?: Maybe<Scalars['Float']>;
+  lastMeasuredTime?: Maybe<Scalars['Date']>;
   metersPassed?: Maybe<Scalars['Float']>;
   rawLocations: Array<Location>;
-  secondsElapsed?: Maybe<Scalars['Float']>;
   timestamp?: Maybe<Scalars['Date']>;
 };
 
@@ -264,6 +265,7 @@ export type Mutation = {
   createOrFindUserViaTelegramInitData: Scalars['String'];
   metaforestAdminEditConfigSingleParam: Scalars['String'];
   metaforestAdminGrantNfts?: Maybe<Scalars['String']>;
+  metaforestAdminInitCarrotsForAllZeroBalances?: Maybe<Scalars['String']>;
   metaforestAdminInitConfig?: Maybe<Scalars['String']>;
   metaforestAdminInitJobs?: Maybe<Scalars['String']>;
   metaforestInitStateForUser: Scalars['String'];
@@ -475,6 +477,11 @@ export type MetaforestAdminGrantNftsMutationVariables = Exact<{ [key: string]: n
 
 export type MetaforestAdminGrantNftsMutation = { __typename?: 'Mutation', metaforestAdminGrantNfts?: string | null };
 
+export type MetaforestAdminInitCarrotsForAllZeroBalancesMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MetaforestAdminInitCarrotsForAllZeroBalancesMutation = { __typename?: 'Mutation', metaforestAdminInitCarrotsForAllZeroBalances?: string | null };
+
 export type MetaforestAdminInitConfigMutationVariables = Exact<{
   version: Scalars['String'];
 }>;
@@ -598,6 +605,11 @@ export const MetaforestAdminEditConfigSingleParamDocument = gql`
 export const MetaforestAdminGrantNftsDocument = gql`
     mutation metaforestAdminGrantNfts {
   metaforestAdminGrantNfts
+}
+    `;
+export const MetaforestAdminInitCarrotsForAllZeroBalancesDocument = gql`
+    mutation metaforestAdminInitCarrotsForAllZeroBalances {
+  metaforestAdminInitCarrotsForAllZeroBalances
 }
     `;
 export const MetaforestAdminInitConfigDocument = gql`
@@ -733,6 +745,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     metaforestAdminGrantNfts(variables?: MetaforestAdminGrantNftsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestAdminGrantNftsMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<MetaforestAdminGrantNftsMutation>(MetaforestAdminGrantNftsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestAdminGrantNfts', 'mutation');
+    },
+    metaforestAdminInitCarrotsForAllZeroBalances(variables?: MetaforestAdminInitCarrotsForAllZeroBalancesMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestAdminInitCarrotsForAllZeroBalancesMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MetaforestAdminInitCarrotsForAllZeroBalancesMutation>(MetaforestAdminInitCarrotsForAllZeroBalancesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestAdminInitCarrotsForAllZeroBalances', 'mutation');
     },
     metaforestAdminInitConfig(variables: MetaforestAdminInitConfigMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MetaforestAdminInitConfigMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<MetaforestAdminInitConfigMutation>(MetaforestAdminInitConfigDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'metaforestAdminInitConfig', 'mutation');

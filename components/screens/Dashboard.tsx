@@ -106,8 +106,9 @@ const Dashboard = (bunny: bunnyInterface) => {
             onClick={() => {
               // toggleFeedPop();
               sdk().metaforestPerformMyAbiFunction({
-                fn:'feedRabbitWithCarrots'
-              });console.log('feeded')
+                fn: "feedRabbitWithCarrots",
+              });
+              console.log("feeded");
             }}
           >
             <p className={"text-center text-xl font-semibold text-white"}>
@@ -138,7 +139,10 @@ const Dashboard = (bunny: bunnyInterface) => {
         <div className={"col-start-4 col-end-9"}>
           <ProgressBar progress={3} limit={12}></ProgressBar>
         </div>
-        <p className={"col-start-9 col-end-11 justify-self-center"}>3/12</p>
+        <p className={"col-start-9 col-end-11 justify-self-center"}>
+          ${state?.carrotsPerLast24Hours?.toFixed(0)}/$
+          {state?.maxCarrotsFor24Hours?.toFixed(0)}
+        </p>
       </div>
 
       {state?.jobEnergy && state.maxJobEnergy != undefined ? (
