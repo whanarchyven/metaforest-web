@@ -5,7 +5,7 @@ services:
   frontend:
     image: "${DOCKER_REGISTRY_HOSTNAME}/meta-forest/web-app/frontend/stage:latest"
     labels:
-      - "traefik.http.routers.meta-forest-web-app-frontend.rule=Host(`web-app.meta-forest.stage.metafora.dev`)"
+      - "traefik.http.routers.meta-forest-web-app-frontend.rule=Host(`meta-forest.stage.metafora.dev`)||Host(`web-app.meta-forest.stage.metafora.dev`)"
       - "traefik.http.routers.meta-forest-web-app-frontend.entrypoints=web,websecure"
 
       - "traefik.http.routers.meta-forest-web-app-frontend.tls=true"
@@ -15,7 +15,7 @@ services:
 
     deploy:
       labels:
-        - "traefik.http.routers.meta-forest-web-app-frontend.rule=Host(`web-app.meta-forest.stage.metafora.dev`)"
+        - "traefik.http.routers.meta-forest-web-app-frontend.rule=Host(`meta-forest.stage.metafora.dev`)||Host(`web-app.meta-forest.stage.metafora.dev`)"
         - "traefik.http.routers.meta-forest-web-app-frontend.entrypoints=web,websecure"
 
         - "traefik.http.routers.meta-forest-web-app-frontend.tls=true"
