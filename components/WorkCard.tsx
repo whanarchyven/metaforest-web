@@ -5,16 +5,14 @@ import {statKeys} from "./types/statKeys";
 import {StatTab} from "./UI/StatTab";
 import StatRequirementBar from "./UI/StatRequirementBar";
 import WorkPopUp from "./WorkPopUp";
-import bunny from "./Bunny";
 import {bunnyInterface} from "./interfaces/bunnyInterface";
 
 interface WorkCardInterface{
     workItem:workTask,
     bunny:bunnyInterface,
-    getNewActiveTask:(task:workTask)=>any
 }
 
-const WorkCard = ({workItem,bunny,getNewActiveTask}:WorkCardInterface) => {
+const WorkCard = ({workItem,bunny}:WorkCardInterface) => {
 
     const [workPopOpen,setWorkPopOpen]=useState(false)
     const toggleWorkPop=()=>{
@@ -61,7 +59,7 @@ const WorkCard = ({workItem,bunny,getNewActiveTask}:WorkCardInterface) => {
                     </div>
                 </div>
             </div>
-            {workPopOpen?<WorkPopUp workItem={workItem} togglePop={toggleWorkPop} bunny={bunny} getNewActiveTask={getNewActiveTask}/>:null}
+            {workPopOpen?<WorkPopUp workItem={workItem} togglePop={toggleWorkPop} bunny={bunny} />:null}
         </div>
     );
 };

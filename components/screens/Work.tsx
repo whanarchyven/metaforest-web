@@ -7,12 +7,12 @@ import {bunnyInterface} from "../interfaces/bunnyInterface";
 
 interface workModule{
     bunny:bunnyInterface,
-    getNewActiveTask:(task:workTask)=>any,
 }
 
-const Work = ({bunny,getNewActiveTask}:workModule) => {
+const Work = ({bunny}:workModule) => {
     const worktabs=['daily','work']
     const [workTab,setWorkTab]=useState('daily');
+
     const works:workTask[]=[
         {
             workItem:{
@@ -134,7 +134,7 @@ const Work = ({bunny,getNewActiveTask}:workModule) => {
                                 return history_element.workItem.id==item.workItem.id;
                             })==-1){
                                 return <div className={'h-32'} key={item.workItem.id}>
-                                    <WorkCard workItem={item} bunny={bunny} getNewActiveTask={getNewActiveTask}></WorkCard>
+                                    <WorkCard workItem={item} bunny={bunny}></WorkCard>
                                 </div>
                             }
                         }

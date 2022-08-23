@@ -9,11 +9,10 @@ interface WorkPopUpInterface {
     workItem:workTask
     togglePop: () => any,
     bunny:bunnyInterface,
-    getNewActiveTask:(task:workTask)=>any
 }
 
 
-const WorkPopUp = ({bunny, workItem, togglePop,getNewActiveTask}:WorkPopUpInterface) => {
+const WorkPopUp = ({bunny, workItem, togglePop}:WorkPopUpInterface) => {
     return (
         <div className={'fixed z-[999] w-full h-full top-0 left-0 grey-gradient justify-center items-center overflow-y-scroll'}>
             <div className={'w-full h-60 relative rounded-b-2xl'}>
@@ -59,7 +58,7 @@ const WorkPopUp = ({bunny, workItem, togglePop,getNewActiveTask}:WorkPopUpInterf
                 <div className={'h-16 relative w-full mt-3 rounded-full'}>
                     <TaskChecker workItem={workItem.workItem}/>
                 </div>
-                <button className={'w-3/4 bg-black rounded-full h-16 mt-8 text-white text-center text-2xl font-bold'} onClick={()=>{getNewActiveTask(workItem);togglePop();}}>
+                <button className={'w-3/4 bg-black rounded-full h-16 mt-8 text-white text-center text-2xl font-bold'} onClick={()=>{togglePop();}}>
                     Take job!
                 </button>
             </div>

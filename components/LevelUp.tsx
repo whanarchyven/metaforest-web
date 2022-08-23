@@ -23,7 +23,7 @@ const LevelUp = ({bunny}:LevelUpInterface) => {
                     </div>
                 </div>
                 <div className={'col-start-2 flex justify-center'}>
-                    <p>Level up!</p>
+                    <p className={'font-bold text-2xl'}>Level up!</p>
                 </div>
             </div>
         </div>
